@@ -1,0 +1,1 @@
+<view><view class="content"><view class="wxinfo"></view><image class="canvas" src="{{img}}"></image><view class="card">{{card}}</view></view></view>

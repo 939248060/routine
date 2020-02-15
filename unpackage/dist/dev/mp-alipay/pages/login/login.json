@@ -1,0 +1,6 @@
+{
+  "defaultTitle": "用户登录",
+  "usingComponents": {
+    "loading": "/components/loading/loading"
+  }
+}

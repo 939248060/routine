@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "个人中心",
+  "navigationBarBackgroundColor": "#1b82d1",
+  "usingComponents": {
+    "dialogs": "/components/dialog/dialog"
+  }
+}

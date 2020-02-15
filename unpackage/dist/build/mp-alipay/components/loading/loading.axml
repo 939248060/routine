@@ -1,0 +1,1 @@
+<view hidden="{{!(isShow)}}" catchtouchmove="move"><view class="{{(('mask')+' '+vmask)}}"></view><view class="back"><view class="animationSlow"></view><view class="logo"><image src="../../static/images/logo.png" mode="widthFix"></image></view></view></view>

@@ -1,0 +1,1 @@
+.realname{background:#fff}.realname>view{-webkit-box-pack:justify;-webkit-justify-content:space-between;justify-content:space-between;-webkit-box-align:center;-webkit-align-items:center;align-items:center;border-bottom:1px solid #eee}.realname>view>text{width:25%;box-sizing:border-box}.realname>view>input{min-width:75%;max-width:100%}.btn{width:79%;background:#00a2ed;color:#fff}

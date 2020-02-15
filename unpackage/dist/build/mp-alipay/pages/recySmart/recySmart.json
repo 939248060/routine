@@ -1,0 +1,6 @@
+{
+  "defaultTitle": "智能站分布",
+  "usingComponents": {
+    "loading": "/components/loading/loading"
+  }
+}

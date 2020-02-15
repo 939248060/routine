@@ -1,0 +1,75 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/login/login",
+    "pages/wareslist/wareslist",
+    "pages/recySmart/recySmart",
+    "pages/addresslist/addresslist",
+    "pages/addressform/addressform",
+    "pages/electrical/electrical",
+    "pages/recyorderlist/recyorderlist",
+    "pages/qrcode/qrcode",
+    "pages/guide/guide",
+    "pages/personal/personal",
+    "pages/realname/realname",
+    "pages/smartorderlist/smartorderlist",
+    "pages/furniture/furniture",
+    "pages/governmentinfo/governmentinfo",
+    "pages/electricalinfo/electricalinfo",
+    "pages/furnitureinfo/furnitureinfo",
+    "pages/merchantinfo/merchantinfo",
+    "pages/dryorderlist/dryorderlist",
+    "pages/exchangelist/exchangelist",
+    "pages/wares/wares",
+    "pages/exchange/exchange"
+  ],
+  "subPackages": [],
+  "window": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "量心回收",
+    "navigationBarBackgroundColor": "#00a2ed",
+    "backgroundColor": "#F8F8F8"
+  },
+  "tabBar": {
+    "color": "#666",
+    "selectedColor": "#11cd6e",
+    "borderStyle": "black",
+    "fontSize": "14px",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "iconPath": "static/images/index.png",
+        "selectedIconPath": "static/images/index_select.png",
+        "text": "首页"
+      },
+      {
+        "iconPath": "static/images/commonweal.png",
+        "selectedIconPath": "static/images/commonweal_select.png",
+        "pagePath": "pages/wareslist/wareslist",
+        "text": "商城"
+      },
+      {
+        "pagePath": "pages/qrcode/qrcode",
+        "iconPath": "static/images/qrcode.png",
+        "selectedIconPath": "static/images/qrcode.png",
+        "text": ""
+      },
+      {
+        "iconPath": "static/images/discover.png",
+        "selectedIconPath": "static/images/discover_select.png",
+        "pagePath": "pages/guide/guide",
+        "text": "使用指南"
+      },
+      {
+        "pagePath": "pages/personal/personal",
+        "iconPath": "static/images/personal.png",
+        "selectedIconPath": "static/images/personal_select.png",
+        "text": "个人中心"
+      }
+    ]
+  },
+  "usingComponents": {
+    "loading": "/components/loading/loading"
+  },
+  "sitemapLocation": "sitemap72.json"
+}

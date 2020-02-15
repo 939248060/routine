@@ -1,0 +1,330 @@
+html, body, div, span, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+abbr, address, cite, code,
+del, dfn, em, img, ins, kbd, q, samp,
+small, strong, sub, sup, var,
+b, i,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section, summary,
+time, mark, audio, video {
+    margin:0; padding:0; border:0; outline:0; font-size:100%; background:transparent;}
+
+.white{ color: #fff !important; }
+.black { color: #000 !important; }
+.gray{ color: #ccc !important; }
+.gray-3{ color: #333 !important; }
+.gray-6{ color: #666 !important; }
+.gray-9 { color: #999 !important; }
+.red { color: #f00 }
+.red-c00 { color: #c00 }
+.yellow { color: #ffdc00  }
+.orange { color: #F80  }
+.blue { color: #0074d9; }
+.blue1 { color: #00a2ed; }
+.blue2 { color: #00b9fe; }
+.aqua { color: #7fdbff; }
+.teal { color: #39cccc; }
+.olive { color: #3d9970 }
+.green { color: #2ecc40 }
+.lime { color: #01ff70 }
+.maroon { color: #85144b }
+.fuchsia { color: #f012be }
+.purple { color: #b10dc9 }
+.green-be1 { color:#be1 }
+.orange-f60 { color: #ff851b; }
+.green-9a1 { color:#9a1; }
+.green-680 { color:#680; }
+
+/* 浅色系 */
+.brilliant-azure { color: #3BB9FF}
+.light-blue { color: #AFD2E9 }    /* 浅蓝 */
+.pale-gold { color: #F1BF98 }     /* 淡金色 */
+.flax { color: #E9D985 }          /* 亚麻 */
+.misty-moss { color: #B2BD7E }    /* 迷雾莫斯 */
+.xanadu { color: #749C75 }        /* 世外桃源 */
+.brass { color: #969F3E }               /* 黄铜 */
+.desert-sand { color: #E5CBB3 }         /* 黄铜 */
+.bronze { color: #C8872D }              /* 沙漠沙 */
+.grizzly { color: #8E5C24 }             /* 灰熊 */
+.orange-yellow { color: #F4D06F }       /* 橙黄色 */
+.dark-orange { color: #FF8811 }         /* 橙黄色 */
+.pale-robin-egg-blue { color: #9DD9D2 } /* 苍白罗宾蛋蓝 */ 
+/* 蓝色组合 */
+.june-bud { color: #BDD663; }            /* 六月芽 */
+.middle-green-yellow { color: #A1C153; } /* 中绿黄 */
+.isabelline { color: #EBEBEB; }
+.blue-jeans { color: #6DABF2; }          /* 蓝色牛仔裤 */
+.lapis-lazuli { color: #2660A4; }        /* 清金石 */
+/* 深色系 */
+.b-dazzled-blue { color: #235789 }
+.bright-yellow { color: #F5B21E }     /* 亮黄色 */
+.inter-orange { color: #C1292E }      /* 国际橙 */
+
+.bg-white { background-color: #fff; }
+.bg-gray { background-color: #cccccc !important; }
+.bg-gray-fa { background-color: #fafafa !important; }
+.bg-gray-f0 { background-color: #f0f0f0 !important; }
+.bg-gray-f6 { background-color: #f6f6f6; }
+.bg-red { background-color: #f00 }
+.bg-red-c00 { background-color: #c00 }
+.bg-yellow { background-color: #ffdc00  }
+.bg-orange { background-color: #F80  }
+.bg-blue { background-color: #0074d9; }
+.bg-blue1 { background-color: #00a2ed; }
+.bg-aqua { background-color: #7fdbff; }
+.bg-teal { background-color: #39cccc; }
+.bg-olive { background-color: #3d9970 }
+.bg-green { background-color: #2ecc40 }
+.bg-lime { background-color: #01ff70 }
+.bg-maroon { background-color: #85144b }
+.bg-fuchsia { background-color: #f012be }
+.bg-purple { background-color: #b10dc9 }
+.bg-green-efb { background-color: #efb; }
+.bg-green-be1 { background-color: #be1; }
+.bg-green-9a1 { background-color: #9a1; }
+.bg-green-79be1e { background-color: #79be1e !important }
+.bg-orange-f60 { background-color: #f60; }
+.bg-red-fcc { background-color: #fcc; }
+
+
+/* 浅色系 */
+.bg-brilliant-azure { background-color: #3BB9FF }
+.bg-light-blue { background-color: #AFD2E9 }    /* 浅蓝 */
+.bg-pale-gold { background-color: #F1BF98 }     /* 淡金色 */
+.bg-flax { background-color: #E9D985 }          /* 亚麻 */
+.bg-misty-moss { background-color: #B2BD7E }    /* 迷雾莫斯 */
+.bg-xanadu { background-color: #749C75 }        /* 世外桃源 */
+.bg-brass { background-color: #969F3E }               /* 黄铜 */
+.bg-desert-sand { background-color: #E5CBB3 }         /* 黄铜 */
+.bg-bronze { background-color: #C8872D }              /* 沙漠沙 */
+.bg-grizzly { background-color: #8E5C24 }             /* 灰熊 */
+.bg-orange-yellow { background-color: #F4D06F }       /* 橙黄色 */
+.bg-dark-orange { background-color: #FF8811 }         /* 橙黄色 */
+.bg-pale-robin-egg-blue { background-color: #9DD9D2 } /* 苍白罗宾蛋蓝 */ 
+/* 蓝色组合 */
+.bg-june-bud { background: #BDD663; }            /* 六月芽 */
+.bg-middle-green-yellow { background: #A1C153; } /* 中绿黄 */
+.bg-isabelline { background: #EBEBEB; }
+.bg-blue-jeans { background: #6DABF2; }          /* 蓝色牛仔裤 */
+.bg-lapis-lazuli { background: #2660A4; }        /* 清金石 */
+/* 深色系 */
+.bg-b-dazzled-blue { background-color: #235789 }
+.bg-bright-yellow { background-color: #F5B21E }     /* 亮黄色 */
+.bg-inter-orange { background-color: #C1292E }      /* 国际橙 */
+
+.f10 { font-size: 10px !important; }
+.f11 { font-size: 11px !important; }
+.f12 { font-size: 12px !important; }
+.f14 { font-size: 14px !important; }
+.f15 { font-size: 15px !important; }
+.f16 { font-size: 16px !important; }
+.f18 { font-size: 18px !important; }
+.f20 { font-size: 20px !important; }
+.f22 { font-size: 22px; }
+.f24 { font-size: 24px; }
+.f26 { font-size: 26px; }
+.f28 { font-size: 28px; }
+.f30 { font-size: 30px !important; }
+.f32 { font-size: 32px !important; }
+.f34 { font-size: 34px !important; }
+.f36 { font-size: 36px !important; }
+.f40 { font-size: 40px !important; }
+
+.m5{ margin: 5px; }
+.mr5{ margin-right: 5px; }
+.mt5{ margin-top: 5px; }
+.ml5{ margin-left: 5px; }
+.mb5{ margin-bottom: 5px; }
+
+.m10{ margin: 10px; }
+.mr10{ margin-right: 10px; }
+.mt10{ margin-top: 10px; }
+.ml10{ margin-left: 10px; }
+.mb10{ margin-bottom: 10px; }
+.mtblr{ margin-bottom: 5px; }
+
+.m15{ margin: 15px; }
+.mr15{ margin-right: 15px; }
+.mt15{ margin-top: 15px; }
+.ml15{ margin-left: 15px; }
+.mb15{ margin-bottom: 15px; }
+
+.m20{ margin: 20px; }
+.mr20{ margin-right: 20px; }
+.mt20{ margin-top: 20px; }
+.ml20{ margin-left: 20px; }
+.mb20{ margin-bottom: 20px; }
+
+.m25{ margin: 25px; }
+.mr25{ margin-right: 25px; }
+.mt25{ margin-top: 25px; }
+.ml25{ margin-left: 25px; }
+.mb25{ margin-bottom: 25px; }
+
+.p5{ padding: 5px }
+.pb5{ padding-bottom: 5px; }
+.pt5{ padding-top: 5px; }
+.pl5{ padding-left: 5px; }
+.pr5{ padding-right: 5px; }
+
+.p7{ padding: 7px }
+.pb7{ padding-bottom: 7px; }
+.pt7{ padding-top: 7px; }
+.pl7{ padding-left: 7px; }
+.pr7{ padding-right: 7px; }
+
+.p10{ padding: 10px }
+.pt10{ padding-top: 10px; }
+.pb10{ padding-bottom: 10px; }
+.pl10{ padding-left: 10px; }
+.pr10{ padding-right: 10px; }
+
+.p15{ padding: 15px }
+.pt15{ padding-top: 15px; }
+.pb15{ padding-bottom: 15px; }
+.pl15{ padding-left: 15px; }
+.pr15{ padding-right: 15px; }
+
+.p20{ padding: 20px; }
+.pt20{ padding-top: 20px; }
+.pl20{ padding-left: 20px; }
+.pr20{ padding-right: 20px; }
+.pb20{ padding-bottom: 20px; }
+
+.p25{ padding: 25px; }
+.pt25{ padding-top: 25px; }
+.pl25{ padding-left: 25px; }
+.pr25{ padding-right: 25px; }
+.pb25{ padding-bottom: 25px; }
+
+.h26 { height: 26px; }
+.h28 { height: 28px; }
+.h30 { height: 30px; }
+.h32 { height: 32px; }
+.h34 { height: 34px; }
+.h36 { height: 36px; }
+.h38 { height: 38px; }
+.h40 { height: 40px; }
+
+.lh26 { line-height: 26px; }
+.lh28 { line-height: 28px; }
+.lh30 { line-height: 30px; }
+.lh32 { line-height: 32px; }
+.lh34 { line-height: 34px; }
+.lh35 { line-height: 35px; }
+.lh36 { line-height: 36px; }
+.lh37 { line-height: 37px; }
+.lh38 { line-height: 38px; }
+.lh40 { line-height: 40px; }
+
+.radius6 { border-radius: 6px; }
+.radius8 { border-radius: 8px; }
+.radius10 { border-radius: 10px; }
+
+.maxwidth { width: 100%; }
+.bodbox { box-sizing: border-box; }
+.txtleft { text-align: left; }
+.txtcenter { text-align: center; }
+.txtright { text-align: right; }
+
+.vertop { vertical-align: text-top; }
+.vermiddle { vertical-align: middle; }
+.verbtm { vertical-align: bottom; }
+
+.topeee { border-top: 1px solid #eee; }
+.btmeee { border-bottom: 1px solid #eee; }
+
+.topccc { border-top: 1px solid #ccc; }
+.btmccc { border-bottom: 1px solid #ccc; }
+
+.jcleft { justify-content: left; }
+.jcend { justify-content: flex-end; }
+.jccenter { justify-content: center; }
+.jcbetween { justify-content: space-between; }
+.jcaround { justify-content: space-around; }
+
+.jscenter { justify-self: center; }
+
+.jicenter { justify-items: center; }
+.jiaround { justify-items: space-around; }
+
+.aicenter { align-items: center; }
+.aistart { align-items: Flex-start; }
+.aistretch { align-items: stretch; }
+
+.acbetween { align-content: space-between }
+
+.overhide { overflow:hidden; }
+
+.clear { clear:both; height:0px; overflow:hidden;}
+.clearboth { clear:both; }
+.fl{ float:left;}
+.fr{ float:right;}
+
+.posrelative { position: relative; }
+
+.through { text-decoration: line-through; }
+
+.dis_none{ display: none; }
+.dis_block{ display: block; }
+.dis_inline-block { display: inline-block; }
+
+.bold { font-weight: 700; }
+.bold7 { font-weight: 700; }
+.bold9 { font-weight: 900; }
+.let1 { letter-spacing: -1px; }
+
+.labblue1 { color: #00a2ed; border: 1px solid #00a2ed; background: #fff; padding: 0px 5px; box-sizing: border-box; }
+.laborange { color: #F80; border: 1px solid #F80; background: #fff; padding: 0px 5px; box-sizing: border-box; }
+.labred { color: #f00; border: 1px solid #f00; background: #fff; padding: 0px 5px; box-sizing: border-box; }
+
+/* 通用遮罩 */
+.mask{ position: fixed; z-index: 100; top: 0; right: 0; left: 0; bottom: 0; background: rgba(0, 0, 0, 0.5); }
+
+/* view横向对齐 */
+.viewRow { display: flex; flex-direction: row; flex-wrap: wrap; box-sizing: border-box; }
+/* view竖向对齐 */
+.viewCol { display: flex; flex-direction: column; flex-wrap: wrap; box-sizing: border-box; }
+
+/* view横向对齐 */
+.row { display: flex; flex-direction: row; box-sizing: border-box; }
+/* view竖向对齐 */
+.column { display: flex; flex-direction: column; box-sizing: border-box; }
+
+.wrap { flex-wrap: wrap; }  /* wrap 表示一行排不下，就换行 */
+.nowrap { flex-wrap: nowrap; }  /* nowrap表示即使一行排不下，也不换行*/
+/* 超出范围显示...*/
+.elips { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+.foot { position: fixed; bottom: 0px; width: 100%; background: #ffffff; z-index: 10; }
+
+/* 未选中的 背景样式 */
+checkbox .wx-checkbox-input { width: 20px; height: 20px; border-radius: 50%; }
+/* 选中后的 背景样式 （红色背景 无边框 可根据UI需求自己修改） */
+checkbox .wx-checkbox-input.wx-checkbox-input-checked { border: 1px solid #00a2ed;  background: #00a2ed; }
+/* 选中后的 对勾样式 （白色对勾 可根据UI需求自己修改） */
+checkbox .wx-checkbox-input.wx-checkbox-input-checked::before {
+  font-size: 14px;
+  text-align: center;
+  color:#fff; /* 对勾颜色 白色 */
+  background: transparent;
+  transform:translate(-50%, -50%) scale(1);
+  -webkit-transform:translate(-50%, -50%) scale(1);
+}
+
+/* 未选中的 背景样式 */
+radio .wx-radio-input { width: 20px; height: 20px; border-radius: 50%; }
+/* 选中后的 背景样式 （红色背景 无边框 可根据UI需求自己修改） */
+radio .wx-radio-input.wx-radio-input-checked { border: 1px solid #00a2ed;  background: #00a2ed; }
+/* 选中后的 对勾样式 （白色对勾 可根据UI需求自己修改） */
+radio .wx-radio-input.wx-radio-input-checked::before {
+  font-size: 14px;
+  text-align: center;
+  color:#fff; /* 对勾颜色 白色 */
+  background: transparent;
+  transform:translate(-50%, -50%) scale(1);
+  -webkit-transform:translate(-50%, -50%) scale(1);
+}

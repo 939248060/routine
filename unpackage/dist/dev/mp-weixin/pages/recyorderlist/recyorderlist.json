@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "上面回收",
+  "enablePullDownRefresh": true,
+  "usingComponents": {
+    "dialogs": "/components/dialog/dialog"
+  }
+}

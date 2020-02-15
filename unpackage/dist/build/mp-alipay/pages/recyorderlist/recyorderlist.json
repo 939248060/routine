@@ -1,0 +1,6 @@
+{
+  "defaultTitle": "上面回收",
+  "usingComponents": {
+    "loading": "/components/loading/loading"
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "defaultTitle": "商城",
+  "usingComponents": {
+    "loading": "/components/loading/loading"
+  }
+}

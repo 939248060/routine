@@ -1,0 +1,1 @@
+page{background:#fff}.title{width:100%;font-size:0}.title>image{width:100%}.order>navigator>view>view:first-child{width:20%;text-align:center}.order>navigator>view>view:nth-child(2){width:80%}.order>navigator>view>view:first-child>icon{border-radius:50%;padding:4px 9px 9px 10px}
