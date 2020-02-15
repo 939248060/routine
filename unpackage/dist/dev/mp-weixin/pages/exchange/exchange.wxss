@@ -72,6 +72,8 @@ page {
 	width: 90%;
 	color: #fff;
 	background: #00a2ed;
+	margin:10px auto;
+	border-radius: 5px;
 }
 .finish {
 	position: fixed;

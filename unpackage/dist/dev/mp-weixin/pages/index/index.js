@@ -454,11 +454,9 @@ __webpack_require__.r(__webpack_exports__);
     getCustomerInfo: function getCustomerInfo() {
       var that = this;
       that.$showLoading();
-      console.log(that.loadModel);
       that.$request.postToken("/users/customer/findInfo.do", null).then(function (res) {
         if (res.data.status === 0) {
           that.$data.customer = JSON.parse(res.data.results);
-          console.log(that.$data.customer);
         } else {
           that.$util.showToast(res.data.results, 'none', 5000);
         }
@@ -535,11 +533,31 @@ __webpack_require__.r(__webpack_exports__);
       uni.navigateTo({
         url: '../recySmart/recySmart' });
 
+    },
+    //设置用户的默认地址
+    getDefaultAddr: function getDefaultAddr() {
+      var that = this;
+      that.$showLoading(); // 显示遮罩
+      that.$request.postToken("/users/address/findDefaultAddress.do", null).then(function (res) {
+        if (res.data.status === 0) {
+          var address = JSON.parse(res.data.results);
+          uni.setStorageSync('address', address);
+          that.address = address;
+        } else {
+          uni.removeStorageSync('address');
+          that.$util.showToast(res.data.results, 'none', 5000);
+        }
+      }).catch(function (err) {
+        console.log(err);
+        that.$util.showToast(err, 'none', 5000);
+      }).finally(function () {
+        that.$hideLoading();
+      });
     } },
 
-
   onLoad: function onLoad() {
-    this.getCustomerInfo();
+    var that = this;
+    that.getDefaultAddr(); // 获取默认地址
   },
   onReady: function onReady() {
     this.myMap = uni.createMapContext("myMap", this);
@@ -551,6 +569,7 @@ __webpack_require__.r(__webpack_exports__);
     if (address != null) {
       that.$data.address = address;
     }
+    this.getCustomerInfo();
   } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 

@@ -1,7 +1,7 @@
 <template>
 	<view>
 		<view v-if="finish==false">
-			<navigator class="viewRow address" url="../addlist/addlist?parent=exchange">
+			<navigator class="viewRow address" url="../addresslist/addresslist?parent=exchange">
 				<view>
 					<icon class="rout icon-dizhi f20"></icon>
 				</view>
@@ -17,18 +17,18 @@
 
 			<view class="viewRow wares">
 				<view>
-					<image :src=' host + wares.PhotoPath ' class="img" mode="widthFix" />
+					<image :src=' host + wares.photoPath ' class="img" mode="widthFix" />
 				</view>
 				<view class="viewRow">
-					<view class="f16 black">兑换 {{ wares.WaresName}}</view>
+					<view class="f16 black">兑换 {{ wares.waresName}}</view>
 					<view class="viewRow">
-						<view>量心币：<text class="orange">{{ wares.Score }}</text>币</view>
+						<view>量心币：<text class="orange">{{ wares.score }}</text>币</view>
 						<view>x{{ num }}</view>
 					</view>
 				</view>
 				<view class="viewRow">
 					<view>合计：</view>
-					<view><text class="orange">{{ wares.Score * num }}</text> 币</view>
+					<view><text class="orange">{{ wares.score * num }}</text> 币</view>
 				</view>
 			</view>
 
@@ -87,7 +87,8 @@
 					that.$util.showToast("商品不存在", "none", 4000);
 					return;
 				}
-				that.$request.postToken("users/wares/findOne.do", {
+				that.$showLoading();    //显示遮罩
+				that.$request.postToken("/users/wares/findOne.do", {
 					waresId: waresId
 				}).then((res) => {
 					//var res = res.data;
@@ -103,7 +104,7 @@
 				}).catch((err) => {
 					that.$util.showToast(err.errMsg, 'none', 4000);
 				}).finally(() => {
-					that.$hideLoading();
+					that.$hideLoading();   //关闭遮罩
 				})
 			},
 			// 兑换商品
@@ -113,59 +114,76 @@
 					that.$util.showToast("请选择收货地址", "none", 4000);
 					return;
 				}
-				wx.getStorage({
-					key: 'custToken',
-					success: function(res) {
-						let token = res.data;
-						//console.log(token);
-						//console.log(that.data.res)
-						wx.request({
-							url: that.data.host + '/servlet/exchange/updExchangeUSER',
-							method: 'post',
-							data: {
-								waresId: that.data.wares.id,
-								addressId: that.data.address.addressId,
-								num: that.data.num
-							},
-							header: {
-								'content-type': 'application/x-www-form-urlencoded; charset=utf-8',
-								'token': token
-							},
-							success: function(dom) {
-								util.isLogin(dom.header);
-								let res = dom.data;
-								if (res.status == 0) {
-									util.showToast(res.msg, "none", 3000);
-									that.setData({
-										finish: true
-									});
-								} else {
-									util.showToast(res.msg, "none", 3000);
-								}
-								console.log(res);
-							},
-							fail: function(err) {
-								console.log(err);
-								util.showToast(err.errMsg, 'none', 3000);
-							}
-						});
-					},
-					fail: function(err) {
-						console.log(err);
-						util.showToast(err.errMsg, 'none', 3000);
-						wx.redirectTo({
-							url: '../login/login'
-						});
+				let data = {
+					waresId: that.wares.waresId,
+					addressId: that.address.addressId,
+					num: that.num
+				}
+				that.$showLoading();    //显示遮罩
+				that.$request.postToken("/users/exchange/updExchange.do", data).then((res) => {
+					if (res.data.status === 0) {
+						that.finish = true;
+					} else {
+						that.$util.showToast(res.data.results, 'none', 5000);
 					}
-				});
+				}).catch((err) => {
+					that.$util.showToast(err.errMsg, 'none', 4000);
+				}).finally(() => {
+					that.$hideLoading();   //关闭遮罩
+				})
+				
+				
+				// wx.getStorage({
+				// 	key: 'custToken',
+				// 	success: function(res) {
+				// 		let token = res.data;
+				// 		//console.log(token);
+				// 		//console.log(that.data.res)
+				// 		wx.request({
+				// 			url: that.data.host + '/servlet/exchange/updExchangeUSER', 
+				// 			method: 'post',
+				// 			data: {
+				// 				waresId: that.data.wares.id,
+				// 				addressId: that.data.address.addressId,
+				// 				num: that.data.num
+				// 			},
+				// 			header: {
+				// 				'content-type': 'application/x-www-form-urlencoded; charset=utf-8',
+				// 				'token': token
+				// 			},
+				// 			success: function(dom) {
+				// 				util.isLogin(dom.header);
+				// 				let res = dom.data;
+				// 				if (res.status == 0) {
+				// 					util.showToast(res.msg, "none", 3000);
+				// 					that.setData({
+				// 						finish: true
+				// 					});
+				// 				} else {
+				// 					util.showToast(res.msg, "none", 3000);
+				// 				}
+				// 				console.log(res);
+				// 			},
+				// 			fail: function(err) {
+				// 				console.log(err);
+				// 				util.showToast(err.errMsg, 'none', 3000);
+				// 			}
+				// 		});
+				// 	},
+				// 	fail: function(err) {
+				// 		console.log(err);
+				// 		util.showToast(err.errMsg, 'none', 3000);
+				// 		wx.redirectTo({
+				// 			url: '../login/login'
+				// 		});
+				// 	}
+				// });
 			}
 		},
 		onLoad(options) {
 			let that = this;
 			let num = 1;
 			that.host = that.$app.globalData.host;
-			let address = uni.getStorageSync("addresss")
-			that.address = address;
 			if (that.$stringUtil.isNotEmpty(options.num)) {
 				num = options.num;
 			}
@@ -175,7 +193,8 @@
 		},
 		onShow() {
 			let that = this;
-			
+			let address = uni.getStorageSync("address")
+			that.address = address;
 			// let id = app.globalData.addId;
 			// // 获取用户地址
 			// that.getAddress(id);
@@ -256,6 +275,8 @@
 		width: 90%;
 		color: #fff;
 		background: #00a2ed;
+		margin:10px auto;
+		border-radius: 5px;
 	}
 
 	.finish {

@@ -156,6 +156,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 var _default =
 {
   data: function data() {
@@ -188,7 +193,9 @@ var _default =
       }
       that.$util.lockBtn(that);
       that.$showLoading(); // 显示遮罩
-      that.$request.post("/getValiCode.do", { mobile: mobile }).then(function (res) {
+      that.$request.post("/getValiCode.do", {
+        mobile: mobile }).
+      then(function (res) {
         if (res.data.status === 0) {
           that.$data.sessionId = res.data.results;
           console.log(that.$data.sessionId);
@@ -218,12 +225,18 @@ var _default =
         return false;
       }
       that.$showLoading();
-      that.$request.post("/loginRoutUser.do", { mobile: mobile, code: code, sessionId: sessionId }).then(function (res) {
+      that.$request.post("/loginRoutUser.do", {
+        mobile: mobile,
+        code: code,
+        sessionId: sessionId }).
+      then(function (res) {
         if (res.data.status === 0) {
           var single = JSON.parse(res.data.results);
           uni.setStorageSync('custToken', single.token);
           uni.setStorageSync('card', single.card);
-          uni.switchTab({ url: '../index/index' });
+          uni.switchTab({
+            url: '../index/index' });
+
         } else {
           that.$util.showToast(res.data.results, 'none', 5000);
         }

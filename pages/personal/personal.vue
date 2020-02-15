@@ -111,7 +111,7 @@
 		<!-- 遮罩 -->
 		<loading/>
 		<!--弹出框-->
-		<dialogs id='dialog' ref="dialogs" title=' ' content='是否退出登录' cancelText='取消' confirm='确定' @cancelEvent="_cancelEvent"
+		<dialogs id='dialog' ref="dialogs" title=' ' content='是否退出登录' cancelText='取消' confirmText='确定' @cancelEvent="_cancelEvent"
 		 @confirmEvent="_confirmEvent">
 		</dialogs>
 	</view>

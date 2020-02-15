@@ -222,7 +222,8 @@ var _default =
         that.$util.showToast("商品不存在", "none", 4000);
         return;
       }
-      that.$request.postToken("users/wares/findOne.do", {
+      that.$showLoading(); //显示遮罩
+      that.$request.postToken("/users/wares/findOne.do", {
         waresId: waresId }).
       then(function (res) {
         //var res = res.data;
@@ -238,7 +239,7 @@ var _default =
       }).catch(function (err) {
         that.$util.showToast(err.errMsg, 'none', 4000);
       }).finally(function () {
-        that.$hideLoading();
+        that.$hideLoading(); //关闭遮罩
       });
     },
     // 兑换商品
@@ -248,59 +249,76 @@ var _default =
         that.$util.showToast("请选择收货地址", "none", 4000);
         return;
       }
-      wx.getStorage({
-        key: 'custToken',
-        success: function success(res) {
-          var token = res.data;
-          //console.log(token);
-          //console.log(that.data.res)
-          wx.request({
-            url: that.data.host + '/servlet/exchange/updExchangeUSER',
-            method: 'post',
-            data: {
-              waresId: that.data.wares.id,
-              addressId: that.data.address.addressId,
-              num: that.data.num },
+      var data = {
+        waresId: that.wares.waresId,
+        addressId: that.address.addressId,
+        num: that.num };
 
-            header: {
-              'content-type': 'application/x-www-form-urlencoded; charset=utf-8',
-              'token': token },
+      that.$showLoading(); //显示遮罩
+      that.$request.postToken("/users/exchange/updExchange.do", data).then(function (res) {
+        if (res.data.status === 0) {
+          that.finish = true;
+        } else {
+          that.$util.showToast(res.data.results, 'none', 5000);
+        }
+      }).catch(function (err) {
+        that.$util.showToast(err.errMsg, 'none', 4000);
+      }).finally(function () {
+        that.$hideLoading(); //关闭遮罩
+      });
 
-            success: function success(dom) {
-              util.isLogin(dom.header);
-              var res = dom.data;
-              if (res.status == 0) {
-                util.showToast(res.msg, "none", 3000);
-                that.setData({
-                  finish: true });
 
-              } else {
-                util.showToast(res.msg, "none", 3000);
-              }
-              console.log(res);
-            },
-            fail: function fail(err) {
-              console.log(err);
-              util.showToast(err.errMsg, 'none', 3000);
-            } });
-
-        },
-        fail: function fail(err) {
-          console.log(err);
-          util.showToast(err.errMsg, 'none', 3000);
-          wx.redirectTo({
-            url: '../login/login' });
-
-        } });
-
+      // wx.getStorage({
+      // 	key: 'custToken',
+      // 	success: function(res) {
+      // 		let token = res.data;
+      // 		//console.log(token);
+      // 		//console.log(that.data.res)
+      // 		wx.request({
+      // 			url: that.data.host + '/servlet/exchange/updExchangeUSER', 
+      // 			method: 'post',
+      // 			data: {
+      // 				waresId: that.data.wares.id,
+      // 				addressId: that.data.address.addressId,
+      // 				num: that.data.num
+      // 			},
+      // 			header: {
+      // 				'content-type': 'application/x-www-form-urlencoded; charset=utf-8',
+      // 				'token': token
+      // 			},
+      // 			success: function(dom) {
+      // 				util.isLogin(dom.header);
+      // 				let res = dom.data;
+      // 				if (res.status == 0) {
+      // 					util.showToast(res.msg, "none", 3000);
+      // 					that.setData({
+      // 						finish: true
+      // 					});
+      // 				} else {
+      // 					util.showToast(res.msg, "none", 3000);
+      // 				}
+      // 				console.log(res);
+      // 			},
+      // 			fail: function(err) {
+      // 				console.log(err);
+      // 				util.showToast(err.errMsg, 'none', 3000);
+      // 			}
+      // 		});
+      // 	},
+      // 	fail: function(err) {
+      // 		console.log(err);
+      // 		util.showToast(err.errMsg, 'none', 3000);
+      // 		wx.redirectTo({
+      // 			url: '../login/login'
+      // 		});
+      // 	}
+      // });
     } },
 
   onLoad: function onLoad(options) {
     var that = this;
     var num = 1;
     that.host = that.$app.globalData.host;
-    var address = uni.getStorageSync("addresss");
-    that.address = address;
     if (that.$stringUtil.isNotEmpty(options.num)) {
       num = options.num;
     }
@@ -310,7 +328,8 @@ var _default =
   },
   onShow: function onShow() {
     var that = this;
-
+    var address = uni.getStorageSync("address");
+    that.address = address;
     // let id = app.globalData.addId;
     // // 获取用户地址
     // that.getAddress(id);
