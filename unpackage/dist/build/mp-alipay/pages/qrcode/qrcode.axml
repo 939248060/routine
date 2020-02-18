@@ -1,1 +1,0 @@
-<view><view class="content"><view class="wxinfo"></view><canvas class="canvas" canvas-id="canvas"></canvas><view class="card">{{card}}</view></view><tabbar vue-id="1" id="tabbar" tabbar="{{tabbar}}" data-event-opts="{{[['^showQRcodeEvent',[['_showQRcodeEvent']]]]}}" onShowQRcodeEvent="__e" onVueInit="__l"></tabbar></view>
