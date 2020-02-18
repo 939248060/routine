@@ -580,7 +580,7 @@
 	}
 
 	.scrapItem:last-child {
-		margin-right: 20px;
+		margin-right: 20px; 
 	}
 
 	/* 顶级项目已选样式 */
