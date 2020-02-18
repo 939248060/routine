@@ -32,6 +32,18 @@
 					<view class="f20 h26 lh26 orange">{{customer.score}}</view>
 				</view>
 			</navigator>
+			<!-- #ifdef MP-ALIPAY -->
+			<navigator class="row jcbetween aicenter cashscore ml5">
+				<view class="txtcenter">
+					<image src="../../static/images/cash.png" mode="widthFix" />
+				</view>
+				<view>
+					<view class="h26 lh26 black bold">零钱</view>
+					<view class="f20 h26 lh26 red">{{customer.cash}}</view>
+				</view>
+			</navigator>
+			<!-- #endif -->
+			<!-- #ifdef MP-WEIXIN  -->
 			<navigator url="../withdraw/withdraw" class="row jcbetween aicenter cashscore ml5">
 				<view class="txtcenter">
 					<image src="../../static/images/cash.png" mode="widthFix" />
@@ -41,6 +53,7 @@
 					<view class="f20 h26 lh26 red">{{customer.cash}}</view>
 				</view>
 			</navigator>
+			<!-- #endif -->
 		</view>
 
 		<navigator url="../invite/invite">
@@ -69,7 +82,7 @@
 		<view v-show="governmentHid" class="mask" />
 		<view v-show="governmentHid" class="dialog txtcenter">
 			<form @submit="sendGovernment" report-submit="true">
-				<view class="bg-white radius6">
+				<view class="bg-white radius6 pb5">
 					<view class="txtcenter pt10 black f18">政府回收</view>
 					<!--<navigator url="../showhtml/showhtml?nav=government" class="txtcenter pt10 pb10 f14">戳这里了解详细情况</navigator>-->
 					<!--收货地址-->
@@ -90,7 +103,7 @@
 		<view v-show="merchantHid" class="mask" />
 		<view v-show="merchantHid" class="dialog txtcenter">
 			<form @submit="sendMerchant" report-submit="true">
-				<view class="bg-white radius6">
+				<view class="bg-white radius6 pb5">
 					<view class="txtcenter pt10 black f18">商户回收</view>
 					<!--<navigator url="../showhtml/showhtml?nav=government" class="txtcenter pt10 pb10 f14">戳这里了解详细情况</navigator>-->
 					<!--收货地址-->

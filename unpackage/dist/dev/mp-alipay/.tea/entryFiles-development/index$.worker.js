@@ -54,6 +54,12 @@ require('../../pages/dryorderlist/dryorderlist?hash=7c3c8b956f67e51c974f1b93a33c
 require('../../pages/exchangelist/exchangelist?hash=32d7d2807ed4e666ef03b4b3fe8c38ecf2e34e68');
 require('../../pages/wares/wares?hash=32d7d2807ed4e666ef03b4b3fe8c38ecf2e34e68');
 require('../../pages/exchange/exchange?hash=32d7d2807ed4e666ef03b4b3fe8c38ecf2e34e68');
+require('../../pages/invitation/invitation?hash=32d7d2807ed4e666ef03b4b3fe8c38ecf2e34e68');
+require('../../pages/withdraw/withdraw?hash=32d7d2807ed4e666ef03b4b3fe8c38ecf2e34e68');
+require('../../pages/getuserinfo/getuserinfo?hash=32d7d2807ed4e666ef03b4b3fe8c38ecf2e34e68');
+require('../../pages/scorelist/scorelist?hash=7c3c8b956f67e51c974f1b93a33cfaccab4914e6');
+require('../../pages/scoredetails/scoredetails?hash=32d7d2807ed4e666ef03b4b3fe8c38ecf2e34e68');
+require('../../pages/cashlist/cashlist?hash=7c3c8b956f67e51c974f1b93a33cfaccab4914e6');
 }
 self.bootstrapApp ? self.bootstrapApp({ success }) : success();
 }

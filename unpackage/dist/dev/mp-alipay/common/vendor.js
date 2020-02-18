@@ -1176,7 +1176,7 @@ function initData(vueOptions, context) {
     try {
       data = data.call(context); // 支持 Vue.prototype 上挂的数据
     } catch (e) {
-      if (Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-alipay","BASE_URL":"/"}).VUE_APP_DEBUG) {
+      if (Object({"VUE_APP_PLATFORM":"mp-alipay","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
         console.warn('根据 Vue 的 data 函数初始化小程序 data 失败，请尽量确保 data 函数中不访问 vm 对象，否则可能影响首次数据渲染速度。', data);
       }
     }
@@ -9395,7 +9395,7 @@ function type(obj) {
 
 function flushCallbacks$1(vm) {
     if (vm.__next_tick_callbacks && vm.__next_tick_callbacks.length) {
-        if (Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-alipay","BASE_URL":"/"}).VUE_APP_DEBUG) {
+        if (Object({"VUE_APP_PLATFORM":"mp-alipay","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
             var mpInstance = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + vm._uid +
                 ']:flushCallbacks[' + vm.__next_tick_callbacks.length + ']');
@@ -9416,14 +9416,14 @@ function nextTick$1(vm, cb) {
     //1.nextTick 之前 已 setData 且 setData 还未回调完成
     //2.nextTick 之前存在 render watcher
     if (!vm.__next_tick_pending && !hasRenderWatcher(vm)) {
-        if(Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-alipay","BASE_URL":"/"}).VUE_APP_DEBUG){
+        if(Object({"VUE_APP_PLATFORM":"mp-alipay","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG){
             var mpInstance = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + vm._uid +
                 ']:nextVueTick');
         }
         return nextTick(cb, vm)
     }else{
-        if(Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-alipay","BASE_URL":"/"}).VUE_APP_DEBUG){
+        if(Object({"VUE_APP_PLATFORM":"mp-alipay","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG){
             var mpInstance$1 = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance$1.is || mpInstance$1.route) + '][' + vm._uid +
                 ']:nextMPTick');
@@ -9499,7 +9499,7 @@ var patch = function(oldVnode, vnode) {
     });
     var diffData = diff(data, mpData);
     if (Object.keys(diffData).length) {
-      if (Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-alipay","BASE_URL":"/"}).VUE_APP_DEBUG) {
+      if (Object({"VUE_APP_PLATFORM":"mp-alipay","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
         console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + this._uid +
           ']差量更新',
           JSON.stringify(diffData));
@@ -10952,7 +10952,7 @@ module.exports = {
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = { "pages": { "pages/index/index": { "defaultTitle": "量心回收", "titleBarColor": "#fff" }, "pages/login/login": { "defaultTitle": "用户登录" }, "pages/wareslist/wareslist": { "defaultTitle": "商城" }, "pages/recySmart/recySmart": { "defaultTitle": "智能站分布" }, "pages/addresslist/addresslist": { "defaultTitle": "地址列表" }, "pages/addressform/addressform": { "defaultTitle": "添加地址" }, "pages/electrical/electrical": { "defaultTitle": "家电回收" }, "pages/recyorderlist/recyorderlist": { "defaultTitle": "上面回收", "pullRefresh": true }, "pages/qrcode/qrcode": { "defaultTitle": "用户二维码" }, "pages/guide/guide": { "defaultTitle": "使用指南" }, "pages/personal/personal": { "defaultTitle": "个人中心", "titleBarColor": "#1b82d1" }, "pages/realname/realname": {}, "pages/smartorderlist/smartorderlist": { "pullRefresh": true }, "pages/furniture/furniture": {}, "pages/governmentinfo/governmentinfo": {}, "pages/electricalinfo/electricalinfo": {}, "pages/furnitureinfo/furnitureinfo": {}, "pages/merchantinfo/merchantinfo": {}, "pages/dryorderlist/dryorderlist": { "pullRefresh": true }, "pages/exchangelist/exchangelist": {}, "pages/wares/wares": {}, "pages/exchange/exchange": {} }, "globalStyle": { "defaultTitle": "量心回收", "titleBarColor": "#00a2ed", "backgroundColor": "#F8F8F8" } };exports.default = _default;
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = { "pages": { "pages/index/index": { "defaultTitle": "量心回收", "titleBarColor": "#fff", "usingComponents": { "callrecy": "/components/callrecy/callrecy" }, "usingAutoImportComponents": {}, "usingGlobalComponents": { "loading": "/components/loading/loading" } }, "pages/login/login": { "defaultTitle": "用户登录", "usingComponents": {}, "usingAutoImportComponents": {}, "usingGlobalComponents": { "loading": "/components/loading/loading" } }, "pages/wareslist/wareslist": { "defaultTitle": "商城", "usingComponents": {}, "usingAutoImportComponents": {}, "usingGlobalComponents": { "loading": "/components/loading/loading" } }, "pages/recySmart/recySmart": { "defaultTitle": "智能站分布", "usingComponents": {}, "usingAutoImportComponents": {}, "usingGlobalComponents": { "loading": "/components/loading/loading" } }, "pages/addresslist/addresslist": { "defaultTitle": "地址列表", "usingComponents": { "dialogs": "/components/dialog/dialog" }, "usingAutoImportComponents": {}, "usingGlobalComponents": { "loading": "/components/loading/loading" } }, "pages/addressform/addressform": { "defaultTitle": "添加地址", "usingComponents": {}, "usingAutoImportComponents": {}, "usingGlobalComponents": { "loading": "/components/loading/loading" } }, "pages/electrical/electrical": { "defaultTitle": "家电回收", "usingComponents": {}, "usingAutoImportComponents": {}, "usingGlobalComponents": { "loading": "/components/loading/loading" } }, "pages/recyorderlist/recyorderlist": { "defaultTitle": "上面回收", "pullRefresh": true, "usingComponents": { "dialogs": "/components/dialog/dialog" }, "usingAutoImportComponents": {}, "usingGlobalComponents": { "loading": "/components/loading/loading" } }, "pages/qrcode/qrcode": { "defaultTitle": "用户二维码", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/guide/guide": { "defaultTitle": "使用指南", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/personal/personal": { "defaultTitle": "个人中心", "titleBarColor": "#1b82d1", "usingComponents": { "dialogs": "/components/dialog/dialog" }, "usingAutoImportComponents": {}, "usingGlobalComponents": { "loading": "/components/loading/loading" } }, "pages/realname/realname": { "usingComponents": {}, "usingAutoImportComponents": {}, "usingGlobalComponents": { "loading": "/components/loading/loading" } }, "pages/smartorderlist/smartorderlist": { "pullRefresh": true, "usingComponents": {}, "usingAutoImportComponents": {}, "usingGlobalComponents": { "loading": "/components/loading/loading" } }, "pages/furniture/furniture": { "usingComponents": {}, "usingAutoImportComponents": {}, "usingGlobalComponents": { "loading": "/components/loading/loading" } }, "pages/governmentinfo/governmentinfo": { "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/electricalinfo/electricalinfo": { "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/furnitureinfo/furnitureinfo": { "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/merchantinfo/merchantinfo": { "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/dryorderlist/dryorderlist": { "pullRefresh": true, "usingComponents": {}, "usingAutoImportComponents": {}, "usingGlobalComponents": { "loading": "/components/loading/loading" } }, "pages/exchangelist/exchangelist": { "pullRefresh": true, "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/wares/wares": { "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/exchange/exchange": { "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/invitation/invitation": { "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/withdraw/withdraw": { "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/getuserinfo/getuserinfo": { "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/scorelist/scorelist": { "pullRefresh": true, "usingComponents": {}, "usingAutoImportComponents": {}, "usingGlobalComponents": { "loading": "/components/loading/loading" } }, "pages/scoredetails/scoredetails": { "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/cashlist/cashlist": { "pullRefresh": true, "usingComponents": {}, "usingAutoImportComponents": {}, "usingGlobalComponents": { "loading": "/components/loading/loading" } } }, "globalStyle": { "defaultTitle": "量心回收", "titleBarColor": "#00a2ed", "backgroundColor": "#F8F8F8" } };exports.default = _default;
 
 /***/ }),
 

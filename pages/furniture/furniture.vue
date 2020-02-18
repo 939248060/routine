@@ -12,7 +12,7 @@
 		<!--无回收物显示面板-->
 		<view v-if="recydetail.length<1" class="bg-white txtcenter f15 pt20 pb20 ml10 mr10 black radius8">
 			<view @click="tapOpenSelectPanel">请添加需清运的家具</view>
-			<image src="../../siatic/images/furniture.png" mode="widthFix" class="mt5 mb5" style="width: 60px; height: 60px;"
+			<image src="../../static/images/furniture.png" mode="widthFix" class="mt5 mb5" style="width: 60px; height: 60px;"
 			 @click="tapOpenSelectPanel" />
 			<view @click="tapOpenSelectPanel">立即添加</view>
 		</view>

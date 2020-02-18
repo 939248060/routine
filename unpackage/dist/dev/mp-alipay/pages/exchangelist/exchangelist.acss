@@ -1,1 +1,108 @@
-/* required by usingComponents */
+
+.swiper-tab {
+	box-shadow: 0 10px 10px -7px #ddd inset;
+	position: fixed;
+	z-index: 200;
+	width: 100%;
+	top: 0;
+	left: 0;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	        align-items: center;
+	-webkit-box-pack: center;
+	-webkit-justify-content: center;
+	        justify-content: center;
+	background: #fff;
+}
+.swiper-tab>view {
+	width: 33.33%;
+	color: #aaa;
+	text-align: center;
+	padding: 10px 0px;
+	border-bottom: 1px #ccc solid;
+}
+.selectOn {
+	color: #00a2ed !important;
+	border-bottom: 2px solid #00a2ed !important;
+}
+.swiper {
+	margin-top: 36px;
+}
+.list {
+	background: #fff;
+	box-shadow: 0px 0px 10px #ccc;
+	border-radius: 10px;
+}
+.list>view:nth-child(1) {
+	width: 100%;
+	-webkit-box-align: end;
+	-webkit-align-items: flex-end;
+	        align-items: flex-end;
+	-webkit-box-pack: justify;
+	-webkit-justify-content: space-between;
+	        justify-content: space-between;
+}
+.list>view:nth-child(2) {
+	width: 100%;
+	-webkit-box-pack: left;
+	-webkit-justify-content: left;
+	        justify-content: left;
+}
+.list>view:nth-child(2)>view:nth-child(1) {
+	width: 25%;
+}
+.list>view:nth-child(2)>view:nth-child(2) {
+	width: 75%;
+	-webkit-align-content: flex-start;
+	        align-content: flex-start;
+}
+.list>view:nth-child(2)>view:nth-child(2)>view:nth-child(2) {
+	width: 100%;
+	-webkit-box-pack: justify;
+	-webkit-justify-content: space-between;
+	        justify-content: space-between;
+}
+.img {
+	width: 100%;
+	vertical-align: middle;
+}
+.noData {
+	height: 100%;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: normal;
+	-webkit-flex-direction: column;
+	        flex-direction: column;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	        align-items: center;
+	-webkit-box-pack: center;
+	-webkit-justify-content: center;
+	        justify-content: center;
+	color: #aaa;
+}
+.noData>icon {
+	font-size: 130px;
+}
+.noData>view {
+	font-size: 18px;
+}
+.bottom {
+	padding-bottom: 20px;
+	width: 100%;
+	text-align: center;
+}
+.bottom>view {
+	height: 1px;
+	border-top: 1px solid #ddd;
+	margin: 0px 20px;
+}
+.bottom>text {
+	padding: 0px 10px;
+	background: #eee;
+	position: relative;
+	top: 10px;
+}
+

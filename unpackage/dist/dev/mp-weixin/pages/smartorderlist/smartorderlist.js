@@ -275,6 +275,7 @@ var request = __webpack_require__(/*! ../../utils/request.js */ 19);var _default
     bindChange: function bindChange(e) {
       var that = this;
       that.currentTab = e.detail.current;
+      console.log(e.detail.current);
       that.getList(1, e.detail.current, 'new');
     },
     // 下拉获取最新数据

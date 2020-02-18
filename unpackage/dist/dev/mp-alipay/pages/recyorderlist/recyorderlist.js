@@ -133,7 +133,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var dialogs = function dialogs() {return __webpack_require__.e(/*! import() | components/dialog/dialog */ "components/dialog/dialog").then(__webpack_require__.bind(null, /*! @../../components/dialog/dialog.vue */ 204));};var _default =
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var dialogs = function dialogs() {return __webpack_require__.e(/*! import() | components/dialog/dialog */ "components/dialog/dialog").then(__webpack_require__.bind(null, /*! @../../components/dialog/dialog.vue */ 228));};var _default =
 
 
 
@@ -382,6 +382,21 @@ __webpack_require__.r(__webpack_exports__);
       }
       that.getList(1, state, 'new');
     },
+    // 下拉获取最新数据
+    refresh: function refresh() {
+      var that = this;
+      clearTimeout(that.timer);
+      if (that.isLoading == false) {
+        that.isLoading = true;
+        setTimeout(function () {
+          uni.startPullDownRefresh({
+            success: function success(res) {
+              console.log("refresh开始下拉");
+            } });
+
+        }, 350);
+      }
+    },
     // 下拉加载更多
     loadMore: function loadMore(e) {
       var that = this;
@@ -434,7 +449,7 @@ __webpack_require__.r(__webpack_exports__);
         id: that.cancelId }).
       then(function (res) {
         that.$util.showToast(res.data.results, 'succes', 4000);
-        that.onReady(that.currentTab);
+        that.refresh();
       }).catch(function (err) {
         console.log(err);
         that.$util.showToast(err, 'none', 4000);
@@ -513,7 +528,13 @@ __webpack_require__.r(__webpack_exports__);
   onPullDownRefresh: function onPullDownRefresh() {
     var that = this;
     var state = that.currentTab;
-    that.getOrder(1, state, 'new');
+    if (state == 1) {
+      state = 3;
+    } else if (state == 2) {
+      state = 4;
+    }
+    that.getList(1, state, 'new');
+    console.log("onPullDownRefresh");
   } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-alipay/dist/index.js */ 1)["default"]))
 

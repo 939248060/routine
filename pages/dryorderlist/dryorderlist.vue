@@ -192,7 +192,6 @@
 						} else {
 							that.$set(that.list,state,that.list[state].concat(JSON.parse(res.data.results)));
 						}
-						console.log(that.list)
 						that.$set(that.page,state,res.data.page);
 						that[`${btmp}`] = btm;
 					} else {

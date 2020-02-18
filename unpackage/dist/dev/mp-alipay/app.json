@@ -21,7 +21,13 @@
     "pages/dryorderlist/dryorderlist",
     "pages/exchangelist/exchangelist",
     "pages/wares/wares",
-    "pages/exchange/exchange"
+    "pages/exchange/exchange",
+    "pages/invitation/invitation",
+    "pages/withdraw/withdraw",
+    "pages/getuserinfo/getuserinfo",
+    "pages/scorelist/scorelist",
+    "pages/scoredetails/scoredetails",
+    "pages/cashlist/cashlist"
   ],
   "subPackages": [],
   "window": {

@@ -465,8 +465,6 @@
     font-weight: normal;
     font-style: normal;
 }
-page, page, ._div, ._span, ._object, ._iframe, ._h1, ._h2, ._h3, ._h4, ._h5, ._h6, ._p, ._blockquote, ._pre, ._abbr, ._address, ._cite, ._code, ._del, ._dfn, ._em, ._img, ._ins, ._kbd, ._q, ._samp, ._small, ._strong, ._sub, ._sup, ._var, ._b, ._i, ._dl, ._dt, ._dd, ._ol, ._ul, ._li, ._fieldset, form, label, ._legend, ._table, ._caption, ._tbody, ._tfoot, ._thead, ._tr, ._th, ._td, ._article, ._aside, canvas, ._details, ._figcaption, ._figure, ._footer, ._header, hgroup, ._menu, ._nav, ._section, ._summary, ._time, ._mark, audio, video {
-    margin:0; padding:0; border:0; outline:0; font-size:100%; background:transparent;}
 .white{ color: #fff !important;
 }
 .black { color: #000 !important;
