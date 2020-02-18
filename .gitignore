@@ -1,6 +1,6 @@
 ##ignore this file##
-/target/
-/unpackage/
+target/
+unpackage/
 .classpath
 .project
 .settings     
