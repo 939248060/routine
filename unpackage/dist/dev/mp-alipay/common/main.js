@@ -20,7 +20,7 @@ var _store = _interopRequireDefault(__webpack_require__(/*! ./store */ 15));func
 _vue.default.prototype.$store = _store.default;
 
 //请求加载组件
-var Loading = function Loading() {return __webpack_require__.e(/*! import() | components/loading/loading */ "components/loading/loading").then(__webpack_require__.bind(null, /*! ./components/loading/loading.vue */ 166));};
+var Loading = function Loading() {return __webpack_require__.e(/*! import() | components/loading/loading */ "components/loading/loading").then(__webpack_require__.bind(null, /*! ./components/loading/loading.vue */ 246));};
 //组件挂载到全局，方便每个页面使用
 _vue.default.component('loading', Loading);
 

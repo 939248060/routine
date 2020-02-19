@@ -1,0 +1,26 @@
+
+.head {
+	height: 150rpx;
+	width: 100%;
+	background-color: white;
+}
+.score {
+	line-height: 150rpx;
+}
+.content {
+	width: 100%;
+	background-color: white;
+}
+.content .list {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-box-pack: justify;
+	-webkit-justify-content: space-between;
+	        justify-content: space-between;
+	width: 92%;
+	line-height: 90rpx;
+	margin: 0rpx 25rpx;
+	color: black;
+}
+
