@@ -55,7 +55,7 @@
 				<scroll-view scroll-y="true" :style="'height:'+scrollHeight+'px;'" data-state="2" @scrolltoupper="refresh"
 				 @scrolltolower="loadMore" upper-threshold="3" lower-threshold="5">
 					<block :key="index" v-for="(item,index) in list[2]">
-						<navigator url="'../smartorderinfo/smartorderinfo?id='+item.smartorderId">
+						<navigator :url="'../smartorderinfo/smartorderinfo?id='+item.smartorderId">
 							<view class="list m10 p10">
 								<view class="viewRow pb10">
 									<view>{{item.expType}}</view>
