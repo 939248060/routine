@@ -101,7 +101,9 @@
         }
         ,{
             "path" : "pages/exchangelist/exchangelist",
-            "style" : {}
+            "style" : {
+				"enablePullDownRefresh": true
+			}
         }
         ,{
             "path" : "pages/wares/wares",
@@ -109,6 +111,43 @@
         }
         ,{
             "path" : "pages/exchange/exchange",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/invitation/invitation",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/withdraw/withdraw",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/getuserinfo/getuserinfo",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/scorelist/scorelist",
+            "style" : {
+				"enablePullDownRefresh": true
+			}
+        }
+        ,{
+            "path" : "pages/scoredetails/scoredetails",
+            "style" : {
+			}
+        }
+        ,{
+            "path" : "pages/cashlist/cashlist",
+            "style" : {
+				"enablePullDownRefresh": true
+			}
+        }
+        ,{
+            "path" : "pages/dryorderinfo/dryorderinfo",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/smartorderinfo/smartorderinfo",
             "style" : {}
         }
     ],
@@ -154,7 +193,7 @@
 				"text": "个人中心"
 			}
 		]
-	},
+	}, 
 	"condition": {
 		//模式配置，仅开发期间生效
 		"current": 0, //当前激活的模式(list 的索引项)

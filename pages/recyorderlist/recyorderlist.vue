@@ -247,6 +247,21 @@
 				}
 				that.getList(1, state, 'new');
 			},
+			// 下拉获取最新数据
+			refresh: function () {
+			  let that = this;
+			  clearTimeout(that.timer);
+			  if (that.isLoading == false) {
+					that.isLoading = true;
+			    setTimeout(function () {
+			      uni.startPullDownRefresh({
+			        success(res) {
+			          console.log("refresh开始下拉");
+			        }
+			      })
+			    }, 350);
+			  }
+			},
 			// 下拉加载更多
 			loadMore: function(e) {
 				let that = this;
@@ -299,7 +314,7 @@
 					id: that.cancelId
 				}).then((res) => {
 					that.$util.showToast(res.data.results, 'succes', 4000);
-					that.onReady(that.currentTab);
+					that.refresh();
 				}).catch((err) => {
 					console.log(err);
 					that.$util.showToast(err, 'none', 4000);
@@ -378,7 +393,13 @@
 		onPullDownRefresh() {
 			let that = this;
 			let state = that.currentTab;
-			that.getOrder(1, state, 'new');
+			if (state == 1) {
+				state = 3;
+			} else if (state == 2) {
+				state = 4
+			}
+			that.getList(1, state, 'new');
+			console.log("onPullDownRefresh")
 		}
 	}
 </script>

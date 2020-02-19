@@ -12,7 +12,7 @@
 				<scroll-view scroll-y="true" :style="'height:'+scrollHeight+'px;'" data-state="0" @scrolltoupper="refresh"
 				 @scrolltolower="loadMore" upper-threshold="3" lower-threshold="8">
 					<block :key="index" v-for="(item,index) in list[0]">
-						<navigator :url="'../dryorderinfo/dryorderinfo?id='+item.id">
+						<navigator :url="'../dryorderinfo/dryorderinfo?id='+item.boxorderId">
 							<view class="list m10 p10" v-if="item.state=='2'">
 								<view class="viewRow pb10">
 									<view>{{item.expType}}</view>
@@ -53,7 +53,7 @@
 				<scroll-view scroll-y="true" :style="'height:'+scrollHeight+'px;'" data-state="2" @scrolltoupper="refresh"
 				 @scrolltolower="loadMore" upper-threshold="2" lower-threshold="5">
 					<block :key="index" v-for="(item,index) in list[2]">
-						<navigator url="'../dryorderinfo/dryorderinfo?id='+item.id">
+						<navigator :url="'../dryorderinfo/dryorderinfo?id='+item.boxorderId">
 							<view class="list m10 p10">
 								<view class="viewRow pb10">
 									<view>{{item.expType}}</view>
@@ -78,7 +78,7 @@
 				<scroll-view scroll-y="true" :style="'height:'+scrollHeight+'px;'" data-state="4" @scrolltoupper="refresh"
 				 @scrolltolower="loadMore" upper-threshold="2" lower-threshold="5">
 					<block :key="index" v-for="(item,index) in list[4]">
-						<navigator url="'../dryorderinfo/dryorderinfo?id='+item.id">
+						<navigator :url="'../dryorderinfo/dryorderinfo?id='+item.boxorderId">
 							<view class="list m10 p10">
 								<view class="viewRow pb10">
 									<view>{{item.expType}}</view>
@@ -192,7 +192,6 @@
 						} else {
 							that.$set(that.list,state,that.list[state].concat(JSON.parse(res.data.results)));
 						}
-						console.log(that.list)
 						that.$set(that.page,state,res.data.page);
 						that[`${btmp}`] = btm;
 					} else {

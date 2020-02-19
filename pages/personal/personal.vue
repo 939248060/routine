@@ -83,7 +83,8 @@
 					<view class="rout icon-dayuhao"></view>
 				</view>
 			</navigator>
-			<navigator url="../invitation/invitation">
+			<!-- v-show="false"相当于注释，目前还没有用到我的邀请页面，之所以没有样式，是为了以后会用到，而不需要改变样式 -->
+			<navigator url="../invitation/invitation">   
 				<view>
 					<view class="rout icon-jifenduihuan"></view>
 					<view>我的邀请</view>
@@ -92,7 +93,7 @@
 					<view class="rout icon-dayuhao"></view>
 				</view>
 			</navigator>
-			<navigator url="../guide/guide">
+			<navigator url="../guide/guide" open-type="switchTab">
 				<view>
 					<view class="rout icon-guanyu"></view><text>关于我们</text>
 				</view>
@@ -111,7 +112,7 @@
 		<!-- 遮罩 -->
 		<loading/>
 		<!--弹出框-->
-		<dialogs id='dialog' ref="dialogs" title=' ' content='是否退出登录' cancelText='取消' confirm='确定' @cancelEvent="_cancelEvent"
+		<dialogs id='dialog' ref="dialogs" title=' ' content='是否退出登录' cancelText='取消' confirmText='确定' @cancelEvent="_cancelEvent"
 		 @confirmEvent="_confirmEvent">
 		</dialogs>
 	</view>

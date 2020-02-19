@@ -102,8 +102,8 @@
 					that.$showLoading(); //显示遮罩
 					that.$request.postToken("/users/wares/findOne.do", {waresId: waresid}).then((res) => {
 						if (res.data.status === 0) {
-								that.wares = JSON.parse(res.data.results);
-								console.log(that.wares)
+							that.wares = JSON.parse(res.data.results);
+							console.log(that.wares);
 						} else {
 							that.$util.showToast(res.data.results, 'none', 5000);
 						}
