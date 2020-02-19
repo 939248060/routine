@@ -1,8 +1,0 @@
-{
-  "defaultTitle": "量心回收",
-  "titleBarColor": "#fff",
-  "usingComponents": {
-    "loading": "/components/loading/loading",
-    "callrecy": "/components/callrecy/callrecy"
-  }
-}

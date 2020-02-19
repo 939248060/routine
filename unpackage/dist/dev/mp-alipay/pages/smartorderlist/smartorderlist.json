@@ -1,6 +1,0 @@
-{
-  "pullRefresh": true,
-  "usingComponents": {
-    "loading": "/components/loading/loading"
-  }
-}

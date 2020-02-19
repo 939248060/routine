@@ -1,8 +1,0 @@
-{
-  "defaultTitle": "个人中心",
-  "titleBarColor": "#1b82d1",
-  "usingComponents": {
-    "loading": "/components/loading/loading",
-    "dialogs": "/components/dialog/dialog"
-  }
-}

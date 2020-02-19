@@ -1,7 +1,0 @@
-{
-  "navigationBarTitleText": "量心回收",
-  "navigationBarBackgroundColor": "#fff",
-  "usingComponents": {
-    "callrecy": "/components/callrecy/callrecy"
-  }
-}
