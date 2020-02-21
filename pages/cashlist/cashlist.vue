@@ -17,7 +17,7 @@
 					<view class="date d1">
 						<text class="f14">{{items.id}}</text>
 					</view>
-					<navigator url="../cashdetails/cashdetails" v-for="(item,index) in items.data" :key="index">
+					<navigator v-for="(item,index) in items.data" :key="index" :url="'../cashdetails/cashdetails?item='+ encodeURIComponent(JSON.stringify(item.cash))">
 						<view class="row jcbetween aicenter cashlist">
 							<view class="radius6">
 								<!-- 显示日 -->

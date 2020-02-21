@@ -17,8 +17,7 @@
 					<view class="date d1">
 						<text class="f14">{{items.id}}</text>
 					</view>
-					<navigator :url="'../scoredetails/scoredetails?detail='+JSON.stringify(item.score)" v-for="(item,index) in items.data" :key="index" @click="setStroage"
-					 :data-detail="item.score">
+					<navigator :url="'../scoredetails/scoredetails?item='+encodeURIComponent(JSON.stringify(item.score))" v-for="(item,index) in items.data" :key="index">
 						<view class="row jcbetween aicenter scorelist">
 							<view class="radius6">
 								<text class="dis_block f18 black bold9">{{item.day}}</text>

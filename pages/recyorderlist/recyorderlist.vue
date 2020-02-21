@@ -314,7 +314,7 @@
 					id: that.cancelId
 				}).then((res) => {
 					that.$util.showToast(res.data.results, 'succes', 4000);
-					that.refresh();
+					that.getList(1, 0, "new");
 				}).catch((err) => {
 					console.log(err);
 					that.$util.showToast(err, 'none', 4000);
@@ -353,6 +353,7 @@
 						that.$set(that.page,state,res.data.page);
 						that.$set(that.list,state,temp);
 						that[`${btmp}`] = btm;
+						console.log(that.list)
 					} else {
 						that.$util.showToast(res.data.results, 'none', 5000);
 					}
@@ -378,6 +379,7 @@
 		},
 		onShow(currentTab, state) {
 			let that = this;
+			console.log(currentTab + '===' + state)
 			if (that.$stringUtil.isNotEmpty(currentTab)) {
 				that.currentTab = currentTab;
 			}

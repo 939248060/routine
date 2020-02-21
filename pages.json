@@ -150,6 +150,14 @@
             "path" : "pages/smartorderinfo/smartorderinfo",
             "style" : {}
         }
+        ,{
+            "path" : "pages/cashdetails/cashdetails",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/showhtml/showhtml",
+            "style" : {}
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",

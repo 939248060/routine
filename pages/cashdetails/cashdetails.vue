@@ -2,8 +2,8 @@
 	<view>
 		<view class="">
 			<view class="head txtcenter">
-				<text class="f26 green score" v-if="detail.score >= 0">+{{detail.score}}</text>
-				<text class="f26 red score" v-else>{{detail.score}}</text>
+				<text class="f26 green cash" v-if="detail.cash>0">+{{detail.cash}}</text>
+				<text class="f26 red cash" v-else>{{detail.cash}}</text>
 			</view>
 			<view class="content">
 				<view class="list">
@@ -14,17 +14,21 @@
 					<text class="title f16">交易时间</text>
 					<text class="txt f16">{{detail.insTime}}</text>
 				</view>
-				<view class="list" v-if="detail.serialNum != null">
+				<view class="list" v-if="detail.serialNum !=null">
 					<text class="f16">交易订单号</text>
 					<text class="f16">{{detail.serialNum}}</text>
 				</view>
+				<!-- <view class="list">
+		        <text class="f16">交易类型</text>
+		        <text class="f16" wx:if="{{detail.state==2}}">支出</text>
+		        <text class="f16" wx:if="{{detail.state==1}}">收入</text>
+		    </view> -->
 				<view class="list">
-					<text class="f16">积分剩余</text>
-					<text class="f16">{{detail.remaScore}}</text>
+					<text class="f16">余额</text>
+					<text class="f16">{{detail.remaCash}}</text>
 				</view>
 			</view>
 		</view>
-
 	</view>
 </template>
 
@@ -32,7 +36,7 @@
 	export default {
 		data() {
 			return {
-				detail: {}
+				detail:{}
 			}
 		},
 		methods: {
@@ -40,7 +44,7 @@
 		},
 		onLoad(options) {
 			let that = this;
-            that.detail = JSON.parse(decodeURIComponent(options.item));
+			that.detail = JSON.parse(decodeURIComponent(options.item));
 		}
 	}
 </script>
@@ -52,7 +56,7 @@
 		background-color: white;
 	}
 
-	.score {
+	.cash {
 		line-height: 150rpx;
 	}
 

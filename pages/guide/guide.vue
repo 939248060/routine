@@ -57,7 +57,8 @@
 
 
 	.order>navigator>view>view:nth-child(1) {
-		width: 20%;
+		width: 13%;
+		margin:10px;
 		text-align: center;
 	}
 
