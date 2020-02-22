@@ -246,7 +246,9 @@
 	}
 	
 	.scroll{
-		margin-top: 85px;
+		position: absolute;
+		width: 100%;
+		top: 85px;
 	}
 
 	.scorelist {

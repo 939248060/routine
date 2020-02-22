@@ -10,7 +10,7 @@
 		  <cover-view class="dry check" @click='showDry'>干垃圾箱</cover-view>
 		</block>
 		
-		<cover-view class="info" v-show="smartpanel">  
+		<cover-view class="info" v-if="smartpanel">  
 		  <cover-view class="name">
 		    <cover-view>{{single.name}}</cover-view>
 		    <cover-image class="navimg" src="../../static/images/nav.png" @click='navToBin'></cover-image>
@@ -31,10 +31,10 @@
 		  </cover-view>
 		</cover-view>
 		
-		<cover-view class="info" v-show="drypanel">
+		<cover-view class="info" v-if="drypanel">
 		  <cover-view class="name">
 		    <cover-view>{{ bin.Name }}</cover-view>
-		    <cover-image class="navimg" src="../../static/images/nav.png" bindtap='navToBin'></cover-image>
+		    <cover-image class="navimg" src="../../static/images/nav.png" @click='navToBin'></cover-image>
 		  </cover-view>
 		  <cover-view class="add">
 		    <cover-image class="addimg mr5" src="../../static/images/address.png"></cover-image>
@@ -91,7 +91,7 @@
 				let that = this;
 				var location = {};    // 用户当前位置
 				uni.getLocation({
-				  type: 'wgs84',
+				  // type: 'wgs84',
 				  //type: 'gcj02', 
 				  success: function (res) {
 					console.log("用户允许获取定位");
@@ -109,6 +109,7 @@
 					location.width = 30;
 					location.height = 30;
 					let markers = that.$data.markers.concat(location);
+					console.log(location)
 					that.$data.latitude = location.latitude;
 					that.$data.longitude = location.longitude;
 					that.$data.markers = markers;
@@ -284,12 +285,22 @@
 		},
 		onLoad() {
 			let that = this;
-			let globalData = getApp().globalData;
-			// this.selectComponent("#loading").showColour();
-		    that.$data.host =  globalData.host;
-			that.$data.mapheight = globalData.systemInfo.windowHeight + 50;
-			console.log(globalData)
+			
+			that.host = that.$app.globalData.host;
+			//#ifdef MP-WEIXIN
+				that.mapheight = that.$app.globalData.systemInfo.windowHeight+50;
+			//#endif
+			
+			//#ifdef MP-ALIPAY
+				that.mapheight = that.$app.globalData.systemInfo.windowHeight;
+			//#endif
+			console.log(that.mapheight)
 			that.getLocation();
+			// setTimeout(()=>{
+			// 	that.mapheight = that.$app.globalData.systemInfo.windowHeight + 50;
+			// 	that.getLocation();
+			// },200)
+			 
 			var AmapFun = new amapFile.AMapWX({ key: that.$data.gdkey });
 			/*var marker = new AmapFun.Marker({
 			  position: [110.314841, 19.996499]
@@ -299,11 +310,13 @@
 				//console.log(data);
 			  },
 			  fail: function(err) {
-		
 				console.log(err);
 			  }
 			});
 		},
+		onShow() {
+			 
+		}
 	}
 </script>
 

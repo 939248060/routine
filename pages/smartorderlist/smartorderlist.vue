@@ -274,7 +274,9 @@
 	}
 
 	swiper {
-		margin-top: 36px;
+		position: absolute;
+		top: 36px;
+		width: 100%;
 	}
 
 	/*.list > view:nth-child(1) { align-items: center; justify-content: space-between; }*/

@@ -23,7 +23,8 @@
 		{
 			"path": "pages/recySmart/recySmart",
 			"style": {
-				"navigationBarTitleText": "智能站分布"
+				"navigationBarTitleText": "智能站分布",
+				"enablePullDownRefresh": false
 			}
 		}, {
 			"path": "pages/addresslist/addresslist",
@@ -156,6 +157,10 @@
         }
         ,{
             "path" : "pages/showhtml/showhtml",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/invite/invite",
             "style" : {}
         }
     ],

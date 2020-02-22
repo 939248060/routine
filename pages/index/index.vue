@@ -69,10 +69,10 @@
 		</swiper>
 
 		<view>
-			<view class="rout icon-dizhi blue mt5">附近回收站</view> 
+			<view class="rout icon-dizhi blue mt5" @click="clickmap">附近回收站</view> 
 		</view>
 		
-		<map @click='clickmap' id="myMap" style="width: 710rpx; height: 250px;" :latitude="latitude" :longitude="longitude" :markers="markers" show-location>
+		<map @tap="clickmap" id="myMap" style="width: 710rpx; height: 250px;" :latitude="latitude" :longitude="longitude" show-location>
 		</map>
 
 		<callrecy id='callrecy' ref="callrecy" :contact="add.Contact" :tel="add.Tel" :address="add.Address" @cancelEvent="_cancelEvent" @confirmEvent="_confirmEvent">
@@ -342,7 +342,7 @@
 					console.log(err);
 					that.$util.showToast(err, 'none', 5000);
 				}).finally(() => {
-					that.$hideLoading()
+					that.$hideLoading();
 				})
 			},
 			// 上门回收
@@ -407,7 +407,7 @@
 				})
 			},
 			clickmap: function(e) {
-				console.log(e)
+				console.log("clickmap")
 				uni.navigateTo({
 					url: '../recySmart/recySmart',
 				})

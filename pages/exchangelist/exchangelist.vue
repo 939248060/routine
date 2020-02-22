@@ -367,7 +367,9 @@
 	}
 
 	.swiper {
-		margin-top: 36px;
+		position: absolute;
+		top: 36px;
+		width: 100%;
 	}
 
 	.list {

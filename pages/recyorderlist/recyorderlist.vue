@@ -430,8 +430,9 @@
 	}
 
 	swiper {
-		/*height: 100%;*/
-		margin-top: 36px;
+		position: absolute;
+		top: 36px;
+		width: 100%;
 	}
 
 	.header {
