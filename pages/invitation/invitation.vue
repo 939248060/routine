@@ -137,9 +137,9 @@
 			that.getQrCode(); //获取邀请二维码
 			that.getinvite(); //获取邀请信息
 		},
-		onShareAppMessage(res) {
-			if (res.from === 'button') {
-				console.log(res) // 来自页面内转发按钮
+		onShareAppMessage:function(e) {
+			if (e.from === 'button') {
+				console.log(e) // 来自页面内转发按钮
 			}
 			return {
 				title: '邀好友，享好礼', //设置标题
