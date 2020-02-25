@@ -13,8 +13,8 @@
 			<view class="f22 black">邀请战绩</view>
 			<!-- 选项卡 -->
 			<view class="top-tab row txtcenter f14">
-				<view :class="currentTab==0?'selectOn':''" data-current="0" @click="swichNav">已邀好友</view>
-				<view :class="currentTab==1?'selectOn':''" data-current="1" @click="swichNav">已得奖励</view>
+				<view :class="[currentTab==0?'selectOn':'']" data-current="0" @click="swichNav">已邀好友</view>
+				<view :class="[currentTab==1?'selectOn':'']" data-current="1" @click="swichNav">已得奖励</view>
 			</view>
 			<!-- 已经邀请好友 -->
 			<view class="tab tab1" v-if="currentTab==0">
@@ -54,9 +54,9 @@
 						<text>赚取环保金</text>
 					</view>
 					<!-- <view class="row jcaround">
-		        <text>2019-10-31 09:41</text>
-		        <text>10.11</text>
-		      </view> -->
+							<text>2019-10-31 09:41</text>
+							<text>10.11</text>
+						 </view> -->
 					<view v-if="invimoney<=0" class="noinvite m15 f18">
 						<icon class="rout icon-kongshuju"></icon>
 						<view class="f14">暂无环保奖励金</view>
@@ -96,7 +96,7 @@
 			//获取邀请码
 			getQrCode: function() {
 				let that = this;
-				that.$showLoading();    //显示遮罩
+				that.$showLoading(); //显示遮罩
 				that.$request.postToken("/users/customer/findQrCode.do", null).then((res) => {
 					if (res.data.status === 0) {
 						that.codeurl = that.host + res.data.results;
@@ -108,13 +108,13 @@
 					console.log(err);
 					that.$util.showToast(res.data.results, 'none', 5000);
 				}).finally(() => {
-					that.$hideLoading();  //隐藏遮罩
+					that.$hideLoading(); //隐藏遮罩
 				})
 			},
 			//获取邀请的用户投放量信息
 			getinvite: function() {
 				let that = this;
-				that.$showLoading();   //显示遮罩
+				that.$showLoading(); //显示遮罩
 				that.$request.postToken("/users/customer/findInviteList.do", {
 					'currentTab': that.currentTab
 				}).then((res) => {
@@ -127,7 +127,7 @@
 					console.log(err);
 
 				}).finally(() => {
-					that.$hideLoading();  //隐藏遮罩
+					that.$hideLoading(); //隐藏遮罩
 				})
 			}
 		},
@@ -137,7 +137,7 @@
 			that.getQrCode(); //获取邀请二维码
 			that.getinvite(); //获取邀请信息
 		},
-		onShareAppMessage:function(e) {
+		onShareAppMessage: function(e) {
 			if (e.from === 'button') {
 				console.log(e) // 来自页面内转发按钮
 			}
