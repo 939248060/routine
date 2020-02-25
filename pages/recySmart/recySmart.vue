@@ -133,7 +133,7 @@
 					  for (let i = 0; i < res.length; i++) {
 						let marker = {};
 						marker.id = res[i].Code;
-						marker.iconPath = "../../images/dryposition.png";
+						marker.iconPath = "../../static/images/dryposition.png";
 						marker.latitude = res[i].Lat;
 						marker.longitude = res[i].Lng;
 						marker.width = 56;

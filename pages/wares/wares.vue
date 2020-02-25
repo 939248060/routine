@@ -25,8 +25,8 @@
 		<view class="describe">
 			<view>商品详情</view>
 			<view class="page">
-				<view class="page__bd page__bd_spacing">
-					<!-- <view class="dk-show"><template is="wxParse" data="{{wxParseData:content.nodes}}" /></view> -->
+				<view class="page__bd page__bd_spacing"> 
+					<view class="dk-show"><u-parse :content="wares.describe"/></view>
 				</view>
 			</view>
 		</view>
@@ -42,7 +42,11 @@
 </template>
 
 <script>
+	import uParse from '@/components/gaoyia-parse/parse.vue'
 	export default {
+		components:{
+			uParse
+		},
 		data() {
 			return {
 				exchangeUrl: "",
@@ -158,6 +162,7 @@
 </script>
 
 <style>
+	@import url("../../components/gaoyia-parse/parse.css");
 	.imgpanel {
 		width: 100%;
 		background: #fff;
