@@ -349,52 +349,70 @@
 				that.cash = 0;
 				that.btnDisd = true;
 				that.showTxt = '';
-				let token = wx.getStorageSync("custToken");
-				if (stringUtil.isEmpty(token)) {
-					wx.redirectTo({
-						url: '../login/login'
-					});
-				}
-				wx.showLoading({
-					title: '申请中...'
-				})
-				wx.request({
-					url: that.data.host + '/payorder/user/addWidthdraw.do',
-					method: 'post',
-					data: {
+				that.showLoading();   //显示遮罩
+				that.$request.postToken("/users/payorder/addWidthdraw.do", {
 						data: JSON.stringify(temp)
-					},
-					header: {
-						'content-type': 'application/x-www-form-urlencoded; charset=utf-8',
-						'token': token
-					},
-					success: function(dom) {
-						//console.log(dom);
-						if (dom.statusCode != 200) {
-							util.showToast('发生未知错误：' + dom.statusCode, 'none', 3000);
-							return;
-						}
-						util.isLogin(dom.header);
-						let res = dom.data;
-						//console.log(res);
-						if (res.status == 0) {
-							util.showToast(res.results, 'none', 3000);
-							that.getCustInfo();
-						} else {
-							util.showToast(res.results, 'none', 3000);
-						}
-					},
-					fail: function(err) {
-						console.log(err);
-						util.showToast(err.errMsg, 'none', 3000);
-					},
-					complete: function() {
-						wx.hideLoading();
-						that.setData({
-							btnDisd: false
-						});
+					}).then((res) => {
+					if (res.data.status === 0) {
+						that.$util.showToast(res.results, 'none', 3000);
+						that.getCustInfo();
+					} else {
+						that.$util.showToast(res.data.results, 'none', 5000);
 					}
-				});
+				}).catch((err) => {
+					console.log(err);
+					that.$util.showToast(err, 'none', 5000);
+				}).finally(() => {
+					that.btnDisd = false;
+					that.$hideLoading();   //隐藏遮罩
+				})
+				
+				// let token = uni.getStorageSync("custToken");
+				// if (stringUtil.isEmpty(token)) {
+				// 	uni.redirectTo({
+				// 		url: '../login/login'
+				// 	});
+				// }
+				// uni.showLoading({
+				// 	title: '申请中...'
+				// })
+				// wx.request({
+				// 	url: that.data.host + '/payorder/user/addWidthdraw.do',
+				// 	method: 'post',
+				// 	data: {
+				// 		data: JSON.stringify(temp)
+				// 	},
+				// 	header: {
+				// 		'content-type': 'application/x-www-form-urlencoded; charset=utf-8',
+				// 		'token': token
+				// 	},
+				// 	success: function(dom) {
+				// 		//console.log(dom);
+				// 		if (dom.statusCode != 200) {
+				// 			util.showToast('发生未知错误：' + dom.statusCode, 'none', 3000);
+				// 			return;
+				// 		}
+				// 		util.isLogin(dom.header);
+				// 		let res = dom.data;
+				// 		//console.log(res);
+				// 		if (res.status == 0) {
+				// 			util.showToast(res.results, 'none', 3000);
+				// 			that.getCustInfo();
+				// 		} else {
+				// 			util.showToast(res.results, 'none', 3000);
+				// 		}
+				// 	},
+				// 	fail: function(err) {
+				// 		console.log(err);
+				// 		util.showToast(err.errMsg, 'none', 3000);
+				// 	},
+				// 	complete: function() {
+				// 		wx.hideLoading();
+				// 		that.setData({
+				// 			btnDisd: false
+				// 		});
+				// 	}
+				// });
 			}
 		},
 		onLoad() {

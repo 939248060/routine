@@ -142,7 +142,7 @@
 	.itemtop>view {
 		width: 100%;
 		height: 10px;
-		margin-top: 10px;
+		/* margin-top: 10px; */
 		border-radius: 10px;
 		background: #236486
 	}

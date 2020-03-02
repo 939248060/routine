@@ -12,7 +12,7 @@
 		</view>
 		<view class="scroll">
 			<scroll-view scroll-y="true" :style="'height:' + scrollHeight + 'px;'" data-state="0" @scrolltoupper="refresh"
-			 @scrolltolower="loadMore" upper-threshold="3" lower-threshold="8" bindscroll="onPageScroll">
+			 @scrolltolower="loadMore" upper-threshold="3" lower-threshold="8">
 				<block v-for="(items,index) in list" :key="index">
 					<view class="date d1">
 						<text class="f14">{{items.id}}</text>

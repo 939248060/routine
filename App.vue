@@ -10,7 +10,7 @@
 		    host: 'http://192.168.224.66:8080/lvbao',
 		    host1: 'https://www.68518091.com/lvbao', 
 		    host2: 'http://localhost:8080/lvbao',
-		    host2: 'http://3935d66d.ngrok.io/lvbao',  //内网穿透测试
+		    host2: 'http://192.168.224.66:8080/lvbao',  //内网穿透测试
 		},
 		onLaunch: function() {
 			console.log('App Launch')

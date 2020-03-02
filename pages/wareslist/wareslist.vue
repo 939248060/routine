@@ -16,7 +16,7 @@
 		</scroll-view>
 		<view v-if="btmp=='noData'" class="noData">
 			<icon class="rout icon-kongshuju"></icon>
-			<view>您还没有相关的订单</view>
+			<view>您还没有相关的商品</view>
 		</view>
 		<view class="bottom" v-if="btmp=='noMore'"><text>已经到底啦</text>
 			<view></view>
@@ -65,7 +65,6 @@
 					if (res.data.status === 0) {
 						if (rid == "new") {
 							that.list = JSON.parse(res.data.results);
-							console.log(that.list)
 						} else {
 							that.list = that.list[state].concat(JSON.parse(res.data.results));
 						}
@@ -93,7 +92,6 @@
 			// // 绘制新的tabbar
 			// app.editTabbar(); 
 			that.scrollHeight = that.$app.globalData.systemInfo.windowHeight;
-			console.log(that.scrollHeight)
 			that.host = that.$app.globalData.host;
 			that.getList(1, 'new');
 		}

@@ -5,7 +5,7 @@
 			"path": "pages/index/index",
 			"style": {
 				"navigationBarTitleText": "量心回收",
-				"navigationBarBackgroundColor": "#fff"
+				"navigationBarBackgroundColor": "#fff" 
 			}
 		},
 		{

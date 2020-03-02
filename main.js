@@ -9,6 +9,8 @@ const request = require('./utils/request.js');
 import store from './store'
 Vue.prototype.$store = store
 
+
+
 //请求加载组件
 import Loading from './components/loading/loading.vue';
 //组件挂载到全局，方便每个页面使用
