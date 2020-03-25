@@ -198,23 +198,6 @@ function validIdCard(code) {
   }
   return pass;
 }
-// 验证码按钮锁定
-function lockBtn(that) {
-  // 设置封锁时间
-  var currentTime = that.$data.currentTime;
-  var timer = null;
-  that.$data.disabled = true;  
-  timer = setInterval(function () {
-    currentTime--;
-    that.$data.btnTxt = currentTime+' s';
-    if (currentTime <= 0) {
-       clearInterval(timer);
-       that.$data.disabled = false,
-       that.$data.currentTime = 61,
-       that.$data.btnTxt = '获取验证码'
-    }
-  }, 1000);
-}
 // 吐司框
 function showToast(title,icon,duration) {
   uni.showToast({
@@ -279,7 +262,6 @@ module.exports = {
   countPrice: countPrice,
   sumScore: sumScore,
   countScore: countScore,
-  lockBtn: lockBtn,
   showToast: showToast,
   isLogin: isLogin,
   validIdCard: validIdCard,
