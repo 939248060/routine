@@ -20,7 +20,7 @@
 				<image src="../../static/images/tu4.png" mode="widthFix" />
 				<view>商户回收</view>
 			</view>
-		</view> 
+		</view>
 		<!---->
 		<view class="row jcbetween aicenter p10 bg-white f14">
 			<navigator url="../scorelist/scorelist" class="row jcbetween aicenter cashscore mr5">
@@ -69,13 +69,15 @@
 		</swiper>
 
 		<view>
-			<view class="rout icon-dizhi blue mt5" @click="clickmap">附近回收站</view> 
+			<view class="rout icon-dizhi blue mt5" @click="clickmap">附近回收站</view>
 		</view>
-		
-		<map @tap="clickmap" id="myMap" style="width: 710rpx; height: 250px;" :latitude="latitude" :longitude="longitude" show-location>
+
+		<map @tap="clickmap" id="myMap" style="width: 710rpx; height: 250px;" :latitude="latitude" :longitude="longitude"
+		 show-location>
 		</map>
 
-		<callrecy id='callrecy' ref="callrecy" :contact="add.Contact" :tel="add.Tel" :address="add.Address" @cancelEvent="_cancelEvent" @confirmEvent="_confirmEvent">
+		<callrecy id='callrecy' ref="callrecy" :contact="add.Contact" :tel="add.Tel" :address="add.Address" @cancelEvent="_cancelEvent"
+		 @confirmEvent="_confirmEvent">
 		</callrecy>
 
 		<!--政府回收-->
@@ -118,11 +120,13 @@
 					<button class="f16 white bg-blue1 radiu6" formType="submit">呼叫回收</button>
 				</view>
 			</form>
-			<view @click='tapClosePanel' data-recy="4" ><view class="rout icon-close_icon mt15 gray f26" /></view>
+			<view @click='tapClosePanel' data-recy="4">
+				<view class="rout icon-close_icon mt15 gray f26" />
+			</view>
 		</view>
 
 		<!--加载动画-->
-		<loading  />
+		<loading />
 	</view>
 </template>
 
@@ -214,9 +218,9 @@
 					that.$util.showToast("请选择收货地址", "none", 4000)
 					return false;
 				}
-				
-				that.$showLoading();					// 显示遮罩
-				
+
+				that.$showLoading(); // 显示遮罩
+
 				let temp = address; // 添加地址
 				temp.recyType = '1'; // 添加上门类型，1：普通上门，2：家电，3：家具，4：合伙人
 				that.$request.postToken("/users/recyorder/government.do", {
@@ -337,7 +341,7 @@
 						that.$data.customer = JSON.parse(res.data.results);
 					} else {
 						that.$util.showToast(res.data.results, 'none', 5000);
-					} 
+					}
 				}).catch((err) => {
 					console.log(err);
 					that.$util.showToast(err, 'none', 5000);
@@ -413,10 +417,10 @@
 				})
 			},
 			//设置用户的默认地址
-			getDefaultAddr: function(){
+			getDefaultAddr: function() {
 				let that = this;
 				that.$showLoading(); // 显示遮罩
-				that.$request.postToken("/users/address/findDefaultAddress.do",null).then((res) => {
+				that.$request.postToken("/users/address/findDefaultAddress.do", null).then((res) => {
 					if (res.data.status === 0) {
 						let address = JSON.parse(res.data.results);
 						uni.setStorageSync('address', address);
@@ -431,11 +435,45 @@
 				}).finally(() => {
 					that.$hideLoading();
 				})
-			}
+			},
+			// //测试两点距离
+			// getDistance1: function(lat1, lng1, lat2, lng2) {
+			// 	var radLat1 = lat1 * Math.PI / 180.0;
+			// 	var radLat2 = lat2 * Math.PI / 180.0;
+			// 	var a = radLat1 - radLat2;
+			// 	var b = lng1 * Math.PI / 180.0 - lng2 * Math.PI / 180.0;
+			// 	var s = 2 * Math.asin(Math.sqrt(Math.pow(Math.sin(a / 2), 2) + Math.cos(radLat1) * Math.cos(radLat2) * Math.pow(Math.sin(b / 2), 2)));
+			// 	s = s * 6378.137; // 6378.137 地球半径;
+			// 	s = Math.round(s * 10000) / 10000;
+			// 	return s;
+			// },
+			// /* 向高德地图api发送经纬度获取地址详情 */
+			// getDistance2: function(lat1, lng1, lat2, lng2){
+			// 	let that = this;
+			// 	let key = 'b1ba7b9e724ff8b14678ee90a61856da';
+			// 	let origins =  lng1 + ',' + lat1;
+			// 	let destination = lng2 + ',' + lat2;
+			// 	let url = 'https://restapi.amap.com/v3/distance?origins=' + origins   //起点经纬度
+			// 				+ '&destination='+ destination     //目标经纬度
+			// 				+ '&output=json&key=' + key 
+			// 				+ '&type=0';             // 0 直线距离
+			// 	that.$request.get(url).then((res) => {
+			// 		console.log(res)
+			// 	}).catch((err) => { 
+			// 		console.log(err) 
+			// 		that.$util.showToast(err, 'none', 5000);
+			// 	}).finally(() => {
+					
+			// 	})
+			// }
+			
 		},
 		onLoad() {
 			let that = this;
 			that.getDefaultAddr(); // 获取默认地址
+			
+			// console.log(that.getDistance1('20.00885833601338', '110.33491925731659', '20.022956319258746', '110.33296660915374') + 'km');
+			// that.getDistance2('20.00885833601338', '110.33491925731659', '20.022956319258746', '110.33296660915374');
 		},
 		onReady() {
 			this.myMap = uni.createMapContext("myMap", this);
@@ -443,9 +481,9 @@
 		},
 		onShow() {
 			let that = this;
-			let address = uni.getStorageSync("address");   // 读取缓存中地址信息
+			let address = uni.getStorageSync("address"); // 读取缓存中地址信息
 			if (address != null) {
-			  that.$data.address = address;
+				that.$data.address = address;
 			}
 			this.getCustomerInfo();
 		}
@@ -453,7 +491,6 @@
 </script>
 
 <style>
-	
 	.cashscore {
 		width: 50%;
 		padding: 5px 5px;
@@ -716,7 +753,7 @@
 		margin: 5px 0px;
 		padding: 0px 10px;
 		background-color: #fff;
-	} 
+	}
 
 	.roll>.rout:nth-child(1) {
 		position: absolute;

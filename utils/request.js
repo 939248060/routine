@@ -65,6 +65,32 @@ function post(url, data) {
   })
 }
 /**
+ * 微信请求get方法封装
+ * url
+ * data
+ */
+function get(url) {
+  let app = getApp();
+  return new Promise((resolve, reject) => {
+    uni.request({
+      url:  url, method: 'GET', 
+      header: { 'content-type': 'application/x-www-form-urlencoded; charset=utf-8' },
+      success: function (res) {
+        if (res.statusCode === 200) {
+          resolve(res);  //200: 服务端业务处理正常结束
+        } else {
+          let err = "发生错误：" + res.statusCode;
+          reject(err);   //其它错误，提示用户错误信息
+        }
+      },
+      fail: (err => {
+        let msg = (err.errMsg != null) ? err.errMsg : err;
+        reject(msg);
+      })
+    })
+  })
+}
+/**
  * 微信请求post方法封装,token验证
  * url
  * data
@@ -127,5 +153,6 @@ module.exports = {
   postToken: postToken,
   post: post,
   uploadToken: uploadToken,
-  postUrl: postUrl
+  postUrl: postUrl,
+  get: get,
 }
