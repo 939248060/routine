@@ -195,6 +195,8 @@
 .h38 { height: 38px; }
 .h40 { height: 40px; }
 
+.lh18 { line-height: 18px; }
+.lh20 { line-height: 20px; }
 .lh26 { line-height: 26px; }
 .lh28 { line-height: 28px; }
 .lh30 { line-height: 30px; }
@@ -210,6 +212,16 @@
 .radius8 { border-radius: 8px; }
 .radius10 { border-radius: 10px; }
 
+.topeee { border-top: 1px solid #eee; }
+.btmeee { border-bottom: 1px solid #eee; }
+.lefteee { border-left: 1px solid #eee; }
+.righteee { border-right: 1px solid #eee; }
+
+.topccc { border-top: 1px solid #ccc; }
+.btmccc { border-bottom: 1px solid #ccc; }
+.leftccc { border-left: 1px solid #ccc; }
+.rightccc { border-right: 1px solid #ccc; }
+
 .maxwidth { width: 100%; }
 .bodbox { box-sizing: border-box; }
 .txtleft { text-align: left; }
@@ -220,11 +232,6 @@
 .vermiddle { vertical-align: middle; }
 .verbtm { vertical-align: bottom; }
 
-.topeee { border-top: 1px solid #eee; }
-.btmeee { border-bottom: 1px solid #eee; }
-
-.topccc { border-top: 1px solid #ccc; }
-.btmccc { border-bottom: 1px solid #ccc; }
 
 .jcleft { justify-content: left; }
 .jcend { justify-content: flex-end; }
@@ -238,8 +245,16 @@
 .jiaround { justify-items: space-around; }
 
 .aicenter { align-items: center; }
-.aistart { align-items: Flex-start; }
+.aistart { align-items: flex-start; }
 .aistretch { align-items: stretch; }
+.aiend { align-items: flex-end; }
+.aibaseline { align-items: baseline; }
+
+.ascenter { align-self: center; }
+.asstart { align-self: flex-start; }
+.asstretch { align-self: stretch; }
+.asend { align-self: flex-end; }
+.asbaseline { align-self: baseline; }
 
 .acbetween { align-content: space-between }
 
@@ -259,7 +274,7 @@
 .dis_inline-block { display: inline-block; }
 
 .bold { font-weight: 700; }
-.bold7 { font-weight: 700; }
+.bold8 { font-weight: 800; }
 .bold9 { font-weight: 900; }
 .let1 { letter-spacing: -1px; }
 
@@ -284,6 +299,14 @@
 .nowrap { flex-wrap: nowrap; }  /* nowrap表示即使一行排不下，也不换行*/
 /* 超出范围显示...*/
 .elips { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+/* 文本内容不折行,内容全显,不省略 */
+.tnowrap { white-space: nowrap; width: 100%; text-align: center;}
+
+/* 投影效果 */
+.boxs { box-shadow: 0 2px 4px rgba(0, 0, 0, .3), 0 0 6px rgba(0, 0, 0, .15); }
+
+/* 鼠标hover click效果 */
+.cpointer { cursor: pointer; }
 
 .foot { position: fixed; bottom: 0px; width: 100%; background: #ffffff; z-index: 10; }
 
@@ -313,4 +336,14 @@ radio .wx-radio-input.wx-radio-input-checked::before {
   background: transparent;
   transform:translate(-50%, -50%) scale(1);
   -webkit-transform:translate(-50%, -50%) scale(1);
+}
+
+/* 基础卡片样式，包括边角弧度，卡片阴影 */
+.card {
+	box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.2);
+	border-radius: 16px;
+}
+.card2 {
+	box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.2);
+	border-radius: 4px;
 }
