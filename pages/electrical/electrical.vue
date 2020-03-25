@@ -1,22 +1,22 @@
 <template>
-	<view>
-		<navigator class="row jcleft aicenter m10 address radius8 f14" url="../addresslist/addresslist?parent=electric">
+	<view class="content">
+		<navigator class="row jcleft aicenter mb10 address f14 card bg-white vermiddle txtleft" url="../addresslist/addresslist?parent=electric" hover-class="none">
 			<view class="rout icon-dizhi txtcenter f20" />
 			<view class="elips">
-				<text v-if="address!=''">{{address.contact}} - {{address.tel}}\n{{address.area}}{{address.address}}</text>
+				<text v-if="address!=''" class="lh24">{{address.contact}} - {{address.tel}}\n{{address.area}}{{address.address}}</text>
 				<text v-else class="">请选择收货地址</text>
 			</view>
 			<view class="rout icon-dayuhao" />
 		</navigator>
 		<!--无回收物显示面板-->
-		<view v-if="recydetail.length<1" class="bg-white txtcenter f15 pt20 pb20 ml10 mr10 black radius8">
+		<view v-if="recydetail.length<1" class="bg-white txtcenter f15 pt20 pb20 black card">
 			<view @click="tapOpenSelectPanel">请添加上门回收的家电</view>
 			<image src="../../static/images/recycar.png" mode="widthFix" class="mt5 mb5" style="width: 70px; height: 70px;"
 			 @click="tapOpenSelectPanel" />
 			<view @click="tapOpenSelectPanel">立即添加</view>
 		</view>
 		<!--回收物清单列表-->
-		<view wx:else class="bg-white ml10 mr10 radius8">
+		<view wx:else class="bg-white card">
 			<view class="ml10 mr10 pl5 h35 lh35 btmeee f12">回收员上门后结算</view>
 			<view v-for="(item,index) in recydetail" :key="index" class="row jcbetween aicenter bg-white detail">
 				<view class="row jcleft aicenter">
@@ -32,7 +32,7 @@
 			<view class="txtcenter pt10 pb10 f15" @click="tapOpenSelectPanel">继续添加</view>
 		</view>
 		<form @submit="sendForm">
-			<view class="mt10 ml10 mr10 pl10 pr10 bg-white radius8" style="margin-bottom: 100px;">
+			<view class="mt10 pl10 pr10 bg-white card" style="margin-bottom: 100px;">
 				<!--留言备注-->
 				<view class="row jcleft aicenter pt15 pb15 black remark">
 					<text>留言备注</text>
@@ -88,9 +88,9 @@
 			<!--已选项目-->
 			<view v-if="selectItem.length>1" class="pl10 pr10">
 				<view class="f14 black mb10">已选</view>
-				<view class="row wrap jcbetween aicenter">
+				<view class="row wrap jcleft aicenter">
 					<view v-for="(item,index) in selectItem" :key="index" v-if="index>0" :data-idx="index" @click="tapSelectItem"
-					 class="item elips" style="width: 39%">{{item.name}}
+					 class="item elips itemSelect">{{item.name}}
 					</view>
 				</view>
 			</view>
@@ -458,12 +458,18 @@
 </script>
 
 <style>
+	page {
+		background: #fff;
+	}
+	
+	.content {
+		background-image: radial-gradient(circle at 50% -252px, #00a2ed, #00a2ed 360px, transparent 361px );
+		padding: 40px 15px 0px;
+	}
+	
 	/* 收货地址样式 */
 	.address {
-		height: 60px;
-		background: #ffffff;
-		vertical-align: middle;
-		text-align: left;
+		height: 70px;
 	}
 
 	.address>view:nth-child(1) {
@@ -537,6 +543,7 @@
 		left: 0;
 		bottom: 0;
 		background: #ffffff;
+		border-radius: 20px 20px 0 0;
 	}
 
 	.close {
@@ -608,6 +615,11 @@
 		border: 1px solid #00a2ed;
 		background: #ffffff;
 		border-radius: 6px;
+	}
+	
+	.itemSelect {
+		color: #fff;
+		background: #00a2ed;
 	}
 
 	.finish {

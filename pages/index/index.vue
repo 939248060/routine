@@ -333,6 +333,7 @@
 					}
 				}, that.data.interval);
 			},
+			//	获取用户信息
 			getCustomerInfo: function() {
 				let that = this;
 				that.$showLoading()
@@ -485,7 +486,7 @@
 			if (address != null) {
 				that.$data.address = address;
 			}
-			this.getCustomerInfo();
+			this.getCustomerInfo();	//	获取用户基本信息
 		}
 	}
 </script>

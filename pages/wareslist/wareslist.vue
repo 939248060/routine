@@ -2,26 +2,29 @@
 	<view>
 		<scroll-view scroll-view scroll-y="true" :style="'height:'+scrollHeight+'px;'" data-state="0" @scrolltolower="loadMore"
 		 upper-threshold="3" lower-threshold="5">
-			<view class="list">
+			<view class="list row wrap jcbetween mb15">
 				<block :key="index" v-for=" (item,index) in list ">
-					<view class="wares" :data-waresid="item.waresId " @click="linkwares">
+					<view class="wares mb10 bg-white radius10" :data-waresid="item.waresId " @click="linkwares">
 						<image :src=" host + item.photoPath " class="img" mode="widthFix" />
 						<view>
 							<view>{{ item.waresName}}</view>
-							<view class="orange"><b class="f16 mr5">{{ item.score }}</b>量心币</view>
+							<view class="row">
+								<view class="f20 mr5 orange bold">{{ item.score }}</view>
+								<view class="lh30 gray-9">量心币</view>
+							</view>
 						</view>
 					</view>
 				</block>
 			</view>
 		</scroll-view>
-		<view v-if="btmp=='noData'" class="noData">
+		<view v-if="btmp=='noData'" class="noData column aicenter jccenter">
 			<icon class="rout icon-kongshuju"></icon>
 			<view>您还没有相关的商品</view>
 		</view>
-		<view class="bottom" v-if="btmp=='noMore'"><text>已经到底啦</text>
+		<view class="bottom pb20 txtcenter" v-if="btmp=='noMore'"><text>已经到底啦</text>
 			<view></view>
 		</view>
-		<view class="bottom" v-else-if="btmp=='loadMore'">加载更多...</view>
+		<view class="bottom pb20 txtcenter" v-else-if="btmp=='loadMore'">加载更多...</view>
 		<loading />
 	</view>
 </template>
@@ -92,7 +95,7 @@
 			// // 绘制新的tabbar
 			// app.editTabbar(); 
 			that.scrollHeight = that.$app.globalData.systemInfo.windowHeight;
-			that.host = that.$app.globalData.host;
+			that.host = that.$app.globalData.host1;
 			that.getList(1, 'new');
 		}
 	}
@@ -100,25 +103,18 @@
 
 <style>
 	.list {
-		display: flex;
-		flex-wrap: wrap;
-		flex-direction: row;
-		justify-content: space-between;
 		padding: 10px 15px;
-		margin-bottom: 30rpx;
 	}
 
 	.wares {
 		width: 48%;
 		box-sizing: border-box;
-		margin-bottom: 10px;
-		background: #fff;
-		box-shadow: 0px 2px 6px rgba(0, 0, 0, .2);
-		-moz-box-shadow: 0px 2px 6px rgba(0, 0, 0, .2);
 	}
 
 	.wares .img {
-		width: 100%;
+		width: 120px;
+		height: 120px;
+		margin: 10px;
 	}
 
 	.wares>view {
@@ -132,10 +128,6 @@
 
 	.noData {
 		height: 100%;
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		justify-content: center;
 		color: #aaa;
 	}
 
@@ -148,9 +140,7 @@
 	}
 
 	.bottom {
-		padding-bottom: 20px;
 		width: 100%;
-		text-align: center;
 	}
 
 	.bottom>view {

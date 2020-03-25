@@ -1,173 +1,147 @@
 {
 	"pages": [
 		//pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
-		{
+		{		//首页
 			"path": "pages/index/index",
 			"style": {
 				"navigationBarTitleText": "量心回收",
 				"navigationBarBackgroundColor": "#fff" 
 			}
-		},
-		{
+		},{	//登录页
 			"path": "pages/login/login",
 			"style": {
-				"navigationBarTitleText": "用户登录"
+				"navigationBarTitleText": ""
 			}
-		},
-		{
+		},{	//商城
 			"path": "pages/wareslist/wareslist",
 			"style": {
 				"navigationBarTitleText": "商城"
 			}
-		},
-		{
+		},{	//智能站分布列表
 			"path": "pages/recySmart/recySmart",
 			"style": {
 				"navigationBarTitleText": "智能站分布",
 				"enablePullDownRefresh": false
 			}
-		}, {
+		},{	//地址列表
 			"path": "pages/addresslist/addresslist",
 			"style": {
 				"navigationBarTitleText": "地址列表"
 			}
-		}, {
+		},{	//添加地址
 			"path": "pages/addressform/addressform",
 			"style": {
 				"navigationBarTitleText": "添加地址"
 			}
-		}, {
+		},{	//家电回收
 			"path": "pages/electrical/electrical",
 			"style": {
-				"navigationBarTitleText": "家电回收"
+				"navigationBarTitleText": "家电回收",
+				"navigationBarTextStyle": "#FFFFFF"
 			}
-		}, {
+		},{	//上门回收订单
 			"path": "pages/recyorderlist/recyorderlist",
 			"style": {
-				"navigationBarTitleText": "上面回收",
+				"navigationBarTitleText": "上门回收订单",
 				"enablePullDownRefresh": true
 			}
-		}, {
+		},{	//用户二维码
 			"path": "pages/qrcode/qrcode",
 			"style": {
 				"navigationBarTitleText": "用户二维码"
 			}
-		}, {
+		},{	//使用指南
 			"path": "pages/guide/guide",
 			"style": {
 				"navigationBarTitleText": "使用指南"
 			}
-		}, {
+		},{	// 个人中心
 			"path": "pages/personal/personal",
 			"style": {
-				"navigationBarTitleText": "个人中心",
-				"navigationBarBackgroundColor": "#1b82d1"
+				"navigationBarTitleText": "",	
+				"navigationBarBackgroundColor": "#00a2ed"
 			}
+		},{	//实名验证
+			"path" : "pages/realname/realname",
+			"style" : {}
+		},{	//智能投放订单
+			"path" : "pages/smartorderlist/smartorderlist",
+			"style" : {
+				"enablePullDownRefresh": true
+			}
+    },{//家具清运
+			"path" : "pages/furniture/furniture",
+			"style" : {}
+		},{//
+			"path" : "pages/governmentinfo/governmentinfo",
+			"style" : {}
+		},{
+			"path" : "pages/electricalinfo/electricalinfo",
+			"style" : {}
+		},{
+			"path" : "pages/furnitureinfo/furnitureinfo",
+			"style" : {}
+		},{
+			"path" : "pages/merchantinfo/merchantinfo",
+			"style" : {}
+		},{//干垃圾投放订单列表
+			"path" : "pages/dryorderlist/dryorderlist",
+			"style" : {
+				"enablePullDownRefresh": true
+			}
+    },{//积分兑换订单列表
+			"path" : "pages/exchangelist/exchangelist",
+			"style" : {
+				"enablePullDownRefresh": true
+			}
+    },{//积分兑换商品详情
+				"path" : "pages/wares/wares",
+				"style" : {}
+    },{//积分兑换订单详情
+			"path" : "pages/exchange/exchange",
+			"style" : {}
+		},{//我的邀请
+			"path" : "pages/invitation/invitation",
+			"style" : {}
+		},{
+			"path" : "pages/withdraw/withdraw",
+			"style" : {}
+		},{
+			"path" : "pages/getuserinfo/getuserinfo",
+			"style" : {}
+		},{
+			"path" : "pages/scorelist/scorelist",
+			"style" : {
+				"enablePullDownRefresh": true
+			}
+		},{
+			"path" : "pages/scoredetails/scoredetails",
+			"style" : {}
+    },{
+			"path" : "pages/cashlist/cashlist",
+			"style" : {
+				"enablePullDownRefresh": true
+			}
+    },{
+			"path" : "pages/dryorderinfo/dryorderinfo",
+			"style" : {}
+		},{
+			"path" : "pages/smartorderinfo/smartorderinfo",
+			"style" : {}
+		},{
+			"path" : "pages/cashdetails/cashdetails",
+			"style" : {}
+		},{
+			"path" : "pages/showhtml/showhtml",
+			"style" : {}
+		},{
+			"path" : "pages/invite/invite",
+			"style" : {}
+		},{
+			"path" : "pages/register/register",
+			"style" : {}
 		}
-	    ,{
-            "path" : "pages/realname/realname",
-            "style" : {}
-        }
-        ,{
-            "path" : "pages/smartorderlist/smartorderlist",
-            "style" : {
-				"enablePullDownRefresh": true
-			}
-        }
-        ,{
-            "path" : "pages/furniture/furniture",
-            "style" : {}
-        }
-        ,{
-            "path" : "pages/governmentinfo/governmentinfo",
-            "style" : {}
-        }
-        ,{
-            "path" : "pages/electricalinfo/electricalinfo",
-            "style" : {}
-        }
-        ,{
-            "path" : "pages/furnitureinfo/furnitureinfo",
-            "style" : {}
-        }
-        ,{
-            "path" : "pages/merchantinfo/merchantinfo",
-            "style" : {}
-        }
-        ,{
-            "path" : "pages/dryorderlist/dryorderlist",
-            "style" : {
-				"enablePullDownRefresh": true
-			}
-        }
-        ,{
-            "path" : "pages/exchangelist/exchangelist",
-            "style" : {
-				"enablePullDownRefresh": true
-			}
-        }
-        ,{
-            "path" : "pages/wares/wares",
-            "style" : {}
-        }
-        ,{
-            "path" : "pages/exchange/exchange",
-            "style" : {}
-        }
-        ,{
-            "path" : "pages/invitation/invitation",
-            "style" : {}
-        }
-        ,{
-            "path" : "pages/withdraw/withdraw",
-            "style" : {}
-        }
-        ,{
-            "path" : "pages/getuserinfo/getuserinfo",
-            "style" : {}
-        }
-        ,{
-            "path" : "pages/scorelist/scorelist",
-            "style" : {
-				"enablePullDownRefresh": true
-			}
-        }
-        ,{
-            "path" : "pages/scoredetails/scoredetails",
-            "style" : {
-			}
-        }
-        ,{
-            "path" : "pages/cashlist/cashlist",
-            "style" : {
-				"enablePullDownRefresh": true
-			}
-        }
-        ,{
-            "path" : "pages/dryorderinfo/dryorderinfo",
-            "style" : {}
-        }
-        ,{
-            "path" : "pages/smartorderinfo/smartorderinfo",
-            "style" : {}
-        }
-        ,{
-            "path" : "pages/cashdetails/cashdetails",
-            "style" : {}
-        }
-        ,{
-            "path" : "pages/showhtml/showhtml",
-            "style" : {}
-        }
-        ,{
-            "path" : "pages/invite/invite",
-            "style" : {}
-        }
-        ,{
-            "path" : "pages/register/register",
-            "style" : {}
-        }
-    ],
+  ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "量心回收",
@@ -176,7 +150,7 @@
 	},
 	"tabBar": {
 		"color": "#666",
-		"selectedColor": "#11cd6e",
+		"selectedColor": "#00a2ed",
 		"borderStyle": "black",
 		"fontSize": "14px",
 		"list": [{
