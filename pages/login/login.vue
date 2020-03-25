@@ -1,23 +1,32 @@
 <template>
 	<view>
 		<form @submit="formBindsubmit">
-			<view class="login pr10 pl10">
-				<view class="top">注册 / 登录</view>
-				<view class="inputbox">
-					<view>
-						<view class='rout icon-shouji' size="5"></view>
+			<!-- css3 波浪效果 -->
+			<view class="wave" >
+				<view class="waveInner" />
+				<view class="waveInner" />
+				<view class="waveInner" />
+			</view>
+			<view class="login">
+				<view class="column aicenter">
+					<view class="logo mt15 bg-white">
+						<image src="../../static/images/logo_1.png" />
 					</view>
-					<input type="number" name="mobile" maxlength="11" @input="mobileInput" placeholder="请输入手机号" />
+					<text class="f14 mt10 white">量心回收</text>
 				</view>
-				<view class="inputbox">
-					<view>
-						<view class='rout icon-ecurityCode' size="5"></view>
+				<view class="column lh40 pr10 pl10" style="margin-top: 80px;">
+					<view class="inputbox row wrap aicenter btmeee">
+						<view class='rout icon-shouji blue1' size="5" />
+						<input type="number" name="mobile" maxlength="11" @input="mobileInput" placeholder="请输入手机号" />
 					</view>
-					<input type="number" name="code" maxlength="4" @input="codeInput" class="codetext" placeholder="请输入验证码" /><button
-					 class="codebtn" :disabled="disabled" @click="getCode">{{btnTxt}}</button>
+					<view class="inputbox row wrap aicenter btmeee">
+						<view class='rout icon-ecurityCode blue1' size="5" />
+						<input type="number" name="code" maxlength="4" @input="codeInput" class="codetext" placeholder="请输入验证码" />
+						<text class="codebtn blue1" @click="getCode">{{btnTxt}}</text>
+					</view>
 				</view>
 				<view class="bot">
-					<button style="width: 80%;" formType="submit">注册 / 登录</button>
+					<button formType="submit">注册 / 登录</button>
 				</view>
 			</view>
 		</form>
@@ -30,9 +39,8 @@
 	export default {
 		data() {
 			return {
-				disabled: false,
 				btnTxt: '获取验证码',
-				currentTime: 61,
+				currentTime: 61,		//验证码倒计时
 				mobile: '',
 				code: '',
 				sessionId: '',
@@ -56,7 +64,12 @@
 					that.$util.showToast('手机号格式错误，请重新输入', 'none', 2000);
 					return false;
 				}
-				that.$util.lockBtn(that);
+				console.log()
+				if (that.btnTxt != "获取验证码") {
+					that.$util.showToast('请勿重复点击', 'none', 1000);
+					return false;
+				}
+				that.lockBtn();	//切换获取验证码文本btnTxt
 				that.$showLoading(); // 显示遮罩
 				that.$request.post("/getValiCode.do", {
 					mobile: mobile
@@ -112,67 +125,112 @@
 					that.$hideLoading();
 				})
 			},
+			// 验证码按钮锁定
+			lockBtn() {
+				let that = this;
+			  // 设置封锁时间
+			  let currentTime = that.currentTime;
+			  let timer = null;
+			  timer = setInterval(function () {
+			    currentTime--;
+			    that.btnTxt = currentTime+'s后重新获取';
+			    if (currentTime <= 0) {
+			       clearInterval(timer);
+			       that.currentTime = 61,
+			       that.btnTxt = '获取验证码'
+			    }
+			  }, 1000);
+			}
 		}
 	}
 </script>
 
 <style>
 	page {
-		background: #fff;
+		background: linear-gradient(#00a2ed, #00a2ed 1px, #fff 260px, #fff);
 	}
-
 	.login {
-		font-size: 16px;
-		box-sizing: border-box;
+		position: relative;
 	}
-
-	.login .top {
-		font-size: 30px;
-		margin: 30px 0px 70px 10px;
+	.login .logo {
+		width: 50px;
+		height: 50px;
+		border-radius: 50%;
+		border: 4px solid rgba(255, 255, 255, 0.4);
+		overflow: hidden;
 	}
-
-	.login .inputbox {
-		line-height: 40px;
-		display: flex;
-		flex-wrap: wrap;
-		flex-direction: row;
-		border-bottom: 1px solid #eee;
-		align-items: center;
-		box-sizing: border-box;
+	.logo > image {
+		width: 40px;
+		height: 40px;
+		border: 5px solid #fff;
 	}
-
 	.login .inputbox>view {
 		min-width: 10%;
 		vertical-align: middle;
 		text-align: center;
 	}
-
 	.login .inputbox>input {
 		min-width: 80%;
 		max-width: 90%;
 	}
-
 	.login .inputbox .codetext {
 		min-width: 58%;
 		max-width: 60%;
 	}
-
 	.login .inputbox .codebtn {
 		margin: 0px;
 		min-width: 25%;
 		max-width: 46%;
 	}
-
 	.login .bot {
 		margin-top: 40px;
 	}
-
 	.login .bot>button {
-		font-size: 18px;
-		border-radius: 6px;
-		-webkit-border-radius: 6px;
+		width: 70%;
+		font-size: 14px;
+		line-height: 34px;
+		border-radius: 20px;
+		-webkit-border-radius: 20px;
 		color: #fff;
 		background-color: #00a2ed;
 		margin: auto;
+	}
+	/* 波浪动画 */
+	.wave {
+		height: 30px;
+		align-items: center;
+		overflow: hidden;
+	}
+	.waveInner {
+		position: absolute;
+		min-width: 470vw;
+		min-height: 300vh;
+		background: #fff;
+		top: 38%;
+		left: 50%;
+		animation: roateOne 10s linear infinite;
+	}
+	.waveInner:nth-of-type(1) {
+		opacity: 0.7;
+		border-radius: 50%;
+	}
+	.waveInner:nth-of-type(2) {
+		opacity: 0.5;
+		border-radius: 45%;
+	}
+	.waveInner:nth-of-type(3) {
+		opacity: 0.4;
+		border-radius: 47%;
+	}
+	@keyframes roateOne {
+		0% {
+			transform: translate(-50%, 0) rotateZ(0deg);
+		}
+		50% {
+			transform: translate(-50%, -2%) rotateZ(180deg);
+		}
+		100% {
+			transform: translate(-50%, 0%) rotateZ(360deg);
+		}
 	}
 </style>
