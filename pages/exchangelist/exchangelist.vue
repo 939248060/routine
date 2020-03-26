@@ -22,7 +22,9 @@
 							</view>
 							<view class="viewRow pt15">
 								<view>
-									<image :src="host + item.photoPath" class="img" mode="widthFix" />
+									<navigator :url="'../exchangeinfo/exchangeinfo?exchangeId='+item.exchangeId">
+										<image :src="host + item.photoPath" class="img" mode="widthFix" />
+									</navigator>
 								</view>
 								<view class="viewRow pl10">
 									<view class="black">兑换 {{item.waresName}}</view>
@@ -64,7 +66,9 @@
 							</view>
 							<view class="viewRow pt15">
 								<view>
-									<image :src="host + item.photoPath" class="img" mode="widthFix" />
+									<navigator :url="'../exchangeinfo/exchangeinfo?exchangeId='+item.exchangeId">
+										<image :src="host + item.photoPath" class="img" mode="widthFix" />
+									</navigator>
 								</view>
 								<view class="viewRow pl10">
 									<view class="black">兑换 {{item.waresName}}</view>
@@ -106,7 +110,9 @@
 							</view>
 							<view class="viewRow pt15">
 								<view>
-									<image :src="host + item.photoPath" class="img" mode="widthFix" />
+									<navigator :url="'../exchangeinfo/exchangeinfo?exchangeId='+item.exchangeId">
+										<image :src="host + item.photoPath" class="img" mode="widthFix" />
+									</navigator>
 								</view>
 								<view class="viewRow pl10">
 									<view class="black">兑换 {{item.waresName}}</view>

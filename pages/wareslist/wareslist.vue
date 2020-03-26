@@ -1,11 +1,15 @@
 <template>
 	<view>
+		
 		<scroll-view scroll-view scroll-y="true" :style="'height:'+scrollHeight+'px;'" data-state="0" @scrolltolower="loadMore"
 		 upper-threshold="3" lower-threshold="5">
 			<view class="list row wrap jcbetween mb15">
+				<view class="head row">
+					<view class="f16 blue1 lh40 bold">推荐商品</view>
+				</view>
 				<block :key="index" v-for=" (item,index) in list ">
 					<view class="wares mb10 bg-white radius10" :data-waresid="item.waresId " @click="linkwares">
-						<image :src=" host + item.photoPath " class="img" mode="widthFix" />
+						<view><image :src=" host + item.photoPath " class="img" mode="heightFix" /></view>
 						<view>
 							<view>{{ item.waresName}}</view>
 							<view class="row">
@@ -16,15 +20,15 @@
 					</view>
 				</block>
 			</view>
+			<view v-if="btmp=='noData'" class="noData column aicenter jccenter">
+				<icon class="rout icon-kongshuju"></icon>
+				<view>您还没有相关的商品</view>
+			</view>
+			<view class="bottom pb20 txtcenter" v-if="btmp=='noMore'"><text>已经到底啦</text>
+				<view></view>
+			</view>
+			<view class="bottom pb20 txtcenter" v-else-if="btmp=='loadMore'">加载更多...</view>
 		</scroll-view>
-		<view v-if="btmp=='noData'" class="noData column aicenter jccenter">
-			<icon class="rout icon-kongshuju"></icon>
-			<view>您还没有相关的商品</view>
-		</view>
-		<view class="bottom pb20 txtcenter" v-if="btmp=='noMore'"><text>已经到底啦</text>
-			<view></view>
-		</view>
-		<view class="bottom pb20 txtcenter" v-else-if="btmp=='loadMore'">加载更多...</view>
 		<loading />
 	</view>
 </template>
@@ -55,7 +59,7 @@
 					that.$util.showToast("正在获取数据", 'none', 2000);
 					return;
 				}
-				that.getList(that.currPage + 1, tab, "loadMore");
+				that.getList(that.currPage + 1, "loadMore");
 			},
 			getList: function(curr, rid) {
 				let that = this;
@@ -64,12 +68,12 @@
 					currPage: curr,
 				};
 				that.$showLoading(); //显示遮罩
-				that.$request.postToken("/users/wares/findPage.do", data).then((res) => {
+				that.$request.post("/wares/findPage.do", data).then((res) => {
 					if (res.data.status === 0) {
 						if (rid == "new") {
 							that.list = JSON.parse(res.data.results);
 						} else {
-							that.list = that.list[state].concat(JSON.parse(res.data.results));
+							that.list = that.list.concat(JSON.parse(res.data.results));
 						}
 						that.page = res.data.page;
 						if (res.data.page.currentPage >= res.data.page.allPageAmount)
@@ -102,6 +106,18 @@
 </script>
 
 <style>
+	.head{
+		height: 40px;
+		width: 100%;
+		margin-top: 10px;
+		margin-bottom: 10px;
+	}
+	.head>view{
+		
+	}
+	.head>view:nth-child(1){
+		letter-spacing: 4px;    //字间距
+	}
 	.list {
 		padding: 10px 15px;
 	}
@@ -114,9 +130,9 @@
 	.wares .img {
 		width: 120px;
 		height: 120px;
-		margin: 10px;
+		margin: 10px 0px; 
 	}
-
+    
 	.wares>view {
 		padding: 0px 10px 10px 10px;
 		vertical-align: middle;
@@ -125,7 +141,9 @@
 	.wares>view>view {
 		padding-top: 5px;
 	}
-
+    .wares>view:nth-child(1){
+		text-align: center;
+	}
 	.noData {
 		height: 100%;
 		color: #aaa;

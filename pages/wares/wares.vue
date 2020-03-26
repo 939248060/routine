@@ -3,36 +3,42 @@
 		<view class="imgpanel">
 			<image :src=" host + wares.photoPath " class="img" mode="widthFix" />
 		</view>
-		<view class="wares">
-			<view>
-				<view>{{ wares.waresName }}</view>
-				<view class="orange ml5">{{ wares.score }}量心币</view>
-			</view>
-			<view>
+		<view class="box">
+			<view class="wares row jcaround">
 				<view>
-					<text>数量：</text>
-					<view class="count jian" @click.stop='reduce'>
-						<view class="rout icon-jian"></view>
-					</view>
-					<text style="width: 30px; text-align: center;">{{ num }}</text>
-					<view class="count jia" @click.stop='plus'>
-						<view class="rout icon-jia"></view>
-					</view>
+					<view class="f14"><text class="orange f22">{{ wares.score }}</text>量心币</view>
+					<view class="f16">{{ wares.waresName }}</view>
 				</view>
-				<view>已经兑换<text class="red">{{ wares.count }}</text>件</view>
+				<view>
+					<view>
+						<!-- <view class="count jian" @click.stop='reduce'>
+							<view class="rout icon-jian"></view>
+						</view> -->
+						<uni-icons type="minus-filled" size="40"  color="#ccc" @click.stop='reduce'/>
+						<text style="width: 30px; text-align: center;" class="f20">{{ num }}</text>
+						<uni-icons type="plus-filled" color="#007aff" size="40"  @click.stop='plus'/>
+						<!-- <view class="count jia" @click.stop='plus'>
+							<uni-icons :type="'plus-filled'" :color="'#007aff'" size="50" />
+						</view> -->
+					</view>
+					<!-- <view>已经兑换<text class="red">{{ wares.count }}</text>件</view> -->
+				</view>
 			</view>
-		</view>
-		<view class="describe">
-			<view>商品详情</view>
-			<view class="page">
-				<view class="page__bd page__bd_spacing"> 
-					<view class="dk-show"><u-parse :content="wares.describe"/></view>
+			<view class="describe">
+				<view class="f16 gray bold"> ———— <text>商品详情</text> ———— </view>
+				<view class="page">
+					<view class="page__bd page__bd_spacing">
+						<view class="dk-show">
+							<u-parse :content="wares.describe" />
+						</view>
+					</view>
 				</view>
 			</view>
 		</view>
 		<view class="foot">
-			<view>
-				<view>兑换：{{ wares.score * num }} 量心币</view>
+			<view class="row mt10 mb10 ml10">
+				<uni-icons type="cart" color="#00a2ed" size="35" />
+				<view class="mt5 ml5 orange"><text style="color: #00a2ed;">总计：</text>{{ wares.score * num }}</view>
 			</view>
 			<view>
 				<button :data-waresid="wares.waresId" :disabled="disabled" @click.stop='exchange'>立即兑换</button>
@@ -42,9 +48,10 @@
 </template>
 
 <script>
+	import uniIcons from '../..//components/uni-icons/uni-icons.vue';
 	import uParse from '@/components/gaoyia-parse/parse.vue'
 	export default {
-		components:{
+		components: {
 			uParse
 		},
 		data() {
@@ -63,7 +70,7 @@
 				let that = this;
 				let num = that.num;
 				if (num > 1) {
-					that.num = num -1;
+					that.num = num - 1;
 				}
 			},
 			// 增加商品数量
@@ -79,7 +86,7 @@
 				//console.log(e);
 				let that = this;
 				let countScore = that.wares.score * that.num;
-				that.$showLoading();   //显示遮罩
+				that.$showLoading(); //显示遮罩
 				that.$request.postToken("/users/customer/checkScore.do", {
 					score: countScore
 				}).then((res) => {
@@ -104,7 +111,9 @@
 				let that = this;
 				if (waresid != null && waresid != "") {
 					that.$showLoading(); //显示遮罩
-					that.$request.postToken("/users/wares/findOne.do", {waresId: waresid}).then((res) => {
+					that.$request.post("/wares/findOne.do", {
+						waresId: waresid
+					}).then((res) => {
 						if (res.data.status === 0) {
 							that.wares = JSON.parse(res.data.results);
 							console.log(that.wares);
@@ -163,6 +172,8 @@
 
 <style>
 	@import url("../../components/gaoyia-parse/parse.css");
+
+
 	.imgpanel {
 		width: 100%;
 		background: #fff;
@@ -171,49 +182,57 @@
 
 	.img {
 		width: 100%;
+		height: 240px !important;
 	}
-    .rout{
+
+	.rout {
 		margin: 2px;
 	}
+    .box{
+		 margin-top: 10px;
+	 }
 	.wares {
 		width: 100%;
-		padding: 10px 10px 10px 10px;
-		margin: 0px 0px 10px 0px;
+		padding: 10px 0px;
 		background-color: #fff;
 		box-sizing: border-box;
+		border-top-left-radius: 20px;
+		border-top-right-radius: 20px;
 	}
 
 	.wares>view:nth-child(1) {
 		display: flex;
-		flex-direction: row;
+		width: 60%;
+		flex-direction: column;
 		justify-content: space-between;
-		align-items: center;
+		/* align-items: center; */
 		font-size: 18px;
-		padding-bottom: 15px;
-		border-bottom: 1px solid #eee;
+        padding-left: 20px;
 	}
 
-	.wares>view:nth-child(1)>view:nth-child(1) {
+	.wares>view:nth-child(1)>view:nth-child(2) {
 		width: 65%;
 		color: #000;
 	}
 
 	.wares>view:nth-child(2) {
 		display: flex;
+		width: 30%;
 		flex-direction: row;
-		justify-content: space-between;
+		justify-content: flex-end;
 		align-items: center;
-		padding-top: 15px;
+		padding-right: 20px;
 	}
 
 	.wares>view:nth-child(2)>view:nth-child(1) {
 		display: flex;
 		flex-direction: row;
+		justify-content: space-around;
 		align-items: center;
 		font-size: 16px;
 	}
 
-	.count {
+	/* .count {
 		text-align: center;
 		border-radius: 50%;
 		margin: 0px 5px;
@@ -227,8 +246,8 @@
 		background-color: #00a2ed;
 	}
 
-	.jia>icon {
-		font-size: 12px;
+	.jia>view {
+		font-size: 60px;
 		margin-top: -7px;
 	}
 
@@ -243,7 +262,7 @@
 		font-size: 12px;
 		font-weight: 900;
 		margin-top: -8px;
-	}
+	} */
 
 	.describe {
 		font-size: 20px;
@@ -252,11 +271,14 @@
 	}
 
 	.describe>view:nth-child(1) {
-		color: #000;
 		text-align: center;
-		padding: 10px 0px;
+		padding: 20px 0px;
 	}
 
+	.describe>view:nth-child(1)>text {
+		letter-spacing: 2px;
+		margin: 0px 5px;
+	}
 
 	.foot {
 		position: fixed;
@@ -269,7 +291,6 @@
 		flex-direction: row;
 		justify-content: center;
 		align-items: center;
-		background: #eee;
 	}
 
 	.foot>view:nth-child(1) {
@@ -291,6 +312,7 @@
 	.foot>view:nth-child(2)>button {
 		color: #fff;
 		background: #00a2ed;
-		border-radius: 0px;
+		border-radius: 14px;
+		margin-right: 10px;
 	}
 </style>
