@@ -15,7 +15,7 @@
 					<text class="f14 mt10 white">量心回收</text> 
 				</view>
 				<view class="column lh40 pr10 pl10" style="margin-top: 120px;">
-					<view class="inputbox row wrap aicenter btmeee">
+					<view class="inputbox row wrap aicenter btmeee"> 
 						<view class='rout icon-mobilefill blue1' size="5" />
 						<input type="number" name="mobile" maxlength="11" @input="mobileInput" placeholder="请输入手机号" />
 					</view>
