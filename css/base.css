@@ -54,6 +54,7 @@
 .bg-gray-fa { background-color: #fafafa !important; }
 .bg-gray-f0 { background-color: #f0f0f0 !important; }
 .bg-gray-f6 { background-color: #f6f6f6; }
+.bg-gray-ddd { background-color: #DDDDDD; }
 .bg-red { background-color: #f00 }
 .bg-red-c00 { background-color: #c00 }
 .bg-yellow { background-color: #ffdc00  }
@@ -208,6 +209,8 @@
 .lh38 { line-height: 38px; }
 .lh40 { line-height: 40px; }
 
+.radius2 { border-radius: 2px; }
+.radius4 { border-radius: 4px; }
 .radius6 { border-radius: 6px; }
 .radius8 { border-radius: 8px; }
 .radius10 { border-radius: 10px; }
@@ -233,7 +236,7 @@
 .verbtm { vertical-align: bottom; }
 
 
-.jcleft { justify-content: left; }
+.jcstart { justify-content: flex-start; }
 .jcend { justify-content: flex-end; }
 .jccenter { justify-content: center; }
 .jcbetween { justify-content: space-between; }
@@ -278,9 +281,23 @@
 .bold9 { font-weight: 900; }
 .let1 { letter-spacing: -1px; }
 
-.labblue1 { color: #00a2ed; border: 1px solid #00a2ed; background: #fff; padding: 0px 5px; box-sizing: border-box; }
-.laborange { color: #F80; border: 1px solid #F80; background: #fff; padding: 0px 5px; box-sizing: border-box; }
-.labred { color: #f00; border: 1px solid #f00; background: #fff; padding: 0px 5px; box-sizing: border-box; }
+.box { display: inline-block; color: #fff; padding: 2px 5px; font-size: 12px; }
+.boxblue1 { background: #00a2ed; border: 1px solid #00a2ed; }
+.boxorange { background: #F80; border: 1px solid #F80; }
+.boxred { background: #f00; border: 1px solid #f00; }
+.boxjune { background: #BDD663; border: 1px solid #BDD663; }
+.boxpurple { background: #b10dc9; border: 1px solid #b10dc9; }
+.boxgray { background: #ccc; border: 1px solid #ccc }
+.boxgreen { background: #2ecc40; border: 1px solid #2ecc40; }
+
+.lab { display: inline-block; background: #fff; padding: 2px 5px; box-sizing: border-box; font-size: 12px; }
+.labblue1 { color: #00a2ed; border: 1px solid #00a2ed; }
+.laborange { color: #F80; border: 1px solid #F80; }
+.labred { color: #f00; border: 1px solid #f00;  }
+.labjune { color: #BDD663; border: 1px solid #BDD663; }
+.labpurple { color: #b10dc9; border: 1px solid #b10dc9; }
+.labgray {color: #ccc; border: 1px solid #ccc; }
+.labgreen {color: #2ecc40; border: 1px solid #2ecc40; }
 
 /* 通用遮罩 */
 .mask{ position: fixed; z-index: 100; top: 0; right: 0; left: 0; bottom: 0; background: rgba(0, 0, 0, 0.5); }
