@@ -87,12 +87,12 @@
 
 	.content {
 		position: fixed;
-		top: 55%;
+		top: 45%;
 		left: 50%;
 		transform: translate(-50%, -60%);
 		-webkit-transform: translate(-50%, -60%);
 		background-image: radial-gradient(circle at -6px 100px, #00a2ed, #00a2ed 19px, transparent 20px ),
-											radial-gradient(circle at 286px 100px, #00a2ed, #00a2ed 19px, transparent 20px );
+											radial-gradient(circle at 320px 100px, #00a2ed, #00a2ed 19px, transparent 20px );
 	}
 
 	.wxinfo > .photo {
@@ -104,8 +104,8 @@
 	}
 
 	.canvas {
-		width: 200px;
-		height: 200px;
+		width: 240px;
+		height: 240px;
 		margin: 20px 40px;
 	}
 	
