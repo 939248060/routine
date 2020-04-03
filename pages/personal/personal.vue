@@ -1,112 +1,121 @@
 <template>
-	<view>
+	<view class="bg">
 		<!-- #ifdef MP-WEIXIN -->
-			<view class="title">
-				<view class="photo">
-					<open-data type="userAvatarUrl"></open-data>
+		<view class="head column bg-white mb15">
+			<view class="row mt20 jcbetween">
+				<view class="row ml20">
+					<view class="userPhoto">
+						<open-data type="userAvatarUrl" />
+					</view>
+					<view class="userName">
+						<view class="f18 ml10 blue1">
+							<open-data type="userNickName" />
+						</view>
+						<view class="ml10 gray-9 f12">用户卡号：{{ card }}</view>
+					</view>
 				</view>
-				<view class="name">
-					<open-data type="userNickName"></open-data>
+				<view>
+					<view class="realname white txtright lh20">
+						<view v-if="customer.isCheck=='1'" class="bg-blue1 pr20">已实名</view>
+						<view v-else class="bg-gray pr20">未实名</view>
+					</view>
 				</view>
 			</view>
-		<!-- #endif -->
-		
-		<view class="abc">
-			<view>
-				<view>量心币</view>
-				<view>{{customer.score}}个</view>
-			</view>
-			<view>
+			<view class="row jcaround txtcenter f18 userInfo ml20 mr20 lh18">
 				<navigator url="../cashlist/cashlist">
-					<view>余额</view>
-					<view>{{customer.cash}}元</view>
+					<view v-if="develop == '测试'" class="bold mb5"> 1200 </view>
+					<view v-else class="bold mb5"> {{customer.cash}} </view>
+					<view class="gray-9 f12"> 零钱 </view>
+				</navigator>
+				<navigator>
+					<view v-if="develop == '测试'" class="bold mb5"> 100000 </view>
+					<view v-else class="bold mb5"> {{customer.score}} </view>
+					<view class="gray-9 f12"> 量心币 </view>
+				</navigator>
+				<navigator url="../couponlist/couponlist">
+					<view v-if="develop == '测试'" class="bold mb5"> 100 </view>
+					<view v-else class="bold mb5"> 0 </view>
+					<view class="gray-9 f12"> 加价券 </view>
+				</navigator>
+				<navigator>
+					<view v-if="develop == '测试'" class="bold mb5"> 100000 </view>
+					<view v-else class="bold mb5"> 0 </view>
+					<view class="gray-9 f12"> 积分 </view>
 				</navigator>
 			</view>
-			<view>
-				<view>信用</view>
-				<view>{{ credit }}</view>
+			<view class="headLine" />
+		</view>
+		<!-- #endif -->
+		<!-- 我的收益 -->
+	<!-- 	<view class="myorder bg-white mb15">
+			<view class="row jcbetween f12 gray-9 pb5 mb10">
+				<text class="f16 gray-3 bold">我的收益</text>
+				<navigator url='../smartorderlist/smartorderlist?state=0' class="row ascenter">
+					查看详情  <view class="rout icon-dayuhao lh18" />
+				</navigator>
+			</view>
+			<view class="orderList row jcaround mt5 mb5 txtcenter gray-9">
+				<navigator >
+					<view class="rout icon-dui " />
+					<text>碳积分</text>
+				</navigator>
+				<navigator url="../exchangelist/exchangelist?state=0">
+					<view class="rout icon-dui" />
+					<text>积分兑换</text>
+				</navigator>
+				<navigator >
+					<view class="rout icon-dui" />
+					<text>额外收益</text>
+				</navigator>
+			</view>
+		</view> -->
+		<!-- 邀请有礼 -->
+		<view class="yaoqing row bg-white mb15 txtleft">
+			<view class=" row aicenter righteee" style="width: 50%;">
+				<image src="../../static/images/liwu.png" class="mr10" style="width: 40px; height: 40px;" />
+				<navigator class="column" url="../invitation/invitation">
+					<text class="f16 gray-6 bold">邀请有礼</text>
+					<text class="gray-9 f12">赢取现金大奖</text>
+				</navigator>
+			</view>
+			<view class="row aicenter ml20">
+				<image src="../../static/images/liwu.png" class="mr10" style="width: 40px; height: 40px;" />
+				<view class="column">
+					<text class="f16 gray-6 bold">签到活动</text>
+					<text class="gray-9 f12">获得海量奖励</text>
+				</view>
 			</view>
 		</view>
-		<view class="itemlist">
-			<view v-if="customer.isCheck=='1'">
-				<view>
-					<view class="rout icon-shenfenzheng"></view><text>实名认证</text>
-				</view>
-				<view class="mr5">已验证</view>
-			</view>
-			<view v-else data-url="../realname/realname" @click='link'>
-				<view>
-					<view class="rout icon-shenfenzheng"></view><text>实名认证</text>
-				</view>
-				<view>
-					<view class="rout icon-dayuhao"></view>
-				</view>
-			</view>
+		<!-- 基础功能 -->
+		<view class="content row bg-white mb15 wrap">
+			<navigator url="../qrcode/qrcode">
+				<view class="rout icon-qrcode f30 gray-9" />
+				<text>我的二维码</text>
+			</navigator>
+			<navigator url="../realname/realname">
+				<view class="rout icon-shenfenzheng f30 gray-9" />
+				<text>实名认证</text>
+			</navigator>
 			<navigator url="../addresslist/addresslist">
-				<view>
-					<view class="rout icon-shouhuodizhi"></view><text>收货地址</text>
-				</view>
-				<view>
-					<view class="rout icon-dayuhao"></view>
-				</view>
-			</navigator>
-			<navigator url="../recyorderlist/recyorderlist">
-				<view>
-					<view class="rout icon-daodian"></view><text>上门回收订单</text>
-				</view>
-				<view>
-					<view class="rout icon-dayuhao"></view>
-				</view>
-			</navigator>
-			<navigator url='../smartorderlist/smartorderlist?state=0'>
-				<view>
-					<view class="rout icon-zhineng"></view><text>智能投放订单</text>
-				</view>
-				<view class="fr">
-					<view class="rout icon-dayuhao"></view>
-				</view>
-			</navigator>
-			<navigator url='../dryorderlist/dryorderlist?state=0'>
-				<view>
-					<view class="rout icon-lajifenleishidian"></view><text>干垃圾投放订单</text>
-				</view>
-				<view>
-					<view class="rout icon-dayuhao"></view>
-				</view>
+				<view class="rout icon-shouhuodizhi f30 gray-9" />
+				<text>收货地址</text>
 			</navigator>
 			<navigator url="../exchangelist/exchangelist?state=0">
-				<view>
-					<view class="rout icon-jifenduihuan"></view>
-					<view>积分兑换订单</view>
-				</view>
-				<view>
-					<view class="rout icon-dayuhao"></view>
-				</view>
+				<view class="rout icon-jifen f30 gray-9" />
+				<text>积分兑换</text>
 			</navigator>
-			<!-- v-show="false"相当于注释，目前还没有用到我的邀请页面，之所以没有样式，是为了以后会用到，而不需要改变样式 -->
-			<navigator url="../invitation/invitation">   
-				<view>
-					<view class="rout icon-jifenduihuan"></view>
-					<view>我的邀请</view>
-				</view>
-				<view>
-					<view class="rout icon-dayuhao"></view>
-				</view>
+			<navigator url="../couponlist/couponlist">
+				<view class="rout icon-youhuiquan f30 gray-9" />
+				<text>加价券</text>
 			</navigator>
-			<navigator url="../guide/guide" open-type="switchTab">
-				<view>
-					<view class="rout icon-guanyu"></view><text>关于我们</text>
-				</view>
-				<view>
-					<view class="rout icon-dayuhao"></view>
-				</view>
+			<navigator url="../guide/guide">
+				<view class="rout icon-info f30 gray-9" />
+				<text>关于我们</text>
 			</navigator>
-			<view @click='call'>
-				<view>
-					<view class="rout icon-shouye-lianxikefu"></view><text>联系我们</text>
-				</view>
-				<view class="mr5">400-770-5180</view>
-			</view>
+			<navigator class="ml15"  @click='call'>
+				<view class="rout icon-kefu f30 gray-9" />
+				<text>联系我们</text>
+			</navigator>
 		</view>
 		<button class="exit" @click='logout'>退出登录</button>
 		<!-- 遮罩 -->
@@ -131,18 +140,21 @@
 				customer: {},
 				score: 0,
 				balance: 0,
-				credit: '--',
-				idCard: ''
+				idCard: '',
+				card: '',			//用户卡号
+				develop: '测试',//用于测试界面，打包删除
 			}
 		},
 		methods: {
-			link: function(e) {
-				let url = e.currentTarget.dataset.url;
-				if (url != null && url != "") {
-					uni.navigateTo({
-						url: url
-					});
-				}
+			//获取用户卡号
+			getUserCard: function() {
+				let that = this;
+				uni.getStorage({
+					key: 'card',
+					success: function(res) {
+						that.card = res.data;
+					}
+				})
 			},
 			// 联系我们
 			call: function() {
@@ -231,6 +243,7 @@
 			
 			let that = this;
 			that.host = that.$app.globalData.host;
+			that.getUserCard();
 		},
 		onShow() {
 			let that = this;
@@ -240,231 +253,62 @@
 </script>
 
 <style>
-	.ward {
-		background: white;
+	.bg {
+		background: linear-gradient( #00a2ed 120px, #eeeeee 160px);
+		padding: 75px 15px 0px;
 	}
-
 	.head {
-		background: #1b82d1;
-		color: white;
-		padding-bottom: 10px;
-	}
-
-	.center {
-		background: #eee;
-		font-size: 14px;
-	}
-
-	.userAvatarUrl {
-		border: 1rpx white solid;
-		margin-top: 15px;
-		margin-left: 25px;
-		padding: 10px;
-	}
-
-	.title {
-		background: #1b82d1;
-		color: #fff;
-		padding: 0px 10px 0px 10px;
-	}
-
-	.title {
-		display: flex;
-		flex-direction: row;
-	}
-
-	.title .photo {
-		width: 40px;
-		height: 40px;
-		border: 2px solid #fff;
-		border-radius: 10px;
-	}
-
-	.title .name {
-		margin: 10px 0px 0px 10px;
-	}
-
-	.grade {
-		float: right;
-		margin-top: 24px;
-		margin-right: 10px;
-		background: linear-gradient(to bottom right, #edfa3c, #ff9900);
-		/* 标准的语法 */
-		top: 25rpx;
-		display: flex;
-		height: 24px;
-		width: 72px;
 		border-radius: 4px;
-		padding-left: 10rpx;
-		padding-right: 10rpx;
-		padding-top: 10rpx;
-		padding-bottom: 0rpx;
-		justify-content: center;
-		text-align: center;
-		font-size: 12px;
 	}
-
-	.num {
-		font-weight: bold;
-	}
-
-	.abc {
-		width: 100%;
-		color: #fff;
-		background: #1b82d1;
-		display: flex;
-		flex-wrap: wrap;
-		flex-direction: row;
-		padding: 8px 0px;
-	}
-
-	.abc>view {
-		width: 33.33%;
-		text-align: center;
-	}
-
-	.abc>view:nth-child(2) {
+	.userPhoto {
+		width: 60px;
+		height: 60px;
+		border-radius: 50%;
+		overflow: hidden;
 		position: relative;
+		top: -30px;
 	}
-
-	.abc>view:nth-child(2)>view::before {
-		content: '';
-		position: absolute;
-		top: 10px;
-		left: 0px;
-		width: 1px;
-		height: 25px;
-		background: #fff;
-	}
-
-	.abc>view:nth-child(2)>view::after {
-		content: '';
-		position: absolute;
-		top: 10px;
-		right: 0px;
-		width: 1px;
-		height: 25px;
-		background: #fff;
-	}
-
-	.kkk {
-		width: 100%;
-		color: #fff;
-		background: #1b82d1;
-		display: flex;
-		flex-wrap: wrap;
-		flex-direction: row;
-		padding: 8px 0px;
-	}
-
-	.kkk>view {
-		width: 33.33%;
-		text-align: center;
-	}
-
-	.kkk>view>navigator>view:nth-child(2) {
-		font-size: 12px;
-	}
-
-	.kkk>view:nth-child(2) {
+	.userName, .userInfo {
 		position: relative;
+		top: -10px;
 	}
-
-	.kkk>view:nth-child(2)>view::before {
-		content: '';
-		position: absolute;
-		top: 10px;
-		left: 0px;
-		width: 1px;
-		height: 25px;
-		background: #fff;
+	.headLine {
+		height: 6px;
+		background-color: #00a2ed;
+		border-radius: 0 0 4px 4px;
 	}
-
-	.kkk>view:nth-child(2)>view::after {
-		content: '';
-		position: absolute;
-		top: 10px;
-		right: 0px;
-		width: 1px;
-		height: 25px;
-		background: #fff;
+	.realname {
+		width: 80px;
+		border-radius: 25px 0 0 25px;
+		position: relative;
+		right: -3px;
+		overflow: hidden;
+		box-shadow: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);
 	}
-
-	.itemlist {
-		width: 100%;
-		background: #fff;
-		margin: 10px 0px;
+	.myorder, .content {
+		padding: 10px;
+		border-radius: 8px;
 	}
-
-	.itemlist>navigator,
-	.itemlist>view {
-		display: flex;
-		flex-direction: row;
-		padding: 6px 6px 6px 10px;
-		justify-content: space-between;
-		align-items: center;
-		border-bottom: 1px solid #eee;
+	.orderList > navigator > view {
+		font-size: 26px;
+		color: #00a2ed;
+		margin-bottom: 5px;
 	}
-
-	.itemlist>navigator>view,
-	.itemlist>view>view {
-		display: flex;
-		flex-direction: row;
-		justify-content: right;
-		align-items: center;
+	.content > navigator {
+		width: 25%;
+		text-align: center;
+		margin: 5px 0;
 	}
-
-	.itemlist>navigator>view:nth-child(1)>.rout,
-	.itemlist>view>view:nth-child(1)>.rout {
-		font-size: 25px;
-		color: #fff;
-		margin-right: 5px;
-		padding: 0px 5px 4px 5px;
-		border-radius: 5px;
+	.yaoqing {
+		padding: 20px;
+		border-radius: 8px;
 	}
-
-	.itemlist>view:nth-child(1)>view:nth-child(1)>.rout {
-		background: #59c2e0;
-	}
-
-	.itemlist>navigator:nth-child(2)>view:nth-child(1)>.rout {
-		background: #4bafef;
-	}
-
-	.itemlist>navigator:nth-child(3)>view:nth-child(1)>.rout {
-		background: #4bafef;
-	}
-
-	.itemlist>navigator:nth-child(4)>view:nth-child(1)>.rout {
-		background: #4bafef;
-	}
-
-	.itemlist>navigator:nth-child(5)>view:nth-child(1)>.rout {
-		background: #a6d7a8;
-	}
-
-	.itemlist>navigator:nth-child(6)>view:nth-child(1)>.rout {
-		background: #eccc5b;
-	}
-
-	.itemlist>navigator:nth-child(7)>view:nth-child(1)>.rout {
-		background: #5ecfd2;
-	}
-
-	.itemlist>navigator:nth-child(8)>view:nth-child(1)>.rout {
-		background: #5ecfd2;
-	}
-
-	.itemlist>view:nth-child(9)>view:nth-child(1)>.rout {
-		background: #e5b236;
-	}
-
 	.exit {
-		width: 80%;
+		width: 70%;
 		margin-bottom: 50px;
 		color: #fff;
 		background: #c00;
-		margin: auto;
 		border-radius: 10px;
+		line-height: 2em;
 	}
 </style>
