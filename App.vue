@@ -1,20 +1,21 @@
 <script>
 	export default {
 		globalData: {
-		    systemInfo: null,   //客户端设备信息
-		    code: '',             // 用户凭证
-		    encryptedData: '',  // 
+		    systemInfo: null,   //	客户端设备信息
+		    code: '',           //	用户凭证
+		    encryptedData: '',  //	
 		    iv: '',             // 
 		    userInfo: null,
-		    addId: '',          // 用户地址列表选择地址ID
-		    host: 'http://192.168.224.66:8080/lvbao',
+		    addId: '',          //	用户地址列表选择地址ID
+		    host: 'http://localhost:8080/lvbao',
 		    host1: 'https://www.68518091.com/lvbao', 
 		    host2: 'http://localhost:8080/lvbao',
-		    host2: 'http://192.168.224.66:8080/lvbao',  //内网穿透测试
+		    host2: 'http://192.168.224.66:8080/lvbao',  //	内网穿透测试
 		},
 		onLaunch: function() {
 			console.log('App Launch')
 			let that = this;
+			//	获取用户客户端信息
 			uni.getSystemInfo({
 			  success: function (res) {
 			    that.globalData.systemInfo = res;
