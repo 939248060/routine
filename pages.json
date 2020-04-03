@@ -167,7 +167,13 @@
 				// "navigationStyle":"custom"	//自定义页面导航栏
 			}
 		}
-  ],
+      ,{
+            "path" : "pages/exchangeinfo/exchangeinfo",
+            "style" : {
+				"navigationBarTitleText": "订单详情"
+			}
+        }
+    ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "量心回收",
