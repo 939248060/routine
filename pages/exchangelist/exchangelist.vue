@@ -40,7 +40,7 @@
 						</view>
 					</block>
 					<view v-if="btmp0=='noData'" class="noData">
-						<icon class="rout icon-kongshuju"></icon>
+						<image src="../../static/images/wudingdan.png" mode="widthFix" style="width: 240px;" />
 						<view>您还没有相关的订单</view>
 					</view>
 					<view class="bottom" v-if="btmp0=='noMore'"><text>已经到底啦</text>
@@ -82,7 +82,7 @@
 						</view>
 					</block>
 					<view v-if="btmp1=='noData'" class="noData">
-						<icon class="rout icon-kongshuju"></icon>
+						<image src="../../static/images/wudingdan.png" mode="widthFix" style="width: 240px;" />
 						<view>您还没有相关的订单</view>
 					</view>
 					<view class="bottom" v-if="btmp1=='noMore'"><text>已经到底啦</text>
@@ -124,7 +124,7 @@
 						</view>
 					</block>
 					<view v-if="btmp2=='noData'" class="noData">
-						<icon class="rout icon-kongshuju"></icon>
+						<image src="../../static/images/wudingdan.png" mode="widthFix" style="width: 240px;" />
 						<view>您还没有相关的订单</view>
 					</view>
 					<view class="bottom" v-if="btmp2=='noMore'"><text>已经到底啦</text>
