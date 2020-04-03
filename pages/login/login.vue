@@ -12,7 +12,7 @@
 					<view class="logo mt15 bg-white">
 						<image src="../../static/images/logo_1.png" />
 					</view>
-					<text class="f14 mt10 white">量心回收</text>
+					<text class="f14 mt10 white">量心回收</text> 
 				</view>
 				<view class="column lh40 pr10 pl10" style="margin-top: 120px;">
 					<view class="inputbox row wrap aicenter btmeee">
