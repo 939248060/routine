@@ -1,4 +1,5 @@
 <template>
+	<!-- 上门回收订单列表 -->
 	<view>
 		<view class="top-tab row txtcenter bg-white f16">
 			<view :class="currentTab==0?'blue1':''" data-current="0" @click="swichNav">全部</view>
