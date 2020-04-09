@@ -6,6 +6,13 @@
   "description": "断线风格图标",
   "glyphs": [
     {
+      "icon_id": "4409261",
+      "name": "上传",
+      "font_class": "upload",
+      "unicode": "e64b",
+      "unicode_decimal": 58955
+    },
+    {
       "icon_id": "12752177",
       "name": "优惠券",
       "font_class": "youhuiquan",
