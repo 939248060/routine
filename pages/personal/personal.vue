@@ -46,34 +46,11 @@
 			<view class="headLine" />
 		</view>
 		<!-- #endif -->
-		<!-- 我的收益 -->
-	<!-- 	<view class="myorder bg-white mb15">
-			<view class="row jcbetween f12 gray-9 pb5 mb10">
-				<text class="f16 gray-3 bold">我的收益</text>
-				<navigator url='../smartorderlist/smartorderlist?state=0' class="row ascenter">
-					查看详情  <view class="rout icon-dayuhao lh18" />
-				</navigator>
-			</view>
-			<view class="orderList row jcaround mt5 mb5 txtcenter gray-9">
-				<navigator >
-					<view class="rout icon-dui " />
-					<text>碳积分</text>
-				</navigator>
-				<navigator url="../exchangelist/exchangelist?state=0">
-					<view class="rout icon-dui" />
-					<text>积分兑换</text>
-				</navigator>
-				<navigator >
-					<view class="rout icon-dui" />
-					<text>额外收益</text>
-				</navigator>
-			</view>
-		</view> -->
 		<!-- 邀请有礼 -->
 		<view class="yaoqing row bg-white mb15 txtleft">
 			<view class=" row aicenter righteee" style="width: 50%;">
 				<image src="../../static/images/liwu.png" class="mr10" style="width: 40px; height: 40px;" />
-				<navigator class="column" url="../invitation/invitation">
+				<navigator class="column" url="../invite/invite">
 					<text class="f16 gray-6 bold">邀请有礼</text>
 					<text class="gray-9 f12">赢取现金大奖</text>
 				</navigator>
