@@ -41,12 +41,6 @@
 				"navigationBarTitleText": "家电回收",
 				"navigationBarTextStyle": "#FFFFFF"
 			}
-		},{	//上门回收订单
-			"path": "pages/recyorderlist/recyorderlist",
-			"style": {
-				"navigationBarTitleText": "上门回收订单",
-				"enablePullDownRefresh": true
-			}
 		},{	//用户二维码
 			"path": "pages/qrcode/qrcode",
 			"style": {
@@ -67,12 +61,7 @@
 		},{	//实名验证
 			"path" : "pages/realname/realname",
 			"style" : {}
-		},{	//智能投放订单
-			"path" : "pages/smartorderlist/smartorderlist",
-			"style" : {
-				"enablePullDownRefresh": true
-			}
-    },{//家具清运
+		},{//家具清运
 			"path" : "pages/furniture/furniture",
 			"style" : {}
 		},{//
@@ -87,12 +76,7 @@
 		},{
 			"path" : "pages/merchantinfo/merchantinfo",
 			"style" : {}
-		},{//干垃圾投放订单列表
-			"path" : "pages/dryorderlist/dryorderlist",
-			"style" : {
-				"enablePullDownRefresh": true
-			}
-    },{//积分兑换订单列表
+		},{//积分兑换订单列表
 			"path" : "pages/exchangelist/exchangelist",
 			"style" : {
 				"navigationBarTitleText": "积分兑换",
@@ -154,7 +138,13 @@
 				"navigationBarTextStyle": "#FFFFFF",
 				"enablePullDownRefresh": true
 			}
-    },{//我的订单列表页（智能回收、上门回收、干垃圾投放
+    },{//加价券使用界面
+			"path" : "pages/couponorder/couponorder",
+			"style" : {
+			"navigationBarTitleText": "使用加价券",
+			"navigationBarTextStyle": "#FFFFFF"
+			}
+		},{//我的订单列表页（智能回收、上门回收、干垃圾投放
 			"path" : "pages/orderlist/orderlist",
 			"style" : {
 				// "navigationStyle":"custom"	//自定义页面导航栏
@@ -166,13 +156,12 @@
 			"style" : {
 				// "navigationStyle":"custom"	//自定义页面导航栏
 			}
-		}
-      ,{
-            "path" : "pages/exchangeinfo/exchangeinfo",
-            "style" : {
+		},{// 积分兑换订单详情
+			"path" : "pages/exchangeinfo/exchangeinfo",
+			"style" : {
 				"navigationBarTitleText": "订单详情"
 			}
-        }
+    }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
@@ -184,7 +173,7 @@
 		"color": "#666",
 		"selectedColor": "#00a2ed",
 		"borderStyle": "black",
-		"fontSize": "14px",
+		"fontSize": "14px", 
 		"list": [{
 				"pagePath": "pages/index/index",
 				"iconPath": "static/images/shouye.png",
