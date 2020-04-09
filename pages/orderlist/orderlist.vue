@@ -71,4 +71,49 @@
 	.content {
 		overflow: hidden;
 	}
+	
+	.top-tab {
+		position: fixed;
+		width: 100%;
+		top: 35px;
+		left: 0;
+		z-index: 100;
+	}
+	.top-tab > view {
+		width: 33.33%;
+		text-align: center;
+		line-height: 2em;
+		margin: 5px 0;
+	}
+	swiper {
+		position: absolute;
+		top: 80px;
+		width: 100%;
+	}
+	.noData {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		margin-top: 100px;
+	}
+	.noData > text {
+		color: #AAAAAA;
+		font-size: 18px;
+	}
+	.bottom {
+		padding-bottom: 20px;
+		width: 100%;
+		text-align: center;
+	}
+	.bottom > view {
+		height: 1px;
+		border-top: 1px solid #ddd;
+		margin: 0px 20px;
+	}
+	.bottom > text {
+		padding: 0px 10px;
+		background: #eee;
+		position: relative;
+		top: 10px;
+	}
 </style>
