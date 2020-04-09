@@ -10,7 +10,7 @@
 		</swiper>
 		<!-- 主要功能按钮 -->
 		<view class="firstContent row wrap mb20 mt20">
-			<navigator url="">
+			<navigator url="../qrcode/qrcode">
 				<image src="../../static/images/qr_code.png" mode="widthFix" />
 				<view>智能回收</view>
 			</navigator>
@@ -35,7 +35,7 @@
 				<text v-else>我的收益</text>
 			</view>
 			<scroll-view scroll-x="true" style=" width: 100%;white-space: nowrap;">
-				<navigator class="incomeItem"  url="../cashlist/cashlist">
+				<navigator class="incomeItem" url="../cashlist/cashlist">
 					<view class="mb5 rout icon-recharge f26 blue1" />
 					<text class="gray-9 f12 mb5">零钱</text>
 					<view class="f14">
@@ -51,6 +51,15 @@
 						<text v-if="card == ''" class="bold f18 mr5">--</text>
 						<text v-else class="bold f18 mr5 black">100000</text>
 						个
+					</view>
+				</navigator>
+				<navigator class="incomeItem" url="../couponlist/couponlist">
+					<view class="mb5 rout icon-youhuiquan f26 blue1" />
+					<text class="gray-9 f12 mb5">加价券</text>
+					<view class="f14">
+						<text v-if="card == ''" class="bold f18 mr5">--</text>
+						<text v-else class="bold f18 mr5 black">56</text>
+						张
 					</view>
 				</navigator>
 				<navigator class="incomeItem" url="../exchangelist/exchangelist">
@@ -141,9 +150,9 @@
 			<!-- 回收站列表 -->
 			<view class="binList">
 				<view class="column binItem">
-					<view class="row jcbetween mb10">
+					<view class="row jcbetween mb5">
 						<view class="row aicenter">
-							<view class="rout icon-dizhi2 blue1 mr5" />
+							<view class="rout icon-locationfill blue1 mr5" />
 							<text class="f16 bold">亚洲豪苑</text>
 						</view>
 						<text class="blue1 f14">1500.0m</text>
@@ -160,9 +169,9 @@
 					</view>
 				</view>
 				<view class="column binItem">
-					<view class="row jcbetween mb10">
+					<view class="row jcbetween mb5">
 						<view class="row aicenter">
-							<view class="rout icon-dizhi2 blue1 mr5" />
+							<view class="rout icon-locationfill blue1 mr5" />
 							<text class="f16 bold">西岭广场</text>
 						</view>
 						<text class="blue1 f14">2100.0m</text>
@@ -179,9 +188,9 @@
 					</view>
 				</view>
 				<view class="column binItem">
-					<view class="row jcbetween mb10">
+					<view class="row jcbetween mb5">
 						<view class="row aicenter">
-							<view class="rout icon-dizhi2 blue1 mr5" />
+							<view class="rout icon-locationfill blue1 mr5" />
 							<text class="f16 bold">金垦金南路</text>
 						</view>
 						<text class="blue1 f14">3000.0m</text>
@@ -198,9 +207,9 @@
 					</view>
 				</view>
 				<view class="column binItem">
-					<view class="row jcbetween mb10">
+					<view class="row jcbetween mb5">
 						<view class="row aicenter">
-							<view class="rout icon-dizhi2 blue1 mr5" />
+							<view class="rout icon-locationfill blue1 mr5" />
 							<text class="f16 bold">金山小区</text>
 						</view>
 						<text class="blue1 f14">5000.0m</text>
@@ -690,7 +699,7 @@
 		border-radius: 4px;
 		margin-right: 10px;
 		text-align: left;
-		padding: 10px;
+		padding: 10px 15px;
 		display: inline-block;
 		background-color: rgb(255,255,255,0.75) ;
 	}
