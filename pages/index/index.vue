@@ -218,9 +218,7 @@
 					that.$util.showToast("请选择收货地址", "none", 4000)
 					return false;
 				}
-
 				that.$showLoading(); // 显示遮罩
-
 				let temp = address; // 添加地址
 				temp.recyType = '1'; // 添加上门类型，1：普通上门，2：家电，3：家具，4：合伙人
 				that.$request.postToken("/users/recyorder/government.do", {
@@ -244,11 +242,15 @@
 					that.$util.showToast("请选择收货地址", "none", 4000)
 					return false;
 				}
+				// if(address.area.indexOf('龙华区') > 0){
+				// 	that.$util.showToast("该区域不属于回收区域！", "none", 4000)
+				// 	return false;
+				// }
 				that.$showLoading(); // 显示遮罩
 				let temp = address; // 添加地址
 				temp.recyType = '4'; // 添加上门类型，1：普通上门，2：家电，3：家具，4：合伙人
 				that.$request.postToken("/users/recyorder/merchant.do", {
-					data: JSON.stringify(temp)
+					data: JSON.stringify(temp) 
 				}).then((res) => {
 					//console.log(res);
 					that.$util.showToast(res.data.results, 'none', 3000);
