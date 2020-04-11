@@ -1,41 +1,41 @@
 {
 	"pages": [
 		//pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
-		{		//首页
+		{ //首页
 			"path": "pages/index/index",
 			"style": {
 				"navigationBarTitleText": "量心回收",
 				"navigationBarBackgroundColor": "#FFFFFF" 
 			}
-		},{	//登录页
+		}, { //登录页
 			"path": "pages/login/login",
 			"style": {
 				"navigationBarTitleText": ""
 			}
-		},{	//商城
+		}, { //商城
 			"path": "pages/wareslist/wareslist",
 			"style": {
 				"navigationBarTitleText": "商城",
 				"navigationBarTextStyle": "#FFFFFF"
 			}
-		},{	//智能站分布列表
+		}, { //智能站分布列表
 			"path": "pages/recySmart/recySmart",
 			"style": {
 				"navigationBarTitleText": "智能站分布",
 				"enablePullDownRefresh": false,
 				"navigationBarTextStyle": "#FFFFFF"
 			}
-		},{	//地址列表
+		}, { //地址列表
 			"path": "pages/addresslist/addresslist",
 			"style": {
 				"navigationBarTitleText": "地址列表"
 			}
-		},{	//添加地址
+		}, { //添加地址
 			"path": "pages/addressform/addressform",
 			"style": {
 				"navigationBarTitleText": "添加地址"
 			}
-		},{	//家电回收
+		}, { //家电回收
 			"path": "pages/electrical/electrical",
 			"style": {
 				"navigationBarTitleText": "家电回收",
@@ -47,13 +47,13 @@
 				"navigationBarTitleText": "用户二维码",
 				"navigationBarTextStyle": "#FFFFFF"
 			}
-		},{	//使用指南
+		}, { //使用指南
 			"path": "pages/guide/guide",
 			"style": {
 				"navigationBarTitleText": "使用指南",
 				"navigationBarTextStyle": "#FFFFFF"
 			}
-		},{	// 个人中心
+		}, { // 个人中心
 			"path": "pages/personal/personal",
 			"style": {
 				"navigationStyle":"custom"	//自定义页面导航栏,移除原生导航栏样式
@@ -83,24 +83,24 @@
 				"navigationBarTextStyle": "#FFFFFF",
 				"enablePullDownRefresh": true
 			}
-    },{//积分兑换商品详情
-				"path" : "pages/wares/wares",
-				"style" : {}
-    },{//积分兑换订单详情
-			"path" : "pages/exchange/exchange",
-			"style" : {}
-		},{//我的邀请
-			"path" : "pages/invitation/invitation",
-			"style" : {}
-		},{
-			"path" : "pages/withdraw/withdraw",
-			"style" : {}
-		},{
-			"path" : "pages/getuserinfo/getuserinfo",
-			"style" : {}
-		},{
-			"path" : "pages/scorelist/scorelist",
-			"style" : {
+		}, { //积分兑换商品详情
+			"path": "pages/wares/wares",
+			"style": {}
+		}, { //积分兑换订单详情
+			"path": "pages/exchange/exchange",
+			"style": {}
+		}, { //我的邀请
+			"path": "pages/invitation/invitation",
+			"style": {}
+		}, {
+			"path": "pages/withdraw/withdraw",
+			"style": {}
+		}, {
+			"path": "pages/getuserinfo/getuserinfo",
+			"style": {}
+		}, {
+			"path": "pages/scorelist/scorelist",
+			"style": {
 				"enablePullDownRefresh": true
 			}
 		},{
@@ -205,7 +205,7 @@
 				"text": "个人中心"
 			}
 		]
-	}, 
+	},
 	"condition": {
 		//模式配置，仅开发期间生效
 		"current": 0, //当前激活的模式(list 的索引项)

@@ -3,7 +3,7 @@
 		<view class="imgpanel">
 			<image :src=" host + wares.photoPath " class="img" mode="widthFix" />
 		</view>
-		<view class="box">
+		<view class="cont">
 			<view class="wares row jcaround">
 				<view>
 					<view class="f14"><text class="orange f22">{{ wares.score }}</text>量心币</view>
@@ -11,15 +11,9 @@
 				</view>
 				<view>
 					<view>
-						<!-- <view class="count jian" @click.stop='reduce'>
-							<view class="rout icon-jian"></view>
-						</view> -->
 						<uni-icons type="minus-filled" size="40"  color="#ccc" @click.stop='reduce'/>
-						<text style="width: 30px; text-align: center;" class="f20">{{ num }}</text>
+						<text style="width: 30px; text-align: center;" class="f20 black">{{ num }}</text>
 						<uni-icons type="plus-filled" color="#007aff" size="40"  @click.stop='plus'/>
-						<!-- <view class="count jia" @click.stop='plus'>
-							<uni-icons :type="'plus-filled'" :color="'#007aff'" size="50" />
-						</view> -->
 					</view>
 					<!-- <view>已经兑换<text class="red">{{ wares.count }}</text>件</view> -->
 				</view>
@@ -27,11 +21,12 @@
 			<view class="describe">
 				<view class="f16 gray bold"> ———— <text>商品详情</text> ———— </view>
 				<view class="page">
-					<view class="page__bd page__bd_spacing">
+					<!-- <view class="page__bd page__bd_spacing">
 						<view class="dk-show">
 							<u-parse :content="wares.describe" />
 						</view>
-					</view>
+					</view> -->
+					<u-parse :content="wares.describe" />
 				</view>
 			</view>
 		</view>
@@ -188,7 +183,7 @@
 	.rout {
 		margin: 2px;
 	}
-    .box{
+    .cont{
 		 margin-top: 10px;
 	 }
 	.wares {
@@ -268,6 +263,7 @@
 		font-size: 20px;
 		background: #fff;
 		margin-bottom: 50px;
+		width: 100%;
 	}
 
 	.describe>view:nth-child(1) {

@@ -2,8 +2,8 @@
 	<view>
 		<view class="head">
 			<view class="column jcaround">
-				<view class="f24 white mb5">恭喜你下单成功</view>
-				<view class="f16 white">您的商品很快送至你手中</view>
+				<view class="f24 white mb5">恭喜您下单成功</view>
+				<view class="f16 white">您的商品很快送至您手中</view>
 			</view>
 		</view>
 		<view class="addr row">
@@ -24,7 +24,7 @@
 				<view class="column jcbetween">
 					<view class="row jcbetween">
 						<text class="f14 black bold">{{item.waresName}}</text>
-						<text class="f14 orange mr5 ml10">￥{{item.score}}</text>
+						<text class="f14 orange mr5 ml10">{{item.score}}</text>
 					</view>
 					<view class="f14">x{{item.amount}}</view>
 				</view>
@@ -32,10 +32,10 @@
 		</view>
 		<view class="detail bg-white column p10 mt10">
 			<view class="row jcbetween m10 f14">
-				<view>商品总价</view>
-				<view class="black">￥1200</view>
+				<view>订单总价</view>
+				<view class="orange bold">{{totalScore}}</view>
 			</view>
-			<view class="row jcbetween m10 f12">
+			<!-- <view class="row jcbetween m10 f12">
 				<view>商品总价</view>
 				<view class="black">￥1200</view>
 			</view>
@@ -46,7 +46,7 @@
 			<view class="row jcbetween m10 f14">
 				<view>商品总价</view>
 				<view class="black">￥1200</view>
-			</view>
+			</view> -->
 		</view>
 		<view class="info bg-white column p10 mt10 mb10">
 			<view class="row jcbetween m10 f14">
@@ -71,7 +71,8 @@
 		data() {
 			return {
 				exchange : {},
-				host: ''
+				host: '',
+				totalScore: 0
 			}
 		},
 		methods: {
@@ -82,7 +83,11 @@
 				let data = {'exchangeId': exchangeId}
 				that.$request.postToken('/users/exchange/findSingle.do',data).then((res)=>{
 					if (res.data.status === 0) {
-						that.exchange = JSON.parse(res.data.results);
+						let exchange = JSON.parse(res.data.results);
+						exchange.exchwaresList.forEach(item=>{
+							that.totalScore += item.totalScore;
+						})
+						that.exchange = exchange;
 					} else {
 						that.$util.showToast(res.data.results, 'none', 5000);
 					}

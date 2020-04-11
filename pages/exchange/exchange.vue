@@ -67,7 +67,6 @@
 				that.$request.postToken("/users/address/findDefaultAddress.do", {
 					id: id
 				}).then((res) => {
-					//console.log(res);
 					if (res.data.status === 0) {
 						that.address = JSON.parse(res.data.results);
 					} else {
@@ -91,8 +90,6 @@
 				that.$request.postToken("/users/wares/findOne.do", {
 					waresId: waresId
 				}).then((res) => {
-					//var res = res.data;
-					//console.log(dom);
 					if (res.data.status === 0) {
 						that.wares = JSON.parse(res.data.results);
 					} else {
@@ -131,53 +128,6 @@
 				}).finally(() => {
 					that.$hideLoading();   //关闭遮罩
 				})
-				
-				
-				// wx.getStorage({
-				// 	key: 'custToken',
-				// 	success: function(res) {
-				// 		let token = res.data;
-				// 		//console.log(token);
-				// 		//console.log(that.data.res)
-				// 		wx.request({
-				// 			url: that.data.host + '/servlet/exchange/updExchangeUSER', 
-				// 			method: 'post',
-				// 			data: {
-				// 				waresId: that.data.wares.id,
-				// 				addressId: that.data.address.addressId,
-				// 				num: that.data.num
-				// 			},
-				// 			header: {
-				// 				'content-type': 'application/x-www-form-urlencoded; charset=utf-8',
-				// 				'token': token
-				// 			},
-				// 			success: function(dom) {
-				// 				util.isLogin(dom.header);
-				// 				let res = dom.data;
-				// 				if (res.status == 0) {
-				// 					util.showToast(res.msg, "none", 3000);
-				// 					that.setData({
-				// 						finish: true
-				// 					});
-				// 				} else {
-				// 					util.showToast(res.msg, "none", 3000);
-				// 				}
-				// 				console.log(res);
-				// 			},
-				// 			fail: function(err) {
-				// 				console.log(err);
-				// 				util.showToast(err.errMsg, 'none', 3000);
-				// 			}
-				// 		});
-				// 	},
-				// 	fail: function(err) {
-				// 		console.log(err);
-				// 		util.showToast(err.errMsg, 'none', 3000);
-				// 		wx.redirectTo({
-				// 			url: '../login/login'
-				// 		});
-				// 	}
-				// });
 			}
 		},
 		onLoad(options) {
@@ -193,11 +143,8 @@
 		},
 		onShow() {
 			let that = this;
-			let address = uni.getStorageSync("address")
+			let address = uni.getStorageSync("address");
 			that.address = address;
-			// let id = app.globalData.addId;
-			// // 获取用户地址
-			// that.getAddress(id);
 		}
 	}
 </script>
