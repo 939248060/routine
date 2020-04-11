@@ -5,7 +5,7 @@
 			"path": "pages/index/index",
 			"style": {
 				"navigationBarTitleText": "量心回收",
-				"navigationBarBackgroundColor": "#fff"
+				"navigationBarBackgroundColor": "#FFFFFF" 
 			}
 		}, { //登录页
 			"path": "pages/login/login",
@@ -15,13 +15,15 @@
 		}, { //商城
 			"path": "pages/wareslist/wareslist",
 			"style": {
-				"navigationBarTitleText": "商城"
+				"navigationBarTitleText": "商城",
+				"navigationBarTextStyle": "#FFFFFF"
 			}
 		}, { //智能站分布列表
 			"path": "pages/recySmart/recySmart",
 			"style": {
 				"navigationBarTitleText": "智能站分布",
-				"enablePullDownRefresh": false
+				"enablePullDownRefresh": false,
+				"navigationBarTextStyle": "#FFFFFF"
 			}
 		}, { //地址列表
 			"path": "pages/addresslist/addresslist",
@@ -39,59 +41,46 @@
 				"navigationBarTitleText": "家电回收",
 				"navigationBarTextStyle": "#FFFFFF"
 			}
-		}, { //上门回收订单
-			"path": "pages/recyorderlist/recyorderlist",
-			"style": {
-				"navigationBarTitleText": "上门回收订单",
-				"enablePullDownRefresh": true
-			}
-		}, { //用户二维码
+		},{	//用户二维码
 			"path": "pages/qrcode/qrcode",
 			"style": {
-				"navigationBarTitleText": "用户二维码"
+				"navigationBarTitleText": "用户二维码",
+				"navigationBarTextStyle": "#FFFFFF"
 			}
 		}, { //使用指南
 			"path": "pages/guide/guide",
 			"style": {
-				"navigationBarTitleText": "使用指南"
+				"navigationBarTitleText": "使用指南",
+				"navigationBarTextStyle": "#FFFFFF"
 			}
 		}, { // 个人中心
 			"path": "pages/personal/personal",
 			"style": {
-				"navigationBarTitleText": "",
-				"navigationBarBackgroundColor": "#00a2ed"
+				"navigationStyle":"custom"	//自定义页面导航栏,移除原生导航栏样式
 			}
-		}, { //实名验证
-			"path": "pages/realname/realname",
-			"style": {}
-		}, { //智能投放订单
-			"path": "pages/smartorderlist/smartorderlist",
-			"style": {
-				"enablePullDownRefresh": true
-			}
-		}, { //家具清运
-			"path": "pages/furniture/furniture",
-			"style": {}
-		}, { //
-			"path": "pages/governmentinfo/governmentinfo",
-			"style": {}
-		}, {
-			"path": "pages/electricalinfo/electricalinfo",
-			"style": {}
-		}, {
-			"path": "pages/furnitureinfo/furnitureinfo",
-			"style": {}
-		}, {
-			"path": "pages/merchantinfo/merchantinfo",
-			"style": {}
-		}, { //干垃圾投放订单列表
-			"path": "pages/dryorderlist/dryorderlist",
-			"style": {
-				"enablePullDownRefresh": true
-			}
-		}, { //积分兑换订单列表
-			"path": "pages/exchangelist/exchangelist",
-			"style": {
+		},{	//实名验证
+			"path" : "pages/realname/realname",
+			"style" : {}
+		},{//家具清运
+			"path" : "pages/furniture/furniture",
+			"style" : {}
+		},{//
+			"path" : "pages/governmentinfo/governmentinfo",
+			"style" : {}
+		},{
+			"path" : "pages/electricalinfo/electricalinfo",
+			"style" : {}
+		},{
+			"path" : "pages/furnitureinfo/furnitureinfo",
+			"style" : {}
+		},{
+			"path" : "pages/merchantinfo/merchantinfo",
+			"style" : {}
+		},{//积分兑换订单列表
+			"path" : "pages/exchangelist/exchangelist",
+			"style" : {
+				"navigationBarTitleText": "积分兑换",
+				"navigationBarTextStyle": "#FFFFFF",
 				"enablePullDownRefresh": true
 			}
 		}, { //积分兑换商品详情
@@ -114,39 +103,66 @@
 			"style": {
 				"enablePullDownRefresh": true
 			}
-		}, {
-			"path": "pages/scoredetails/scoredetails",
-			"style": {}
-		}, {
-			"path": "pages/cashlist/cashlist",
-			"style": {
+		},{
+			"path" : "pages/scoredetails/scoredetails",
+			"style" : {}
+    },{//零钱列表页
+			"path" : "pages/cashlist/cashlist",
+			"style" : {
+				"navigationBarTitleText": "我的零钱",
+				"navigationBarTextStyle": "#FFFFFF",
 				"enablePullDownRefresh": true
 			}
-		}, {
-			"path": "pages/dryorderinfo/dryorderinfo",
-			"style": {}
-		}, {
-			"path": "pages/smartorderinfo/smartorderinfo",
-			"style": {}
-		}, {
-			"path": "pages/cashdetails/cashdetails",
-			"style": {}
-		}, {
-			"path": "pages/showhtml/showhtml",
-			"style": {}
-		}, {
-			"path": "pages/invite/invite",
-			"style": {}
-		}, {
-			"path": "pages/register/register",
-			"style": {}
-		}, {
-			"path": "pages/exchangeinfo/exchangeinfo",
-			"style": {
+    },{
+			"path" : "pages/dryorderinfo/dryorderinfo",
+			"style" : {}
+		},{
+			"path" : "pages/smartorderinfo/smartorderinfo",
+			"style" : {}
+		},{
+			"path" : "pages/cashdetails/cashdetails",
+			"style" : {}
+		},{
+			"path" : "pages/showhtml/showhtml",
+			"style" : {}
+		},{
+			"path" : "pages/invite/invite",
+			"style" : {}
+		},{
+			"path" : "pages/register/register",
+			"style" : {}
+		},{//加价券列表页
+			"path" : "pages/couponlist/couponlist",
+			"style" : {
+				"navigationBarTitleText": "加价券",
+				"navigationBarTextStyle": "#FFFFFF",
+				"enablePullDownRefresh": true
+			}
+    },{//加价券使用界面
+			"path" : "pages/couponorder/couponorder",
+			"style" : {
+			"navigationBarTitleText": "使用加价券",
+			"navigationBarTextStyle": "#FFFFFF"
+			}
+		},{//我的订单列表页（智能回收、上门回收、干垃圾投放
+			"path" : "pages/orderlist/orderlist",
+			"style" : {
+				// "navigationStyle":"custom"	//自定义页面导航栏
+				"navigationBarTextStyle": "#FFFFFF",
+				"navigationBarTitleText": "我的订单"
+			}
+		},{//我的订单列表页=>智能回收
+			"path" : "pages/orderlist/smartorderlist",
+			"style" : {
+				// "navigationStyle":"custom"	//自定义页面导航栏
+			}
+		},{// 积分兑换订单详情
+			"path" : "pages/exchangeinfo/exchangeinfo",
+			"style" : {
 				"navigationBarTitleText": "订单详情"
 			}
-		}
-	],
+    }
+    ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "量心回收",
@@ -157,35 +173,29 @@
 		"color": "#666",
 		"selectedColor": "#00a2ed",
 		"borderStyle": "black",
-		"fontSize": "14px",
+		"fontSize": "14px", 
 		"list": [{
 				"pagePath": "pages/index/index",
-				"iconPath": "static/images/index.png",
-				"selectedIconPath": "static/images/index_select.png",
+				"iconPath": "static/images/shouye.png",
+				"selectedIconPath": "static/images/shouye_select.png",
 				"text": "首页"
 			},
 			{
-				"iconPath": "static/images/commonweal.png",
-				"selectedIconPath": "static/images/commonweal_select.png",
+				"iconPath": "static/images/shangcheng.png",
+				"selectedIconPath": "static/images/shangcheng_select.png",
 				"pagePath": "pages/wareslist/wareslist",
 				"text": "商城"
 			},
 			{
-				"pagePath": "pages/qrcode/qrcode",
-				"iconPath": "static/images/qrcode.png",
-				"selectedIconPath": "static/images/qrcode.png",
-				"text": ""
-			},
-			{
-				"iconPath": "static/images/discover.png",
-				"selectedIconPath": "static/images/discover_select.png",
-				"pagePath": "pages/guide/guide",
-				"text": "使用指南"
+				"iconPath": "static/images/dingdan.png",
+				"selectedIconPath": "static/images/dingdan_select.png",
+				"pagePath": "pages/orderlist/orderlist",
+				"text": "我的订单"
 			},
 			{
 				"pagePath": "pages/personal/personal",
-				"iconPath": "static/images/personal.png",
-				"selectedIconPath": "static/images/personal_select.png",
+				"iconPath": "static/images/wode.png",
+				"selectedIconPath": "static/images/wode_select.png",
 				"text": "个人中心"
 			}
 		]

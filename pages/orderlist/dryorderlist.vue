@@ -1,10 +1,10 @@
 <template>
+	<!-- 干垃圾投放订单列表 -->
 	<view>
-		<!--pages/dryorderlist/dryorderlist.wxml-->
-		<view class="top-tab viewRow">
-			<view data-current="0" :class=" currentTab==0?'selectOn':'' " @click="swichNav">全部订单</view>
-			<view data-current="1" :class=" currentTab==1?'selectOn':'' " @click="swichNav">待检验</view>
-			<view data-current="2" :class=" currentTab==2?'selectOn':'' " @click="swichNav">异常单</view>
+		<view class="top-tab row txtcenter bg-white f16">
+			<view data-current="0" :class=" currentTab==0?'blue1':'' " @click="swichNav">全部订单</view>
+			<view data-current="1" :class=" currentTab==1?'blue1':'' " @click="swichNav">待检验</view>
+			<view data-current="2" :class=" currentTab==2?'blue1':'' " @click="swichNav">异常单</view>
 		</view>
 
 		<swiper :current="currentTab" :style="'height:'+scrollHeight+'px;'" @change='bindChange' class="swiper">
@@ -12,40 +12,33 @@
 				<scroll-view scroll-y="true" :style="'height:'+scrollHeight+'px;'" data-state="0" @scrolltoupper="refresh"
 				 @scrolltolower="loadMore" upper-threshold="3" lower-threshold="8">
 					<block :key="index" v-for="(item,index) in list[0]">
-						<navigator :url="'../dryorderinfo/dryorderinfo?id='+item.boxorderId">
-							<view class="list m10 p10" v-if="item.state=='2'">
-								<view class="viewRow pb10">
-									<view>{{item.expType}}</view>
-									<view class="orange">待检验</view>
-								</view>
-								<view>投放时间：{{item.beginTime}}</view>
-								<view>预计产生：<b class="f18 gray-3">{{item.expTotalScore}}</b> 量心币</view>
+						<navigator :url="'../dryorderinfo/dryorderinfo?id='+item.boxorderId" class="m10 p10 bg-white shadow radius8">
+							<view class="row jcbetween aicenter mb5 black f16">
+							  <view class="row jcleft aicenter elips">
+							    <view class="bold mr10">{{item.expType}}</view>
+							    <view v-if="item.state==2" class="box boxorange f12 radius8">待检验</view>
+							    <view v-else-if="item.state==3" class="box boxgreen f12 radius8">已完成</view>
+							    <view v-else-if="item.state==4" class="box boxred f12 radius8">异常单</view>
+							  </view>
+							  <view v-if="item.state==2" class="red f18">
+							    <text class="gray f12">预估：</text>{{item.expTotalScore}} 量心币
+							  </view>
+							  <view v-else-if="item.state==3" class="green f18">{{item.actTotalScore}} 量心币</view>
 							</view>
-							<view class="list m10 p10" v-else-if="item.state=='3'">
-								<view class="viewRow pb10">
-									<view>{{item.expType}}</view>
-									<view class="green">已完成</view>
-								</view>
-								<view>投放时间：{{item.beginTime}}</view>
-								<view>实际产生：<b class="f18 orange">{{item.actTotalScore}}</b> 量心币</view>
+							<!-- 异常信息 -->
+							<view v-if="item.abnormal.length>0" class="row jcleft aicenter mb5 f12">
+							  <view v-for="(abnormal,i) in item.abnormal" :key="i" class="lab labpurple radius8 mr5">{{abnormal}}</view>
 							</view>
-							<view class="list m10 p10" v-else-if="item.state=='4'">
-								<view class="viewRow pb10">
-									<view>{{item.expType}}</view>
-									<view class="red">异常单</view>
-								</view>
-								<view>投放时间：{{item.beginTime}}</view>
-								<view>实际产生：<b class="f18 orange">{{item.actTotalScore}}</b> 量心币</view>
-							</view>
+							<view>投放时间：{{item.beginTime}}</view>
+							<view v-if="item.state==2">投放重量：{{item.expAmount}} 公斤</view>
+							<view v-else-if="item.state==3">检验重量：{{item.actAmount}} 公斤</view>
 						</navigator>
 					</block>
 					<view v-if="btmp0=='noData'" class="noData">
-						<icon class="rout icon-kongshuju"></icon>
-						<view>您还没有相关的订单</view>
+						<image src="../../static/images/wudingdan.png" mode="widthFix" style="width: 240px;" />
+						<text>您还没有相关的订单</text>
 					</view>
-					<view class="bottom" v-if="btmp0=='noMore'"><text>已经到底啦</text>
-						<view></view>
-					</view>
+					<view class="bottom" v-if="btmp0=='noMore'"><text>已经到底啦</text><view /></view>
 					<view class="bottom" v-else-if="btmp0=='loadMore'">加载更多...</view>
 				</scroll-view>
 			</swiper-item>
@@ -53,24 +46,25 @@
 				<scroll-view scroll-y="true" :style="'height:'+scrollHeight+'px;'" data-state="2" @scrolltoupper="refresh"
 				 @scrolltolower="loadMore" upper-threshold="2" lower-threshold="5">
 					<block :key="index" v-for="(item,index) in list[2]">
-						<navigator :url="'../dryorderinfo/dryorderinfo?id='+item.boxorderId">
-							<view class="list m10 p10">
-								<view class="viewRow pb10">
-									<view>{{item.expType}}</view>
-									<view class="orange">待检验</view>
-								</view>
-								<view>投放时间：{{item.beginTime}}</view>
-								<view>预计产生：<b class="f18 gray-3">{{item.expTotalScore}}</b> 量心币</view>
+						<navigator :url="'../dryorderinfo/dryorderinfo?id='+item.boxorderId" class="m10 p10 bg-white shadow radius8">
+							<view class="row jcbetween aicenter mb5 black f16">
+							  <view class="row jcleft aicenter elips">
+							    <view class="bold mr10">{{item.expType}}</view>
+							    <view class="box boxorange f12 radius8">待检验</view>
+							  </view>
+							  <view class="red f18">
+							    <text class="gray f12">预估：</text>{{item.expTotalScore}} 量心币
+							  </view>
 							</view>
+							<view>投放时间：{{item.beginTime}}</view>
+							<view>投放重量：{{item.expAmount}} 公斤</view>
 						</navigator>
 					</block>
 					<view v-if="btmp2=='noData'" class="noData">
-						<icon class="rout icon-kongshuju"></icon>
-						<view>您还没有相关的订单</view>
+						<image src="../../static/images/wudingdan.png" mode="widthFix" style="width: 240px;" />
+						<text>您还没有相关的订单</text>
 					</view>
-					<view class="bottom" v-if="btmp2=='noMore'"><text>已经到底啦</text>
-						<view></view>
-					</view>
+					<view class="bottom" v-if="btmp2=='noMore'"><text>已经到底啦</text><view /></view>
 					<view class="bottom" v-else-if="btmp2=='loadMore'">加载更多...</view>
 				</scroll-view>
 			</swiper-item>
@@ -78,24 +72,29 @@
 				<scroll-view scroll-y="true" :style="'height:'+scrollHeight+'px;'" data-state="4" @scrolltoupper="refresh"
 				 @scrolltolower="loadMore" upper-threshold="2" lower-threshold="5">
 					<block :key="index" v-for="(item,index) in list[4]">
-						<navigator :url="'../dryorderinfo/dryorderinfo?id='+item.boxorderId">
-							<view class="list m10 p10">
-								<view class="viewRow pb10">
-									<view>{{item.expType}}</view>
-									<view class="red">异常单</view>
-								</view>
-								<view>投放时间：{{item.beginTime}}</view>
-								<view>实际产生：<b class="f18 orange">{{item.actTotalScore}}</b> 量心币</view>
+						<navigator :url="'../dryorderinfo/dryorderinfo?id='+item.boxorderId" class="m10 p10 bg-white shadow radius8">
+							<view class="row jcbetween aicenter mb5 black f16">
+							  <view class="row jcleft aicenter elips">
+							    <view class="bold mr10">{{item.expType}}</view>
+							    <view class="box boxred f12 radius8">异常单</view>
+							  </view>
+							  <view class="red f18">
+							    <text class="gray f12">预估：</text>{{item.expTotalScore}} 量心币
+							  </view>
 							</view>
+							<!-- 异常信息 -->
+							<view v-if="item.abnormal.length>0" class="row jcleft aicenter mb5 f12">
+							  <view v-for="(abnormal,i) in item.abnormal" :key="i" class="lab labpurple radius8 mr5">{{abnormal}}</view>
+							</view>
+							<view>投放时间：{{item.beginTime}}</view>
+							<view>投放重量：{{item.expAmount}} 公斤</view>
 						</navigator>
 					</block>
 					<view v-if="btmp4=='noData'" class="noData">
-						<icon class="rout icon-kongshuju"></icon>
-						<view>您还没有相关的订单</view>
+						<image src="../../static/images/wudingdan.png" mode="widthFix" style="width: 240px;" />
+						<text>您还没有相关的订单</text>
 					</view>
-					<view class="bottom" v-if="btmp4=='noMore'"><text>已经到底啦</text>
-						<view></view>
-					</view>
+					<view class="bottom" v-if="btmp4=='noMore'"><text>已经到底啦</text><view /></view>
 					<view class="bottom" v-else-if="btmp4=='loadMore'">加载更多...</view>
 				</scroll-view>
 			</swiper-item>
@@ -194,10 +193,10 @@
 						}
 						that.$set(that.page,state,res.data.page);
 						that[`${btmp}`] = btm;
+						console.log(that.list)
 					} else {
 						that.$util.showToast(res.data.results, 'none', 5000);
 					}
-					
 				}).catch((err) => {
 					console.log(err);
 					that.$util.showToast(err.errMsg, 'none', 5000);
@@ -215,7 +214,6 @@
 		onLoad(options) {
 			let that = this;
 			that.host = that.$app.globalData.host;
-			that.scrollHeight = that.$app.globalData.systemInfo.windowHeight + 8;
 			if (options.state != null) {
 			  that.currentTab = options.state;
 			}
@@ -223,104 +221,16 @@
 		},
 		onReady() {
 			let that = this;
+			that.getList(1, that.currentTab, 'new');
+			that.scrollHeight = that.$app.globalData.systemInfo.windowHeight + 8;// 从全局中获取屏幕高度
 		},
 		onPullDownRefresh() {
 			let that = this;
 			let state = that.currentTab;
-			console.log("onPullDownRefresh")
 			that.getList(1, state, 'new');
 		}
 	}
 </script>
 
 <style>
-	.top-tab {
-		box-shadow: 0 10px 10px -7px #ddd inset;
-		position: fixed;
-		z-index: 200;
-		width: 100%;
-		top: 0;
-		left: 0;
-		align-items: center;
-		justify-content: center;
-		background: #fff;
-	}
-
-	.top-tab>view {
-		width: 33.33%;
-		color: #aaa;
-		text-align: center;
-		padding: 10px 0px;
-		border-bottom: 1px #ccc solid;
-	}
-
-	.selectOn {
-		color: #00a2ed !important;
-		border-bottom: 2px solid #00a2ed !important;
-	}
-
-	.swiper {
-		position: absolute;
-		top: 36px;
-		width: 100%;
-	}
-
-	.list {
-		background: #fff;
-		box-sizing: border-box;
-		box-shadow: 0px 0px 10px #ccc;
-		border-radius: 10px;
-	}
-
-	.list>view:nth-child(1) {
-		align-items: center;
-		justify-content: space-between;
-	}
-
-	.list>view:nth-child(1)>view:nth-child(1) {
-		font-size: 20px;
-		color: #000;
-	}
-
-	.list>view:nth-child(3) {
-		padding: 10px 0px 5px 0px;
-		margin-top: 10px;
-		border-top: 1rpx #eee solid;
-	}
-
-	.noData {
-		height: 100%;
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		justify-content: center;
-		color: #999;
-	}
-
-	.noData>icon {
-		font-size: 130px;
-	}
-
-	.noData>view {
-		font-size: 18px;
-	}
-
-	.bottom {
-		padding-bottom: 20px;
-		width: 100%;
-		text-align: center;
-	}
-
-	.bottom>view {
-		height: 1px;
-		border-top: 1px solid #ddd;
-		margin: 0px 20px;
-	}
-
-	.bottom>text {
-		padding: 0px 10px;
-		background: #eee;
-		position: relative;
-		top: 10px;
-	}
 </style>

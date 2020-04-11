@@ -1,9 +1,10 @@
 <template>
+	<!-- 上门回收订单列表 -->
 	<view>
-		<view class="top-tab row txtcenter bg-white f14">
-			<view :class="currentTab==0?'selectOn':''" data-current="0" @click="swichNav">全部</view>
-			<view :class="currentTab==1?'selectOn':''" data-current="1" @click="swichNav">已完成</view>
-			<view :class="currentTab==2?'selectOn':''" data-current="2" @click="swichNav">已失效</view>
+		<view class="top-tab row txtcenter bg-white f16">
+			<view :class="currentTab==0?'blue1':''" data-current="0" @click="swichNav">全部</view>
+			<view :class="currentTab==1?'blue1':''" data-current="1" @click="swichNav">已完成</view>
+			<view :class="currentTab==2?'blue1':''" data-current="2" @click="swichNav">已失效</view>
 		</view>
 
 		<swiper :current="currentTab" :style="'height:'+scrollHeight+'px;'" @change='bindChange' class="swiper">
@@ -59,13 +60,11 @@
 					</view>
 					<!--没有数据显示-->
 					<view v-if="btmp0=='noData'" class="noData">
-						<icon class="rout icon-kongshuju"></icon>
-						<view>没有订单</view>
+						<image src="../../static/images/wudingdan.png" mode="widthFix" style="width: 240px;" />
+						<text>您还没有相关的订单</text>
 					</view>
 					<!--scorll底部-->
-					<view class="bottom" v-if="btmp0=='noMore'"><text>已经到底啦</text>
-						<view></view>
-					</view>
+					<view class="bottom" v-if="btmp0=='noMore'"><text>已经到底啦</text><view /></view>
 					<view class="bottom" v-else-if="btmp0=='loadMore'">加载更多...</view>
 				</scroll-view>
 			</swiper-item>
@@ -123,13 +122,11 @@
 					</view>
 					<!--没有数据显示-->
 					<view v-if="btmp3=='noData'" class="noData">
-						<icon class="rout icon-kongshuju"></icon>
-						<view>没有订单</view>
+						<image src="../../static/images/wudingdan.png" mode="widthFix" style="width: 240px;" />
+						<text>您还没有相关的订单</text>
 					</view>
 					<!--scorll底部-->
-					<view class="bottom" v-if="btmp3=='noMore'"><text>已经到底啦</text>
-						<view></view>
-					</view>
+					<view class="bottom" v-if="btmp3=='noMore'"><text>已经到底啦</text><view /></view>
 					<view class="bottom" v-else-if="btmp3=='loadMore'">加载更多...</view>
 				</scroll-view>
 			</swiper-item>
@@ -172,13 +169,11 @@
 					</view>
 					<!--没有数据显示-->
 					<view v-if="btmp4=='noData'" class="noData">
-						<icon class="rout icon-kongshuju"></icon>
-						<view>没有订单</view>
+						<image src="../../static/images/wudingdan.png" mode="widthFix" style="width: 240px;" />
+						<text>您还没有相关的订单</text>
 					</view>
 					<!--scorll底部-->
-					<view class="bottom" v-if="btmp4=='noMore'"><text>已经到底啦</text>
-						<view></view>
-					</view>
+					<view class="bottom" v-if="btmp4=='noMore'"><text>已经到底啦</text><view /></view>
 					<view class="bottom" v-else-if="btmp4=='loadMore'">加载更多...</view>
 				</scroll-view>
 			</swiper-item>
@@ -375,7 +370,6 @@
 		onLoad(options) {
 			let that = this;
 			that.host = that.$app.globalData.host; // 从全局中获取主机地址
-			that.scrollHeight = that.$app.globalData.systemInfo.windowHeight + 8; // 从全局中获取屏幕高度
 		},
 		onShow(currentTab, state) {
 			let that = this;
@@ -390,7 +384,9 @@
 			}
 		},
 		onReady() {
-			
+			let that = this;
+			that.getList(1, that.currentTab, 'new');
+			that.scrollHeight = that.$app.globalData.systemInfo.windowHeight + 8; // 从全局中获取屏幕高度
 		},
 		onPullDownRefresh() {
 			let that = this;
@@ -410,62 +406,40 @@
 	.top-tab {
 		position: fixed;
 		width: 100%;
-		top: 0;
+		top: 35px;
 		left: 0;
 		z-index: 100;
-		box-shadow: 0 10px 10px -7px #ddd inset;
 	}
-
 	.top-tab>view {
 		width: 33.33%;
-		height: 36px;
-		line-height: 34px;
-		box-sizing: border-box;
-		border-bottom: 1px solid #ccc;
+		text-align: center;
+		line-height: 2em;
+		margin: 5px 0;
 	}
-
-	.selectOn {
-		color: #00a2ed !important;
-		border-bottom: 2px solid #00a2ed !important;
-	}
-
 	swiper {
 		position: absolute;
-		top: 36px;
+		top: 80px;
 		width: 100%;
 	}
-
 	.header {
 		padding-top: 30rpx;
 		padding-bottom: 20rpx;
 		width: 100%;
 		text-align: center;
 	}
-
-	.bottom {
-		padding-top: 30rpx;
-		padding-bottom: 20rpx;
-		width: 100%;
-		text-align: center;
-	}
-
 	/* 列表样式 */
 	.list {
 		background: #ffffff;
 		padding: 1px 10px;
 		margin-top: 10px;
 	}
-
 	.list>view:last-child {
 		border: none;
 	}
-
-
 	.scrapImg {
 		width: 50px;
 		height: 50px;
 	}
-
 	.scraptype {
 		display: flex;
 		flex-direction: row;
@@ -473,29 +447,23 @@
 		justify-content: left;
 		align-items: center;
 	}
-
 	.scraptype>image {
 		width: 26px;
 		height: 26px;
 		margin-right: 10px;
 	}
-
 	.topred {
 		border-top: 110rpx solid #f00;
 	}
-
 	.toporange {
 		border-top: 110rpx solid #ff851b;
 	}
-
 	.topgreen {
 		border-top: 110rpx solid #9a1;
 	}
-
 	.topgary {
 		border-top: 110rpx solid #999;
 	}
-
 	.word {
 		position: absolute;
 		font-size: 30rpx;
@@ -503,24 +471,16 @@
 		top: 22rpx;
 		text-align: center;
 	}
-
 	.noData {
-		height: 100%;
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-		justify-content: center;
-		color: #999;
+		margin-top: 100px;
 	}
-
-	.noData>icon {
-		font-size: 130px;
-	}
-
-	.noData>view {
+	.noData > text {
+		color: #AAAAAA;
 		font-size: 18px;
 	}
-
 	/* 横向滚动样式 */
 	.x-scroll {
 		width: 100%;
@@ -536,12 +496,10 @@
 		margin-bottom: 3px;
 		text-align: center;
 	}
-
 	.scrapItem>image {
 		width: 50px;
 		height: 50px;
 	}
-
 	/* 取消订单按钮样式 */
 	.cancelBtn {
 		height: 26px;
@@ -550,23 +508,20 @@
 		border-radius: 6px;
 		border: 1px solid red;
 	}
-
 	.bottom {
+		padding-bottom: 20px;
 		width: 100%;
 		text-align: center;
-		padding-bottom: 20px;
 	}
-
-	.bottom>view {
+	.bottom > view {
 		height: 1px;
-		margin: 0px 20px;
 		border-top: 1px solid #ddd;
+		margin: 0px 20px;
 	}
-
-	.bottom>text {
-		position: relative;
-		top: 10px;
+	.bottom > text {
 		padding: 0px 10px;
 		background: #eee;
+		position: relative;
+		top: 10px;
 	}
 </style>

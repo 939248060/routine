@@ -4,7 +4,7 @@
 			<!-- css3 波浪效果 -->
 			<view class="wave" >
 				<view class="waveInner" />
-				<view class="waveInner" />
+				<view class="waveInner" /> 
 				<view class="waveInner" />
 			</view>
 			<view class="login">
@@ -12,11 +12,11 @@
 					<view class="logo mt15 bg-white">
 						<image src="../../static/images/logo_1.png" />
 					</view>
-					<text class="f14 mt10 white">量心回收</text>
+					<text class="f14 mt10 white">量心回收</text> 
 				</view>
-				<view class="column lh40 pr10 pl10" style="margin-top: 80px;">
-					<view class="inputbox row wrap aicenter btmeee">
-						<view class='rout icon-shouji blue1' size="5" />
+				<view class="column lh40 pr10 pl10" style="margin-top: 120px;">
+					<view class="inputbox row wrap aicenter btmeee"> 
+						<view class='rout icon-mobilefill blue1' size="5" />
 						<input type="number" name="mobile" maxlength="11" @input="mobileInput" placeholder="请输入手机号" />
 					</view>
 					<view class="inputbox row wrap aicenter btmeee">
@@ -148,6 +148,7 @@
 <style>
 	page {
 		background: linear-gradient(#00a2ed, #00a2ed 1px, #fff 260px, #fff);
+		position: fixed;
 	}
 	.login {
 		position: relative;
@@ -187,8 +188,7 @@
 	}
 	.login .bot>button {
 		width: 70%;
-		font-size: 14px;
-		line-height: 34px;
+		line-height: 2em;
 		border-radius: 20px;
 		-webkit-border-radius: 20px;
 		color: #fff;
@@ -206,7 +206,7 @@
 		min-width: 470vw;
 		min-height: 300vh;
 		background: #fff;
-		top: 38%;
+		top: 53%;
 		left: 50%;
 		animation: roateOne 10s linear infinite;
 	}

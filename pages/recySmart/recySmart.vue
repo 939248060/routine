@@ -2,13 +2,9 @@
 	<view>
 		<map id="map" style="width: 100%;" :style="{height: mapheight + 'px'}" :longitude="longitude" :latitude="latitude"
 		 :markers="markers" @markertap="showMarker" @click="hiddenpaenl"></map>
-		<block v-if="checkbin === 'smart'">
-			<cover-view class="smart check" @click='showSmart'>智能箱</cover-view>
-			<cover-view class="dry" @click='showDry'>干垃圾箱</cover-view>
-		</block>
-		<block v-if="checkbin === 'dry'">
-			<cover-view class="smart" @click='showSmart'>智能箱</cover-view>
-			<cover-view class="dry check" @click='showDry'>干垃圾箱</cover-view>
+		<block>
+			<cover-view class="smart" :class="{check:checkbin === 'smart'}" @click='showSmart'>智能箱</cover-view>
+			<cover-view class="dry" :class="{check:checkbin === 'dry'}" @click='showDry'>干垃圾箱</cover-view>
 		</block>
 
 		<cover-view class="info" v-if="smartpanel">
@@ -21,8 +17,8 @@
 				<cover-view>{{single.address}}</cover-view>
 			</cover-view>
 			<cover-view class="dot mb10" />
-			<cover-view class="row wrap jcleft aicenter">
-				<cover-view v-for="(item,index) in single.subBin" :key="index" class="row jcleft aicenter mb5 f15" style="width: 33.33%">
+			<cover-view class="row wrap jcleft aicenter" style="overflow-y: scroll; height: 100px;">
+				<cover-view v-for="(item,index) in single.subBin" :key="index" class="row jcleft aicenter mb5 f15" style="width: 50%;">
 					<cover-image class="img mr10" :src="'../../static/images/' + item.scrapCode + '.png'"></cover-image>
 					<cover-view class="txtleft">
 						<cover-view class="h24 lh24">{{item.scrapType}}</cover-view>
@@ -456,6 +452,7 @@
 		padding: 10px 20px;
 		background-color: #fff;
 		box-sizing: border-box;
+		border-radius: 20px 20px 0 0;
 	}
 
 	.info .name {

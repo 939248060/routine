@@ -57,7 +57,7 @@
     "quickapp" : {},
     /* 小程序特有相关 */
     "mp-weixin" : {
-        "appid" : "wx5f16360ab4a7c449",
+        "appid" : "wxb71441b763290e04",
         "setting" : {
             "urlCheck" : false,
             "postcss" : false
@@ -74,18 +74,18 @@
     "mp-toutiao" : {
         "usingComponents" : true
     }
-	/* h5特有相关 */
-	// "h5" : {
-	//     "devServer" : {
-	//          "port" : 8000, //端口号
-	//           "disableHostCheck" : true,
-	//           "proxy" : {
-	//               "/api" : {
-	//                   "target" : "http://192.168.224.66:8080/lvbao", //目标接口域名
-	//                    "changeOrigin" : true,  //是否跨域
-	//                    "secure" : false  // 设置支持https协议的代理
-	//              }
-	//         }
-	//     }
-	// }
 }
+/* h5特有相关 */// "h5" : {
+//     "devServer" : {
+//          "port" : 8000, //端口号
+//           "disableHostCheck" : true,
+//           "proxy" : {
+//               "/api" : {
+//                   "target" : "http://192.168.224.66:8080/lvbao", //目标接口域名
+//                    "changeOrigin" : true,  //是否跨域
+//                    "secure" : false  // 设置支持https协议的代理
+//              }
+//         }
+//     }
+// }
+

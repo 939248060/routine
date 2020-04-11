@@ -1,9 +1,89 @@
 <template>
 	<view>
-		<view class='bg-white txtcenter'>
-			<image src='../../static/images/banner1.png' mode="widthFix" class="radius8" style="width: 94%" />
+		<!-- banner -->
+		<swiper class='u-wrp-bnr' autoplay='true' interval='5000' duration='1000' circular='true'>
+			<block v-for="(item,index) in bnrUrl" :key="index">
+				<swiper-item>
+					<image :src='item.url' class='u-img-slide' mode='aspectFill'></image>
+				</swiper-item>
+			</block>
+		</swiper>
+		<!-- 主要功能按钮 -->
+		<view class="firstContent row wrap mb20 mt20">
+			<navigator url="../qrcode/qrcode">
+				<image src="../../static/images/qr_code.png" mode="widthFix" />
+				<view>智能回收</view>
+			</navigator>
+			<navigator url="">
+				<image src="../../static/images/deliver.png" mode="widthFix" />
+				<view>上门回收</view>
+			</navigator>
+			<navigator url="">
+				<image src="../../static/images/present.png" mode="widthFix" />
+				<view>签到活动</view>
+			</navigator>
+			<navigator url="../guide/guide">
+				<image src="../../static/images/info.png" mode="widthFix" />
+				<view>使用指南</view>
+			</navigator>
 		</view>
-		<view class="row jcleft aicenter bg-white pt5 menu">
+		<!-- 收益数据统计 -->
+		<view class="myIncome column mb20">
+			<view class="row mb10 f16 bold">
+				<view class="ring ascenter"></view>
+				<text v-if="card == ''">您好，请先登录</text>
+				<text v-else>我的收益</text>
+			</view>
+			<scroll-view scroll-x="true" style=" width: 100%;white-space: nowrap;">
+				<navigator class="incomeItem" url="../cashlist/cashlist">
+					<view class="mb5 rout icon-recharge f26 blue1" />
+					<text class="gray-9 f12 mb5">零钱</text>
+					<view class="f14">
+						<text v-if="card == ''" class="bold f18 mr5">--</text>
+						<text v-else class="bold f18 mr5 black">1200</text>
+						元
+					</view>
+				</navigator>
+				<navigator class="incomeItem">
+					<view class="mb5 rout icon-coin f26 blue1" />
+					<text class="gray-9 f12 mb5">量心币</text>
+					<view class="f14">
+						<text v-if="card == ''" class="bold f18 mr5">--</text>
+						<text v-else class="bold f18 mr5 black">100000</text>
+						个
+					</view>
+				</navigator>
+				<navigator class="incomeItem" url="../couponlist/couponlist">
+					<view class="mb5 rout icon-youhuiquan f26 blue1" />
+					<text class="gray-9 f12 mb5">加价券</text>
+					<view class="f14">
+						<text v-if="card == ''" class="bold f18 mr5">--</text>
+						<text v-else class="bold f18 mr5 black">56</text>
+						张
+					</view>
+				</navigator>
+				<navigator class="incomeItem" url="../exchangelist/exchangelist">
+					<view class="mb5 rout icon-jifen f26 blue1" />
+					<text class="gray-9 f12 mb5">积分</text>
+					<view class="f14">
+						<text v-if="card == ''" class="bold f18 mr5">--</text>
+						<text v-else class="bold f18 mr5 black">100000</text>
+						分
+					</view>
+				</navigator>
+				<navigator class="incomeItem">
+					<view class="mb5 rout icon-evaluate f26 blue1" />
+					<text class="gray-9 f12 mb5">碳积分</text>
+					<view class="f14">
+						<text v-if="card == ''" class="bold f18 mr5">--</text>
+						<text v-else class="bold f18 mr5 black">100000</text>
+						分
+					</view>
+				</navigator>
+			</scroll-view>
+		</view>
+		
+	<!-- 	<view class="row jcleft aicenter bg-white pt5 menu">
 			<view data-recy="1" @click="tapOpenPanel">
 				<image src="../../static/images/tu1.png" mode="widthFix" />
 				<view>政府回收</view>
@@ -20,9 +100,9 @@
 				<image src="../../static/images/tu4.png" mode="widthFix" />
 				<view>商户回收</view>
 			</view>
-		</view>
+		</view> -->
 		<!---->
-		<view class="row jcbetween aicenter p10 bg-white f14">
+<!-- 		<view class="row jcbetween aicenter p10 bg-white f14">
 			<navigator url="../scorelist/scorelist" class="row jcbetween aicenter cashscore mr5">
 				<view class="txtcenter">
 					<image src="../../static/images/score.png" mode="widthFix" />
@@ -31,9 +111,9 @@
 					<view class="h26 lh26 black bold">量心币</view>
 					<view class="f20 h26 lh26 orange">{{customer.score}}</view>
 				</view>
-			</navigator>
+			</navigator> -->
 			<!-- #ifdef MP-ALIPAY -->
-			<navigator class="row jcbetween aicenter cashscore ml5">
+		<!-- 	<navigator class="row jcbetween aicenter cashscore ml5">
 				<view class="txtcenter">
 					<image src="../../static/images/cash.png" mode="widthFix" />
 				</view>
@@ -41,10 +121,10 @@
 					<view class="h26 lh26 black bold">零钱</view>
 					<view class="f20 h26 lh26 red">{{customer.cash}}</view>
 				</view>
-			</navigator>
+			</navigator> -->
 			<!-- #endif -->
 			<!-- #ifdef MP-WEIXIN  -->
-			<navigator url="../withdraw/withdraw" class="row jcbetween aicenter cashscore ml5">
+		<!-- 	<navigator url="../withdraw/withdraw" class="row jcbetween aicenter cashscore ml5">
 				<view class="txtcenter">
 					<image src="../../static/images/cash.png" mode="widthFix" />
 				</view>
@@ -52,43 +132,123 @@
 					<view class="h26 lh26 black bold">零钱</view>
 					<view class="f20 h26 lh26 red">{{customer.cash}}</view>
 				</view>
-			</navigator>
+			</navigator> -->
 			<!-- #endif -->
-		</view>
+		<!-- </view> -->
 
-		<navigator url="../invite/invite">
+		<!-- <navigator url="../invite/invite">
 			<image src="../../static/images/yaoqing.png" class="invite" />
-		</navigator>
+		</navigator> -->
 
-		<swiper class='u-wrp-bnr' autoplay='true' interval='5000' duration='1000' circular='true'>
-			<block v-for="(item,index) in bnrUrl" :key="index">
-				<swiper-item>
-					<image :src='item.url' class='u-img-slide' mode='aspectFill'></image>
-				</swiper-item>
-			</block>
-		</swiper>
-
-		<view>
-			<view class="rout icon-dizhi blue mt5" @click="clickmap">附近回收站</view>
+		<view class="bin">
+			<view class="row jcbetween f12 gray-9 pb5 mb10">
+				<text class="f16 gray-3 bold">附近回收站</text>
+				<view class="row ascenter" @click="clickmap">
+					查看更多 <view class="rout icon-right lh18" />
+				</view>
+			</view>
+			<!-- 回收站列表 -->
+			<view class="binList">
+				<view class="column binItem">
+					<view class="row jcbetween mb5">
+						<view class="row aicenter">
+							<view class="rout icon-locationfill blue1 mr5" />
+							<text class="f16 bold">亚洲豪苑</text>
+						</view>
+						<text class="blue1 f14">1500.0m</text>
+					</view>
+					<view class="row jcbetween">
+						<view class="column">
+							<text class="gray-9 f12 mb5">豪巷街和豪苑路交汇处（亚洲豪苑北区南门西侧）</text>
+							<view class="row">
+								<text class="lab labblue1 mr5 radius4">智能回收箱</text>
+								<text class="box boxblue1 mr5 radius4">正常投递</text>
+							</view>
+						</view>
+						<view class="ascenter rout icon-right blue1 f18 bold mr10" style="border: 2px solid;border-radius: 50%;padding: 2px;" />
+					</view>
+				</view>
+				<view class="column binItem">
+					<view class="row jcbetween mb5">
+						<view class="row aicenter">
+							<view class="rout icon-locationfill blue1 mr5" />
+							<text class="f16 bold">西岭广场</text>
+						</view>
+						<text class="blue1 f14">2100.0m</text>
+					</view>
+					<view class="row jcbetween">
+						<view class="column">
+							<text class="gray-9 f12 mb5">香樟林西南角</text>
+							<view class="row">
+								<text class="lab labblue1 mr5 radius4">智能回收箱</text>
+								<text class="box boxred mr5 radius4">智能箱已满</text>
+							</view>
+						</view>
+						<view class="ascenter rout icon-right blue1 f18 bold mr10" style="border: 2px solid;border-radius: 50%;padding: 2px;" />
+					</view>
+				</view>
+				<view class="column binItem">
+					<view class="row jcbetween mb5">
+						<view class="row aicenter">
+							<view class="rout icon-locationfill blue1 mr5" />
+							<text class="f16 bold">金垦金南路</text>
+						</view>
+						<text class="blue1 f14">3000.0m</text>
+					</view>
+					<view class="row jcbetween">
+						<view class="column">
+							<text class="gray-9 f12 mb5">金垦路与金南路交汇处</text>
+							<view class="row">
+								<text class="lab labblue1 mr5 radius4">智能回收箱</text>
+								<text class="box boxblue1 mr5 radius4">正常投递</text>
+							</view>
+						</view>
+						<view class="ascenter rout icon-right blue1 f18 bold mr10" style="border: 2px solid;border-radius: 50%;padding: 2px;" />
+					</view>
+				</view>
+				<view class="column binItem">
+					<view class="row jcbetween mb5">
+						<view class="row aicenter">
+							<view class="rout icon-locationfill blue1 mr5" />
+							<text class="f16 bold">金山小区</text>
+						</view>
+						<text class="blue1 f14">5000.0m</text>
+					</view>
+					<view class="row jcbetween">
+						<view class="column">
+							<text class="gray-9 f12 mb5">滨涯路往友谊路进200米右侧（金山小区西门）</text>
+							<view class="row">
+								<text class="lab labblue1 mr5 radius4">智能回收箱</text>
+								<text class="box boxblue1 mr5 radius4">正常投递</text>
+							</view>
+						</view>
+						<view class="ascenter rout icon-right blue1 f18 bold mr10" style="border: 2px solid;border-radius: 50%;padding: 2px;" />
+					</view>
+				</view>
+				
+				
+			</view>
 		</view>
-
-		<map @tap="clickmap" id="myMap" style="width: 710rpx; height: 250px;" :latitude="latitude" :longitude="longitude"
-		 show-location>
+		
+		<!-- <view>
+			<view class="bold f16 mb10" @click="clickmap">附近回收站</view>
+		</view> -->
+	<!-- 	<map @tap="clickmap" id="myMap" style="width: 710rpx; height: 250px;" :latitude="latitude" :longitude="longitude" show-location>
 		</map>
 
-		<callrecy id='callrecy' ref="callrecy" :contact="add.Contact" :tel="add.Tel" :address="add.Address" @cancelEvent="_cancelEvent"
-		 @confirmEvent="_confirmEvent">
-		</callrecy>
+		<callrecy id='callrecy' ref="callrecy" :contact="add.Contact" :tel="add.Tel" :address="add.Address" @cancelEvent="_cancelEvent" @confirmEvent="_confirmEvent">
+		</callrecy> -->
+
 
 		<!--政府回收-->
-		<view v-show="governmentHid" class="mask" />
+	<!-- 	<view v-show="governmentHid" class="mask" />
 		<view v-show="governmentHid" class="dialog txtcenter">
 			<form @submit="sendGovernment" report-submit="true">
 				<view class="bg-white radius6 pb5">
-					<view class="txtcenter pt10 black f18">政府回收</view>
+					<view class="txtcenter pt10 black f18">政府回收</view> -->
 					<!--<navigator url="../showhtml/showhtml?nav=government" class="txtcenter pt10 pb10 f14">戳这里了解详细情况</navigator>-->
 					<!--收货地址-->
-					<navigator class="row jcleft aicenter m10 address radius6 f14" url="../addresslist/addresslist?parent=government">
+					<!-- <navigator class="row jcleft aicenter m10 address radius6 f14" url="../addresslist/addresslist?parent=government">
 						<view class="rout icon-dizhi txtcenter f20" />
 						<view class="elips">
 							<text v-if="address.contact!=null">{{address.contact}} - {{address.tel}}\n{{address.area}}{{address.address}}</text>
@@ -100,16 +260,16 @@
 				</view>
 			</form>
 			<view @click='tapClosePanel' class="rout icon-close_icon mt15 gray f26" data-recy="1"></view>
-		</view>
+		</view> -->
 		<!--商户回收-->
-		<view v-show="merchantHid" class="mask" />
+		<!-- <view v-show="merchantHid" class="mask" />
 		<view v-show="merchantHid" class="dialog txtcenter">
 			<form @submit="sendMerchant" report-submit="true">
 				<view class="bg-white radius6 pb5">
-					<view class="txtcenter pt10 black f18">商户回收</view>
+					<view class="txtcenter pt10 black f18">商户回收</view> -->
 					<!--<navigator url="../showhtml/showhtml?nav=government" class="txtcenter pt10 pb10 f14">戳这里了解详细情况</navigator>-->
 					<!--收货地址-->
-					<navigator class="row jcleft aicenter m10 address radius6 f14" url="../addresslist/addresslist?parent=government">
+					<!-- <navigator class="row jcleft aicenter m10 address radius6 f14" url="../addresslist/addresslist?parent=government">
 						<view class="rout icon-dizhi txtcenter f20" />
 						<view class="elips">
 							<text v-if="address.contact!=null">{{address.contact}} - {{address.tel}}\n{{address.area}}{{address.address}}</text>
@@ -120,10 +280,9 @@
 					<button class="f16 white bg-blue1 radiu6" formType="submit">呼叫回收</button>
 				</view>
 			</form>
-			<view @click='tapClosePanel' data-recy="4">
-				<view class="rout icon-close_icon mt15 gray f26" />
-			</view>
-		</view>
+			<view @click='tapClosePanel' data-recy="4" ><view class="rout icon-close_icon mt15 gray f26" /></view>
+		</view> -->
+
 
 		<!--加载动画-->
 		<loading />
@@ -185,7 +344,8 @@
 				userInfo: {},
 				hasUserInfo: false,
 				canIUse: wx.canIUse('button.open-type.getUserInfo'),
-				loadModel: false
+				loadModel: false,
+				card: '',		//用户卡号，用于判断用户是否登录
 			}
 		},
 		methods: {
@@ -474,13 +634,18 @@
 		onLoad() {
 			let that = this;
 			that.getDefaultAddr(); // 获取默认地址
-			
-			// console.log(that.getDistance1('20.00885833601338', '110.33491925731659', '20.022956319258746', '110.33296660915374') + 'km');
-			// that.getDistance2('20.00885833601338', '110.33491925731659', '20.022956319258746', '110.33296660915374');
+			that.card = uni.getStorageSync("card");	//获取用户卡号，用于判断用户是否登录
 		},
 		onReady() {
 			this.myMap = uni.createMapContext("myMap", this);
 			this.myMap.moveToLocation();
+			uni.getLocation({
+			    type: 'wgs84',
+			    success: function (res) {
+			        console.log('当前位置的经度：' + res.longitude);
+			        console.log('当前位置的纬度：' + res.latitude);
+			    }
+			});
 		},
 		onShow() {
 			let that = this;
@@ -494,6 +659,68 @@
 </script>
 
 <style>
+	page {
+		background: #FFFFFF;
+	}
+	.u-wrp-bnr {
+		height: 200rpx;
+		display: block;
+		margin: 10px;
+	}
+	.u-img-slide {
+		width: 100%;
+		height: inherit;
+		border-radius: 8px;
+	}
+	.firstContent {
+		
+	}
+	.firstContent > navigator {
+		width: 25%;
+		text-align: center;
+		margin: 5px 0;
+	}
+	.firstContent > navigator >image {
+		width: 32px;
+	}
+	.myIncome {
+		height: 140px;
+		padding-left: 10px;
+		background: url(../../static/images/index_incomebg.png) no-repeat;
+		background-size: 100% 140px;
+	}
+	.ring {
+		width: 14px;
+		height: 14px;
+		border-radius: 50%;
+		background: radial-gradient(circle at 7px 7px, transparent, transparent 2px, #00a2ed 4px, #00a2ed );
+		margin-right: 5px;
+	}
+	.incomeItem {
+		background: #FFFFFF;
+		border-radius: 4px;
+		margin-right: 10px;
+		text-align: left;
+		padding: 10px 15px;
+		display: inline-block;
+		background-color: rgb(255,255,255,0.75) ;
+	}
+	.bin {
+		padding: 0 10px;
+	}
+	.binList {
+	}
+	.binItem {
+		background: #FFFFFF;
+		padding: 10px;
+		border-radius: 4px;
+		margin-bottom: 15px;
+		border: #00a2ed 1px dashed;
+	}
+	
+	
+	
+
 	.cashscore {
 		width: 50%;
 		padding: 5px 5px;
@@ -813,18 +1040,6 @@
 		height: 100rpx;
 		width: 100rpx;
 		left: 130rpx;
-	}
-
-	.u-wrp-bnr {
-		width: 100%;
-		height: 200rpx;
-		display: block;
-		background: #f0f0f0;
-	}
-
-	.u-img-slide {
-		width: 100%;
-		height: inherit;
 	}
 
 	.rewardname {
