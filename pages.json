@@ -161,8 +161,14 @@
 			"style" : {
 				"navigationBarTitleText": "订单详情"
 			}
-    }
-    ],
+    },{//上门回收
+			"path" : "pages/visit/visit",
+			"style" : {
+				"navigationBarTextStyle": "#FFFFFF",
+				"navigationBarTitleText": "上门回收"
+			}
+		}
+  ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "量心回收",
