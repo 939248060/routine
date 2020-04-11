@@ -1,23 +1,23 @@
 <template>
-	<view>
+	<view class="content">
 		<!--收货地址-->
-		<navigator class="row jcleft aicenter m10 address radius8 f14" url="../addresslist/addresslist?parent=electric">
-			<view class="rout icon-dizhi txtcenter f20" />
+		<navigator class="row jcleft aicenter mb10 address f14 card bg-white vermiddle txtleft" url="../addresslist/addresslist?parent=electric">
+			<view class="rout icon-location txtcenter f20" />
 			<view class="elips">
 				<text v-if="address!=''">{{address.contact}} - {{address.tel}}\n{{address.area}}{{address.address}}</text>
 				<text wx:else class="">请选择收货地址</text>
 			</view>
-			<view class="rout icon-dayuhao" />
+			<view class="rout icon-right" />
 		</navigator>
 		<!--无回收物显示面板-->
-		<view v-if="recydetail.length<1" class="bg-white txtcenter f15 pt20 pb20 ml10 mr10 black radius8">
+		<view v-if="recydetail.length<1" class="bg-white txtcenter f15 pt20 pb20 black card">
 			<view @click="tapOpenSelectPanel">请添加需清运的家具</view>
-			<image src="../../static/images/furniture.png" mode="widthFix" class="mt5 mb5" style="width: 60px; height: 60px;"
+			<image src="../../static/images/furniture.png" mode="widthFix" class="mt5 mb5" style="width: 70px; height: 70px;"
 			 @click="tapOpenSelectPanel" />
 			<view @click="tapOpenSelectPanel">立即添加</view>
 		</view>
 		<!--回收物清单列表-->
-		<view v-else class="bg-white ml10 mr10 radius8">
+		<view v-else class="bg-white card">
 			<view class="ml10 mr10 pl5 h35 lh35 btmeee f12">回收员上门后结算</view>
 			<view v-for="(item,index) in recydetail" :key="index" class="row jcbetween aicenter bg-white detail">
 				<view class="row jcleft aicenter">
@@ -28,12 +28,12 @@
 					</view>
 				</view>
 				<!--点击删除回收物-->
-				<view class="rout icon-guanbi1 txtcenter f24 red" :data-idx="index" @click="tapRemoveDetail" />
+				<view class="rout icon-roundclose1 txtcenter f24 red" :data-idx="index" @click="tapRemoveDetail" />
 			</view>
 			<view class="txtcenter pt10 pb10 f15" @click="tapOpenSelectPanel">继续添加</view>
 		</view>
 		<form @submit="sendForm">
-			<view class="mt10 ml10 mr10 pl10 pr10 bg-white radius8" style="margin-bottom: 100px;">
+			<view class="mt10 pl10 pr10 bg-white card" style="margin-bottom: 100px;">
 				<!--留言备注-->
 				<view class="row jcleft aicenter pt15 pb15 black remark">
 					<text>留言备注</text>
@@ -42,12 +42,12 @@
 				<!--图片上传-->
 				<view class="row jcleft aicenter pt15 pb15 black remark">
 					<text>上传图片</text>
-					<view class="row jcend aicenter gray-7">请将清运家具分别拍照上传<text class="rout icon-shangchuan ml5" @click="tapChooseImage" /></view>
+					<view class="row jcend aicenter gray-7">请将清运家具分别拍照上传<text class="rout icon-upload ml5" @click="tapChooseImage" /></view>
 				</view>
 				<!--图片集合-->
 				<view class="row jcleft aicenter pt10 pb10 ">
 					<view v-for="(item,index) in tempImages" :key="index" class="overhidden txtcenter" style="width: 25%; position: relative;">
-						<view class="rout icon-guanbi1 f20 red bg-white delimage" :data-idx="inde" @click="tapRemoveImage" />
+						<view class="rout icon-roundclose1 f20 red bg-white delimage" :data-idx="inde" @click="tapRemoveImage" />
 						<image :src="item" mode="widthFix" :data-idx="index" @click="tapPreviewImage" style="width: 70%;" />
 					</view>
 				</view>
@@ -71,7 +71,7 @@
 		<!--添加回收物面板-->
 		<view v-show="selectHid" class="selectpanel overhide">
 			<!--关闭面板-->
-			<view class="rout icon-guanbi f20 black close" @click="tapCloseSelectPanel" />
+			<view class="rout icon-roundclose f20 black close" @click="tapCloseSelectPanel" />
 			<view class="btmeee f15 txtcenter mt10 pb5">添加废旧家具</view>
 			<!--回收物横向滚动条-->
 			<view class="x-scroll mb10 pl10 pr10 btmeee">
@@ -461,11 +461,18 @@
 </script>
 
 <style>
+	page {
+		background: #fff;
+	}
+	
+	.content {
+		background-image: radial-gradient(circle at 50% -252px, #00a2ed, #00a2ed 360px, transparent 361px );
+		padding: 40px 15px 0px;
+	}
+	
+	/* 收货地址样式 */
 	.address {
-		height: 60px;
-		background: #ffffff;
-		vertical-align: middle;
-		text-align: left;
+		height: 70px;
 	}
 
 	.address>view:nth-child(1) {
@@ -539,6 +546,7 @@
 		left: 0;
 		bottom: 0;
 		background: #ffffff;
+		border-radius: 20px 20px 0 0;
 	}
 
 	.close {
@@ -580,7 +588,7 @@
 	}
 
 	.scrapItem:last-child {
-		margin-right: 20px; 
+		margin-right: 20px;
 	}
 
 	/* 顶级项目已选样式 */
@@ -610,6 +618,11 @@
 		border: 1px solid #00a2ed;
 		background: #ffffff;
 		border-radius: 6px;
+	}
+	
+	.itemSelect {
+		color: #fff;
+		background: #00a2ed;
 	}
 
 	.finish {

@@ -1,12 +1,12 @@
 <template>
 	<view class="content">
 		<navigator class="row jcleft aicenter mb10 address f14 card bg-white vermiddle txtleft" url="../addresslist/addresslist?parent=electric" hover-class="none">
-			<view class="rout icon-dizhi txtcenter f20" />
+			<view class="rout icon-location txtcenter f20" />
 			<view class="elips">
 				<text v-if="address!=''" class="lh24">{{address.contact}} - {{address.tel}}\n{{address.area}}{{address.address}}</text>
 				<text v-else class="">请选择收货地址</text>
 			</view>
-			<view class="rout icon-dayuhao" />
+			<view class="rout icon-right" />
 		</navigator>
 		<!--无回收物显示面板-->
 		<view v-if="recydetail.length<1" class="bg-white txtcenter f15 pt20 pb20 black card">
@@ -27,7 +27,7 @@
 					</view>
 				</view>
 				<!--点击删除回收物-->
-				<view class="rout icon-guanbi1 txtcenter f24 red" :data-idx="index" @click="tapRemoveDetail" />
+				<view class="rout icon-roundclose1 txtcenter f24 red" :data-idx="index" @click="tapRemoveDetail" />
 			</view>
 			<view class="txtcenter pt10 pb10 f15" @click="tapOpenSelectPanel">继续添加</view>
 		</view>
@@ -41,12 +41,12 @@
 				<!--图片上传-->
 				<view class="row jcleft aicenter pt15 pb15 black remark">
 					<text>上传图片</text>
-					<view class="row jcend aicenter gray-7">请将回收物分别拍照上传<text class="rout icon-shangchuan ml5" @click="tapChooseImage" /></view>
+					<view class="row jcend aicenter gray-7">请将回收物分别拍照上传<text class="rout icon-upload ml5" @click="tapChooseImage" /></view>
 				</view>
 				<!--图片集合-->
 				<view class="row jcleft aicenter pt10 pb10 ">
 					<view v-for="(item,index) in tempImages" :key="index" class="overhidden txtcenter" style="width: 25%; position: relative;">
-						<view class="rout icon-guanbi1 f20 red bg-white delimage" :data-idx="index" @click="tapRemoveImage" />
+						<view class="rout icon-roundclose1 f20 red bg-white delimage" :data-idx="index" @click="tapRemoveImage" />
 						<image :src="item" mode="widthFix" :data-idx="index" @click="tapPreviewImage" style="width: 70%;" />
 					</view>
 				</view>
@@ -71,7 +71,7 @@
 		<view v-show="selectHid" class="selectpanel overhide">
 			<!--关闭面板-->
 			<view @click="tapCloseSelectPanel">
-				<icon class="rout icon-guanbi f20 black close" />
+				<icon class="rout icon-roundclose f20 black close" />
 			</view>
 			<view class="btmeee f15 txtcenter mt10 pb5">添加回收物</view>
 			<!--回收物横向滚动条-->
@@ -115,7 +115,6 @@
 			<navigator url="../recyorderlist/recyorderlist" open-type="redirect" class="nav mt15 mb15 p10">查看订单</navigator>
 			<navigator url="../index/index" open-type="switchTab" class="nav mt15 mb15 p10">返回首页</navigator>
 		</view>
-
 		<!--加载动画-->
 		<loading />
 	</view>
