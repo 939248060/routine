@@ -14,7 +14,7 @@
 				<image src="../../static/images/qr_code.png" mode="widthFix" />
 				<view>智能回收</view>
 			</navigator>
-			<navigator url="">
+			<navigator url="../visit/visit">
 				<image src="../../static/images/deliver.png" mode="widthFix" />
 				<view>上门回收</view>
 			</navigator>
