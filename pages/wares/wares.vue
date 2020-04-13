@@ -11,16 +11,16 @@
 				</view>
 				<view>
 					<view>
-						<uni-icons type="minus-filled" size="40"  color="#ccc" @click.stop='reduce'/>
+						<view class="rout icon-round_minus_fill gray f26" @click.stop='reduce'/>
 						<text style="width: 30px; text-align: center;" class="f20 black">{{ num }}</text>
-						<uni-icons type="plus-filled" color="#007aff" size="40"  @click.stop='plus'/>
+						<view class="rout icon-roundaddfill gray f26"  @click.stop='plus'/>
 					</view>
 					<!-- <view>已经兑换<text class="red">{{ wares.count }}</text>件</view> -->
 				</view>
 			</view>
 			<view class="describe">
 				<view class="f16 gray bold"> ———— <text>商品详情</text> ———— </view>
-				<view class="page">
+				<view class="page pb15 pl10 pr10">
 					<!-- <view class="page__bd page__bd_spacing">
 						<view class="dk-show">
 							<u-parse :content="wares.describe" />
@@ -31,9 +31,9 @@
 			</view>
 		</view>
 		<view class="foot">
-			<view class="row mt10 mb10 ml10">
-				<uni-icons type="cart" color="#00a2ed" size="35" />
-				<view class="mt5 ml5 orange"><text style="color: #00a2ed;">总计：</text>{{ wares.score * num }}</view>
+			<view class="row">
+				<view class="rout icon-cart f24 blue1" />
+				<view class="blue1 ascenter f16">总计：<text class="orange">{{ wares.score * num }}</text></view>
 			</view>
 			<view>
 				<button :data-waresid="wares.waresId" :disabled="disabled" @click.stop='exchange'>立即兑换</button>
@@ -43,7 +43,6 @@
 </template>
 
 <script>
-	import uniIcons from '../..//components/uni-icons/uni-icons.vue';
 	import uParse from '@/components/gaoyia-parse/parse.vue'
 	export default {
 		components: {
@@ -168,24 +167,21 @@
 <style>
 	@import url("../../components/gaoyia-parse/parse.css");
 
-
 	.imgpanel {
 		width: 100%;
 		background: #fff;
 		overflow: hidden;
 	}
-
 	.img {
 		width: 100%;
 		height: 240px !important;
 	}
-
 	.rout {
 		margin: 2px;
 	}
-    .cont{
-		 margin-top: 10px;
-	 }
+	.cont{
+		margin-top: 10px;
+	}
 	.wares {
 		width: 100%;
 		padding: 10px 0px;
@@ -194,7 +190,6 @@
 		border-top-left-radius: 20px;
 		border-top-right-radius: 20px;
 	}
-
 	.wares>view:nth-child(1) {
 		display: flex;
 		width: 60%;
@@ -204,12 +199,10 @@
 		font-size: 18px;
         padding-left: 20px;
 	}
-
 	.wares>view:nth-child(1)>view:nth-child(2) {
 		width: 65%;
 		color: #000;
 	}
-
 	.wares>view:nth-child(2) {
 		display: flex;
 		width: 30%;
@@ -218,7 +211,6 @@
 		align-items: center;
 		padding-right: 20px;
 	}
-
 	.wares>view:nth-child(2)>view:nth-child(1) {
 		display: flex;
 		flex-direction: row;
@@ -258,24 +250,19 @@
 		font-weight: 900;
 		margin-top: -8px;
 	} */
-
 	.describe {
 		font-size: 20px;
 		background: #fff;
 		margin-bottom: 50px;
 		width: 100%;
 	}
-
 	.describe>view:nth-child(1) {
 		text-align: center;
-		padding: 20px 0px;
 	}
-
 	.describe>view:nth-child(1)>text {
 		letter-spacing: 2px;
 		margin: 0px 5px;
 	}
-
 	.foot {
 		position: fixed;
 		left: 0px;
@@ -285,30 +272,23 @@
 		z-index: 100;
 		display: flex;
 		flex-direction: row;
-		justify-content: center;
+		justify-content: space-between;
 		align-items: center;
+		padding: 10px;
+		box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.2);
 	}
-
-	.foot>view:nth-child(1) {
-		width: 64%;
-		text-align: right;
-		padding-right: 8px;
-		color: #ff851b;
-
-	}
-
 	.foot>view:nth-child(2) {
-		width: 36%;
+		padding-right: 5%;
 	}
-
 	.foot>view:nth-child(2)>button::before {
 		border: none;
 	}
-
 	.foot>view:nth-child(2)>button {
 		color: #fff;
 		background: #00a2ed;
-		border-radius: 14px;
-		margin-right: 10px;
+		border-radius: 10px;
+		padding: 2px 8px;
+		line-height: 1.5em;
+		font-size: 16px;
 	}
 </style>

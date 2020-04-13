@@ -8,7 +8,7 @@
 		</view>
 		<view class="addr row">
 			<view class="p5">
-				<uni-icons type="location-filled" color="#00a2ed" size="30" />
+				<view class="rout icon-locationfill f30 blue1" />
 			</view>
 			<view>
 				<view class="f18 bold mb5">{{exchange.contact}}<text class="f14 ml5">{{exchange.tel}}</text></view>
@@ -62,12 +62,8 @@
 </template>
 
 <script>
-	import uniIcons from '../..//components/uni-icons/uni-icons.vue';
 	
 	export default {
-		components:{
-			uniIcons
-		},
 		data() {
 			return {
 				exchange : {},

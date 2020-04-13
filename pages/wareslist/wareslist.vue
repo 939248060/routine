@@ -1,10 +1,10 @@
 <template>
 	<view>
-		<view class="head">
+		<view class="head"> 
 			<scroll-view class="scroll-view_H" scroll-x="true" scroll-left="0" show-scrollbar="false">
-				<view class="f16 black bold lh40" :class="currtab == 0? 'click': ''" data-cateId = "0" @click="tabClick">推荐商品</view>
+				<view class="gray-3 bold lh28" :class="currtab == 0? 'click': ''" data-cateId = "0" @click="tabClick">推荐商品</view>
 				<block v-for="(item,index) in categorys" :key="item.categoryId">
-					<view class="f16 black bold lh40 " :class="currtab == item.categoryId? 'click': ''" :data-cateId = "item.categoryId" @click="tabClick">{{item.categoryName}}</view>
+					<view class="gray-3 bold lh28 " :class="currtab == item.categoryId? 'click': ''" :data-cateId = "item.categoryId" @click="tabClick">{{item.categoryName}}</view>
 				</block >
 			</scroll-view>
 		</view>
@@ -148,17 +148,17 @@
 	.scroll-view_H {
 		white-space: nowrap;
 		width: 100%;
-		height: 60px;
+		height: 40px;
 	}
 	.head view{
 		display: inline-block;
 		letter-spacing: 4px;    //字间距
-		margin: 10px 10px;
+		margin: 5px 10px;
 	}
 	.click{
-		color: #00a2ed !important;
-		font-weight: 800 !important;
-		font-size: 22px !important;
+		color: #00a2ed!important;
+		font-weight: bold;
+		font-size: 16px;
 	}
 	.list {
 		padding: 0px 15px;
@@ -175,14 +175,10 @@
 	}
     
 	.wares>view {
-		padding: 0px 10px 10px 10px;
+		padding: 0px 10px;
 		vertical-align: middle;
 	}
-
-	.wares>view>view {
-		padding-top: 5px;
-	}
-    .wares>view:nth-child(1){
+  .wares>view:nth-child(1){
 		text-align: center;
 	}
 	.noData {
