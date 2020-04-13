@@ -3,37 +3,45 @@
 		<image src="../../static/images/visit_banner.png" mode="widthFix" style="width: 100%;"/>
 		<view class="column m15 txtcenter">
 			<view class="gray-9 mb15">————<text class="f16 bold mb10 gray-6 ml5 mr5 "> 选择回收类型 </text>————</view>
-			<view class="list row jcbetween aicenter" data-recy="1" @click="tapOpenPanel">
+			<view class="list row" data-recy="1" @click="tapOpenPanel">
 				<view class="m10"><image src="../../static/images/tu1.png" mode="widthFix" /></view>
-				<view class="column txtleft">
-					<text class="f16 bold gray-3 mb5">政府预约</text>
+				<view class="column txtleft" style="width: 80%;">
+					<view class="row jcbetween">
+						<text class="f16 bold gray-3 mb5 mt10">政府预约</text>
+						<view class="appoint asstart">立即预约</view>
+					</view>
 					<text class="gray-9">省直机关垃圾分类协议回收单位</text>
 				</view>
-				<view class="appoint asstart">立即预约</view>
 			</view>
-			<navigator url="../electrical/electrical" class="list row jcbetween aicenter">
+			<navigator url="../electrical/electrical" class="list row">
 				<view class="m10"><image src="../../static/images/tu2.png" mode="widthFix" /></view>
-				<view class="column txtleft">
-					<text class="f16 bold gray-3 mb5">家电回收</text>
+				<view class="column txtleft" style="width: 80%;">
+					<view class="row jcbetween">
+						<text class="f16 bold gray-3 mb5 mt10">家电回收</text>
+						<view class="appoint asstart">立即预约</view>
+					</view>
 					<text class="gray-9">居民线上下单，废旧家电便捷回收</text>
 				</view>
-				<view class="appoint asstart">立即预约</view>
 			</navigator>
-			<navigator url="../furniture/furniture" class="list row jcbetween aicenter">
+			<navigator url="../furniture/furniture" class="list row">
 				<view class="m10"><image src="../../static/images/tu3.png" mode="widthFix" /></view>
-				<view class="column txtleft">
-					<text class="f16 bold gray-3 mb5">家具清运</text>
+				<view class="column txtleft" style="width: 80%;">
+					<view class="row jcbetween">
+						<text class="f16 bold gray-3 mb5 mt10">家具清运</text>
+						<view class="appoint asstart">立即预约</view>
+					</view>
 					<text class="gray-9">大件家具上门清运，省心省时省力</text>
 				</view>
-				<view class="appoint asstart">立即预约</view>
 			</navigator>
-			<view class="list row jcbetween aicenter" data-recy="4" @click="tapOpenPanel">
+			<view class="list row" data-recy="4" @click="tapOpenPanel">
 				<view class="m10"><image src="../../static/images/tu4.png" mode="widthFix" /></view>
-				<view class="column txtleft">
-					<text class="f16 bold gray-3 mb5">商户回收</text>
+				<view class="column txtleft" style="width: 80%;">
+					<view class="row jcbetween">
+						<text class="f16 bold gray-3 mb5 mt10">商户回收</text>
+						<view class="appoint asstart">立即预约</view>
+					</view>
 					<text class="gray-9">高效便捷，值得信赖的回收品牌</text>
 				</view>
-				<view class="appoint asstart">立即预约</view>
 			</view>
 		</view>
 		
@@ -238,6 +246,7 @@
 		background: #00A2ED;
 		padding: 3px 8px;
 		border-radius: 12px 0 12px 0;
+		min-width: 52px;
 	}
 	/* 政府回收和合伙人回收弹出框样式 */
 	.dialog {
