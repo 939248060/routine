@@ -18,7 +18,7 @@
 				<image src="../../static/images/deliver.png" mode="widthFix" />
 				<view>上门回收</view>
 			</navigator>
-			<navigator url="">
+			<navigator url="../signin/signin">
 				<image src="../../static/images/present.png" mode="widthFix" />
 				<view>签到活动</view>
 			</navigator>
@@ -40,7 +40,7 @@
 					<text class="gray-9 f12 mb5">零钱</text>
 					<view class="f14">
 						<text v-if="card == ''" class="bold f18 mr5">--</text>
-						<text v-else class="bold f18 mr5 black">1200</text>
+						<text v-else class="bold f18 mr5 black"> {{customer.cash}} </text>
 						元
 					</view>
 				</navigator>
@@ -49,7 +49,7 @@
 					<text class="gray-9 f12 mb5">量心币</text>
 					<view class="f14">
 						<text v-if="card == ''" class="bold f18 mr5">--</text>
-						<text v-else class="bold f18 mr5 black">100000</text>
+						<text v-else class="bold f18 mr5 black"> {{customer.score}} </text>
 						个
 					</view>
 				</navigator>
@@ -58,7 +58,7 @@
 					<text class="gray-9 f12 mb5">加价券</text>
 					<view class="f14">
 						<text v-if="card == ''" class="bold f18 mr5">--</text>
-						<text v-else class="bold f18 mr5 black">56</text>
+						<text v-else class="bold f18 mr5 black">20</text>
 						张
 					</view>
 				</navigator>
@@ -82,64 +82,7 @@
 				</navigator>
 			</scroll-view>
 		</view>
-		
-	<!-- 	<view class="row jcleft aicenter bg-white pt5 menu">
-			<view data-recy="1" @click="tapOpenPanel">
-				<image src="../../static/images/tu1.png" mode="widthFix" />
-				<view>政府回收</view>
-			</view>
-			<navigator url="../electrical/electrical">
-				<image src="../../static/images/tu2.png" mode="widthFix" />
-				<view>家电回收</view>
-			</navigator>
-			<navigator url="../furniture/furniture">
-				<image src="../../static/images/tu3.png" mode="widthFix" />
-				<view>家具清运</view>
-			</navigator>
-			<view data-recy="4" @click="tapOpenPanel">
-				<image src="../../static/images/tu4.png" mode="widthFix" />
-				<view>商户回收</view>
-			</view>
-		</view> -->
-		<!---->
-<!-- 		<view class="row jcbetween aicenter p10 bg-white f14">
-			<navigator url="../scorelist/scorelist" class="row jcbetween aicenter cashscore mr5">
-				<view class="txtcenter">
-					<image src="../../static/images/score.png" mode="widthFix" />
-				</view>
-				<view>
-					<view class="h26 lh26 black bold">量心币</view>
-					<view class="f20 h26 lh26 orange">{{customer.score}}</view>
-				</view>
-			</navigator> -->
-			<!-- #ifdef MP-ALIPAY -->
-		<!-- 	<navigator class="row jcbetween aicenter cashscore ml5">
-				<view class="txtcenter">
-					<image src="../../static/images/cash.png" mode="widthFix" />
-				</view>
-				<view>
-					<view class="h26 lh26 black bold">零钱</view>
-					<view class="f20 h26 lh26 red">{{customer.cash}}</view>
-				</view>
-			</navigator> -->
-			<!-- #endif -->
-			<!-- #ifdef MP-WEIXIN  -->
-		<!-- 	<navigator url="../withdraw/withdraw" class="row jcbetween aicenter cashscore ml5">
-				<view class="txtcenter">
-					<image src="../../static/images/cash.png" mode="widthFix" />
-				</view>
-				<view>
-					<view class="h26 lh26 black bold">零钱</view>
-					<view class="f20 h26 lh26 red">{{customer.cash}}</view>
-				</view>
-			</navigator> -->
-			<!-- #endif -->
-		<!-- </view> -->
-
-		<!-- <navigator url="../invite/invite">
-			<image src="../../static/images/yaoqing.png" class="invite" />
-		</navigator> -->
-
+		<!-- 回收站列表 -->
 		<view class="bin">
 			<view class="row jcbetween f12 gray-9 pb5 mb10">
 				<text class="f16 gray-3 bold">附近回收站</text>
@@ -225,65 +168,8 @@
 						<view class="ascenter rout icon-right blue1 f18 bold mr10" style="border: 2px solid;border-radius: 50%;padding: 2px;" />
 					</view>
 				</view>
-				
-				
 			</view>
 		</view>
-		
-		<!-- <view>
-			<view class="bold f16 mb10" @click="clickmap">附近回收站</view>
-		</view> -->
-	<!-- 	<map @tap="clickmap" id="myMap" style="width: 710rpx; height: 250px;" :latitude="latitude" :longitude="longitude" show-location>
-		</map>
-
-		<callrecy id='callrecy' ref="callrecy" :contact="add.Contact" :tel="add.Tel" :address="add.Address" @cancelEvent="_cancelEvent" @confirmEvent="_confirmEvent">
-		</callrecy> -->
-
-
-		<!--政府回收-->
-	<!-- 	<view v-show="governmentHid" class="mask" />
-		<view v-show="governmentHid" class="dialog txtcenter">
-			<form @submit="sendGovernment" report-submit="true">
-				<view class="bg-white radius6 pb5">
-					<view class="txtcenter pt10 black f18">政府回收</view> -->
-					<!--<navigator url="../showhtml/showhtml?nav=government" class="txtcenter pt10 pb10 f14">戳这里了解详细情况</navigator>-->
-					<!--收货地址-->
-					<!-- <navigator class="row jcleft aicenter m10 address radius6 f14" url="../addresslist/addresslist?parent=government">
-						<view class="rout icon-dizhi txtcenter f20" />
-						<view class="elips">
-							<text v-if="address.contact!=null">{{address.contact}} - {{address.tel}}\n{{address.area}}{{address.address}}</text>
-							<text v-else class="">请选择收货地址</text>
-						</view>
-						<view class="rout icon-dayuhao overhidden txtcenter" />
-					</navigator>
-					<button class="f16 white bg-blue1 radiu6" formType="submit">呼叫回收</button>
-				</view>
-			</form>
-			<view @click='tapClosePanel' class="rout icon-close_icon mt15 gray f26" data-recy="1"></view>
-		</view> -->
-		<!--商户回收-->
-		<!-- <view v-show="merchantHid" class="mask" />
-		<view v-show="merchantHid" class="dialog txtcenter">
-			<form @submit="sendMerchant" report-submit="true">
-				<view class="bg-white radius6 pb5">
-					<view class="txtcenter pt10 black f18">商户回收</view> -->
-					<!--<navigator url="../showhtml/showhtml?nav=government" class="txtcenter pt10 pb10 f14">戳这里了解详细情况</navigator>-->
-					<!--收货地址-->
-					<!-- <navigator class="row jcleft aicenter m10 address radius6 f14" url="../addresslist/addresslist?parent=government">
-						<view class="rout icon-dizhi txtcenter f20" />
-						<view class="elips">
-							<text v-if="address.contact!=null">{{address.contact}} - {{address.tel}}\n{{address.area}}{{address.address}}</text>
-							<text v-else class="">请选择收货地址</text>
-						</view>
-						<view class="rout icon-dayuhao overhidden txtcenter" />
-					</navigator>
-					<button class="f16 white bg-blue1 radiu6" formType="submit">呼叫回收</button>
-				</view>
-			</form>
-			<view @click='tapClosePanel' data-recy="4" ><view class="rout icon-close_icon mt15 gray f26" /></view>
-		</view> -->
-
-
 		<!--加载动画-->
 		<loading />
 	</view>
