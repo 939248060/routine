@@ -23,7 +23,7 @@
 										<view class="column m10" style="width: 100%;">
 											<view class="row jcbetween">
 												<text class="f16 mb10 black bold mr5">{{ item.markupCoupon.title }}</text>
-												<navigator :url="'../couponorder/couponorder?id='+item.mcId" class="box boxorange white radius4 txtcenter asstart" style="min-width: 60px;">
+												<navigator :url="'../couponorder/couponorder?id='+item.mcrId" class="box boxorange white radius4 txtcenter asstart" style="min-width: 60px;">
 													立即使用
 												</navigator>
 											</view>
@@ -32,8 +32,8 @@
 												<text v-else class="gray-9 f12">{{ item.markupCoupon.validStartTime }} - {{ item.markupCoupon.validEndTime }}</text>
 											</block>
 											<block v-else-if="item.markupCoupon.validType==2">
-												<text v-if="item.receiveTime==item.receiveTime" class="gray-9 f12 f12">{{ item.receiveTime }} 当天有效</text>
-												<text v-else class="gray-9 f12">{{ item.receiveTime }} - {{ item.receiveTime }}</text>
+												<text v-if="item.receiveTime==item.markupCoupon.delayTime" class="gray-9 f12 f12">{{ item.receiveTime }} 当天有效</text>
+												<text v-else class="gray-9 f12">{{ item.receiveTime }} - {{ item.markupCoupon.delayTime }}</text>
 											</block>
 										</view>
 									</view>
@@ -72,14 +72,14 @@
 								<view class="couponRight column f14">
 									<view class="row jcbetween aibaseline">
 										<view class="column m10" style="width: 100%;">
-											<text class="f16 mb10 black bold mr5">{{ item.markupCoupon.title }}</text>
+											<text class="f16 mb10 gray-6 bold mr5">{{ item.markupCoupon.title }}</text>
 											<block v-if="item.markupCoupon.validType==1">
 												<text v-if="item.markupCoupon.validStartTime==item.markupCoupon.validEndTime" class="gray-9 f12">{{ item.markupCoupon.validStartTime }} 当天有效</text>
 												<text v-else class="gray-9 f12">{{ item.markupCoupon.validStartTime }} - {{ item.markupCoupon.validEndTime }}</text>
 											</block>
 											<block v-else-if="item.markupCoupon.validType==2">
-												<text v-if="item.receiveTime==item.receiveTime" class="gray-9 f12 f12">{{ item.receiveTime }} 当天有效</text>
-												<text v-else class="gray-9 f12">{{ item.receiveTime }} - {{ item.receiveTime }}</text>
+												<text v-if="item.receiveTime==item.markupCoupon.delayTime" class="gray-9 f12 f12">{{ item.receiveTime }} 当天有效</text>
+												<text v-else class="gray-9 f12">{{ item.receiveTime }} - {{ item.markupCoupon.delayTime }}</text>
 											</block>
 										</view>
 									</view>
@@ -118,14 +118,14 @@
 								<view class="couponRight column f14">
 									<view class="row jcbetween aibaseline">
 										<view class="column m10" style="width: 100%;">
-											<text class="f16 mb10 black bold mr5">{{ item.markupCoupon.title }}</text>
+											<text class="f16 mb10 gray-6 bold mr5">{{ item.markupCoupon.title }}</text>
 											<block v-if="item.markupCoupon.validType==1">
 												<text v-if="item.markupCoupon.validStartTime==item.markupCoupon.validEndTime" class="gray-9 f12">{{ item.markupCoupon.validStartTime }} 当天有效</text>
 												<text v-else class="gray-9 f12">{{ item.markupCoupon.validStartTime }} - {{ item.markupCoupon.validEndTime }}</text>
 											</block>
 											<block v-else-if="item.markupCoupon.validType==2">
-												<text v-if="item.receiveTime==item.receiveTime" class="gray-9 f12 f12">{{ item.receiveTime }} 当天有效</text>
-												<text v-else class="gray-9 f12">{{ item.receiveTime }} - {{ item.receiveTime }}</text>
+												<text v-if="item.receiveTime==item.markupCoupon.delayTime" class="gray-9 f12 f12">{{ item.receiveTime }} 当天有效</text>
+												<text v-else class="gray-9 f12">{{ item.receiveTime }} - {{ item.markupCoupon.delayTime }}</text>
 											</block>
 										</view>
 									</view>
@@ -251,13 +251,12 @@
 					if (res.data.status === 0) {
 						let btm = (res.data.page.currentPage >= res.data.page.allPageAmount) ? 'noMore' : 'loadMore';
 						data = JSON.parse(res.data.results);
-						console.log(data)
 						data.forEach(item => {
 							item.isOpen = false;
-							item.markupCoupon.validStartTime = (item.markupCoupon.validStartTime!=null)?item.markupCoupon.validStartTime.slice(0,10):'';//使用开始时间
-							item.markupCoupon.validEndTime = (item.markupCoupon.validEndTime!=null)?item.markupCoupon.validEndTime.slice(0,10):'';//使用结束时间
-							item.receiveTime = (item.receiveTime!=null)?item.receiveTime.slice(0,10):'';	//领取时间
-							item.markupCoupon.delayTime = (item.markupCoupon.delayTime!=null)?item.markupCoupon.delayTime.slice(0,10):'';//相对结束时间
+							item.markupCoupon.validStartTime = (item.markupCoupon.validStartTime!=null)?item.markupCoupon.validStartTime.slice(0,10).replace(/-/g,"."):'';//使用开始时间
+							item.markupCoupon.validEndTime = (item.markupCoupon.validEndTime!=null)?item.markupCoupon.validEndTime.slice(0,10).replace(/-/g,"."):'';//使用结束时间
+							item.receiveTime = (item.receiveTime!=null)?item.receiveTime.slice(0,10).replace(/-/g,"."):'';	//领取时间
+							item.markupCoupon.delayTime = (item.markupCoupon.delayTime!=null)?item.markupCoupon.delayTime.slice(0,10).replace(/-/g,"."):'';//相对结束时间
 						})
 						if (rid == "new") { // 判断当前读取是刷新读取还是加载读取
 							that.$set(that.list,state,data);
@@ -347,7 +346,7 @@
 	}
 	.couponLeft2 {
 		width: 80px;
-		background: #999999;
+		background: #bbbbbb;
 		overflow: hidden;
 	}
 	/* .couponLeft::after, .couponLeft2::after {
