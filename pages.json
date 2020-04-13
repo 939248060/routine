@@ -167,8 +167,20 @@
 				"navigationBarTextStyle": "#FFFFFF",
 				"navigationBarTitleText": "上门回收"
 			}
+		},{//签到活动页
+			"path" : "pages/signin/signin",
+			"style" : {
+				"navigationBarTextStyle": "#FFFFFF",
+				"navigationBarTitleText": "签到活动"
+			}
+		},{//活动详情页
+			"path" : "pages/activity/activity",
+			"style" : {
+				"navigationBarTextStyle": "#FFFFFF",
+				"navigationBarTitleText": "活动详情"
+			}
 		}
-  ],
+	],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "量心回收",
