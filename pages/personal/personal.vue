@@ -11,7 +11,7 @@
 						<view class="f18 ml10 blue1">
 							<open-data type="userNickName" />
 						</view>
-						<view class="ml10 gray-9 f12">用户卡号：{{ card }}</view>
+						<view class="ml10 gray-9 f12 tnowrap">用户卡号：{{ card }}</view>
 					</view>
 				</view>
 				<view>
@@ -21,25 +21,21 @@
 					</view>
 				</view>
 			</view>
-			<view class="row jcaround txtcenter f18 userInfo ml20 mr20 lh18">
+			<view class="row jcaround txtcenter f18 userInfo lh18">
 				<navigator url="../cashlist/cashlist">
-					<view v-if="develop == '测试'" class="bold mb5"> 1200 </view>
-					<view v-else class="bold mb5"> {{customer.cash}} </view>
+					<view class="bold mb5"> {{customer.cash}} </view>
 					<view class="gray-9 f12"> 零钱 </view>
 				</navigator>
 				<navigator>
-					<view v-if="develop == '测试'" class="bold mb5"> 100000 </view>
-					<view v-else class="bold mb5"> {{customer.score}} </view>
+					<view class="bold mb5"> {{customer.score}} </view>
 					<view class="gray-9 f12"> 量心币 </view>
 				</navigator>
 				<navigator url="../couponlist/couponlist">
-					<view v-if="develop == '测试'" class="bold mb5"> 100 </view>
-					<view v-else class="bold mb5"> 0 </view>
+					<view class="bold mb5"> 100 </view>
 					<view class="gray-9 f12"> 加价券 </view>
 				</navigator>
 				<navigator>
-					<view v-if="develop == '测试'" class="bold mb5"> 100000 </view>
-					<view v-else class="bold mb5"> 0 </view>
+					<view class="bold mb5"> 100000 </view>
 					<view class="gray-9 f12"> 积分 </view>
 				</navigator>
 			</view>
@@ -57,10 +53,10 @@
 			</view>
 			<view class="row aicenter ml20">
 				<image src="../../static/images/liwu.png" class="mr10" style="width: 40px; height: 40px;" />
-				<view class="column">
+				<navigator class="column" url="../signin/signin">
 					<text class="f16 gray-6 bold">签到活动</text>
 					<text class="gray-9 f12">获得海量奖励</text>
-				</view>
+				</navigator>
 			</view>
 		</view>
 		<!-- 基础功能 -->
@@ -114,12 +110,11 @@
 		data() {
 			return {
 				host: '',
-				customer: {},
+				customer: {},	//用户信息
 				score: 0,
 				balance: 0,
 				idCard: '',
 				card: '',			//用户卡号
-				develop: '测试',//用于测试界面，打包删除
 			}
 		},
 		methods: {
@@ -161,37 +156,37 @@
 				}).finally(() => {
 					that.$hideLoading()  // 关闭过度遮罩
 				})
-				// uni.request({
-				// 	url: that.data.host + '/customer/user/findCustomerInfo.do',
-				// 	method: 'post',
-				// 	header: {
-				// 		'content-type': 'application/x-www-form-urlencoded; charset=utf-8',
-				// 		'token': token
-				// 	},
-				// 	success: function(dom) {
-				// 		//console.log(dom);
-				// 		if (dom.statusCode != 200) {
-				// 			util.showToast('发生未知错误：' + dom.statusCode, 'none', 3000);
-				// 			return;
-				// 		}
-				// 		util.isLogin(dom.header);
-				// 		let res = dom.data;
-				// 		console.log(res);
-				// 		if (res.status == 0) {
-				// 			that.setData({
-				// 				customer: JSON.parse(res.results)
-				// 			});
-				// 			//that.setData({ "score": res[0].Score, "balance": res[0].Balance, });
-				// 			//that.setData({ "countScore": res[0].CountScore, "countBalance": res[0].CountBalance });
-				// 		} else {
+				uni.request({
+					url: that.data.host + '/customer/user/findCustomerInfo.do',
+					method: 'post',
+					header: {
+						'content-type': 'application/x-www-form-urlencoded; charset=utf-8',
+						'token': token
+					},
+					success: function(dom) {
+						//console.log(dom);
+						if (dom.statusCode != 200) {
+							util.showToast('发生未知错误：' + dom.statusCode, 'none', 3000);
+							return;
+						}
+						util.isLogin(dom.header);
+						let res = dom.data;
+						console.log(res);
+						if (res.status == 0) {
+							that.setData({
+								customer: JSON.parse(res.results)
+							});
+							//that.setData({ "score": res[0].Score, "balance": res[0].Balance, });
+							//that.setData({ "countScore": res[0].CountScore, "countBalance": res[0].CountBalance });
+						} else {
 
-				// 		}
-				// 	},
-				// 	fail: function(err) {
-				// 		console.log(err);
-				// 		util.showToast(err.errMsg, 'none', 3000);
-				// 	}
-				// });
+						}
+					},
+					fail: function(err) {
+						console.log(err);
+						util.showToast(err.errMsg, 'none', 3000);
+					}
+				});
 			},
 			// 点击登录弹出提示框
 			logout: function(e) {
