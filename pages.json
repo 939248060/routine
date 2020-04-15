@@ -151,11 +151,6 @@
 				"navigationBarTextStyle": "#FFFFFF",
 				"navigationBarTitleText": "我的订单"
 			}
-		},{//我的订单列表页=>智能回收
-			"path" : "pages/orderlist/smartorderlist",
-			"style" : {
-				// "navigationStyle":"custom"	//自定义页面导航栏
-			}
 		},{// 积分兑换订单详情
 			"path" : "pages/exchangeinfo/exchangeinfo",
 			"style" : {
