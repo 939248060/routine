@@ -24,9 +24,9 @@
 </template>
 
 <script>
-	import smartorderlist from "./smartorderlist.vue"	//智能回收
-	import recyorderlist from "./recyorderlist.vue"	//上门回收
-	import dryorderlist from "./dryorderlist.vue"	//干垃圾投放
+	import smartorderlist from "../../components/orderlist/smartorderlist.vue"	//智能回收
+	import recyorderlist from "../../components/orderlist/recyorderlist.vue"	//上门回收
+	import dryorderlist from "../../components/orderlist/dryorderlist.vue"	//干垃圾投放
 	
 	export default {
 		components:{
