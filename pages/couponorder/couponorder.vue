@@ -32,8 +32,9 @@
 				</radio-group>
 			</scroll-view>
 		</view>
-		
-		<button class="sendOrder" @click='sendOrder'>立即使用</button>
+		<button class="sendOrder" @click='sendOrder' :class="sendBtn?'bg-blue1':'bg-gray'"> {{ sendBtn?'立即使用':'已使用' }} </button>
+		<!-- 遮罩 -->
+		<loading/>
 	</view>
 </template>
 
@@ -42,6 +43,7 @@
 		data() {
 			return {
 				isOpen: false,	//使用规则
+				sendBtn: true,	//按钮状态
 				current: '',		//选中的订单
 				mcrId: '',			//加价券id
 				serialNum: '',	//选中的订单编号
@@ -104,17 +106,23 @@
 			//立即使用
 			sendOrder() {
 				let that = this;
+				if (that.sendBtn == false) {
+					that.$util.showToast('已使用加价券，请勿重复领取。', 'none', 1000);
+					return
+				}
 				if ( that.current  == null ) {
 					that.$util.showToast('请先选择需要加价的订单。', 'none', 1000);
 					return
 				}
+				that.$showLoading();  //显示遮罩
 				let data = {
 					mcrId: that.mcrId,
 					serialNum: that.serialNum
 				};
 				that.$request.postToken("/users/marcourecord/exchange.do", data).then((res) => {
 					if (res.data.status === 0) {
-						that.$util.showToast( res.data.results, 'none', 2000);
+						that.sendBtn = false;
+						that.$util.showToast( res.data.results, 'none', 3000);
 						setTimeout(function() {
 							uni.navigateBack({
 								delta: 1	//返回上一页，加价券列表页
@@ -160,7 +168,6 @@
 		width: 70%;
 		margin-top: 20px;
 		color: #FFFFFF;
-		background: #00A2ED;
 		border-radius: 10px;
 		line-height: 2em;
 	}
