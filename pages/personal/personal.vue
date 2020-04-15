@@ -44,20 +44,20 @@
 		<!-- #endif -->
 		<!-- 邀请有礼 -->
 		<view class="yaoqing row bg-white mb15 txtleft">
-			<view class=" row aicenter righteee" style="width: 50%;">
+			<navigator class=" row aicenter righteee" style="width: 50%;" url="../invite/invite">
 				<image src="../../static/images/liwu.png" class="mr10" style="width: 40px; height: 40px;" />
-				<navigator class="column" url="../invite/invite">
+				<view class="column">
 					<text class="f16 gray-6 bold">邀请有礼</text>
 					<text class="gray-9 f12">赢取现金大奖</text>
-				</navigator>
-			</view>
-			<view class="row aicenter ml20">
+				</view>
+			</navigator>
+			<navigator class="row aicenter ml20" url="../signin/signin">
 				<image src="../../static/images/liwu.png" class="mr10" style="width: 40px; height: 40px;" />
-				<navigator class="column" url="../signin/signin">
+				<view class="column">
 					<text class="f16 gray-6 bold">签到活动</text>
 					<text class="gray-9 f12">获得海量奖励</text>
-				</navigator>
-			</view>
+				</view>
+			</navigator>
 		</view>
 		<!-- 基础功能 -->
 		<view class="content row bg-white mb15 wrap">
@@ -156,37 +156,37 @@
 				}).finally(() => {
 					that.$hideLoading()  // 关闭过度遮罩
 				})
-				uni.request({
-					url: that.data.host + '/customer/user/findCustomerInfo.do',
-					method: 'post',
-					header: {
-						'content-type': 'application/x-www-form-urlencoded; charset=utf-8',
-						'token': token
-					},
-					success: function(dom) {
-						//console.log(dom);
-						if (dom.statusCode != 200) {
-							util.showToast('发生未知错误：' + dom.statusCode, 'none', 3000);
-							return;
-						}
-						util.isLogin(dom.header);
-						let res = dom.data;
-						console.log(res);
-						if (res.status == 0) {
-							that.setData({
-								customer: JSON.parse(res.results)
-							});
-							//that.setData({ "score": res[0].Score, "balance": res[0].Balance, });
-							//that.setData({ "countScore": res[0].CountScore, "countBalance": res[0].CountBalance });
-						} else {
+				// uni.request({
+				// 	url: that.data.host + '/customer/user/findCustomerInfo.do',
+				// 	method: 'post',
+				// 	header: {
+				// 		'content-type': 'application/x-www-form-urlencoded; charset=utf-8',
+				// 		'token': token
+				// 	},
+				// 	success: function(dom) {
+				// 		//console.log(dom);
+				// 		if (dom.statusCode != 200) {
+				// 			util.showToast('发生未知错误：' + dom.statusCode, 'none', 3000);
+				// 			return;
+				// 		}
+				// 		util.isLogin(dom.header);
+				// 		let res = dom.data;
+				// 		console.log(res);
+				// 		if (res.status == 0) {
+				// 			that.setData({
+				// 				customer: JSON.parse(res.results)
+				// 			});
+				// 			//that.setData({ "score": res[0].Score, "balance": res[0].Balance, });
+				// 			//that.setData({ "countScore": res[0].CountScore, "countBalance": res[0].CountBalance });
+				// 		} else {
 
-						}
-					},
-					fail: function(err) {
-						console.log(err);
-						util.showToast(err.errMsg, 'none', 3000);
-					}
-				});
+				// 		}
+				// 	},
+				// 	fail: function(err) {
+				// 		console.log(err);
+				// 		util.showToast(err.errMsg, 'none', 3000);
+				// 	}
+				// });
 			},
 			// 点击登录弹出提示框
 			logout: function(e) {
@@ -208,11 +208,6 @@
 			}
 		},
 		onLoad() {
-			// // 隐藏系统tabBar
-			// wx.hideTabBar();
-			// // 绘制新的tabbar
-			// app.editTabbar();
-			
 			let that = this;
 			that.host = that.$app.globalData.host;
 			that.getUserCard();
