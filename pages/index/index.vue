@@ -86,88 +86,33 @@
 		<view class="bin">
 			<view class="row jcbetween f12 gray-9 pb5 mb10">
 				<text class="f16 gray-3 bold">附近回收站</text>
-				<view class="row ascenter" @click="clickmap">
+				<navigator class="row ascenter" url="../recySmart/recySmart" >
 					查看更多 <view class="rout icon-right lh18" />
-				</view>
+				</navigator>
 			</view>
 			<!-- 回收站列表 -->
 			<view class="binList">
-				<view class="column binItem">
-					<view class="row jcbetween mb5">
-						<view class="row aicenter">
-							<view class="rout icon-locationfill blue1 mr5" />
-							<text class="f16 bold">亚洲豪苑</text>
-						</view>
-						<text class="blue1 f14">1500.0m</text>
-					</view>
-					<view class="row jcbetween">
-						<view class="column">
-							<text class="gray-9 f12 mb5">豪巷街和豪苑路交汇处（亚洲豪苑北区南门西侧）</text>
-							<view class="row">
-								<text class="lab labblue1 mr5 radius4">智能回收箱</text>
-								<text class="box boxblue1 mr5 radius4">正常投递</text>
+				<block v-for="(item,index) in smartList" :key="index" >
+					<navigator class="column binItem" url="../recySmart/recySmart">
+						<view class="row jcbetween mb5">
+							<view class="row aicenter">
+								<view class="rout icon-locationfill blue1 mr5" />
+								<text class="f16 bold">{{ item.name }}站</text>
 							</view>
+							<text class="blue1 f14">{{ item.distance }}m</text>
 						</view>
-						<view class="ascenter rout icon-right blue1 f18 bold mr10" style="border: 2px solid;border-radius: 50%;padding: 2px;" />
-					</view>
-				</view>
-				<view class="column binItem">
-					<view class="row jcbetween mb5">
-						<view class="row aicenter">
-							<view class="rout icon-locationfill blue1 mr5" />
-							<text class="f16 bold">西岭广场</text>
-						</view>
-						<text class="blue1 f14">2100.0m</text>
-					</view>
-					<view class="row jcbetween">
-						<view class="column">
-							<text class="gray-9 f12 mb5">香樟林西南角</text>
-							<view class="row">
-								<text class="lab labblue1 mr5 radius4">智能回收箱</text>
-								<text class="box boxred mr5 radius4">智能箱已满</text>
+						<view class="row jcbetween">
+							<view class="column">
+								<text class="gray-9 f12 mb5">{{ item.address }}</text>
+								<view class="row">
+									<text class="lab labblue1 mr5 radius4">智能回收箱</text>
+									<text class="box boxblue1 mr5 radius4">正常投递</text>
+								</view>
 							</view>
+							<view class="ascenter rout icon-right blue1 f18 bold mr10" style="border: 2px solid;border-radius: 50%;padding: 2px;" />
 						</view>
-						<view class="ascenter rout icon-right blue1 f18 bold mr10" style="border: 2px solid;border-radius: 50%;padding: 2px;" />
-					</view>
-				</view>
-				<view class="column binItem">
-					<view class="row jcbetween mb5">
-						<view class="row aicenter">
-							<view class="rout icon-locationfill blue1 mr5" />
-							<text class="f16 bold">金垦金南路</text>
-						</view>
-						<text class="blue1 f14">3000.0m</text>
-					</view>
-					<view class="row jcbetween">
-						<view class="column">
-							<text class="gray-9 f12 mb5">金垦路与金南路交汇处</text>
-							<view class="row">
-								<text class="lab labblue1 mr5 radius4">智能回收箱</text>
-								<text class="box boxblue1 mr5 radius4">正常投递</text>
-							</view>
-						</view>
-						<view class="ascenter rout icon-right blue1 f18 bold mr10" style="border: 2px solid;border-radius: 50%;padding: 2px;" />
-					</view>
-				</view>
-				<view class="column binItem">
-					<view class="row jcbetween mb5">
-						<view class="row aicenter">
-							<view class="rout icon-locationfill blue1 mr5" />
-							<text class="f16 bold">金山小区</text>
-						</view>
-						<text class="blue1 f14">5000.0m</text>
-					</view>
-					<view class="row jcbetween">
-						<view class="column">
-							<text class="gray-9 f12 mb5">滨涯路往友谊路进200米右侧（金山小区西门）</text>
-							<view class="row">
-								<text class="lab labblue1 mr5 radius4">智能回收箱</text>
-								<text class="box boxblue1 mr5 radius4">正常投递</text>
-							</view>
-						</view>
-						<view class="ascenter rout icon-right blue1 f18 bold mr10" style="border: 2px solid;border-radius: 50%;padding: 2px;" />
-					</view>
-				</view>
+					</navigator>
+				</block>
 			</view>
 		</view>
 		<!--加载动画-->
@@ -176,211 +121,26 @@
 </template>
 
 <script>
-	import callrecy from "@../../components/callrecy/callrecy.vue";
 
 	export default {
-		components: {
-			callrecy
-		},
 		data() {
 			return {
-				xianshi1: false,
-				"bnrUrl": [{
+				"bnrUrl": [{	//banner图地址
 					"url": "../../static/images/swiper1.png"
 				}, {
 					"url": "../../static/images/swiper2.png"
 				}, {
 					"url": "../../static/images/swiper3.png"
 				}],
-				latitude: 20.044220,
-				longitude: 110.19989,
-				markers: [],
-				host: '',
-				governmentHid: false, // 政府回收面板
-				merchantHid: false, // 商户回收面板
-				banner: [
-					'../../images/banner1.jpg'
-				],
-				optionimg: [{
-						"url": "../../images/optionimg1.jpg",
-						"action": "../wareslist/wareslist"
-					},
-					{
-						"url": "../../images/optionimg2.jpg",
-						"action": "../test/test"
-					},
-					{
-						"url": "../../images/optionimg3.jpg"
-					},
-					{
-						"url": "../../images/optionimg4.jpg"
-					}
-				],
-				customer: {},
-				tabbar: {},
-				address: {},
-				rolltext: [{
-						"text": '量心回收正式上线啦，欢迎大家关注环境保护工作'
-					},
-					{
-						"text": '垃圾分一分，生活美十分！'
-					},
-				],
-				motto: 'Hello World',
-				userInfo: {},
-				hasUserInfo: false,
-				canIUse: wx.canIUse('button.open-type.getUserInfo'),
-				loadModel: false,
-				card: '',		//用户卡号，用于判断用户是否登录
+				latitude: 0,	//当前位置的纬度
+				longitude: 0, //当前位置的经度
+				customer: {},	//用户信息
+				address: {},	//收货地址信息
+				card: '',			//用户卡号，用于判断用户是否登录
+				smartList: [],	//站点列表
 			}
 		},
 		methods: {
-			// 弹出预约回收面板
-			tapOpenPanel: function(e) {
-				let that = this;
-				let type = e.currentTarget.dataset.recy; // 获取回收类型
-				if (type == "1") {
-					that.$data.governmentHid = true;
-				} else if (type == "4") {
-					that.$data.merchantHid = true;
-				}
-			},
-			// 关闭预约回收面板
-			tapClosePanel: function(e) {
-				let that = this;
-				console.log(e)
-				let type = e.currentTarget.dataset.recy; // 获取回收类型
-				if (type == "1") {
-					that.$data.governmentHid = false;
-				} else if (type == "4") {
-					that.$data.merchantHid = false;
-				}
-			},
-			// 政府回收呼叫回收
-			sendGovernment: function(e) {
-				let that = this;
-				let address = that.$data.address;
-				if (that.$stringUtil.isEmpty(address.contact)) {
-					that.$util.showToast("请选择收货地址", "none", 4000)
-					return false;
-				}
-				that.$showLoading(); // 显示遮罩
-				let temp = address; // 添加地址
-				temp.recyType = '1'; // 添加上门类型，1：普通上门，2：家电，3：家具，4：合伙人
-				that.$request.postToken("/users/recyorder/government.do", {
-					data: JSON.stringify(temp)
-				}).then((res) => {
-					//console.log(res);
-					that.$util.showToast(res.data.results, 'none', 3000);
-					that.$data.governmentHid = false;
-				}).catch((err) => {
-					console.log(err);
-					that.$util.showToast(err, 'none', 5000);
-				}).finally(() => {
-					that.$hideLoading();
-				})
-			},
-			// 商户回收呼叫回收
-			sendMerchant: function(e) {
-				let that = this;
-				let address = that.$data.address;
-				if (that.$stringUtil.isEmpty(address.contact)) {
-					that.$util.showToast("请选择收货地址", "none", 4000)
-					return false;
-				}
-				// if(address.area.indexOf('龙华区') > 0){
-				// 	that.$util.showToast("该区域不属于回收区域！", "none", 4000)
-				// 	return false;
-				// }
-				that.$showLoading(); // 显示遮罩
-				let temp = address; // 添加地址
-				temp.recyType = '4'; // 添加上门类型，1：普通上门，2：家电，3：家具，4：合伙人
-				that.$request.postToken("/users/recyorder/merchant.do", {
-					data: JSON.stringify(temp) 
-				}).then((res) => {
-					//console.log(res);
-					that.$util.showToast(res.data.results, 'none', 3000);
-					that.$data.merchantHid = false;
-				}).catch((err) => {
-					console.log(err);
-					that.$util.showToast(err, 'none', 5000);
-				}).finally(() => {
-					that.$hideLoading();
-				})
-			},
-			getCenterLocation: function() {
-				console.log()
-				this.mapCtx.getCenterLocation({
-					success: function(res) {
-						console.log(res.longitude)
-						console.log(res.latitude)
-					}
-				})
-			},
-			tapInvite: function(e) {
-				let that = this;
-				uni.navigateTo({
-					url: '../showhtml/showhtml?nav=invite',
-				})
-			},
-			moveToLocation: function() {
-				this.mapCtx.moveToLocation()
-			},
-			translateMarker: function() {
-				this.mapCtx.translateMarker({
-					markerId: 1,
-					autoRotate: true,
-					duration: 1000,
-					destination: {
-						latitude: 23.10229,
-						longitude: 113.3345211,
-					},
-					animationEnd() {
-						console.log('animation end')
-					}
-				})
-			},
-			includePoints: function() {
-				this.mapCtx.includePoints({
-					padding: [10],
-					points: []
-				})
-			},
-			//获取当前地图的缩放级别
-			scaleClick: function() {
-				this.mapCtx.getScale({
-					success: function(res) {
-						console.log(res.scale)
-					}
-				})
-			},
-			//获取当前地图的视野范围
-			getRegionClick: function() {
-				this.mapCtx.getRegion({
-					success: function(res) {
-						console.log(res.southwest)
-						console.log(res.northeast)
-					}
-				})
-			},
-			// 跑马灯
-			rollrun: function() {
-				let that = this;
-				let rollArray = that.$data.rollArray;
-				let interval = setInterval(function() {
-					if (-that.data.marqueeDistance < that.data.length) {
-						vm.setData({
-							marqueeDistance: vm.data.marqueeDistance - vm.data.marqueePace,
-						});
-					} else {
-						clearInterval(interval);
-						that.setData({
-							marqueeDistance: vm.data.windowWidth
-						});
-						that.rollrun();
-					}
-				}, that.data.interval);
-			},
 			//	获取用户信息
 			getCustomerInfo: function() {
 				let that = this;
@@ -396,73 +156,6 @@
 					that.$util.showToast(err, 'none', 5000);
 				}).finally(() => {
 					that.$hideLoading();
-				})
-			},
-			// 上门回收
-			// callRecycle: function(e) {
-			// 	let that = this;
-			// 	that.$showLoading();    //显示遮罩
-			// 	request.postToken("/users/address/findDefaultAddress.do", null).then((res) => {
-			// 		//console.log(res);
-			// 		if (res.data.status === 0) {
-			// 			console.log(JSON.parse(res.data.results));
-			// 			that.$data.address = JSON.parse(res.data.results);
-			// 			that.$refs['callrecy'].showContent();
-			// 			that.$refs['callrecy'].showDialog();
-			// 		} else {
-			// 			util.showToast(res.data.results, 'none', 4000);
-			// 		}
-			// 	}).catch((err) => {
-			// 		//console.log(err);
-			// 		util.showToast(err.errMsg, 'none', 4000);
-			// 		if (err.errMsg === '401') {
-			// 			uni.redirectTo({
-			// 				url: '../login/login'
-			// 			});
-			// 		}
-			// 	})
-			// },
-			link: function(e) {
-				let that = this;
-				let url = e.currentTarget.dataset.url;
-				if (url != null && url != "") {
-					uni.navigateTo({
-						url: url
-					});
-				} else {
-					that.$util.showToast("正在建设中", 'none', 3000);
-				}
-			},
-			linkPartner: function() {
-				uni.navigateTo({
-					url: '../qrcode/qrcode'
-				})
-			},
-			linkHelp: function() {
-				uni.navigateTo({
-					url: '../wareslist/wareslist'
-				})
-			},
-			imglink: function(e) {
-				let that = this;
-				//console.log(e.currentTarget);
-				let url = e.currentTarget.dataset.url;
-				if (url != null && url != "") {
-					uni.navigateTo({
-						url: url
-					});
-				}
-			},
-			//事件处理函数
-			bindViewTap: function() {
-				uni.navigateTo({
-					url: '../logs/logs'
-				})
-			},
-			clickmap: function(e) {
-				console.log("clickmap")
-				uni.navigateTo({
-					url: '../recySmart/recySmart',
 				})
 			},
 			//设置用户的默认地址
@@ -485,8 +178,32 @@
 					that.$hideLoading();
 				})
 			},
-			// //测试两点距离
-			// getDistance1: function(lat1, lng1, lat2, lng2) {
+			//获取附近站点列表
+			getSmartList (lng, lat) {
+				let that =  this;
+				let data = {
+					lng:	lng,
+					lat:	lat,
+					currPage: 1,
+					pageSize: 5
+				}
+				that.$request.postToken("/users/smartBin/findNearbyPage.do", data).then((res) => {
+					if (res.data.status === 0) {
+						res = JSON.parse(res.data.results);
+						console.log(res)
+						that.smartList = res;
+					} else {
+						that.$util.showToast(res.data.results, 'none', 5000);
+					}
+				}).catch((err) => {
+					console.log(err);
+					that.$util.showToast(err, 'none', 5000);
+				}).finally(() => {
+					
+				})
+			},
+			// //测试两点距离方法一，公式算法，误差比方法二大
+			// getDistance1: function(lng1, lat1,  lng2, lat2) {
 			// 	var radLat1 = lat1 * Math.PI / 180.0;
 			// 	var radLat2 = lat2 * Math.PI / 180.0;
 			// 	var a = radLat1 - radLat2;
@@ -496,8 +213,9 @@
 			// 	s = Math.round(s * 10000) / 10000;
 			// 	return s;
 			// },
+			// //测试两点距离方法二，请求高德api计算，误差相对小点
 			// /* 向高德地图api发送经纬度获取地址详情 */
-			// getDistance2: function(lat1, lng1, lat2, lng2){
+			// getDistance2: function(lng1, lat1,  lng2, lat2){
 			// 	let that = this;
 			// 	let key = 'b1ba7b9e724ff8b14678ee90a61856da';
 			// 	let origins =  lng1 + ',' + lat1;
@@ -507,7 +225,7 @@
 			// 				+ '&output=json&key=' + key 
 			// 				+ '&type=0';             // 0 直线距离
 			// 	that.$request.get(url).then((res) => {
-			// 		console.log(res)
+			// 		console.log(res.data.results[0].distance)
 			// 	}).catch((err) => { 
 			// 		console.log(err) 
 			// 		that.$util.showToast(err, 'none', 5000);
@@ -515,23 +233,20 @@
 					
 			// 	})
 			// }
-			
 		},
 		onLoad() {
 			let that = this;
 			that.getDefaultAddr(); // 获取默认地址
 			that.card = uni.getStorageSync("card");	//获取用户卡号，用于判断用户是否登录
-		},
-		onReady() {
-			this.myMap = uni.createMapContext("myMap", this);
-			this.myMap.moveToLocation();
 			uni.getLocation({
-			    type: 'wgs84',
-			    success: function (res) {
-			        console.log('当前位置的经度：' + res.longitude);
-			        console.log('当前位置的纬度：' + res.latitude);
-			    }
+				type: 'wgs84',
+				success: function (res) {
+					console.log('当前位置的经度：' + res.longitude);
+					console.log('当前位置的纬度：' + res.latitude);
+					that.getSmartList(res.longitude, res.latitude);//获取附近站点列表
+				}
 			});
+			
 		},
 		onShow() {
 			let that = this;
