@@ -358,7 +358,6 @@
 			//#ifdef MP-ALIPAY
 			that.mapheight = that.$app.globalData.systemInfo.windowHeight;
 			//#endif
-			console.log(that.mapheight)
 			that.getLocation();
 			// setTimeout(()=>{
 			// 	that.mapheight = that.$app.globalData.systemInfo.windowHeight + 50;
