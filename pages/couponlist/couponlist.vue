@@ -151,7 +151,8 @@
 				</scroll-view>
 			</swiper-item>
 		</swiper>
-		
+		<!-- 遮罩 -->
+		<loading/>
 	</view>
 </template>
 
