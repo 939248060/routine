@@ -39,8 +39,7 @@
 					<view class="mb5 rout icon-recharge f26 blue1" />
 					<text class="gray-9 f12 mb5">零钱</text>
 					<view class="f14">
-						<text v-if="card == ''" class="bold f18 mr5">--</text>
-						<text v-else class="bold f18 mr5 black"> {{customer.cash}} </text>
+						<text class="bold f18 mr5 black"> {{ customer.cash?customer.cash:'--' }} </text>
 						元
 					</view>
 				</navigator>
@@ -48,8 +47,7 @@
 					<view class="mb5 rout icon-coin f26 blue1" />
 					<text class="gray-9 f12 mb5">量心币</text>
 					<view class="f14">
-						<text v-if="card == ''" class="bold f18 mr5">--</text>
-						<text v-else class="bold f18 mr5 black"> {{customer.score}} </text>
+						<text class="bold f18 mr5 black"> {{ customer.score?customer.score:'--' }} </text>
 						个
 					</view>
 				</navigator>
@@ -93,7 +91,7 @@
 			<!-- 回收站列表 -->
 			<view class="binList">
 				<block v-for="(item,index) in smartList" :key="index" >
-					<navigator class="column binItem" url="../recySmart/recySmart">
+					<navigator class="column binItem" :url="'../recySmart/recySmart?lng='+item.lng+'&lat='+item.lat+'&code='+item.code">
 						<view class="row jcbetween mb5">
 							<view class="row aicenter">
 								<view class="rout icon-locationfill blue1 mr5" />
@@ -121,7 +119,6 @@
 </template>
 
 <script>
-
 	export default {
 		data() {
 			return {
@@ -132,8 +129,6 @@
 				}, {
 					"url": "../../static/images/swiper3.png"
 				}],
-				latitude: 0,	//当前位置的纬度
-				longitude: 0, //当前位置的经度
 				customer: {},	//用户信息
 				address: {},	//收货地址信息
 				card: '',			//用户卡号，用于判断用户是否登录
@@ -246,7 +241,6 @@
 					that.getSmartList(res.longitude, res.latitude);//获取附近站点列表
 				}
 			});
-			
 		},
 		onShow() {
 			let that = this;
@@ -317,388 +311,5 @@
 		border-radius: 4px;
 		margin-bottom: 15px;
 		border: #00a2ed 1px dashed;
-	}
-	
-	
-	
-
-	.cashscore {
-		width: 50%;
-		padding: 5px 5px;
-		box-shadow: 0px 0px 4px #cccccc;
-	}
-
-	.cashscore>view:nth-child(1) {
-		width: 30%;
-	}
-
-	.cashscore>view:nth-child(1)>image {
-		width: 90%;
-		text-align: right;
-		vertical-align: middle;
-	}
-
-	.cashscore>view:nth-child(2) {
-		width: 70%;
-		text-align: center;
-	}
-
-
-	.shadow {
-		box-shadow: 0px 0px 4px #cccccc;
-	}
-
-	.stamp {
-		background: #ffffff;
-		background-image: -webkit-gradient(linear, 50% 0, 0 100%, from(transparent), color-stop(.5, transparent), color-stop(.5, #e5e5e5), to(#e5e5e5)),
-			-webkit-gradient(linear, 50% 0, 100% 100%, from(transparent), color-stop(.5, transparent), color-stop(.5, #e5e5e5), to(#e5e5e5));
-		background-image: -moz-linear-gradient(50% 0 -45deg, transparent, transparent 50%, #e5e5e5 50%, #e5e5e5),
-			-moz-linear-gradient(50% 0 -135deg, transparent, transparent 50%, #e5e5e5 50%, #e5e5e5);
-		background-size: 15px 10px;
-		background-repeat: repeat-x;
-		background-position: 0 100%;
-
-	}
-
-	.banner {
-		padding-top: 5px;
-		text-align: center;
-		background: #fff;
-	}
-
-	.swiperimg {
-		width: 90%;
-		border-radius: 10px;
-		box-shadow: 0px 0px 5px #ccc
-	}
-
-	.tlemenu1 {
-		width: 100%;
-		display: flex;
-		flex-wrap: wrap;
-		flex-direction: row;
-		padding: 0xp 10px;
-		justify-content: center;
-		align-items: center;
-		background: #fff;
-	}
-
-	/* 政府回收和合伙人回收弹出框样式 */
-	.dialog {
-		position: fixed;
-		z-index: 101;
-		width: 85%;
-		max-width: 300px;
-		top: 50%;
-		left: 50%;
-		transform: translate(-50%, -50%);
-		-webkit-transform: translate(-50%, -50%);
-	}
-
-	/* 收货地址样式 */
-	.address {
-		height: 55px;
-		vertical-align: middle;
-		border: 2px dashed #ccc;
-		text-align: left;
-	}
-
-	.address>view:nth-child(1) {
-		width: 14%;
-	}
-
-	.address>view:nth-child(2) {
-		width: 76%;
-	}
-
-	.address>view:nth-child(3) {
-		width: 10%;
-	}
-
-	.menu {
-		width: 100%;
-	}
-
-	.menu>view {
-		width: 25%;
-		text-align: center;
-	}
-
-	.menu>view>image {
-		width: 50%;
-	}
-
-	.menu>navigator {
-		width: 25%;
-		text-align: center;
-	}
-
-	.menu>navigator>image {
-		width: 50%;
-	}
-
-	/* 邀请有礼样式 */
-	.invite {
-		position: fixed;
-		z-index: 500;
-		width: 200rpx;
-		height: 200rpx;
-		right: 0rpx;
-		bottom: 100rpx;
-	}
-
-	.tlemenu1>view {
-		width: 25%;
-		text-align: center;
-		margin: 0px 0px 10px 0px;
-	}
-
-	.tlemenu1>view>view>.rout {
-		font-size: 22px;
-		color: #fff;
-		padding: 6px 8px;
-		text-align: center;
-		border-radius: 50%;
-		-webkit-border-radius: 50%;
-		margin: 4px 0px;
-	}
-
-	.tlemenu1>view:nth-child(1)>view>.rout {
-		background: linear-gradient(135deg, rgba(252, 203, 40, 0.4), rgba(252, 203, 40, 1));
-	}
-
-	.tlemenu1>view:nth-child(2)>view>.rout {
-		background: linear-gradient(135deg, rgba(61, 216, 255, 0.4), rgba(61, 216, 255, 1));
-	}
-
-	.tlemenu {
-		width: 100%;
-		display: flex;
-		flex-wrap: wrap;
-		flex-direction: row;
-		padding: 0xp 10px;
-		justify-content: center;
-		align-items: center;
-		background: #fff;
-	}
-
-	.tlemenu>view {
-		width: 25%;
-		text-align: center;
-		margin: 0px 0px 10px 0px;
-	}
-
-	.tlemenu>view>view>.rout {
-		font-size: 22px;
-		color: #fff;
-		padding: 6px 8px;
-		text-align: center;
-		border-radius: 50%;
-		-webkit-border-radius: 50%;
-		margin: 4px 0px;
-	}
-
-	.tlemenu>view:nth-child(1)>view>.rout {
-		background: linear-gradient(135deg, rgba(40, 185, 252, 0.4), rgba(40, 185, 252, 1));
-		font-size: 27px;
-	}
-
-	.tlemenu>view:nth-child(2)>view>.rout {
-		background: linear-gradient(135deg, rgba(252, 167, 40, 0.4), rgba(252, 167, 40, 1));
-		font-size: 27px;
-	}
-
-	.tlemenu>view:nth-child(3)>view>.rout {
-		background: linear-gradient(135deg, rgba(70, 231, 49, 0.4), rgba(70, 231, 49, 1));
-		font-size: 27px;
-	}
-
-	.tlemenu>view:nth-child(4)>view>.rout {
-		background: linear-gradient(135deg, rgba(252, 90, 125, 0.4), rgba(252, 90, 125, 1));
-		font-size: 27px;
-	}
-
-	#fangkuang {
-		margin: 2%;
-		box-sizing: border-box;
-		padding: 20rpx;
-		box-shadow: 0 0 20px #f0f0f0;
-		width: 46%;
-		display: flex;
-		align-items: center;
-		justify-content: space-around;
-		justify-items: center;
-	}
-
-	.accountpanel {
-		width: 100%;
-		color: #aaa;
-		display: flex;
-		flex-wrap: wrap;
-		flex-direction: row;
-		background: #fff;
-		text-align: center;
-		padding: 20px 0px 10px 0px;
-	}
-
-	.accountpanel>navigator {
-		width: 50%;
-		position: relative;
-	}
-
-	.scorepanel {}
-
-	.scorepanel>view {
-		width: 50%;
-		display: flex;
-		flex-wrap: wrap;
-		flex-direction: row;
-		justify-content: space-between;
-		align-items: center;
-		height: 30px;
-		padding: 0px 6px 0px 20px;
-
-	}
-
-	.balancepanel::before {
-		content: '';
-		position: absolute;
-		left: 0;
-		top: 14px;
-		width: 1px;
-		height: 30px;
-		background-color: #ccc;
-	}
-
-	.balancepanel>view {
-		display: flex;
-		flex-wrap: wrap;
-		flex-direction: row;
-		justify-content: space-between;
-		align-items: center;
-		height: 30px;
-		padding: 0px 6px 0px 20px;
-	}
-
-	.roll {
-		margin: 5px 0px;
-		padding: 0px 10px;
-		background-color: #fff;
-	}
-
-	.roll>.rout:nth-child(1) {
-		position: absolute;
-		left: 1;
-		top: 1;
-		font-size: 24px;
-		color: #00a2ed;
-		padding-top: 7px;
-	}
-
-	.roll>swiper {
-		margin-left: 30px;
-		padding: 11px 0px;
-		height: 20px;
-	}
-
-	.option {
-		width: 100%;
-		height: 180px;
-		display: flex;
-		flex-wrap: wrap;
-		flex-direction: row;
-		justify-content: space-evenly;
-		align-content: space-around;
-		background-color: #fff;
-		margin-bottom: 60px;
-	}
-
-	.option>image {
-		width: 45%;
-		border-radius: 10px;
-	}
-
-	.imagesize {
-
-		background-color: white;
-	}
-
-	.imagesize image {
-		width: 95%;
-		border-radius: 20rpx;
-	}
-
-	map {
-		margin: 20rpx;
-	}
-
-	button {
-		margin: 20rpx;
-	}
-
-	.height {
-		position: absolute;
-		height: 100rpx;
-		width: 100rpx;
-		left: 130rpx;
-	}
-
-	.rewardname {
-		background: transparent;
-		height: 50rpx;
-		text-align: center;
-		line-height: 50rpx;
-		margin: 0 -10rpx;
-
-	}
-
-	.reward {
-		display: flex;
-		margin-bottom: -80rpx;
-	}
-
-	.nav {
-		text-align: center;
-		width: 300rpx;
-		position: relative;
-		display: inline-block;
-		padding: 8rpx;
-		font-size: 14px;
-		color: white;
-		line-height: 100%;
-	}
-
-	.nav::before {
-		content: '';
-		position: absolute;
-		top: 0;
-		left: 0;
-		right: 0;
-		bottom: 0;
-		z-index: -1;
-
-		transform: perspective(.5em) rotateX(-5deg);
-		background: linear-gradient(to right, rgba(33, 204, 226, 0), rgba(33, 204, 226, 0.5), rgb(106, 173, 250), rgba(33, 204, 226, 0.5), rgba(33, 204, 226, 0));
-	}
-
-	.navmenu {
-		width: 100%;
-		flex-direction: row;
-		position: absolute;
-		display: flex;
-		justify-content: center;
-		z-index: 1;
-		justify-items: center;
-
-	}
-
-	#radius {
-		font-size: 28px;
-		border-radius: 5%;
-	}
-
-	#radius1 {
-		border-radius: 5%;
-		font-size: 28px;
 	}
 </style>
