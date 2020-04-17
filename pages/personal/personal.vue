@@ -23,11 +23,11 @@
 			</view>
 			<view class="row jcaround txtcenter f18 userInfo lh18">
 				<navigator url="../cashlist/cashlist">
-					<view class="bold mb5"> {{customer.cash}} </view>
+					<view class="bold mb5"> {{ customer.cash?customer.cash:'--' }} </view>
 					<view class="gray-9 f12"> 零钱 </view>
 				</navigator>
 				<navigator>
-					<view class="bold mb5"> {{customer.score}} </view>
+					<view class="bold mb5"> {{ customer.score?customer.score:'--' }} </view>
 					<view class="gray-9 f12"> 量心币 </view>
 				</navigator>
 				<navigator url="../couponlist/couponlist">
