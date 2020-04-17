@@ -256,6 +256,164 @@ function getWeek(dateString) {
   }
   return "周" + "日一二三四五六".charAt(date.getDay());
 }
+
+
+function getStatus(code) {
+	let temp = [];
+	if (StringUtil.isEmpty(code)) {   // 判断是否存在
+		return;
+	}
+	/* 智能站/智能箱状态代码，0代表正常，1代表异常或警报
+	 * 0-32位为主机代码，33位后每隔32位为箱体代码
+	 * 如33-64位是1号箱，65-96位是2号箱，以此类推
+	 */
+	let len = code.length / 32;			// 确定循环次数
+	for (let sub = 0;sub < len;sub++) {	// 遍历箱体
+		let subcode = code.substring(sub * 32, sub * 32 + 32);	// 告警数据
+		
+		if (subcode.indexOf("1") < 0) {	// 整箱无异常跳过
+			continue;
+		}
+		let abnormal = { device: (sub == 0) ? "主" : sub };
+		let alarm = [];
+		for (let i = 0;i < 32;i++) {	// 遍历每个状态
+			let status = subcode.substring(i, i + 1);
+			if (status === "1") {
+				alarm.push((sub == "0") ? getSynDevice(i) : getBoxDevice1(i));
+			}
+		}
+		abnormal.alarm = alarm;
+		temp.push(abnormal);
+	}
+	return temp;
+}
+/** 主机设备
+ * @param {Object} state
+ */
+function getSynDevice(state) {
+	let resStr = "";
+	  if (state == 0) {
+	    resStr = "扬声器";
+	  } else if (state == 1) {
+	    resStr = "电子秤";
+	  } else if (state == 2) {
+	    resStr = "显示屏";
+	  } else if (state == 3) {
+	    resStr = "打印机";
+	  } else if (state == 4) {
+	    resStr = "扫码器";
+	  } else if (state == 5) {
+	    resStr = "缺纸";
+	  } else if (state == 6) {
+	    resStr = "正在清运";
+	  }
+	  return resStr;
+}
+
+/** 箱子设备
+ * @param {Object} state	状态位
+ * @param {Object} type		智能站或智能箱
+ * @param {Object} box		箱号
+ */
+function getBoxDevice(state, type, box) {
+  let resStr = "";
+  box = (type == "bin") ? box + "箱" :"";
+  if (state == 0) {
+    resStr = box + "投放口";
+  } else if (state == 1) {
+    resStr = box + "回收门";
+  } else if (state == 2) {
+    resStr = box + "红外1";
+  } else if (state == 3) {
+    resStr = box + "红外2";
+  } else if (state == 4) {
+    resStr = box + "红外3";
+  } else if (state == 5) {
+    resStr = box + "震动";
+  } else if (state == 7) {
+    resStr = box + "红外4";
+  } else if (state == 8) {
+    resStr = box + "门开启";
+  } else if (state == 9) {
+    resStr = box + "锁开启";
+  }
+  return resStr;
+}
+
+/** 箱子设备
+ * @param {Object} state	状态位
+ * @param {Object} type		智能站或智能箱
+ * @param {Object} box		箱号
+ */
+function getBoxDevice1(state) {
+  let resStr = "";
+  if (state == 0) {
+    resStr = "投放口";
+  } else if (state == 1) {
+    resStr = "回收门";
+  } else if (state == 2) {
+    resStr = "红外1";
+  } else if (state == 3) {
+    resStr = "红外2";
+  } else if (state == 4) {
+    resStr = "红外3";
+  } else if (state == 5) {
+    resStr = "震动";
+  } else if (state == 7) {
+    resStr = "红外4";
+  } else if (state == 8) {
+    resStr = "门开启";
+  } else if (state == 9) {
+    resStr = "锁开启";
+  }
+  return resStr;
+}
+//1代智能箱用户端显示信息（品种满箱状态，打印机缺纸状态
+function getBin1(data) {
+	let boxStatus = [];
+	boxStatus.box = [];
+	data.forEach(item => {
+		if (item.device == '主') {
+			item.alarm.forEach(i => {
+				if(i=='缺纸') {
+					boxStatus.mainStatu = "站点打印机缺纸"
+				}
+			})
+		}else{
+			item.alarm.forEach(i => {
+				if(i=='红外1' || i=='红外2' || i=='红外3') {
+					boxStatus.box.push(item.device);
+				}
+			})
+		}
+	})
+	return boxStatus;
+}
+
+//2代智能箱用户端显示信息（品种满箱状态，打印机缺纸状态
+function getBin2(data) {
+	let boxStatus = [];
+	boxStatus.box = [];
+	data.forEach(item => {
+		if (item.device == '主') {
+			item.alarm.forEach(i => {
+				if(i=='缺纸') {
+					boxStatus.mainStatu = "站点打印机缺纸"
+				}
+			})
+		}else{
+			item.alarm.forEach(i => {
+				if(i=='红外1' && i=='红外2') {
+					boxStatus.box.push(item.device);
+				}else if (i=='红外3') {
+					boxStatus.box.push(item.device);
+				}
+			})
+		}
+	})
+	return boxStatus;
+}
+
 module.exports = {
   ergodicScrap: ergodicScrap,
   sumPrice: sumPrice,
@@ -268,6 +426,8 @@ module.exports = {
   checkBankCard: checkBankCard,
   login: login,
   getUserInfo: getUserInfo,
-  getWeek, getWeek
-
+  getWeek: getWeek,
+	getStatus: getStatus,
+	getBin1: getBin1,
+	getBin2: getBin2,
 }
