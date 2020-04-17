@@ -55,8 +55,7 @@
 					<view class="mb5 rout icon-youhuiquan f26 blue1" />
 					<text class="gray-9 f12 mb5">加价券</text>
 					<view class="f14">
-						<text v-if="card == ''" class="bold f18 mr5">--</text>
-						<text v-else class="bold f18 mr5 black">20</text>
+						<text class="bold f18 mr5 black"> {{ customer.marCouCount?customer.marCouCount:'--' }} </text>
 						张
 					</view>
 				</navigator>
@@ -142,7 +141,7 @@
 				that.$showLoading()
 				that.$request.postToken("/users/customer/findInfo.do", null).then((res) => {
 					if (res.data.status === 0) {
-						that.$data.customer = JSON.parse(res.data.results);
+						that.customer = JSON.parse(res.data.results);
 					} else {
 						that.$util.showToast(res.data.results, 'none', 5000);
 					}
@@ -246,7 +245,7 @@
 			let that = this;
 			let address = uni.getStorageSync("address"); // 读取缓存中地址信息
 			if (address != null) {
-				that.$data.address = address;
+				that.address = address;
 			}
 			this.getCustomerInfo();	//	获取用户基本信息
 		}
