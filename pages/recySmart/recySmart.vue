@@ -5,24 +5,36 @@
 		<block>
 			<cover-view class="smart" :class="{check:checkbin === 'smart'}" @click='showSmart'>智能箱</cover-view>
 			<cover-view class="dry" :class="{check:checkbin === 'dry'}" @click='showDry'>干垃圾箱</cover-view>
+			<cover-view class="smartlist" @click='linkBinList'>列表模式</cover-view>
 		</block>
 
 		<cover-view class="info" v-if="smartpanel">
-			<cover-view class="name">
-				<cover-view>{{single.name}}</cover-view>
-				<cover-image class="navimg" src="../../static/images/nav.png" @click='navToBin'></cover-image>
+			<cover-view class="row jcbetween">
+				<cover-view class="row aicenter">
+					<cover-view class="rout icon-locationfill f20 blue1 mr5" />
+					<cover-view class="f16 bold">{{single.name}}站</cover-view>
+				</cover-view>
+				<cover-view class="box boxblue1 radius4 mr5 lh18" @click='navToBin'>到这里去</cover-view>
 			</cover-view>
-			<cover-view class="row jcleft aicenter pb10 f16">
-				<cover-image class="addimg mr5" src="../../static/images/address.png"></cover-image>
-				<cover-view>{{single.address}}</cover-view>
+			<cover-view class="f12 mt5 ml5 gray-9">{{single.address}}</cover-view>
+			<cover-view class="row f12 m5">
+				<cover-view class="row mr15 aicenter">
+						<cover-view class="ball bg-blue1 mr5" />
+						<cover-view class="gray-9">正常投递</cover-view>
+				</cover-view>
+				<cover-view class="row mr15 aicenter">
+						<cover-view class="ball bg-red mr5" />
+						<cover-view class="gray-9">满箱</cover-view>
+				</cover-view>
+				<cover-view v-show="mainStatu!=''" class="lab radius4 labred"> {{ mainStatu }}</cover-view>
 			</cover-view>
 			<cover-view class="dot mb10" />
 			<cover-view class="row wrap jcleft aicenter" style="overflow-y: scroll; height: 100px;">
-				<cover-view v-for="(item,index) in single.subBin" :key="index" class="row jcleft aicenter mb5 f15" style="width: 50%;">
-					<cover-image class="img mr10" :src="'../../static/images/' + item.scrapCode + '.png'"></cover-image>
-					<cover-view class="txtleft">
-						<cover-view class="h24 lh24">{{item.scrapType}}</cover-view>
-						<cover-view class="h26 lh26">{{item.price}}元 / kg</cover-view>
+				<cover-view v-for="(item,index) in single.subBin" :key="index" class="row jcleft mb15" style="width: 50%;">
+					<cover-view class="scrapRight" :class="{'bg-blue1':item.scrapStatu, 'bg-red':!item.scrapStatu}" />
+					<cover-view class="scrapLeft txtleft" :class="{'scrapLeftBorder1':item.scrapStatu, 'scrapLeftBorder2':!item.scrapStatu}">
+						<cover-view class="f14">{{item.scrapType}}</cover-view>
+						<cover-view class="f14">{{item.price}}元/kg</cover-view>
 					</cover-view>
 				</cover-view>
 			</cover-view>
@@ -34,7 +46,7 @@
 				<cover-image class="navimg" src="../../static/images/nav.png" @click='navToBin'></cover-image>
 			</cover-view>
 			<cover-view class="row jcleft aicenter pb10 f16">
-				<cover-image class="addimg mr5" src="../../static/images/address.png"></cover-image>
+				<cover-view class="rout icon-locationfill f20 gray-9 mr5" />
 				<cover-view>{{ single.address }}</cover-view>
 			</cover-view>
 			<!--<cover-view class="dot"></cover-view>  
@@ -77,7 +89,8 @@
 				drybin: {}, // 选中干垃圾箱信息
 				location: {}, // 当前定位marker
 				markers: [],
-				single: {} // 选中箱体信息
+				single: {} ,// 选中箱体信息
+				mainStatu: '',//打印机缺纸
 			}
 		},
 		methods: {
@@ -86,6 +99,7 @@
 					url: '../binlist/binlist'
 				})
 			},
+			//获取用户当前位置
 			getLocation: function() {
 				let that = this;
 				var location = {}; // 用户当前位置
@@ -99,29 +113,30 @@
 					},
 					fail: function(err) {
 						console.log("获取用户位置失败");
-						location.latitude = 20.0076;
-						location.longitude = 110.29357;
+						location.latitude = 20.00226;
+						location.longitude = 110.313278;
 					},
 					complete: function(res) {
 						location.id = 0;
 						location.iconPath = "../../static/images/location.png";
 						location.width = 30;
 						location.height = 30;
-						let markers = that.$data.markers.concat(location);
+						let markers = that.markers.concat(location);
 						console.log(location)
-						that.$data.latitude = location.latitude;
-						that.$data.longitude = location.longitude;
-						that.$data.markers = markers;
+						that.latitude = location.latitude;
+						that.longitude = location.longitude;
+						that.markers = markers;
 						that.getSmartBin();
 					}
 				})
 			},
+			//干垃圾箱数据
 			getDryBin: function() {
 				var that = this;
 				that.$showLoading(); //显示遮罩
 				that.$request.postToken("/users/smartBox/findPosition.do", {}).then((res) => {
 					let markers = [];
-					markers = markers.concat(that.$data.location); // 当前定位marker
+					markers = markers.concat(that.location); // 当前定位marker
 					if (res.data.status == 0) {
 						let list = JSON.parse(res.data.results);
 						console.log(list);
@@ -147,14 +162,14 @@
 					that.$hideLoading();
 				});
 				// uni.request({
-				//   url: that.$data.host + '/servlet/drybin/findDryBinPosition', method: 'post',
+				//   url: that.host + '/servlet/drybin/findDryBinPosition', method: 'post',
 				//   header: { 'content-type': 'application/x-www-form-urlencoded; charset=utf-8', },
 				//   success: function (dom) {
 				// 	console.log(dom);
 				// 	let res = dom.data;
 				// 	let markers = [];
 				// 	// 当前定位marker
-				// 	markers = markers.concat(that.$data.location);
+				// 	markers = markers.concat(that.location);
 				// 	//console.log(res);
 				// 	if (res != null && res != "") {
 				// 	  for (let i = 0; i < res.length; i++) {
@@ -167,7 +182,7 @@
 				// 		marker.height = 56;
 				// 		markers = markers.concat(marker);
 				// 	  }
-				// 	  that.$data.markers = markers;
+				// 	  that.markers = markers;
 				// 	}
 				//   },
 				//   fail: function (err) {
@@ -176,9 +191,10 @@
 				//   }
 				// });
 			},
+			//智能箱数据
 			getSmartBin: function() {
 				let that = this;
-				let markers = that.$data.markers;
+				let markers = that.markers;
 				that.$showLoading(); //显示遮罩
 				that.$request.postToken("/users/smartBin/findPosition.do", {}).then((res) => {
 					if (res.data.status == 0) {
@@ -191,11 +207,11 @@
 							temp.iconPath = "../../static/images/smart.png";
 							temp.latitude = item.lat;
 							temp.longitude = item.lng;
-							temp.width = 70;
-							temp.height = 70;
+							temp.width = 30;
+							temp.height = 30;
 							markers = markers.concat(temp);
 						})
-						that.$data.markers = markers;
+						that.markers = markers;
 					} else {
 						that.$util.showToast(res.data.results, 'none', 3000);
 					}
@@ -209,55 +225,55 @@
 			// 显示智能箱markers
 			showSmart: function() {
 				let that = this;
-				if (that.$data.checkbin != "smart") {
-					that.$data.drypanel = false
-					that.$data.checkbin = "smart";
+				if (that.checkbin != "smart") {
+					that.drypanel = false
+					that.checkbin = "smart";
 					that.getSmartBin();
 				}
 			},
 			// 显示干垃圾箱markers
 			showDry: function() {
 				var that = this;
-				if (that.$data.checkbin != "dry") {
-					that.$data.smartpanel = false;
-					that.$data.checkbin = "dry";
+				if (that.checkbin != "dry") {
+					that.smartpanel = false;
+					that.checkbin = "dry";
 					that.getDryBin();
 				}
 			},
 			// 点击markers以外区域隐藏panel
 			hiddenpaenl: function(e) {
 				let that = this;
-				that.$data.smartpanel = false
-				that.$data.drypanel = false;
+				that.smartpanel = false
+				that.drypanel = false;
 			},
 			// 点击marker显示箱体数据
 			showMarker: function(e) {
 				let that = this;
 				let code = e.markerId;
-				let markers = that.$data.markers;
+				let markers = that.markers;
 				if (code != null && code != "") {
+					//干垃圾箱选中效果
 					if (code.indexOf("G") > -1) {
 						that.$showLoading(); //显示遮罩
-						that.$request.postToken("/users/smartBox/findInfo.do", {
-							code
-						}).then((res) => {
+						that.$request.postToken("/users/smartBox/findInfo.do", { code }).then((res) => {
 							if (res.data.status == 0) {
 								let single = JSON.parse(res.data.results);
-								let markers = that.$data.markers;
+								let markers = that.markers;
 								// 循环markers拉大被选中marker图片，恢复其他marker图片大小，从1开始，0为用户坐标marker
 								for (let i = 1, len = markers.length; i < len; i++) {
 									if (markers[i].id == single.code) {
-										markers[i].width = 76;
-										markers[i].height = 76;
+										markers[i].width = 40;
+										markers[i].height = 40;
 									} else {
-										markers[i].width = 56;
-										markers[i].height = 56;
+										markers[i].width = 30;
+										markers[i].height = 30;
 									}
 								}
-								that.$data.markers = markers;
-								that.$data.single = single;
-								that.$data.drypanel = true;
-								that.$data.smartpanel = false;
+								that.markers = markers;
+								that.single = single;
+								console.log(that.single)
+								that.drypanel = true;
+								that.smartpanel = false;
 							} else {
 								that.$util.showToast(res.data.results, 'none', 3000);
 							}
@@ -268,7 +284,7 @@
 							that.$hideLoading();
 						});
 						// uni.request({
-						// 	url: that.$data.host + '/servlet/drybin/findDryBinInfo',
+						// 	url: that.host + '/servlet/drybin/findDryBinInfo',
 						// 	method: 'post',
 						// 	data: {
 						// 		code: code
@@ -287,11 +303,11 @@
 						// 				markers[i].height = 76;
 						// 			}
 						// 		}
-						// 		that.$data.markers = markers;
+						// 		that.markers = markers;
 						// 		let res = dom.data;
-						// 		that.$data.bin = res[0];
-						// 		that.$data.smartpanel = false;
-						// 		that.$data.drypanel = true;
+						// 		that.bin = res[0];
+						// 		that.smartpanel = false;
+						// 		that.drypanel = true;
 
 						// 	},
 						// 	fail: function(err) {
@@ -300,28 +316,52 @@
 						// 	}
 						// });
 					} else {
+						//智能站选中效果
 						console.log(code);
 						that.$showLoading(); //显示遮罩
-						that.$request.postToken("/users/smartBin/findInfo.do", {
-							code
-						}).then((res) => {
+						that.$request.postToken("/users/smartBin/findInfo.do", { code }).then((res) => {
 							if (res.data.status == 0) {
 								let single = JSON.parse(res.data.results);
-								let markers = that.$data.markers;
+								let markers = that.markers;
 								// 循环markers拉大被选中marker图片，恢复其他marker图片大小，从1开始，0为用户坐标marker
 								for (let i = 1, len = markers.length; i < len; i++) {
 									if (markers[i].id == single.code) {
-										markers[i].width = 90;
-										markers[i].height = 90;
+										markers[i].iconPath = "../../static/images/smart_select.png";
+										markers[i].width = 40;
+										markers[i].height = 40;
 									} else {
-										markers[i].width = 70;
-										markers[i].height = 70;
+										markers[i].iconPath = "../../static/images/smart.png";
+										markers[i].width = 30;
+										markers[i].height = 30;
 									}
 								}
-								that.$data.markers = markers;
-								that.$data.single = single;
-								that.$data.drypanel = false;
-								that.$data.smartpanel = true
+								that.markers = markers;
+								let binNum = single.synStatus+single.box1Status+single.box2Status+single.box3Status;
+								// binNum = '00000100000000000000000000000000000110000000000000000000000000000010000000000000000000000000000000111000000000000000000000000000';//测试用
+								let binStatus =  that.$util.getStatus(binNum);
+								let boxStatus = [];
+								if (single.binEdition==1 && binStatus.length > 0) { //1代智能箱
+									boxStatus = that.$util.getBin1(binStatus);
+								}else if (single.binEdition==2 && binStatus.length > 0) {//2代智能箱
+									boxStatus = that.$util.getBin2(binStatus);
+								}
+								console.log(boxStatus)
+								if (boxStatus!=undefined) {
+									if(boxStatus.mainStatu!=undefined){
+										that.mainStatu = boxStatus.mainStatu;
+									}
+									single.subBin.forEach(item => {
+											//判断当前品种是否在满箱的箱子，true为正常，false为满箱
+										item.scrapStatu = true;
+										if (boxStatus.box!=undefined && boxStatus.box.indexOf(Number( item.box)) > -1) {
+											item.scrapStatu = false;
+										}
+									})
+								}
+								that.single = single;
+								console.log(that.single)
+								that.drypanel = false;
+								that.smartpanel = true
 							} else {
 								that.$util.showToast(res.data.results, 'none', 3000);
 							}
@@ -337,7 +377,7 @@
 			// 点击导航按钮进入小程序导航选择界面
 			navToBin: function() {
 				let that = this;
-				let single = that.$data.single;
+				let single = that.single;
 				//console.log(bin);
 				uni.openLocation({
 					longitude: Number(single.lng),
@@ -347,9 +387,8 @@
 				})
 			},
 		},
-		onLoad() {
+		onLoad(data) {
 			let that = this;
-
 			that.host = that.$app.globalData.host;
 			//#ifdef MP-WEIXIN
 			that.mapheight = that.$app.globalData.systemInfo.windowHeight + 50;
@@ -358,14 +397,24 @@
 			//#ifdef MP-ALIPAY
 			that.mapheight = that.$app.globalData.systemInfo.windowHeight;
 			//#endif
-			that.getLocation();
+			// 若是查看更多点进来的就要获取用户当前位置，若是智能站点进来的直接定位到站点位置
+			if(data.lng==undefined) {
+				that.getLocation();	//获取用户当前位置
+			}else {
+				that.longitude = data.lng;
+				that.latitude = data.lat;//经纬度定位当前站点位置
+				that.getSmartBin();//智能箱列表
+				let e = {markerId: data.code}
+				that.showMarker(e);//显示当前选择的站点
+			}
+			
 			// setTimeout(()=>{
 			// 	that.mapheight = that.$app.globalData.systemInfo.windowHeight + 50;
 			// 	that.getLocation();
 			// },200)
 
 			var AmapFun = new amapFile.AMapWX({
-				key: that.$data.gdkey
+				key: that.gdkey
 			});
 			/*var marker = new AmapFun.Marker({
 			  position: [110.314841, 19.996499]
@@ -400,34 +449,28 @@
 		position: absolute;
 	}
 
-	.dry {
+	.dry, .smart, .smartlist {
 		position: absolute;
-		top: 10px;
-		right: -9px;
 		width: 96px;
-		height: 36px;
 		font-size: 18px;
 		text-align: center;
-		line-height: 42px;
+		line-height: 2em;
 		font-weight: 600;
 		background: #fff;
-		border: 1px solid #666;
+		border: 1px solid #999;
 		border-radius: 10px;
 	}
-
 	.smart {
-		position: absolute;
 		top: 10px;
-		left: -8px;
-		width: 90px;
-		height: 36px;
-		font-size: 18px;
-		text-align: center;
-		line-height: 42px;
-		font-weight: 600;
-		background: #fff;
-		border: 1px solid #666;
-		border-radius: 10px;
+		left: -9px;
+	}
+	.dry {
+		top: 55px;
+		left: -9px;
+	}
+	.smartlist {
+		top: 10px;
+		right: -9px;
 	}
 
 	.check {
@@ -451,7 +494,8 @@
 		padding: 10px 20px;
 		background-color: #fff;
 		box-sizing: border-box;
-		border-radius: 20px 20px 0 0;
+		border-radius: 10px 10px 0 0;
+		box-shadow: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .3);
 	}
 
 	.info .name {
@@ -459,7 +503,7 @@
 		flex-wrap: wrap;
 		flex-direction: row;
 		justify-content: space-between;
-		font-size: 22px;
+		font-size: 18px;
 		padding: 10px 0px;
 		color: #000;
 	}
@@ -517,5 +561,26 @@
 	.navimg {
 		width: 50px;
 		height: 26px;
+	}
+	.ball{
+		border-radius: 50%;
+		width: 10px;
+		height: 10px;
+	}
+	.scrapRight{
+		border-radius: 4px 0 0 4px;
+		width: 15px;
+		height: 38px;
+	}
+	.scrapLeft{
+		border-radius: 0 4px 4px 0;
+		padding: 2px 5px;
+		border-left: none;
+	}
+	.scrapLeftBorder1 {
+		border: 1px solid #00a2ed;
+	}
+	.scrapLeftBorder2 {
+		border: 1px solid #f00;
 	}
 </style>
