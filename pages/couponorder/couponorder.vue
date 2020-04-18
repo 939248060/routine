@@ -44,7 +44,7 @@
 			return {
 				isOpen: false,	//使用规则
 				sendBtn: true,	//按钮状态
-				current: '',		//选中的订单
+				current: -1,		//选中的订单
 				mcrId: '',			//加价券id
 				serialNum: '',	//选中的订单编号
 				list: [],
@@ -71,6 +71,7 @@
 			//获取加价券详情以及可使用的订单列表
 			getList(id) {
 				let that = this;
+				that.$showLoading();  //显示遮罩
 				that.mcrId = id;
 				let data = {mcrId: that.mcrId};
 				that.$request.postToken("/users/marcourecord/findSingle.do", data).then((res) => {
@@ -106,11 +107,12 @@
 			//立即使用
 			sendOrder() {
 				let that = this;
+				console.log(that.current)
 				if (that.sendBtn == false) {
 					that.$util.showToast('已使用加价券，请勿重复领取。', 'none', 1000);
 					return
 				}
-				if ( that.current  == null ) {
+				if (that.current < 0) {
 					that.$util.showToast('请先选择需要加价的订单。', 'none', 1000);
 					return
 				}
