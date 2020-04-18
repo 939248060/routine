@@ -11,7 +11,7 @@
 		<cover-view class="info" v-if="smartpanel">
 			<cover-view class="row jcbetween">
 				<cover-view class="row aicenter">
-					<cover-view class="rout icon-locationfill f20 blue1 mr5" />
+					<cover-image src="../../static/images/location_fill.png" style="width: 20px; height: 20px; margin-right: 2px;" />
 					<cover-view class="f16 bold">{{single.name}}站</cover-view>
 				</cover-view>
 				<cover-view class="box boxblue1 radius4 mr5 lh18" style="padding: 5px 8px;" @click='navToBin'>到这里去</cover-view>
