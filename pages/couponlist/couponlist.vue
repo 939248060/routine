@@ -23,7 +23,7 @@
 										<view class="column m10" style="width: 100%;">
 											<view class="row jcbetween">
 												<text class="f16 mb10 black bold mr5">{{ item.markupCoupon.title }}</text>
-												<navigator :url="'../couponorder/couponorder?id='+item.mcrId" class="box boxorange white radius4 txtcenter asstart" style="min-width: 60px;">
+												<navigator v-if="item.start" :url="'../couponorder/couponorder?id='+item.mcrId" class="box boxorange white radius4 txtcenter asstart" style="min-width: 60px;">
 													立即使用
 												</navigator>
 											</view>
@@ -252,8 +252,16 @@
 					if (res.data.status === 0) {
 						let btm = (res.data.page.currentPage >= res.data.page.allPageAmount) ? 'noMore' : 'loadMore';
 						data = JSON.parse(res.data.results);
+						let day =  that.$util.getNowFormatDate();
+						let time1 = day.slice(0,10).replace(/-/g,':'); //当前日期，用于判断加价券今天能否使用
 						data.forEach(item => {
-							item.isOpen = false;
+							item.isOpen = false;	//使用规则默认隐藏
+							item.start = true;	//默认显示立即使用按钮
+							if (item.markupCoupon.validType==1 && item.markupCoupon.validStartTime.slice(0,10).replace(/-/g,':') > time1) {
+								item.start = false;	//不到加价券使用时间，不显示立即使用按钮
+							}else if (item.markupCoupon.validType==2 && item.receiveTime.slice(0,10).replace(/-/g,':') > time1 ) {
+								item.start = false;	//不到加价券使用时间，不显示立即使用按钮
+							}
 							item.markupCoupon.validStartTime = (item.markupCoupon.validStartTime!=null)?item.markupCoupon.validStartTime.slice(0,10).replace(/-/g,"."):'';//使用开始时间
 							item.markupCoupon.validEndTime = (item.markupCoupon.validEndTime!=null)?item.markupCoupon.validEndTime.slice(0,10).replace(/-/g,"."):'';//使用结束时间
 							item.receiveTime = (item.receiveTime!=null)?item.receiveTime.slice(0,10).replace(/-/g,"."):'';	//领取时间
