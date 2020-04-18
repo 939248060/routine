@@ -257,6 +257,18 @@ function getWeek(dateString) {
   return "周" + "日一二三四五六".charAt(date.getDay());
 }
 
+//获取当前时间
+function getNowFormatDate() {
+	let date = new Date();
+	let seperator1 = "-";
+	let seperator2 = ":";
+	let	month = date.getMonth() + 1<10? "0"+(date.getMonth() + 1):date.getMonth() + 1;
+	let strDate = date.getDate()<10? "0" + date.getDate():date.getDate();
+	let currentdate = date.getFullYear() + seperator1 + month + seperator1 + strDate
+	 + " " + date.getHours() + seperator2 + date.getMinutes() + seperator2 + date.getSeconds();
+	return currentdate;
+}
+
 
 function getStatus(code) {
 	let temp = [];
@@ -427,6 +439,7 @@ module.exports = {
   login: login,
   getUserInfo: getUserInfo,
   getWeek: getWeek,
+	getNowFormatDate: getNowFormatDate,
 	getStatus: getStatus,
 	getBin1: getBin1,
 	getBin2: getBin2,
