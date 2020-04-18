@@ -14,7 +14,7 @@
 					<cover-view class="rout icon-locationfill f20 blue1 mr5" />
 					<cover-view class="f16 bold">{{single.name}}站</cover-view>
 				</cover-view>
-				<cover-view class="box boxblue1 radius4 mr5 lh18" @click='navToBin'>到这里去</cover-view>
+				<cover-view class="box boxblue1 radius4 mr5 lh18" style="padding: 5px 8px;" @click='navToBin'>到这里去</cover-view>
 			</cover-view>
 			<cover-view class="f12 mt5 ml5 gray-9">{{single.address}}</cover-view>
 			<cover-view class="row f12 m5">
@@ -26,16 +26,19 @@
 						<cover-view class="ball bg-red mr5" />
 						<cover-view class="gray-9">满箱</cover-view>
 				</cover-view>
-				<cover-view v-show="mainStatu!=''" class="lab radius4 labred"> {{ mainStatu }}</cover-view>
+				<cover-view v-show="mainStatu!=''" class="box radius4 boxred"> {{ mainStatu }}</cover-view>
 			</cover-view>
 			<cover-view class="dot mb10" />
 			<cover-view class="row wrap jcleft aicenter" style="overflow-y: scroll; height: 100px;">
 				<cover-view v-for="(item,index) in single.subBin" :key="index" class="row jcleft mb15" style="width: 50%;">
-					<cover-view class="scrapRight" :class="{'bg-blue1':item.scrapStatu, 'bg-red':!item.scrapStatu}" />
-					<cover-view class="scrapLeft txtleft" :class="{'scrapLeftBorder1':item.scrapStatu, 'scrapLeftBorder2':!item.scrapStatu}">
-						<cover-view class="f14">{{item.scrapType}}</cover-view>
-						<cover-view class="f14">{{item.price}}元/kg</cover-view>
+					<cover-view class="row" style="border-radius: 4px; box-sizing: border-box;" :class="{'scrapLeftBorder1':item.scrapStatu, 'scrapLeftBorder2':!item.scrapStatu}">
+						<cover-view class="scrapRight" :class="{'bg-blue1':item.scrapStatu, 'bg-red':!item.scrapStatu}" />
+						<cover-view class="scrapLeft txtleft">
+							<cover-view class="f14">{{item.scrapType}}</cover-view>
+							<cover-view class="f14">{{item.price}}元/kg</cover-view>
+						</cover-view>
 					</cover-view>
+					
 				</cover-view>
 			</cover-view>
 		</cover-view>
@@ -533,29 +536,9 @@
 		padding-top: 16px;
 	}
 
-	.showpanel {
-		position: absolute;
-		bottom: 0px;
-		left: 0px;
-	}
-
 	.img {
 		width: 34px;
 		height: 34px;
-	}
-
-	.addimg {
-		width: 20px;
-		height: 20px;
-	}
-
-	.navpanel {
-		position: absolute;
-		background: #000;
-		width: 100px;
-		height: 50px;
-		top: 20px;
-		right: 10px;
 	}
 
 	.navimg {
@@ -568,12 +551,9 @@
 		height: 10px;
 	}
 	.scrapRight{
-		border-radius: 4px 0 0 4px;
 		width: 15px;
-		height: 38px;
 	}
 	.scrapLeft{
-		border-radius: 0 4px 4px 0;
 		padding: 2px 5px;
 		border-left: none;
 	}
