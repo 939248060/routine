@@ -57,10 +57,10 @@
 		<!-- 活动 -->
 		<view class="column">
 			<!-- <block :key="index" v-for="(item,index) in list"> -->
-				<navigator url="../activity/activity">
+				<navigator url="../invite/invite">
 					<image class="activityimg radius8" src="../../static/images/swiper1.png" mode="widthFix" />
 				</navigator>
-				<navigator url="../activity/activity">
+				<navigator url="../invite/invite">
 					<image class="activityimg radius8" src="../../static/images/swiper2.png" mode="widthFix" />
 				</navigator>
 				<navigator url="../activity/activity">
@@ -131,22 +131,12 @@
 				}).finally(() => {
 					that.$hideLoading()  // 关闭过度遮罩
 				})
-			},
-			getNowFormatDate() {//获取当前时间
-			　let date = new Date();
-		　　let seperator1 = "-";
-		　　let seperator2 = ":";
-		　　let month = date.getMonth() + 1<10? "0"+(date.getMonth() + 1):date.getMonth() + 1;
-		　　let strDate = date.getDate()<10? "0" + date.getDate():date.getDate();
-		　　let currentdate = date.getFullYear() + seperator1 + month + seperator1 + strDate
-		　　　　+ " " + date.getHours() + seperator2 + date.getMinutes() + seperator2 + date.getSeconds();
-		　　return currentdate;
 			}
 		},
 		onLoad() {
 			let that = this;
 			that.getUserSign(); //获取用户签到记录
-			that.day = that.getNowFormatDate();
+			that.day = that.$util.getNowFormatDate();
 		}
 	}
 </script>
@@ -154,7 +144,7 @@
 <style>
 	.content {
 		background-image: radial-gradient(circle at 50% -252px, #00a2ed, #00a2ed 360px, transparent 361px );
-		padding: 10px 15px 0px;
+		padding: 20px 15px 0px;
 	}
 	.signCon > view:nth-child(odd) {
 		margin-right: 6px;
