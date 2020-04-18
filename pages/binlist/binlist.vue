@@ -17,8 +17,8 @@
 							<view class="column">
 								<text class="gray-9 f12 mb5">{{ item.address }}</text>
 								<view class="row">
-									<text class="lab labblue1 mr5 radius4">智能回收箱</text>
-									<text class="box boxblue1 mr5 radius4">正常投递</text>
+									<text class="lab labblue1 mr5 radius4">{{ item.binType|binType }}</text>
+									<text class="box mr5 radius4" :class="item.mainStatu?'boxred':'boxblue1'">{{ item.mainStatu?item.mainStatu:'正常投递' }}</text>
 								</view>
 							</view>
 							<view class="ascenter rout icon-right blue1 f18 bold mr10" style="border: 2px solid;border-radius: 50%;padding: 2px;" />
@@ -45,6 +45,22 @@
 				lng: 0,		//经度
 				lat: 0,		//纬度
 				btmp: 'loadMore', // scroll底部panel
+			}
+		},
+		//过滤器
+		filters:{
+			binType(val){	//站点类型
+				switch (val) {
+				  case 1:
+				    return "智能回收站";
+				    break;
+				  case 2:
+				    return "中转站";
+				    break;
+				  case 3:
+				    return "废品回收站";
+				    break;
+				}
 			}
 		},
 		methods: {
@@ -76,7 +92,7 @@
 					that.getList(that.lng, that.lat, p.currentPage + 1, "loadMore");
 				}
 			},
-			//获取附近站点列表
+			//获取站点列表
 			getList (lng, lat, curr, rid) {
 				let that =  this;
 				that.lng = lng;	//经度
@@ -89,14 +105,64 @@
 				}
 				that.$request.postToken("/users/smartBin/findNearbyPage.do", data).then((res) => {
 					if (res.data.status === 0) {
+						that.page = res.data.page;
 						that.btmp = (res.data.page.currentPage >= res.data.page.allPageAmount) ? 'noMore' : 'loadMore';
 						if (rid == "new") { // 判断当前读取是刷新读取还是加载读取
-							that.list = JSON.parse(res.data.results);
+							res = JSON.parse(res.data.results);
+							res.forEach(item => {
+								let binNum = item.synStatus+item.box1Status+item.box2Status+item.box3Status;
+								// binNum = '00000100000000000000000000000000000110000000000000000000000000000010000000000000000000000000000000111000000000000000000000000000';//测试用
+								let binStatus =  that.$util.getStatus(binNum);
+								let boxStatus = [];
+								if (item.binEdition==1 && binStatus.length > 0) { //1代智能箱
+									boxStatus = that.$util.getBin1(binStatus);
+								}else if (item.binEdition==2 && binStatus.length > 0) {//2代智能箱
+									boxStatus = that.$util.getBin2(binStatus);
+								}
+								console.log(boxStatus)
+								if (boxStatus!=undefined) {
+									if(boxStatus.mainStatu!=undefined){
+										item.mainStatu = boxStatus.mainStatu;
+									}
+									item.subBin.forEach(item => {
+											//判断当前品种是否在满箱的箱子，true为正常，false为满箱
+										item.scrapStatu = true;
+										if (boxStatus.box!=undefined && boxStatus.box.indexOf(Number( item.box)) > -1) {
+											item.scrapStatu = false;
+										}
+									})
+								}
+							})
+							console.log(res)
+							that.list = res;
 						} else {
-							that.list = that.list.concat(JSON.parse(res.data.results));
+							res = JSON.parse(res.data.results);
+							res.forEach(item => {
+								let binNum = item.synStatus+item.box1Status+item.box2Status+item.box3Status;
+								// binNum = '00000100000000000000000000000000000110000000000000000000000000000010000000000000000000000000000000111000000000000000000000000000';//测试用
+								let binStatus =  that.$util.getStatus(binNum);
+								let boxStatus = [];
+								if (item.binEdition==1 && binStatus.length > 0) { //1代智能箱
+									boxStatus = that.$util.getBin1(binStatus);
+								}else if (item.binEdition==2 && binStatus.length > 0) {//2代智能箱
+									boxStatus = that.$util.getBin2(binStatus);
+								}
+								console.log(boxStatus)
+								if (boxStatus!=undefined) {
+									if(boxStatus.mainStatu!=undefined){
+										item.mainStatu = boxStatus.mainStatu;
+									}
+									item.subBin.forEach(item => {
+											//判断当前品种是否在满箱的箱子，true为正常，false为满箱
+										item.scrapStatu = true;
+										if (boxStatus.box!=undefined && boxStatus.box.indexOf(Number( item.box)) > -1) {
+											item.scrapStatu = false;
+										}
+									})
+								}
+							})
+							that.list = that.list.concat(res);
 						}
-						console.log(that.list)
-						that.page = res.data.page;
 					} else {
 						that.$util.showToast(res.data.results, 'none', 5000);
 					}
