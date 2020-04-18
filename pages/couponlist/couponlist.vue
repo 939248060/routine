@@ -296,6 +296,11 @@
 			}
 			that.getList(1, that.currentTab, 'new');
 		},
+		onShow() {
+			let that = this;
+			that.scrollHeight = that.$app.globalData.systemInfo.windowHeight + 8;      // 从全局中获取屏幕高度
+			that.getList(1, that.currentTab, 'new');
+		},
 		//监听用户下拉刷新事件
 		onPullDownRefresh() {
 			let that = this;
