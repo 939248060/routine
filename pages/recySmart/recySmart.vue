@@ -3,8 +3,8 @@
 		<map id="map" style="width: 100%;" :style="{height: mapheight + 'px'}" :longitude="longitude" :latitude="latitude"
 		 :markers="markers" @markertap="showMarker" @click="hiddenpaenl"></map>
 		<block>
-			<cover-view class="smart" :class="{check:checkbin === 'smart'}" @click='showSmart'>智能箱</cover-view>
-			<cover-view class="dry" :class="{check:checkbin === 'dry'}" @click='showDry'>干垃圾箱</cover-view>
+			<cover-view class="smart" :class="{check:checkbin === 'smart'}" @click='showSmart'>智能站</cover-view>
+			<cover-view class="dry" :class="{check:checkbin === 'dry'}" @click='showDry'>智能箱</cover-view>
 			<cover-view class="smartlist" @click='linkBinList'>列表模式</cover-view>
 		</block>
 
@@ -19,8 +19,8 @@
 			<cover-view class="f12 mt5 ml5 gray-9">{{single.address}}</cover-view>
 			<cover-view class="row f12 m5">
 				<cover-view class="row mr15 aicenter">
-						<cover-view class="ball bg-blue1 mr5" />
-						<cover-view class="gray-9">正常投递</cover-view>
+						<cover-view class="ball bg-green mr5" />
+						<cover-view class="gray-9">正常</cover-view>
 				</cover-view>
 				<cover-view class="row mr15 aicenter">
 						<cover-view class="ball bg-red mr5" />
@@ -31,8 +31,8 @@
 			<cover-view class="dot mb10" />
 			<cover-view class="row wrap jcleft aicenter" style="overflow-y: scroll; height: 100px;">
 				<cover-view v-for="(item,index) in single.subBin" :key="index" class="row jcleft mb15" style="width: 50%;">
-					<cover-view class="row" style="border-radius: 4px; box-sizing: border-box;" :class="{'scrapLeftBorder1':item.scrapStatu, 'scrapLeftBorder2':!item.scrapStatu}">
-						<cover-view class="scrapRight" :class="{'bg-blue1':item.scrapStatu, 'bg-red':!item.scrapStatu}" />
+					<cover-view class="row aicenter">
+						<cover-view class="ball" style="margin-right: 2px;" :class="{'bg-green':item.scrapStatu, 'bg-red':!item.scrapStatu}" />
 						<cover-view class="scrapLeft txtleft">
 							<cover-view class="f14">{{item.scrapType}}</cover-view>
 							<cover-view class="f14">{{item.price}}元/kg</cover-view>
@@ -88,8 +88,8 @@
 				longitude: 0,
 				smartpanel: false,
 				drypanel: false,
-				smartbin: [], // 选中智能箱信息
-				drybin: {}, // 选中干垃圾箱信息
+				smartbin: [], // 选中智能站信息
+				drybin: {}, // 选中智能箱信息
 				location: {}, // 当前定位marker
 				markers: [],
 				single: {} ,// 选中箱体信息
@@ -133,7 +133,7 @@
 					}
 				})
 			},
-			//干垃圾箱数据
+			//智能箱数据
 			getDryBin: function() {
 				var that = this;
 				that.$showLoading(); //显示遮罩
@@ -194,7 +194,7 @@
 				//   }
 				// });
 			},
-			//智能箱数据
+			//智能站数据
 			getSmartBin: function() {
 				let that = this;
 				let markers = that.markers;
@@ -225,7 +225,7 @@
 					that.$hideLoading();
 				});
 			},
-			// 显示智能箱markers
+			// 显示智能站markers
 			showSmart: function() {
 				let that = this;
 				if (that.checkbin != "smart") {
@@ -234,7 +234,7 @@
 					that.getSmartBin();
 				}
 			},
-			// 显示干垃圾箱markers
+			// 显示智能箱markers
 			showDry: function() {
 				var that = this;
 				if (that.checkbin != "dry") {
@@ -255,7 +255,7 @@
 				let code = e.markerId;
 				let markers = that.markers;
 				if (code != null && code != "") {
-					//干垃圾箱选中效果
+					//智能箱选中效果
 					if (code.indexOf("G") > -1) {
 						that.$showLoading(); //显示遮罩
 						that.$request.postToken("/users/smartBox/findInfo.do", { code }).then((res) => {
@@ -343,9 +343,9 @@
 								// binNum = '00000100000000000000000000000000000110000000000000000000000000000010000000000000000000000000000000111000000000000000000000000000';//测试用
 								let binStatus =  that.$util.getStatus(binNum);
 								let boxStatus = [];
-								if (single.binEdition==1 && binStatus.length > 0) { //1代智能箱
+								if (single.binEdition==1 && binStatus.length > 0) { //1代智能站
 									boxStatus = that.$util.getBin1(binStatus);
-								}else if (single.binEdition==2 && binStatus.length > 0) {//2代智能箱
+								}else if (single.binEdition==2 && binStatus.length > 0) {//2代智能站
 									boxStatus = that.$util.getBin2(binStatus);
 								}
 								console.log(boxStatus)
@@ -406,7 +406,7 @@
 			}else {
 				that.longitude = data.lng;
 				that.latitude = data.lat;//经纬度定位当前站点位置
-				that.getSmartBin();//智能箱列表
+				that.getSmartBin();//智能站列表
 				let e = {markerId: data.code}
 				that.showMarker(e);//显示当前选择的站点
 			}
@@ -463,17 +463,20 @@
 		border: 1px solid #999;
 		border-radius: 10px;
 	}
+	.smart, .dry {
+		text-align: right;
+		left: -40px;
+		padding-right: 10px;
+	}
 	.smart {
 		top: 10px;
-		left: -9px;
 	}
 	.dry {
 		top: 55px;
-		left: -9px;
 	}
 	.smartlist {
 		top: 10px;
-		right: -9px;
+		right: -10px;
 	}
 
 	.check {
@@ -551,16 +554,9 @@
 		height: 10px;
 	}
 	.scrapRight{
-		width: 15px;
 	}
 	.scrapLeft{
 		padding: 2px 5px;
 		border-left: none;
-	}
-	.scrapLeftBorder1 {
-		border: 1px solid #00a2ed;
-	}
-	.scrapLeftBorder2 {
-		border: 1px solid #f00;
 	}
 </style>
