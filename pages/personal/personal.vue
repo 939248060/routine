@@ -11,7 +11,7 @@
 						<view class="f18 ml10 blue1">
 							<open-data type="userNickName" />
 						</view>
-						<view class="ml10 gray-9 f12 tnowrap">用户卡号：{{ card }}</view>
+						<view class="ml5 gray-9 f12 tnowrap">用户卡号：{{ card }}</view>
 					</view>
 				</view>
 				<view>
@@ -26,7 +26,7 @@
 					<view class="bold mb5"> {{ customer.cash?customer.cash:'0' }} </view>
 					<view class="gray-9 f12"> 零钱 </view>
 				</navigator>
-				<navigator>
+				<navigator url="../scorelist/scorelist">
 					<view class="bold mb5"> {{ customer.score?customer.score:'0' }} </view>
 					<view class="gray-9 f12"> 量心币 </view>
 				</navigator>
@@ -34,16 +34,16 @@
 					<view class="bold mb5"> {{ customer.marCouCount?customer.marCouCount:'0' }} </view>
 					<view class="gray-9 f12"> 加价券 </view>
 				</navigator>
-				<navigator>
+				<!-- <navigator>
 					<view class="bold mb5"> 100000 </view>
 					<view class="gray-9 f12"> 积分 </view>
-				</navigator>
+				</navigator> -->
 			</view>
 			<view class="headLine" />
 		</view>
 		<!-- #endif -->
 		<!-- 邀请有礼 -->
-		<view class="yaoqing row bg-white mb15 txtleft">
+	<!-- 	<view class="yaoqing row bg-white mb15 txtleft">
 			<navigator class=" row aicenter righteee" style="width: 50%;" url="../invite/invite">
 				<image src="../../static/images/liwu.png" class="mr10" style="width: 40px; height: 40px;" />
 				<view class="column">
@@ -58,35 +58,35 @@
 					<text class="gray-9 f12">获得海量奖励</text>
 				</view>
 			</navigator>
-		</view>
+		</view> -->
 		<!-- 基础功能 -->
-		<view class="content row bg-white mb15 wrap">
+		<view class="content row bg-white mb15 wrap gray-9">
 			<navigator url="../qrcode/qrcode">
-				<view class="rout icon-qrcode f30 gray-9" />
+				<view class="rout icon-qrcode f30 blue1" />
 				<text>我的二维码</text>
 			</navigator>
 			<navigator url="../realname/realname">
-				<view class="rout icon-shenfenzheng f30 gray-9" />
+				<view class="rout icon-shenfenzheng f30 purple" />
 				<text>实名认证</text>
 			</navigator>
 			<navigator url="../addresslist/addresslist">
-				<view class="rout icon-shouhuodizhi f30 gray-9" />
+				<view class="rout icon-shouhuodizhi f30 orange" />
 				<text>收货地址</text>
 			</navigator>
 			<navigator url="../exchangelist/exchangelist?state=0">
-				<view class="rout icon-jifen f30 gray-9" />
-				<text>积分兑换</text>
-			</navigator>
-			<navigator url="../couponlist/couponlist">
-				<view class="rout icon-youhuiquan f30 gray-9" />
-				<text>加价券</text>
+				<view class="rout icon-dingdan f30 green" />
+				<text>兑换订单</text>
 			</navigator>
 			<navigator url="../guide/guide">
-				<view class="rout icon-info f30 gray-9" />
+				<view class="rout icon-info f30 blue1" />
 				<text>关于我们</text>
 			</navigator>
+			<navigator url="../couponlist/couponlist">
+				<view class="rout icon-youhuiquan f30 purple" />
+				<text>加价券</text>
+			</navigator>
 			<navigator class="ml15"  @click='call'>
-				<view class="rout icon-kefu f30 gray-9" />
+				<view class="rout icon-kefu f30 orange" />
 				<text>联系我们</text>
 			</navigator>
 		</view>
