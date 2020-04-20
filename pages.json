@@ -53,29 +53,42 @@
 				"navigationBarTitleText": "使用指南",
 				"navigationBarTextStyle": "#FFFFFF"
 			}
-		}, { // 个人中心
+		}, { //个人中心
 			"path": "pages/personal/personal",
 			"style": {
 				"navigationStyle":"custom"	//自定义页面导航栏,移除原生导航栏样式
 			}
 		},{	//实名验证
 			"path" : "pages/realname/realname",
-			"style" : {}
+			"style" : {
+				"navigationBarTitleText": "实名验证",
+				"navigationBarTextStyle": "#FFFFFF"
+			}
 		},{//家具清运
 			"path" : "pages/furniture/furniture",
-			"style" : {}
-		},{//
+			"style" : {
+				"navigationBarTitleText": ""
+			}
+		},{//政府回收订单详情
 			"path" : "pages/governmentinfo/governmentinfo",
-			"style" : {}
-		},{
+			"style" : {
+				"navigationBarTitleText": ""
+			}
+		},{//家电回收订单详情
 			"path" : "pages/electricalinfo/electricalinfo",
-			"style" : {}
-		},{
+			"style" : {
+				"navigationBarTitleText": ""
+			}
+		},{//家具清运订单详情
 			"path" : "pages/furnitureinfo/furnitureinfo",
-			"style" : {}
-		},{
+			"style" : {
+				"navigationBarTitleText": ""
+			}
+		},{//商户回收订单详情
 			"path" : "pages/merchantinfo/merchantinfo",
-			"style" : {}
+			"style" : {
+				"navigationBarTitleText": ""
+			}
 		},{//积分兑换订单列表
 			"path" : "pages/exchangelist/exchangelist",
 			"style" : {
@@ -85,27 +98,42 @@
 			}
 		}, { //积分兑换商品详情
 			"path": "pages/wares/wares",
-			"style": {}
+			"style": {
+				"navigationBarTitleText": ""
+			}
 		}, { //积分兑换订单详情
 			"path": "pages/exchange/exchange",
-			"style": {}
+			"style": {
+				"navigationBarTitleText": ""
+			}
 		}, { //我的邀请
 			"path": "pages/invitation/invitation",
-			"style": {}
+			"style": {
+				"navigationBarTitleText": ""
+			}
 		}, {
 			"path": "pages/withdraw/withdraw",
-			"style": {}
+			"style": {
+				"navigationBarTitleText": ""
+			}
 		}, {
 			"path": "pages/getuserinfo/getuserinfo",
-			"style": {}
-		}, {
+			"style": {
+				"navigationBarTitleText": ""
+			}
+		}, {//量心币列表
 			"path": "pages/scorelist/scorelist",
 			"style": {
+				"navigationBarTitleText": "我的量心币",
+				"navigationBarTextStyle": "#FFFFFF",
 				"enablePullDownRefresh": true
 			}
-		},{
+		},{//量心币详情
 			"path" : "pages/scoredetails/scoredetails",
-			"style" : {}
+			"style" : {
+				"navigationBarTitleText": "量心币详情",
+				"navigationBarTextStyle": "#FFFFFF"
+			}
     },{//零钱列表页
 			"path" : "pages/cashlist/cashlist",
 			"style" : {
@@ -113,24 +141,37 @@
 				"navigationBarTextStyle": "#FFFFFF",
 				"enablePullDownRefresh": true
 			}
-    },{
-			"path" : "pages/dryorderinfo/dryorderinfo",
-			"style" : {}
-		},{
-			"path" : "pages/smartorderinfo/smartorderinfo",
-			"style" : {}
-		},{
+    },{//零钱详情
 			"path" : "pages/cashdetails/cashdetails",
-			"style" : {}
+			"style" : {
+				"navigationBarTitleText": "零钱详情",
+				"navigationBarTextStyle": "#FFFFFF"
+			}
+		},{//智能箱订单详情
+			"path" : "pages/dryorderinfo/dryorderinfo",
+			"style" : {
+				"navigationBarTitleText": ""
+			}
+		},{//智能站订单详情
+			"path" : "pages/smartorderinfo/smartorderinfo",
+			"style" : {
+				"navigationBarTitleText": ""
+			}
 		},{
 			"path" : "pages/showhtml/showhtml",
-			"style" : {}
-		},{
+			"style" : {
+				"navigationBarTitleText": ""
+			}
+		},{//邀请有礼页面
 			"path" : "pages/invite/invite",
-			"style" : {}
+			"style" : {
+				"navigationBarTitleText": ""
+			}
 		},{
 			"path" : "pages/register/register",
-			"style" : {}
+			"style" : {
+				"navigationBarTitleText": ""
+			}
 		},{//加价券列表页
 			"path" : "pages/couponlist/couponlist",
 			"style" : {
