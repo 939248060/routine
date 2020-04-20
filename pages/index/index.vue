@@ -28,49 +28,58 @@
 			</navigator>
 		</view>
 		<!-- 收益数据统计 -->
-		<view class="myIncome column mb20">
+		<view class="myIncome column mb10">
 			<view class="row mb10 f16 bold">
-				<view class="ring ascenter"></view>
-				<text v-if="card == ''">您好，请先登录</text>
-				<text v-else>我的收益</text>
+				<view class="ring ascenter" />
+				<text>{{ card == ''?"您好，请先登录":"我的收益" }}</text>
 			</view>
 			<scroll-view scroll-x="true" style=" width: 100%;white-space: nowrap;">
 				<navigator class="incomeItem" url="../cashlist/cashlist">
-					<view class="mb5 rout icon-recharge f26 blue1" />
-					<text class="gray-9 f12 mb5">零钱</text>
+					<view class="row mb10 aicenter jccenter">
+						<view class="rout icon-recharge f26 blue1 mr5" />
+						<text class="gray-9 f12">零钱</text>
+					</view>
 					<view class="f14">
 						<text class="bold f18 mr5 black"> {{ customer.cash?customer.cash:'--' }} </text>
 						元
 					</view>
 				</navigator>
-				<navigator class="incomeItem">
-					<view class="mb5 rout icon-coin f26 blue1" />
-					<text class="gray-9 f12 mb5">量心币</text>
+				<navigator class="incomeItem" url="../scorelist/scorelist">
+					<view class="row mb10 aicenter jccenter">
+						<view class="rout icon-coin f26 orange mr5" />
+						<text class="gray-9 f12">量心币</text>
+					</view>
 					<view class="f14">
 						<text class="bold f18 mr5 black"> {{ customer.score?customer.score:'--' }} </text>
 						个
 					</view>
 				</navigator>
-				<navigator class="incomeItem" url="../couponlist/couponlist">
-					<view class="mb5 rout icon-youhuiquan f26 blue1" />
-					<text class="gray-9 f12 mb5">加价券</text>
+				<navigator class="incomeItem column jccenter" url="../couponlist/couponlist">
+					<view class="row mb10 aicenter jccenter">
+						<view class="rout icon-youhuiquan f26 purple mr5" />
+						<text class="gray-9 f12">加价券</text>
+					</view>
 					<view class="f14">
 						<text class="bold f18 mr5 black"> {{ customer.marCouCount?customer.marCouCount:'--' }} </text>
 						张
 					</view>
 				</navigator>
-				<navigator class="incomeItem" url="../exchangelist/exchangelist">
-					<view class="mb5 rout icon-jifen f26 blue1" />
-					<text class="gray-9 f12 mb5">积分</text>
+				<!-- <navigator class="incomeItem" url="../exchangelist/exchangelist">
+					<view class="row mb10 aicenter jccenter">
+						<view class="rout icon-jifen f26 orange mr5" />
+						<text class="gray-9 f12">积分</text>
+					</view>
 					<view class="f14">
 						<text v-if="card == ''" class="bold f18 mr5">--</text>
 						<text v-else class="bold f18 mr5 black">100000</text>
 						分
 					</view>
-				</navigator>
+				</navigator> -->
 				<navigator class="incomeItem">
-					<view class="mb5 rout icon-evaluate f26 blue1" />
-					<text class="gray-9 f12 mb5">碳积分</text>
+					<view class="row mb10 aicenter jccenter">
+						<view class="rout icon-evaluate f26 green mr5" />
+						<text class="gray-9 f12">碳积分</text>
+					</view>
 					<view class="f14">
 						<text v-if="card == ''" class="bold f18 mr5">--</text>
 						<text v-else class="bold f18 mr5 black">100000</text>
@@ -82,7 +91,10 @@
 		<!-- 回收站列表 -->
 		<view class="bin">
 			<view class="row jcbetween f12 gray-9 pb5 mb10">
-				<text class="f16 gray-3 bold">附近回收站</text>
+				<view class="row">
+					<view class="ring ascenter" />
+					<text class="f16 gray-3 bold">附近回收站</text>
+				</view>
 				<navigator class="row ascenter" url="../recySmart/recySmart" >
 					查看更多 <view class="rout icon-right lh18" />
 				</navigator>
@@ -102,8 +114,8 @@
 							<view class="column">
 								<text class="gray-9 f12 mb5">{{ item.address }}</text>
 								<view class="row">
-									<text class="lab labblue1 mr5 radius4">{{ item.binType|binType }}</text>
-									<text class="box mr5 radius4" :class="item.mainStatu?'boxred':'boxblue1'">{{ item.mainStatu?item.mainStatu:'正常投递' }}</text>
+									<text class="box boxblue1 mr5 radius4">{{ item.binType|binType }}</text>
+									<text class="box mr5 radius4" :class="item.mainStatu?'boxred':'boxgreen'">{{ item.mainStatu?item.mainStatu:'正常' }}</text>
 								</view>
 							</view>
 							<view class="ascenter rout icon-right blue1 f18 bold mr10" style="border: 2px solid;border-radius: 50%;padding: 2px;" />
@@ -205,9 +217,9 @@
 							// binNum = '00000100000000000000000000000000000110000000000000000000000000000010000000000000000000000000000000111000000000000000000000000000';//测试用
 							let binStatus =  that.$util.getStatus(binNum);
 							let boxStatus = [];
-							if (item.binEdition==1 && binStatus.length > 0) { //1代智能箱
+							if (item.binEdition==1 && binStatus.length > 0) { //1代智能站
 								boxStatus = that.$util.getBin1(binStatus);
-							}else if (item.binEdition==2 && binStatus.length > 0) {//2代智能箱
+							}else if (item.binEdition==2 && binStatus.length > 0) {//2代智能站
 								boxStatus = that.$util.getBin2(binStatus);
 							}
 							console.log(boxStatus)
@@ -334,7 +346,7 @@
 		background: #FFFFFF;
 		border-radius: 4px;
 		margin-right: 10px;
-		text-align: left;
+		text-align: center;
 		padding: 10px 15px;
 		display: inline-block;
 		background-color: rgb(255,255,255,0.75) ;
@@ -349,6 +361,6 @@
 		padding: 10px;
 		border-radius: 4px;
 		margin-bottom: 15px;
-		border: #00a2ed 1px dashed;
+		border: #00a2ed 1px solid;
 	}
 </style>
