@@ -3,12 +3,9 @@
 		<!-- 加价券详情 -->
 		<view class="couponInfo bg-white mb20 p10">
 			<view class="bold f16 blue1">{{ list.marCouRecord.markupCoupon.title }}</view>
-			<view class="gray-9 row jcbetween"  @click="showRole()">
-				<text>可选择订单的时间：{{ list.startTime }} - {{ list.endTime }}</text>
-				<view class="rout icon-bottom ml5 asend roleIcon" :class="{'roleIcon--active': isOpen}" />
-			</view>
+			<text class="gray-9">可选择订单的时间：{{ list.startTime }} - {{ list.endTime }}</text>
 			<!-- 加价券使用规则 -->
-			<view v-show="isOpen" class="mt5 pt5 topeee gray-9">
+			<view class="mt5 pt5 topeee gray-9">
 				<text>{{ list.marCouRecord.markupCoupon.contents }}</text>
 			</view>
 		</view>
@@ -21,7 +18,7 @@
 			<view v-if="list.binorders.length == 0" class="txtcenter gray-9 pt5">
 				暂无符合的订单
 			</view>
-			<scroll-view v-else scroll-y="true" style="max-height: 300px;" class="mt10 mb5">
+			<scroll-view v-else scroll-y="true" style="max-height: 200px;" class="mt10 mb5">
 				<radio-group @change="radioChange" class="column f14">
 					<label class="row aicenter pb5" v-for="(item, index) in list.binorders" :key="item.serialNum">
 						<radio :value="item.serialNum" :checked="index === current" style="transform: scale(0.7)" />
@@ -42,7 +39,6 @@
 	export default {
 		data() {
 			return {
-				isOpen: false,	//使用规则
 				sendBtn: true,	//按钮状态
 				current: -1,		//选中的订单
 				mcrId: '',			//加价券id
@@ -51,12 +47,6 @@
 			}
 		},
 		methods: {
-			// 点击打开使用规则
-			showRole() {
-				let that = this;
-				that.isOpen = !that.isOpen;
-				this.$forceUpdate();//强制重新渲染
-			},
 			//订单选择
 			radioChange: function(e) {
 				let that = this;
@@ -83,7 +73,7 @@
 							})
 						}else {
 							res.binorders.forEach(item => {
-								item.rewardPrice = Math.round(item.actTotalPrice * 100 * res.marCouRecord.markupCoupon.usedDiscount)/100;	//百分比加价
+								item.rewardPrice = Math.floor(item.actTotalPrice * 100 * res.marCouRecord.markupCoupon.usedDiscount)/100;	//百分比加价
 							})
 						}
 						res.startTime = res.startTime.slice(0,10).replace(/-/g,".");
@@ -109,11 +99,11 @@
 				let that = this;
 				console.log(that.current)
 				if (that.sendBtn == false) {
-					that.$util.showToast('已使用加价券，请勿重复领取。', 'none', 1000);
+					that.$util.showToast('已使用加价券，请勿重复使用。', 'none', 2000);
 					return
 				}
 				if (that.current < 0) {
-					that.$util.showToast('请先选择需要加价的订单。', 'none', 1000);
+					that.$util.showToast('请先选择需要加价的订单。', 'none', 2000);
 					return
 				}
 				that.$showLoading();  //显示遮罩
@@ -129,7 +119,7 @@
 							uni.navigateBack({
 								delta: 1	//返回上一页，加价券列表页
 							})
-						},2000);
+						},3000);
 					} else {
 						that.$util.showToast(res.data.results, 'none', 5000);
 					}
@@ -156,9 +146,6 @@
 </script>
 
 <style>
-	.couponInfo {
-		/* box-shadow: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04); */
-	}
 	.orderList {
 		padding: 5px 15px;
 	}
@@ -172,24 +159,5 @@
 		color: #FFFFFF;
 		border-radius: 10px;
 		line-height: 2em;
-	}
-	.roleIcon {
-		transform: rotate(0deg);
-		transform-origin: center center;
-	}
-	.roleIcon--active {
-		transform: rotate(180deg);
-	}
-	.roleInfo {
-		overflow: hidden;
-	}
-	.roleInfo--animation {
-		transition-property: transform;  /* style里面有transform的动画效果 */
-		transition-duration: 3s;
-		transition-timing-function: ease;
-	}
-	.roleInfo--hide {
-		height: 0px;
-		line-height: 0px;
 	}
 </style>
