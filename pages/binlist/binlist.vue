@@ -17,8 +17,8 @@
 							<view class="column">
 								<text class="gray-9 f12 mb5">{{ item.address }}</text>
 								<view class="row">
-									<text class="lab labblue1 mr5 radius4">{{ item.binType|binType }}</text>
-									<text class="box mr5 radius4" :class="item.mainStatu?'boxred':'boxblue1'">{{ item.mainStatu?item.mainStatu:'正常投递' }}</text>
+									<text class="box boxblue1 mr5 radius4">{{ item.binType|binType }}</text>
+									<text class="box mr5 radius4" :class="item.mainStatu?'boxred':'boxgreen'">{{ item.mainStatu?item.mainStatu:'正常' }}</text>
 								</view>
 							</view>
 							<view class="ascenter rout icon-right blue1 f18 bold mr10" style="border: 2px solid;border-radius: 50%;padding: 2px;" />
@@ -114,9 +114,9 @@
 								// binNum = '00000100000000000000000000000000000110000000000000000000000000000010000000000000000000000000000000111000000000000000000000000000';//测试用
 								let binStatus =  that.$util.getStatus(binNum);
 								let boxStatus = [];
-								if (item.binEdition==1 && binStatus.length > 0) { //1代智能箱
+								if (item.binEdition==1 && binStatus.length > 0) { //1代智能站
 									boxStatus = that.$util.getBin1(binStatus);
-								}else if (item.binEdition==2 && binStatus.length > 0) {//2代智能箱
+								}else if (item.binEdition==2 && binStatus.length > 0) {//2代智能站
 									boxStatus = that.$util.getBin2(binStatus);
 								}
 								console.log(boxStatus)
@@ -142,9 +142,9 @@
 								// binNum = '00000100000000000000000000000000000110000000000000000000000000000010000000000000000000000000000000111000000000000000000000000000';//测试用
 								let binStatus =  that.$util.getStatus(binNum);
 								let boxStatus = [];
-								if (item.binEdition==1 && binStatus.length > 0) { //1代智能箱
+								if (item.binEdition==1 && binStatus.length > 0) { //1代智能站
 									boxStatus = that.$util.getBin1(binStatus);
-								}else if (item.binEdition==2 && binStatus.length > 0) {//2代智能箱
+								}else if (item.binEdition==2 && binStatus.length > 0) {//2代智能站
 									boxStatus = that.$util.getBin2(binStatus);
 								}
 								console.log(boxStatus)
