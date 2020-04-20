@@ -1,6 +1,7 @@
 .white{ color: #fff !important; }
 .black { color: #000 !important; }
 .gray{ color: #ccc !important; }
+.gray-d{ color: #DDDDDD; }
 .gray-3{ color: #333 !important; }
 .gray-6{ color: #666 !important; }
 .gray-9 { color: #999 !important; }
@@ -288,6 +289,7 @@
 .boxjune { background: #BDD663; border: 1px solid #BDD663; }
 .boxpurple { background: #b10dc9; border: 1px solid #b10dc9; }
 .boxgray { background: #ccc; border: 1px solid #ccc }
+.boxgray-d { background: #DDDDDD; border: 1px solid #DDDDDD }
 .boxgray-9 { background: #999; border: 1px solid #999 }
 .boxgreen { background: #2ecc40; border: 1px solid #2ecc40; }
 
