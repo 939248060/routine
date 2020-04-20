@@ -1,5 +1,5 @@
 <template>
-	<!-- 智能回收订单列表 -->
+	<!-- 智能站订单列表 -->
 	<view>
 		<view class="top-tab row txtcenter bg-white f16">
 			<view data-current="0" :class="currentTab==0?'blue1':''" @click="swichNav">全部订单</view>

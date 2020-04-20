@@ -1,5 +1,5 @@
 <template>
-	<!-- 干垃圾投放订单列表 -->
+	<!-- 智能箱订单列表 -->
 	<view>
 		<view class="top-tab row txtcenter bg-white f16">
 			<view data-current="0" :class=" currentTab==0?'blue1':'' " @click="swichNav">全部订单</view>
@@ -165,7 +165,7 @@
 			      that.getList(p.currentPage + 1, tab, "add");   // 加载更多
 			    }
 			  },
-			  // 获取干垃圾投放数据
+			  // 获取智能箱数据
 			  getList: function (curr, tab, rid) {
 			    let that = this;
 			    uni.showNavigationBarLoading();                     // 标题栏显示加载状态

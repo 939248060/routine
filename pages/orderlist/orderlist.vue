@@ -1,32 +1,32 @@
 <template>
 	<view>
-		<!-- 顶部订单类型选择（智能回收、上门回收、干垃圾投放 -->
+		<!-- 顶部订单类型选择（智能站、上门回收、智能箱 -->
 		<view class="tabTitle gray-3 f14 bold row jcaround aiend txtcenter">
-			<view :class="[current==0?'tabActivit':'']" @click="current=0">智能回收<view v-show="current==0" class="borderblue" /></view>
-			<view :class="[current==1?'tabActivit':'']" @click="current=1">上门回收<view v-show="current==1" class="borderblue" /></view>
-			<view :class="[current==2?'tabActivit':'']" @click="current=2">干垃圾投放<view v-show="current==2" class="borderblue" /></view>
+			<view :class="[current==0?'tabActivit':'']" @click="current=0">智能站<view v-show="current==0" class="borderblue" /></view>
+			<view :class="[current==1?'tabActivit':'']" @click="current=1">智能箱<view v-show="current==1" class="borderblue" /></view>
+			<view :class="[current==2?'tabActivit':'']" @click="current=2">上门回收<view v-show="current==2" class="borderblue" /></view>
 		</view>
 		<view class="content">
-			<!-- 智能回收订单 -->
+			<!-- 智能站订单 -->
 			<view v-show="current === 0">
 				<smartorderlist />
 			</view>
-			<!-- 上门回收订单 -->
+			<!-- 智能箱订单 -->
 			<view v-show="current === 1">
-				<recyorderlist />
-			</view>
-			<!-- 干垃圾投放订单 -->
-			<view v-show="current === 2">
 				<dryorderlist />
+			</view>
+			<!-- 上门回收订单 -->
+			<view v-show="current === 2">
+				<recyorderlist />
 			</view>
 		</view>
 	</view>
 </template>
 
 <script>
-	import smartorderlist from "../../components/orderlist/smartorderlist.vue"	//智能回收
+	import smartorderlist from "../../components/orderlist/smartorderlist.vue"//智能站
+	import dryorderlist from "../../components/orderlist/dryorderlist.vue"		//智能箱
 	import recyorderlist from "../../components/orderlist/recyorderlist.vue"	//上门回收
-	import dryorderlist from "../../components/orderlist/dryorderlist.vue"	//干垃圾投放
 	
 	export default {
 		components:{
