@@ -1,15 +1,15 @@
 <template>
 	<view>
-		<view class="head"> 
+		<!-- <view class="head"> 
 			<scroll-view class="scroll-view_H" scroll-x="true" scroll-left="0" show-scrollbar="false">
 				<view class="gray-3 bold lh28" :class="currtab == 0? 'click': ''" data-cateId = "0" @click="tabClick">推荐商品</view>
 				<block v-for="(item,index) in categorys" :key="item.categoryId">
 					<view class="gray-3 bold lh28 " :class="currtab == item.categoryId? 'click': ''" :data-cateId = "item.categoryId" @click="tabClick">{{item.categoryName}}</view>
 				</block >
 			</scroll-view>
-		</view>
+		</view> -->
 		<scroll-view scroll-view scroll-y="true" :scroll-top="topNum" :style="'height:'+scrollHeight+'px;'" data-state="0" @scrolltolower="loadMore"
-		 upper-threshold="3" lower-threshold="5">
+		 upper-threshold="3" lower-threshold="5" class="mt20">
 			<view class="list row wrap jcbetween mb15">
 				<block :key="item.waresId" v-for=" (item,index) in list ">
 					<view class="wares mb10 bg-white radius10" :data-waresid="item.waresId " @click="linkwares">
@@ -28,10 +28,10 @@
 				<icon class="rout icon-kongshuju"></icon>
 				<view>您还没有相关的商品</view>
 			</view>
-			<view class="bottom pb20 txtcenter" v-if="btmp=='noMore'"><text>已经到底啦</text>
+			<view class="bottom txtcenter" v-if="btmp=='noMore'"><text>已经到底啦</text>
 				<view></view>
 			</view>
-			<view class="bottom pb20 txtcenter" v-else-if="btmp=='loadMore'">加载更多...</view>
+			<view class="bottom txtcenter" v-else-if="btmp=='loadMore'">加载更多...</view>
 		</scroll-view>
 		<loading />
 	</view>
