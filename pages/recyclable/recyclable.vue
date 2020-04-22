@@ -159,6 +159,9 @@
 </script>
 
 <style>
+	page {
+		position: fixed;	 /* 固定页面内容不移动 */
+	}
 	.img {
 		width: 48px;
 	}

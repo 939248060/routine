@@ -57,17 +57,20 @@
 </script>
 
 <style>
-.telBtn {
-	width: 70%;
-	border-radius: 10px;
-	background-color: #FF8800;
-	line-height: 2em;
-	color: #FFFFFF;
-	margin: 0 auto;
-	font-size: 18px;
-}
-.img {
-	width: 80%;
-	pointer-events: auto !important;
-}
+	page {
+		position: fixed;	 /* 固定页面内容不移动 */
+	}
+	.telBtn {
+		width: 70%;
+		border-radius: 10px;
+		background-color: #FF8800;
+		line-height: 2em;
+		color: #FFFFFF;
+		margin: 0 auto;
+		font-size: 18px;
+	}
+	.img {
+		width: 80%;
+		pointer-events: auto !important;
+	}
 </style>

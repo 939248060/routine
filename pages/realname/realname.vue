@@ -70,6 +70,9 @@
 </script>
 
 <style>
+	page {
+		position: fixed;	 /* 固定页面内容不移动 */
+	}
 	.realname {
 		background: #fff;
 	}
@@ -91,7 +94,7 @@
 	}
 
 	.btn {
-		width: 79%;
+		width: 80%;
 		background: #00a2ed;
 		color: #fff;
 	}

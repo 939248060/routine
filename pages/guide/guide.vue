@@ -5,7 +5,7 @@
 		</view>
 		<view class="order">
 			<navigator url='../showhtml/showhtml?nav=gongzhonghao'>
-				<view class="viewRow jcleft aicenter pt5 pb5 bordbtmeee">
+				<view class="viewRow jcleft aicenter pt5 pb5 btmeee ml10 mr10">
 					<view>
 						<view class="rout icon-shijian bg-green white f18"/>
 					</view>
@@ -43,7 +43,8 @@
 
 <style>
 	page {
-		background: white;
+		background: #FFFFFF;
+		position: fixed;	 /* 固定页面内容不移动 */
 	}
 
 	.title {
@@ -58,7 +59,7 @@
 
 	.order>navigator>view>view:nth-child(1) {
 		width: 13%;
-		margin:10px;
+		margin-right: 10px;
 		text-align: center;
 	}
 

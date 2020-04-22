@@ -195,7 +195,6 @@
 		width: 60%;
 		flex-direction: column;
 		justify-content: space-between;
-		/* align-items: center; */
 		font-size: 18px;
         padding-left: 20px;
 	}
@@ -218,38 +217,6 @@
 		align-items: center;
 		font-size: 16px;
 	}
-
-	/* .count {
-		text-align: center;
-		border-radius: 50%;
-		margin: 0px 5px;
-		overflow: hidden;
-	}
-
-	.jia {
-		width: 22px;
-		height: 22px;
-		color: #fff;
-		background-color: #00a2ed;
-	}
-
-	.jia>view {
-		font-size: 60px;
-		margin-top: -7px;
-	}
-
-	.jian {
-		width: 20px;
-		height: 20px;
-		color: #666;
-		border: 1px solid #666;
-	}
-
-	.jian>icon {
-		font-size: 12px;
-		font-weight: 900;
-		margin-top: -8px;
-	} */
 	.describe {
 		font-size: 20px;
 		background: #fff;
@@ -287,7 +254,7 @@
 		color: #fff;
 		background: #00a2ed;
 		border-radius: 10px;
-		padding: 2px 8px;
+		padding: 5px 20px;
 		line-height: 1.5em;
 		font-size: 16px;
 	}

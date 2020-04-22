@@ -240,6 +240,9 @@
 </script>
 
 <style>
+	page {
+		position: fixed;	 /* 固定页面内容不移动 */
+	}
 	.list {
 		background: #FFFFFF;
 		margin-bottom: 15px;

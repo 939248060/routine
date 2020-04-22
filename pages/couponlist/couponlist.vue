@@ -318,6 +318,9 @@
 </script> 
 
 <style>
+	page {
+		position: fixed;	 /* 固定页面内容不移动 */
+	}
 	.swiper-tab {
 		box-shadow: 0 10px 10px -7px #ddd inset;
 		position: fixed;

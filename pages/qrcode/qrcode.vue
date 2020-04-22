@@ -81,6 +81,7 @@
 <style>
 	page {
 		background: #00a2ed;
+		position: fixed;	 /* 固定页面内容不移动 */
 	}
 
 	.content {
