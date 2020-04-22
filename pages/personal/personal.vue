@@ -66,11 +66,11 @@
 				<text>我的二维码</text>
 			</navigator>
 			<navigator url="../realname/realname">
-				<view class="rout icon-shenfenzheng f30 purple" />
+				<view class="rout icon-shenfenzheng f30 orange" />
 				<text>实名认证</text>
 			</navigator>
 			<navigator url="../addresslist/addresslist">
-				<view class="rout icon-shouhuodizhi f30 orange" />
+				<view class="rout icon-shouhuodizhi f30 purple" />
 				<text>收货地址</text>
 			</navigator>
 			<navigator url="../exchangelist/exchangelist?state=0">
@@ -82,11 +82,11 @@
 				<text>关于我们</text>
 			</navigator>
 			<navigator url="../couponlist/couponlist">
-				<view class="rout icon-youhuiquan f30 purple" />
+				<view class="rout icon-youhuiquan f30 orange" />
 				<text>加价券</text>
 			</navigator>
 			<navigator class="ml15" url="../service/service">
-				<view class="rout icon-kefu f30 orange" />
+				<view class="rout icon-kefu f30 purple" />
 				<text>联系我们</text>
 			</navigator>
 		</view>

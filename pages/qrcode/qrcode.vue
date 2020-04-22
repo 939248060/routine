@@ -18,8 +18,6 @@
 			<view class="ts f14 txtcenter blue1">请将二维码对准扫描处</view>
 			<image class="canvas" :src="img" />
 		</view>
-		<!--自定义tabbar-->
-		<!-- <tabbar id="tabbar" :tabbar="tabbar" @showQRcodeEvent="_showQRcodeEvent"></tabbar> -->
 	</view>
 </template>
 
@@ -87,12 +85,15 @@
 
 	.content {
 		position: fixed;
+		width: 90%;
 		top: 45%;
 		left: 50%;
 		transform: translate(-50%, -60%);
 		-webkit-transform: translate(-50%, -60%);
-		background-image: radial-gradient(circle at -6px 100px, #00a2ed, #00a2ed 19px, transparent 20px ),
-											radial-gradient(circle at 320px 100px, #00a2ed, #00a2ed 19px, transparent 20px );
+		background-image: radial-gradient(circle at 0% 30%, #00a2ed, #00a2ed 19px, transparent 20px ),
+											radial-gradient(circle at 100% 30%, #00a2ed, #00a2ed 19px, transparent 20px ),
+											linear-gradient( #00a2ed 50px, #ffffff 51px);
+		padding-top: 50px;
 	}
 
 	.wxinfo > .photo {
@@ -106,7 +107,7 @@
 	.canvas {
 		width: 240px;
 		height: 240px;
-		margin: 20px 40px;
+		margin: 20px auto;
 	}
 	
 	.ts {
