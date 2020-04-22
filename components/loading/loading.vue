@@ -1,9 +1,9 @@
 <template>
 	<view v-show="loadingShow" catchtouchmove="move" >
-	  <view class="mask" :class="{transMask: loadingShow==false, colourMask:loadingShow==true}"></view>
+	  <view class="mask" :class="{transMask: loadingShow==false, colourMask:loadingShow==true}" />
 	  <view class="back">
-	    <view class='animationSlow'></view>
-	    <view class='logo'><image src="../../static/images/logo.png" mode="widthFix"></image></view>
+	    <view class='animationSlow' />
+	    <view class='logo'><image src="../../static/images/logo.png" mode="widthFix" /></view>
 	  </view>
 	</view>
 </template>

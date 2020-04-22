@@ -39,9 +39,9 @@
 					<input type="text" name="remarks" placeholder="可描述物品状态、特殊要求等" />
 				</view>
 				<!--图片上传-->
-				<view class="row jcleft aicenter pt15 pb15 black remark">
+				<view class="row jcleft aicenter pt15 pb15 black remark"  @click="tapChooseImage" >
 					<text>上传图片</text>
-					<view class="row jcend aicenter gray-7">请将回收物分别拍照上传<text class="rout icon-upload ml5" @click="tapChooseImage" /></view>
+					<view class="row jcend aicenter gray-7">请将回收物分别拍照上传<text class="rout icon-upload ml5"/></view>
 				</view>
 				<!--图片集合-->
 				<view class="row jcleft aicenter pt10 pb10 ">

@@ -19,6 +19,7 @@
 			let ran = Math.random().toString(36).substr(2,15);
 			if (that.$stringUtil.isNotEmpty(options.nav)) {
 			  that.url = that.$app.globalData.host + '/html/' + options.nav + '.html?ver=' + ran
+				console.log(that.url)
 			}
 		}
 	}
