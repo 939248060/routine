@@ -3,7 +3,7 @@
 		<image src="../../static/images/visit_banner.png" mode="widthFix" style="width: 100%;"/>
 		<view class="column m15 txtcenter">
 			<view class="gray-9 mb15">————<text class="f16 bold mb10 gray-6 ml5 mr5 "> 选择回收类型 </text>————</view>
-			<view class="list row" data-recy="1" @click="tapOpenPanel">
+			<!-- <view class="list row" data-recy="1" @click="tapOpenPanel">
 				<view class="m10"><image src="../../static/images/tu1.png" mode="widthFix" /></view>
 				<view class="column txtleft" style="width: 80%;">
 					<view class="row jcbetween">
@@ -12,7 +12,17 @@
 					</view>
 					<text class="gray-9">省直机关垃圾分类协议回收单位</text>
 				</view>
-			</view>
+			</view> -->
+			<navigator url="../recyclable/recyclable" class="list row">
+				<view class="m10"><image src="../../static/images/tu5.png" mode="widthFix" /></view>
+				<view class="column txtleft" style="width: 80%;">
+					<view class="row jcbetween">
+						<text class="f16 bold gray-3 mb5 mt10">可回收物</text>
+						<view class="appoint asstart">立即预约</view>
+					</view>
+					<text class="gray-9">高效便捷，值得信赖的回收品牌</text>
+				</view>
+			</navigator>
 			<navigator url="../electrical/electrical" class="list row">
 				<view class="m10"><image src="../../static/images/tu2.png" mode="widthFix" /></view>
 				<view class="column txtleft" style="width: 80%;">
@@ -33,7 +43,7 @@
 					<text class="gray-9">大件家具上门清运，省心省时省力</text>
 				</view>
 			</navigator>
-			<view class="list row" data-recy="4" @click="tapOpenPanel">
+			<!-- <view class="list row" data-recy="4" @click="tapOpenPanel">
 				<view class="m10"><image src="../../static/images/tu4.png" mode="widthFix" /></view>
 				<view class="column txtleft" style="width: 80%;">
 					<view class="row jcbetween">
@@ -42,7 +52,7 @@
 					</view>
 					<text class="gray-9">高效便捷，值得信赖的回收品牌</text>
 				</view>
-			</view>
+			</view> -->
 		</view>
 		
 		<!--政府回收-->
@@ -91,6 +101,7 @@
 				</view>
 			</form>
 		</view>
+		
 	</view>
 </template>
 
