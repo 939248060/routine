@@ -85,7 +85,7 @@
 				<view class="rout icon-youhuiquan f30 purple" />
 				<text>加价券</text>
 			</navigator>
-			<navigator class="ml15"  @click='call'>
+			<navigator class="ml15" url="../service/service">
 				<view class="rout icon-kefu f30 orange" />
 				<text>联系我们</text>
 			</navigator>
@@ -95,8 +95,7 @@
 		<loading/>
 		<!--弹出框-->
 		<dialogs id='dialog' ref="dialogs" title=' ' content='是否退出登录' cancelText='取消' confirmText='确定' @cancelEvent="_cancelEvent"
-		 @confirmEvent="_confirmEvent">
-		</dialogs>
+		 @confirmEvent="_confirmEvent" />
 	</view>
 </template>
 
@@ -128,18 +127,6 @@
 					}
 				})
 			},
-			// 联系我们
-			call: function() {
-				var that = this;
-				var phone = "4007705180";
-				uni.makePhoneCall({
-					phoneNumber: phone,
-					fail: function(err) {
-						console.log(err);
-						that.$util.showToast(err.errMsg, 'none', 3000);
-					}
-				})
-			},
 			// 获取用户量心币及零钱信息
 			getCustInfo: function() {
 				let that = this;
@@ -157,7 +144,7 @@
 					that.$hideLoading()  // 关闭过度遮罩
 				})
 				// uni.request({
-				// 	url: that.data.host + '/customer/user/findCustomerInfo.do',
+				// 	url: that.host + '/customer/user/findCustomerInfo.do',
 				// 	method: 'post',
 				// 	header: {
 				// 		'content-type': 'application/x-www-form-urlencoded; charset=utf-8',
