@@ -215,11 +215,23 @@
 				"navigationBarTextStyle": "#FFFFFF",
 				"navigationBarTitleText": "活动详情"
 			}
-		},{
+		},{//智能站列表
 			"path" : "pages/binlist/binlist",
 			"style" : {
 				"navigationBarTextStyle": "#FFFFFF",
 				"navigationBarTitleText": "智能站列表"
+			}
+		},{//可回收物页面
+			"path" : "pages/recyclable/recyclable",
+			"style" : {
+				"navigationBarTextStyle": "#FFFFFF",
+				"navigationBarTitleText": "可回收物"
+			}
+		},{//联系我们页面
+			"path" : "pages/service/service",
+			"style" : {
+				"navigationBarTextStyle": "#FFFFFF",
+				"navigationBarTitleText": "联系我们"
 			}
 		}
 	],
