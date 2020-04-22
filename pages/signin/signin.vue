@@ -1,57 +1,57 @@
 <template>
 	<view class="content">
 		<!-- 签到 -->
-		<view class="card column bg-white pl15 pr15 pt10 pb10">
-			<text class="txtcenter mb10">- 您已坚持 <text class="blue1 ml5 mr5">{{ signNum }}</text> 天签到 -</text>
+		<view class="card column bg-white p10">
+			<text class="txtcenter mb15 f16">- 您已连续 <text class="orange ml5 mr5">{{ signNum }}</text> 天签到 -</text>
 			<view class="row mb10 signCon">
 				<view class="column">
-					<view class="rout icon-logo f24 ascenter mb5 ml5" :class="{'blue1': 1<=signNum, 'gray': 1>signNum}" />
-					<view class="signday white radius10 txtcenter tnowrap" :class="{'boxblue1': 1<=signNum, 'boxgray': 1>signNum}">第1天</view>
+					<view class="f12 tnowrap" :class="1>signNum? 'gray-d':'gray-3'">1天</view>
+					<view class="ascenter" :class="1>signNum? 'signDay':'orange rout icon-roundcheckfill f26 signDay--active'" />
 				</view>
-				<view class="asend mb10" :class="{'line--active': 2<=signNum, 'line': 2>signNum}" />
+					<view class="asend mb15" :class="{'line--active': 2<=signNum, 'line': 2>signNum}" />
 				<view class="column">
-					<view class="rout icon-logo f24 ascenter mb5 ml5" :class="{'blue1': 2<=signNum, 'gray': 2>signNum}" />
-					<view class="signday white radius10 txtcenter tnowrap" :class="{'boxblue1': 2<=signNum, 'boxgray': 2>signNum}">第2天</view>
+					<view class="f12 tnowrap" :class="2>signNum? 'gray-d':'gray-3'">2天</view>
+					<view class="ascenter" :class="2>signNum? 'signDay':'orange rout icon-roundcheckfill f26 signDay--active'" />
 				</view>
-				<view class="asend mb10" :class="{'line--active': 3<=signNum, 'line': 3>signNum}" />
+				<view class="asend mb15" :class="{'line--active': 3<=signNum, 'line': 3>signNum}" />
 				<view class="column">
-					<view class="rout icon-logo f24 ascenter mb5 ml5" :class="{'blue1': 3<=signNum, 'gray': 3>signNum}" />
-					<view class="signday white radius10 txtcenter tnowrap" :class="{'boxblue1': 3<=signNum, 'boxgray': 3>signNum}">第3天</view>
+					<view class="f12 tnowrap" :class="3>signNum? 'gray-d':'gray-3'">3天</view>
+					<view class="ascenter" :class="3>signNum? 'signDay':'orange rout icon-roundcheckfill f26 signDay--active'" />
 				</view>
-				<view class="asend mb10" :class="{'line--active': 4<=signNum, 'line': 4>signNum}" />
+				<view class="asend mb15" :class="{'line--active': 4<=signNum, 'line': 4>signNum}" />
 				<view class="column">
-					<view class="rout icon-logo f24 ascenter mb5 ml5" :class="{'blue1': 4<=signNum, 'gray': 4>signNum}" />
-					<view class="signday white radius10 txtcenter tnowrap" :class="{'boxblue1': 4<=signNum, 'boxgray': 4>signNum}">第4天</view>
+					<view class="f12 tnowrap" :class="4>signNum? 'gray-d':'gray-3'" >4天</view>
+					<view class="ascenter" :class="4>signNum? 'signDay':'orange rout icon-roundcheckfill f26 signDay--active'" />
+				</view>
+				<view class="asend mb15" :class="{'line--active': 5<=signNum, 'line': 5>signNum}" />
+				<view class="column">
+					<view class="f12 tnowrap" :class="5>signNum? 'gray-d':'gray-3'">5天</view>
+					<view class="ascenter" :class="5>signNum? 'signDay':'orange rout icon-roundcheckfill f26 signDay--active'" />
+				</view>
+				<view class="asend mb15" :class="{'line--active': 6<=signNum, 'line': 6>signNum}" />
+				<view class="column">
+					<view class="f12 tnowrap" :class="6>signNum? 'gray-d':'gray-3'">6天</view>
+					<view class="ascenter" :class="6>signNum? 'signDay':'orange rout icon-roundcheckfill f26 signDay--active'" />
+				</view>
+				<view class="asend mb15" :class="{'line--active': 7<=signNum, 'line': 7>signNum}" />
+				<view class="column">
+					<view class="f12 tnowrap" :class="7>signNum? 'gray-d':'gray-3'">7天</view>
+					<view class="ascenter" :class="7>signNum? 'gray-d rout icon-presentfill f30':'orange rout icon-presentfill f30'" />
 				</view>
 			</view>
-			<view class="row ascenter signCon" style="width: 70%;">
-				<view class="column">
-					<view class="rout icon-logo f24 ascenter mb5 ml5" :class="{'blue1': 5<=signNum, 'gray': 5>signNum}" />
-					<view class="signday white radius10 txtcenter tnowrap" :class="{'boxblue1': 5<=signNum, 'boxgray': 5>signNum}">第5天</view>
-				</view>
-				<view class="asend mb10" :class="{'line--active': 6<=signNum, 'line': 6>signNum}" />
-				<view class="column">
-					<view class="rout icon-logo f24 ascenter mb5 ml5" :class="{'blue1': 6<=signNum, 'gray': 6>signNum}" />
-					<view class="signday white radius10 txtcenter tnowrap" :class="{'boxblue1': 6<=signNum, 'boxgray': 6>signNum}">第6天</view>
-				</view>
-				<view class="asend mb10" :class="{'line--active': 7<=signNum, 'line': 7>signNum}" />
-				<view class="column">
-					<view class="rout icon-logo f24 ascenter mb5 ml5" :class="{'blue1': 7<=signNum, 'gray': 7>signNum}" />
-					<view class="signday white radius10 txtcenter tnowrap" :class="{'boxblue1': 7<=signNum, 'boxgray': 7>signNum}">第7天</view>
-				</view>
-			</view>
-			<view class="signbtn radius10 ascenter mt10 "  :class="signType?'boxblue1':'boxgray'" @click="sendSignIn()">
+			<view class="signbtn radius10 ascenter "  :class="signType?'boxorange':'boxgray-d'" @click="sendSignIn()">
 				{{ signType?'立即签到':'签到完成' }}
 			</view>
 		</view>
 		<view class="m10 column">
 			<text class="f16">签到规则</text>
 			<text class="">
-				(1). 用户连续签到7天，赠送一张加价券；
-				(2). 连续签到7天后，第8天为新的一轮签到周期；
-				(3). 若任一连续签到周期内断签，则重置签到周期；
-				(4). 加价券会自动发放到您的量心回收小程序账户中，加价券有效期及具体使用规则可以在加价券列表里查看，如偶遇发放延迟，请您耐心等待或联系客服为您解决；
-				(5). 本活动最终解释权归活动主办方所有。
+				(1). 签到代表您在量心小程序上的成就，每天签到可获得签到奖励，连续签到7天可获得终极礼品奖励；
+				(2). 签到奖励分每日签到奖励和一周连续签到奖励；
+				(3). 每日签到奖励可获取相应的积分；
+				(4). 连续签到计算方式为：每周一到周日连续、不间断的签到天数；
+				(5). 连续签到达到指定的天数，才可获得签到的奖励。若中断签到，则享受实际签到天数当天的积分奖励；
+				(6). 连续签到天数为一周，每周一到周日，用户每天0:00—23:59:59登录量心回收小程序，进入签到页面，连续签到7天后，会获取礼品一份。
 			</text>
 		</view>
 		<!-- 活动 -->
@@ -113,14 +113,17 @@
 					if (res.data.status === 0) {
 						res = JSON.parse(res.data.results);
 						that.signNum = res.length;	//签到天数
+						// that.signNum = 7; //测试
+						console.log(res)
 						//确认今天有没有签到，签到的话要把signtype的值变为false，让按钮变灰
-						let time1 = that.day.slice(0,10).replace(/-/g,':'); //当前日期，用于判断今天是否签到
+						let time1 = that.day.slice(0,10); //当前日期，用于判断今天是否签到
 						res.forEach(item => {
-							let time2 = item.signTime.slice(0,10).replace(/-/g,':');
+							let time2 = item.signTime.slice(0,10);
 							if (new Date(time1).getTime() == new Date(time2).getTime() && item.signTag == 1) {
 								that.signType = false;
 								console.log("signIn!!!")
 							}
+							
 						})
 					} else {
 						that.$util.showToast(res.data.results, 'none', 5000);
@@ -146,23 +149,30 @@
 		background-image: radial-gradient(circle at 50% -252px, #00a2ed, #00a2ed 360px, transparent 361px );
 		padding: 20px 15px 0px;
 	}
-	.signCon > view:nth-child(odd) {
-		margin-right: 6px;
+	.signDay {
+		width: 20px;
+		height: 20px;
+		border-radius: 50%;
+		background: #DDDDDD;
+		margin: 6px 1px;
 	}
-	.signday {
-		padding: 1px 2px;
+	.signDay--active {
+		margin-top: 2px;
 	}
 	.line {
-		border: 1px dashed #EEEEEE;
+		border: 1px solid #DDDDDD;
 		width: 100%;
 	}
 	.line--active {
-		border: 1px solid #00A2ED;
+		border: 1px solid #FF8800;
 		width: 100%;
 	}
 	.signbtn {
 		padding: 5px 10px;
 		color: #FFFFFF;
+		width: 70%;
+		text-align: center;
+		margin: 5px 0;
 	}
 	.activityimg {
 		width: 100%;
