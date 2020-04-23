@@ -1,25 +1,27 @@
 <template>
 	<view>
-		<!-- 顶部订单类型选择（智能站、上门回收、智能箱 -->
-		<view class="tabTitle gray-3 f14 bold row jcaround aiend txtcenter">
-			<view :class="[current==0?'tabActivit':'']" @click="current=0">智能站<view v-show="current==0" class="borderblue" /></view>
-			<view :class="[current==1?'tabActivit':'']" @click="current=1">智能箱<view v-show="current==1" class="borderblue" /></view>
-			<view :class="[current==2?'tabActivit':'']" @click="current=2">上门回收<view v-show="current==2" class="borderblue" /></view>
-		</view>
-		<view class="content">
-			<!-- 智能站订单 -->
-			<view v-show="current === 0">
-				<smartorderlist />
+		<block v-if="current != -1">
+			<!-- 顶部订单类型选择（智能站、上门回收、智能箱 -->
+			<view class="tabTitle gray-3 f14 bold row jcaround aiend txtcenter">
+				<view :class="[current==0?'tabActivit':'']" @click="current=0">智能站<view v-show="current==0" class="borderblue" /></view>
+				<view :class="[current==1?'tabActivit':'']" @click="current=1">智能箱<view v-show="current==1" class="borderblue" /></view>
+				<view :class="[current==2?'tabActivit':'']" @click="current=2">上门回收<view v-show="current==2" class="borderblue" /></view>
 			</view>
-			<!-- 智能箱订单 -->
-			<view v-show="current === 1">
-				<dryorderlist />
+			<view class="content">
+				<!-- 智能站订单 -->
+				<view v-show="current === 0">
+					<smartorderlist />
+				</view>
+				<!-- 智能箱订单 -->
+				<view v-show="current === 1">
+					<dryorderlist />
+				</view>
+				<!-- 上门回收订单 -->
+				<view v-show="current === 2">
+					<recyorderlist />
+				</view>
 			</view>
-			<!-- 上门回收订单 -->
-			<view v-show="current === 2">
-				<recyorderlist />
-			</view>
-		</view>
+		</block>
 	</view>
 </template>
 
@@ -36,12 +38,25 @@
 		},
 		data() {
 			return {
-				current: 0
+				card: '',			//用户卡号，用于判断用户是否登录
+				current: -1
 			}
 		},
 		methods: {
 			
-		}
+		},
+		onShow() {
+			let that = this;
+			that.card = uni.getStorageSync("card");	//获取用户卡号，用于判断用户是否登录
+			if (that.card == '') {
+				uni.redirectTo({
+					url: '../login/login'
+				});
+			}else {
+				that.current = 0;
+			}
+			console.log(that.current)
+		},
 	}
 </script>
 

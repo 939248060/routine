@@ -23,15 +23,15 @@
 			</view>
 			<view class="row jcaround txtcenter f18 userInfo lh18">
 				<navigator url="../cashlist/cashlist">
-					<view class="bold mb5"> {{ customer.cash?customer.cash:'0' }} </view>
+					<view class="bold mb5"> {{ customer.cash!=null?customer.cash:'0' }} </view>
 					<view class="gray-9 f12"> 零钱 </view>
 				</navigator>
 				<navigator url="../scorelist/scorelist">
-					<view class="bold mb5"> {{ customer.score?customer.score:'0' }} </view>
+					<view class="bold mb5"> {{ customer.score!=null?customer.score:'0' }} </view>
 					<view class="gray-9 f12"> 量心币 </view>
 				</navigator>
 				<navigator url="../couponlist/couponlist">
-					<view class="bold mb5"> {{ customer.marCouCount?customer.marCouCount:'0' }} </view>
+					<view class="bold mb5"> {{ customer.marCouCount!=null?customer.marCouCount:'0' }} </view>
 					<view class="gray-9 f12"> 加价券 </view>
 				</navigator>
 				<!-- <navigator>
@@ -117,23 +117,14 @@
 			}
 		},
 		methods: {
-			//获取用户卡号
-			getUserCard: function() {
-				let that = this;
-				uni.getStorage({
-					key: 'card',
-					success: function(res) {
-						that.card = res.data;
-					}
-				})
-			},
 			// 获取用户量心币及零钱信息
 			getCustInfo: function() {
 				let that = this;
 				that.$showLoading();  //显示遮罩
 				that.$request.postToken("/users/customer/findInfo.do", null).then((res) => {
 					if (res.data.status === 0) {
-						that.$data.customer = JSON.parse(res.data.results);
+						that.customer = JSON.parse(res.data.results);
+						console.log(that.customer)
 					} else {
 						that.$util.showToast(res.data.results, 'none', 5000);
 					}
@@ -183,6 +174,7 @@
 			_confirmEvent() {
 				var that = this;
 				uni.removeStorageSync('custToken');
+				uni.removeStorageSync('card');
 				that.$util.showToast("您已退出登录", 'none', 3000);
 				uni.redirectTo({
 					url: '../login/login'
@@ -197,11 +189,17 @@
 		onLoad() {
 			let that = this;
 			that.host = that.$app.globalData.host;
-			that.getUserCard();
+			that.card = uni.getStorageSync("card");	//获取用户卡号，用于判断用户是否登录
+			if (that.card == '') {
+				uni.redirectTo({
+					url: '../login/login'
+				});
+			}else {
+				that.getCustInfo();	//	获取用户基本信息
+			}
 		},
 		onShow() {
 			let that = this;
-			that.getCustInfo();
 		},
 	}
 </script>
