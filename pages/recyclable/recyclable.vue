@@ -27,7 +27,6 @@
 					<view class="gray-9">保洁回收</view>
 				</view>
 			</view>
-			
 			<!-- 呼叫回收面板 -->
 			<view v-show="formPanel" class="mask" />
 			<view v-show="formPanel" class="dialog txtcenter">
@@ -50,32 +49,55 @@
 					</view>
 				</form>
 			</view>
-			
 		</view>
+		<!--弹出框-->
+		<dialogs id='dialog' ref="dialogs" title=' ' content='您还未登录,是否登录？' cancelText='取消' confirmText='确定' @cancelEvent="_cancelEvent"
+		 @confirmEvent="_confirmEvent" />
 	</view>
 </template>
 
 <script>
+	import dialogs from "@../../components/dialog/dialog.vue";
+	
 	export default {
+		components:{
+			dialogs
+		},
 		data() {
 			return {
 				formPanel: false, // 呼叫回收面板
 				customer: {},
 				address: {},
 				title: "",	//呼叫回收面板标题
+				card: '',			//用户卡号，用于判断用户是否登录
 			}
 		},
 		methods: {
 			// 弹出预约回收面板
 			tapOpenPanel: function(title) {
 				let that = this;
-				that.title = title;	//面板标题，选中的回收类型
-				that.formPanel = true;
+				if (that.card == '') {	//用户未登录
+					that.$refs['dialogs'].showDialog();	//是否登录弹出框
+				}else {
+					that.title = title;	//面板标题，选中的回收类型
+					that.formPanel = true;
+				}
 			},
 			// 关闭预约回收面板
 			tapClosePanel: function() {
 				let that = this;
 				that.formPanel = false;
+			},
+			// 弹出框选确定登录
+			_confirmEvent() {
+				var that = this;
+				uni.redirectTo({
+					url: '../login/login'
+				});
+			},
+			// 弹出框选取消隐藏弹出框
+			_cancelEvent() {
+				this.$refs['dialogs'].hideDialog();
 			},
 			// 呼叫回收
 			sendForm: function(title) {
@@ -145,15 +167,18 @@
 		},
 		onLoad() {
 			let that = this;
-			that.getDefaultAddr(); // 获取默认地址
 		},
 		onShow() {
 			let that = this;
-			let address = uni.getStorageSync("address"); // 读取缓存中地址信息
-			if (address != null) {
-				that.address = address;
+			that.card = uni.getStorageSync("card");	//获取用户卡号，用于判断用户是否登录
+			if (that.card != '') {	//用户已登录
+				this.getCustomerInfo();	//	获取用户基本信息
+				that.getDefaultAddr(); // 获取默认地址
+				let address = uni.getStorageSync("address"); // 读取缓存中地址信息
+				if (address != null) {
+					that.address = address;
+				}
 			}
-			this.getCustomerInfo();	//	获取用户基本信息
 		}
 	}
 </script>

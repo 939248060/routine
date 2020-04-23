@@ -39,14 +39,20 @@
 				<button :data-waresid="wares.waresId" :disabled="disabled" @click.stop='exchange'>立即兑换</button>
 			</view>
 		</view>
+		<!--弹出框-->
+		<dialogs id='dialog' ref="dialogs" title=' ' content='您还未登录,是否登录？' cancelText='取消' confirmText='确定' @cancelEvent="_cancelEvent"
+		 @confirmEvent="_confirmEvent" />
 	</view>
 </template>
 
 <script>
 	import uParse from '@/components/gaoyia-parse/parse.vue'
+	import dialogs from "@../../components/dialog/dialog.vue";
+	
 	export default {
 		components: {
-			uParse
+			uParse,
+			dialogs
 		},
 		data() {
 			return {
@@ -55,7 +61,8 @@
 				num: 1, // 兑换商品数量
 				dkheight: '', // 详情模板高度
 				wares: [], // 商品数据
-				disabled: false // 兑换按钮开关
+				disabled: false, // 兑换按钮开关
+				card: ''			//用户卡号，用于判断用户是否登录
 			}
 		},
 		methods: {
@@ -77,28 +84,42 @@
 			},
 			// 点击开始兑换商品
 			exchange: function(e) {
-				//console.log(e);
 				let that = this;
-				let countScore = that.wares.score * that.num;
-				that.$showLoading(); //显示遮罩
-				that.$request.postToken("/users/customer/checkScore.do", {
-					score: countScore
-				}).then((res) => {
-					//console.log(res);
-					if (res.data.status === 0) {
-						let waresid = that.wares.waresId;
-						uni.navigateTo({
-							url: '../exchange/exchange?waresId=' + waresid + '&num=' + that.num
-						});
-					} else {
-						that.$util.showToast(res.data.results, 'none', 3000);
-					}
-				}).catch((err) => {
-					console.log(err);
-					that.$util.showToast(err.errMsg, 'none', 4000);
-				}).finally(() => {
-					that.$hideLoading();
-				})
+				if (that.card == '') {	//用户未登录
+					that.$refs['dialogs'].showDialog();
+				}else {
+					let countScore = that.wares.score * that.num;
+					that.$showLoading(); //显示遮罩
+					that.$request.postToken("/users/customer/checkScore.do", {
+						score: countScore
+					}).then((res) => {
+						//console.log(res);
+						if (res.data.status === 0) {
+							let waresid = that.wares.waresId;
+							uni.navigateTo({
+								url: '../exchange/exchange?waresId=' + waresid + '&num=' + that.num
+							});
+						} else {
+							that.$util.showToast(res.data.results, 'none', 3000);
+						}
+					}).catch((err) => {
+						console.log(err);
+						that.$util.showToast(err.errMsg, 'none', 4000);
+					}).finally(() => {
+						that.$hideLoading();
+					})
+				}
+			},
+			// 弹出框选确定登录
+			_confirmEvent() {
+				var that = this;
+				uni.redirectTo({
+					url: '../login/login'
+				});
+			},
+			// 弹出框选取消隐藏弹出框
+			_cancelEvent() {
+				this.$refs['dialogs'].hideDialog();
 			},
 			// 获取商品数据
 			getWares: function(waresid) {
@@ -158,8 +179,12 @@
 		onLoad(options) {
 			let that = this;
 			let content = '';
-			that.host = that.$app.globalData.host
-			that.getWares(options.waresid);
+			that.host = that.$app.globalData.host;
+			that.getWares(options.waresid);	//获取商品详情
+		},
+		onShow() {
+			let that = this;
+			that.card = uni.getStorageSync("card");	//获取用户卡号，用于判断用户是否登录
 		}
 	}
 </script>
