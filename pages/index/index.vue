@@ -9,91 +9,88 @@
 			</block>
 		</swiper>
 		<!-- 主要功能按钮 -->
-		<view class="firstContent row wrap mb20 mt20">
-			<navigator url="../qrcode/qrcode">
+		<view class="row wrap mb20 mt20">
+			<view class="firstContent" @click="toPage('智能回收')">
 				<image src="../../static/images/qr_code.png" mode="widthFix" />
 				<view>智能回收</view>
-			</navigator>
-			<navigator url="../visit/visit">
+			</view>
+			<navigator class="firstContent" url="../visit/visit">
 				<image src="../../static/images/deliver.png" mode="widthFix" />
 				<view>上门回收</view>
 			</navigator>
-			<navigator url="../signin/signin">
+			<view class="firstContent" @click="toPage('签到活动')">
 				<image src="../../static/images/present.png" mode="widthFix" />
 				<view>签到活动</view>
-			</navigator>
-			<navigator url="../guide/guide">
+			</view>
+			<navigator class="firstContent" url="../guide/guide">
 				<image src="../../static/images/info.png" mode="widthFix" />
 				<view>使用指南</view>
 			</navigator>
 		</view>
 		<!-- 收益数据统计 -->
 		<view class="myIncome column mb10">
-			<view class="row mb10 f16 bold">
+			<view class="row mb10">
 				<view class="ring ascenter" />
-				<text>{{ card == ''?"您好，请先登录":"我的收益" }}</text>
+				<text class="f14 bold">{{ card == ''?"您好，请先登录":"我的收益" }}</text>
 			</view>
-			<scroll-view scroll-x="true" style=" width: 100%;white-space: nowrap;">
-				<navigator class="incomeItem" url="../cashlist/cashlist">
-					<view class="row mb10 aicenter jccenter">
-						<view class="rout icon-recharge f26 blue1 mr5" />
-						<text class="gray-9 f12">零钱</text>
-					</view>
-					<view class="f14">
-						<text class="bold f18 mr5 black"> {{ customer.cash?customer.cash:'--' }} </text>
-						元
-					</view>
+			<!-- 未登录 -->
+			<view v-if="card==''" class="myIncomeCon column jccenter">
+				<navigator class="loginBtn" url="../login/login">
+					登录 / 注册
 				</navigator>
-				<navigator class="incomeItem" url="../scorelist/scorelist">
-					<view class="row mb10 aicenter jccenter">
-						<view class="rout icon-coin f26 orange mr5" />
-						<text class="gray-9 f12">量心币</text>
-					</view>
-					<view class="f14">
-						<text class="bold f18 mr5 black"> {{ customer.score?customer.score:'--' }} </text>
-						个
-					</view>
-				</navigator>
-				<navigator class="incomeItem column jccenter" url="../couponlist/couponlist">
-					<view class="row mb10 aicenter jccenter">
-						<view class="rout icon-youhuiquan f26 purple mr5" />
-						<text class="gray-9 f12">加价券</text>
-					</view>
-					<view class="f14">
-						<text class="bold f18 mr5 black"> {{ customer.marCouCount?customer.marCouCount:'--' }} </text>
-						张
-					</view>
-				</navigator>
-				<!-- <navigator class="incomeItem" url="../exchangelist/exchangelist">
-					<view class="row mb10 aicenter jccenter">
-						<view class="rout icon-jifen f26 orange mr5" />
-						<text class="gray-9 f12">积分</text>
-					</view>
-					<view class="f14">
-						<text v-if="card == ''" class="bold f18 mr5">--</text>
-						<text v-else class="bold f18 mr5 black">100000</text>
-						分
-					</view>
-				</navigator> -->
-				<navigator class="incomeItem">
-					<view class="row mb10 aicenter jccenter">
-						<view class="rout icon-evaluate f26 green mr5" />
-						<text class="gray-9 f12">碳积分</text>
-					</view>
-					<view class="f14">
-						<text v-if="card == ''" class="bold f18 mr5">--</text>
-						<text v-else class="bold f18 mr5 black">100000</text>
-						分
-					</view>
-				</navigator>
-			</scroll-view>
+			</view>
+			<!-- 已登录 -->
+			<block v-else>
+				<scroll-view scroll-x="true" style=" width: 100%;white-space: nowrap;">
+					<navigator class="incomeItem" url="../cashlist/cashlist">
+						<view class="row mb10 aicenter jccenter">
+							<view class="rout icon-recharge f26 blue1 mr5" />
+							<text class="gray-9 f12">零钱</text>
+						</view>
+						<view class="f14">
+							<text class="bold f18 mr5 black"> {{ customer.cash!=null?customer.cash:'--' }} </text>
+							元
+						</view>
+					</navigator>
+					<navigator class="incomeItem" url="../scorelist/scorelist">
+						<view class="row mb10 aicenter jccenter">
+							<view class="rout icon-coin f26 orange mr5" />
+							<text class="gray-9 f12">量心币</text>
+						</view>
+						<view class="f14">
+							<text class="bold f18 mr5 black"> {{ customer.score!=null?customer.score:'--' }} </text>
+							个
+						</view>
+					</navigator>
+					<navigator class="incomeItem column jccenter" url="../couponlist/couponlist">
+						<view class="row mb10 aicenter jccenter">
+							<view class="rout icon-youhuiquan f26 purple mr5" />
+							<text class="gray-9 f12">加价券</text>
+						</view>
+						<view class="f14">
+							<text class="bold f18 mr5 black"> {{ customer.marCouCount!=null?customer.marCouCount:'--' }} </text>
+							张
+						</view>
+					</navigator>
+					<navigator class="incomeItem">
+						<view class="row mb10 aicenter jccenter">
+							<view class="rout icon-evaluate f26 green mr5" />
+							<text class="gray-9 f12">碳积分</text>
+						</view>
+						<view class="f14">
+							<text class="bold f18 mr5 black"> {{ card == ''?'--':'100000' }} </text>
+							分
+						</view>
+					</navigator>
+				</scroll-view>
+			</block>
 		</view>
 		<!-- 回收站列表 -->
 		<view class="bin">
 			<view class="row jcbetween f12 gray-9 pb5 mb10">
 				<view class="row">
 					<view class="ring ascenter" />
-					<text class="f16 gray-3 bold">附近回收站</text>
+					<text class="f14 gray-6 bold">附近回收站</text>
 				</view>
 				<navigator class="row ascenter" url="../recySmart/recySmart" >
 					查看更多 <view class="rout icon-right lh18" />
@@ -126,11 +123,19 @@
 		</view>
 		<!--加载动画-->
 		<loading />
+		<!--弹出框-->
+		<dialogs id='dialog' ref="dialogs" title=' ' content='您还未登录,是否登录？' cancelText='取消' confirmText='确定' @cancelEvent="_cancelEvent"
+		 @confirmEvent="_confirmEvent" />
 	</view>
 </template>
 
 <script>
+	import dialogs from "@../../components/dialog/dialog.vue";
+	
 	export default {
+		components:{
+			dialogs
+		},
 		data() {
 			return {
 				"bnrUrl": [{	//banner图地址
@@ -163,6 +168,34 @@
 			}
 		},
 		methods: {
+			//页面跳转前判断是否登录 
+			toPage(num) {
+				let that = this;
+				if (that.card == '') {	//用户未登录
+					that.$refs['dialogs'].showDialog();
+				}else {
+					if (num == "智能回收") {	//智能回收
+						uni.navigateTo({
+							url: "../qrcode/qrcode"
+						});
+					}else if (num == "签到活动") {	//签到活动
+						uni.navigateTo({ 
+							url: "../signin/signin"
+						});
+					}
+				}
+			},
+			// 弹出框选确定登录
+			_confirmEvent() {
+				var that = this;
+				uni.redirectTo({
+					url: '../login/login'
+				});
+			},
+			// 弹出框选取消隐藏弹出框
+			_cancelEvent() {
+				this.$refs['dialogs'].hideDialog();
+			},
 			//	获取用户信息
 			getCustomerInfo: function() {
 				let that = this;
@@ -170,27 +203,8 @@
 				that.$request.postToken("/users/customer/findInfo.do", null).then((res) => {
 					if (res.data.status === 0) {
 						that.customer = JSON.parse(res.data.results);
+						console.log(that.customer)
 					} else {
-						that.$util.showToast(res.data.results, 'none', 5000);
-					}
-				}).catch((err) => {
-					console.log(err);
-					that.$util.showToast(err, 'none', 5000);
-				}).finally(() => {
-					that.$hideLoading();
-				})
-			},
-			//设置用户的默认地址
-			getDefaultAddr: function() {
-				let that = this;
-				that.$showLoading(); // 显示遮罩
-				that.$request.postToken("/users/address/findDefaultAddress.do", null).then((res) => {
-					if (res.data.status === 0) {
-						let address = JSON.parse(res.data.results);
-						uni.setStorageSync('address', address);
-						that.address = address;
-					} else {
-						uni.removeStorageSync('address');
 						that.$util.showToast(res.data.results, 'none', 5000);
 					}
 				}).catch((err) => {
@@ -209,7 +223,7 @@
 					currPage: 1,
 					pageSize: 5
 				}
-				that.$request.postToken("/users/smartBin/findNearbyPage.do", data).then((res) => {
+				that.$request.post("/smartBin/findNearbyPage.do", data).then((res) => {
 					if (res.data.status === 0) {
 						res = JSON.parse(res.data.results);
 						res.forEach(item => {
@@ -282,24 +296,21 @@
 		},
 		onLoad() {
 			let that = this;
-			that.getDefaultAddr(); // 获取默认地址
-			that.card = uni.getStorageSync("card");	//获取用户卡号，用于判断用户是否登录
+		},
+		onShow() {
+			let that = this;
 			uni.getLocation({
-				type: 'wgs84',
+				type: 'gcj02 ',
 				success: function (res) {
 					console.log('当前位置的经度：' + res.longitude);
 					console.log('当前位置的纬度：' + res.latitude);
 					that.getSmartList(res.longitude, res.latitude);//获取附近站点列表
 				}
 			});
-		},
-		onShow() {
-			let that = this;
-			let address = uni.getStorageSync("address"); // 读取缓存中地址信息
-			if (address != null) {
-				that.address = address;
+			that.card = uni.getStorageSync("card");	//获取用户卡号，用于判断用户是否登录
+			if (that.card != '') {
+				this.getCustomerInfo();	//	获取用户基本信息
 			}
-			this.getCustomerInfo();	//	获取用户基本信息
 		}
 	}
 </script>
@@ -319,14 +330,11 @@
 		border-radius: 8px;
 	}
 	.firstContent {
-		
-	}
-	.firstContent > navigator {
 		width: 25%;
 		text-align: center;
 		margin: 5px 0;
 	}
-	.firstContent > navigator >image {
+	.firstContent > image {
 		width: 32px;
 	}
 	.myIncome {
@@ -334,6 +342,21 @@
 		padding-left: 10px;
 		background: url(../../static/images/index_incomebg.png) no-repeat;
 		background-size: 100% 140px;
+	}
+	.myIncomeCon {
+		background-color: rgb(255,255,255,0.5) ;
+		margin: 0 10px 10px;
+		height: 100%;
+		border-radius: 10px;
+	}
+	.loginBtn {
+		width: 70%;
+		background: #00A2ED;
+		color: #FFFFFF;
+		margin: 0 auto;
+		text-align: center;
+		line-height: 3em;
+		border-radius: 8px;
 	}
 	.ring {
 		width: 14px;
@@ -343,7 +366,6 @@
 		margin-right: 5px;
 	}
 	.incomeItem {
-		background: #FFFFFF;
 		border-radius: 4px;
 		margin-right: 10px;
 		text-align: center;
