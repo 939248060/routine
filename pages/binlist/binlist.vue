@@ -103,7 +103,7 @@
 					currPage: curr,
 					pageSize: 10
 				}
-				that.$request.postToken("/users/smartBin/findNearbyPage.do", data).then((res) => {
+				that.$request.post("/smartBin/findNearbyPage.do", data).then((res) => {
 					if (res.data.status === 0) {
 						that.page = res.data.page;
 						that.btmp = (res.data.page.currentPage >= res.data.page.allPageAmount) ? 'noMore' : 'loadMore';
@@ -177,7 +177,7 @@
 		onReady() {
 			let that = this;
 			uni.getLocation({	//获取附近站点列表
-				type: 'wgs84',
+				type: 'gcj02 ',
 				success: function (res) {
 					console.log('当前位置的经度：' + res.longitude);
 					console.log('当前位置的纬度：' + res.latitude);

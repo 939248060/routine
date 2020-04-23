@@ -107,8 +107,8 @@
 				let that = this;
 				var location = {}; // 用户当前位置
 				uni.getLocation({
-					// type: 'wgs84',
-					//type: 'gcj02', 
+					// type: 'gcj02 ',
+					//type: 'wgs84', 
 					success: function(res) {
 						console.log("用户允许获取定位");
 						location.latitude = res.latitude;
@@ -137,7 +137,7 @@
 			getDryBin: function() {
 				var that = this;
 				that.$showLoading(); //显示遮罩
-				that.$request.postToken("/users/smartBox/findPosition.do", {}).then((res) => {
+				that.$request.post("/smartBox/findPosition.do", {}).then((res) => {
 					let markers = [];
 					markers = markers.concat(that.location); // 当前定位marker
 					if (res.data.status == 0) {
@@ -199,7 +199,7 @@
 				let that = this;
 				let markers = that.markers;
 				that.$showLoading(); //显示遮罩
-				that.$request.postToken("/users/smartBin/findPosition.do", {}).then((res) => {
+				that.$request.post("/smartBin/findPosition.do", {}).then((res) => {
 					if (res.data.status == 0) {
 						let list = JSON.parse(res.data.results);
 						console.log(list);
@@ -258,7 +258,7 @@
 					//智能箱选中效果
 					if (code.indexOf("G") > -1) {
 						that.$showLoading(); //显示遮罩
-						that.$request.postToken("/users/smartBox/findInfo.do", { code }).then((res) => {
+						that.$request.post("/smartBox/findInfo.do", { code }).then((res) => {
 							if (res.data.status == 0) {
 								let single = JSON.parse(res.data.results);
 								let markers = that.markers;
@@ -322,7 +322,7 @@
 						//智能站选中效果
 						console.log(code);
 						that.$showLoading(); //显示遮罩
-						that.$request.postToken("/users/smartBin/findInfo.do", { code }).then((res) => {
+						that.$request.post("/smartBin/findInfo.do", { code }).then((res) => {
 							if (res.data.status == 0) {
 								let single = JSON.parse(res.data.results);
 								let markers = that.markers;
