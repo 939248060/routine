@@ -177,7 +177,7 @@
 				uni.removeStorageSync('card');
 				that.$util.showToast("您已退出登录", 'none', 3000);
 				uni.redirectTo({
-					url: '../login/login'
+					url: '../index/index'
 				});
 				console.log("what");
 			},
