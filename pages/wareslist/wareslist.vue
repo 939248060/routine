@@ -9,7 +9,7 @@
 			</scroll-view>
 		</view> -->
 		<scroll-view scroll-view scroll-y="true" :scroll-top="topNum" :style="'height:'+scrollHeight+'px;'" data-state="0" @scrolltolower="loadMore"
-		 upper-threshold="3" lower-threshold="5" class="mt20">
+		 upper-threshold="3" lower-threshold="5" class="mt10">
 			<view class="list row wrap jcbetween mb15">
 				<block :key="item.waresId" v-for=" (item,index) in list ">
 					<view class="wares mb10 bg-white radius10" :data-waresid="item.waresId " @click="linkwares">
@@ -24,14 +24,14 @@
 					</view>
 				</block>
 			</view>
-			<view v-if="btmp=='noData'" class="noData column aicenter jccenter">
+			<view v-if="btmp=='noData'" class="noData column aicenter jccenter mb20">
 				<icon class="rout icon-kongshuju"></icon>
 				<view>您还没有相关的商品</view>
 			</view>
-			<view class="bottom txtcenter" v-if="btmp=='noMore'"><text>已经到底啦</text>
+			<view class="bottom txtcenter mb20" v-if="btmp=='noMore'"><text>已经到底啦</text>
 				<view></view>
 			</view>
-			<view class="bottom txtcenter" v-else-if="btmp=='loadMore'">加载更多...</view>
+			<view class="bottom txtcenter mb20" v-else-if="btmp=='loadMore'">加载更多...</view>
 		</scroll-view>
 		<loading />
 	</view>
@@ -131,7 +131,7 @@
 		},
 		onLoad() {
 			let that = this;
-			that.scrollHeight = that.$app.globalData.systemInfo.windowHeight - 60;
+			that.scrollHeight = that.$app.globalData.systemInfo.windowHeight;	//获取屏幕高度
 			that.host = that.$app.globalData.host1;
 			that.getCategory();
 			that.getList(1, 'new', 0);
