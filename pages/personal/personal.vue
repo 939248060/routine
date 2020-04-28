@@ -176,7 +176,7 @@
 				uni.removeStorageSync('custToken');
 				uni.removeStorageSync('card');
 				that.$util.showToast("您已退出登录", 'none', 3000);
-				uni.redirectTo({
+				uni.switchTab({
 					url: '../index/index'
 				});
 				console.log("what");
