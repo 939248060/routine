@@ -82,7 +82,7 @@
 			</view>
 			<view class="viewRow pt5 pb5">
 				<view>投放地点</view>
-				<view>{{single.binAddress}}</view>
+				<view>{{single.address}}</view>
 			</view>
 		</view>
 
@@ -105,7 +105,7 @@
 			getDetail: function(id) {
 				let that = this;
 				that.$showLoading();    //显示遮罩
-				that.$request.postToken("/users/smartorder/findById.do", {
+				that.$request.postToken("/users/binorder/findById.do", {
 					id: id
 				}).then((res) => {
 					//console.log(res);
