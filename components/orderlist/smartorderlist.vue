@@ -114,7 +114,6 @@
 	export default {
 		data() {
 			return {
-				host: '', // 主机地址
 				currentTab: 0, // 当前Tab
 				scrollHeight: 0, // 设备高度
 				btmp0: 'loadMore', // 所有投放订单scroll底部panel
@@ -224,7 +223,6 @@
 		},
 		onLoad(options) {
 			let that = this;
-			that.host = that.$app.globalData.host; // 从全局中获取主机地址
 			if (that.$stringUtil.isNotEmpty(options.state)) {
 				that.currentTab = options.state;
 			}
