@@ -369,11 +369,9 @@
 		},
 		onLoad(options) {
 			let that = this;
-			that.host = that.$app.globalData.host; // 从全局中获取主机地址
 		},
 		onShow(currentTab, state) {
 			let that = this;
-			console.log(currentTab + '===' + state)
 			if (that.$stringUtil.isNotEmpty(currentTab)) {
 				that.currentTab = currentTab;
 			}
@@ -386,6 +384,7 @@
 		onReady() {
 			let that = this;
 			that.getList(1, that.currentTab, 'new');
+			that.host = that.$app.globalData.host; // 从全局中获取主机地址
 			that.scrollHeight = that.$app.globalData.systemInfo.windowHeight + 8; // 从全局中获取屏幕高度
 		},
 		onPullDownRefresh() {
