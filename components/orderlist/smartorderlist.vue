@@ -12,7 +12,7 @@
 				<scroll-view scroll-y="true" :style="'height:'+scrollHeight+'px;'" data-state="0" @scrolltoupper="refresh"
 				 @scrolltolower="loadMore" upper-threshold="3" lower-threshold="5">
 					<block v-for="(item,index) in list[0]" :key="index">
-						<navigator :url="'../smartorderinfo/smartorderinfo?id='+item.smartorderId" class="m10 p10 bg-white shadow radius8">
+						<navigator :url="'../smartorderinfo/smartorderinfo?id='+item.binorderId" class="m10 p10 bg-white shadow radius8">
 							<view class="row jcbetween aicenter mb5 black f16">
 							  <view class="row jcleft aicenter elips">
 							    <view class="bold mr10">{{item.expType}}</view>
@@ -47,7 +47,7 @@
 				<scroll-view scroll-y="true" :style="'height:'+scrollHeight+'px;'" data-state="2" @scrolltoupper="refresh"
 				 @scrolltolower="loadMore" upper-threshold="3" lower-threshold="5">
 					<block :key="index" v-for="(item,index) in list[2]">
-						<navigator :url="'../smartorderinfo/smartorderinfo?id='+item.smartorderId" class="m10 p10 bg-white shadow radius8">
+						<navigator :url="'../smartorderinfo/smartorderinfo?id='+item.binorderId" class="m10 p10 bg-white shadow radius8">
 							<view class="row jcbetween aicenter mb5 black f16">
 							  <view class="row jcleft aicenter elips">
 							    <view class="bold mr10">{{item.expType}}</view>
@@ -73,7 +73,7 @@
 				<scroll-view scroll-y="true" :style="'height:'+scrollHeight+'px;'" data-state="4" @scrolltoupper="refresh"
 				 @scrolltolower="loadMore" upper-threshold="3" lower-threshold="5">
 					<block :key="index" v-for="(item,index) in list[4]">
-						<navigator :url="'../smartorderinfo/smartorderinfo?id='+item.smartorderId" class="m10 p10 bg-white shadow radius8">
+						<navigator :url="'../smartorderinfo/smartorderinfo?id='+item.binorderId" class="m10 p10 bg-white shadow radius8">
 							<view class="row jcbetween aicenter mb5 black f16">
 							  <view class="row jcleft aicenter elips">
 							    <view class="bold mr10">{{item.expType}}</view>
@@ -188,7 +188,7 @@
 				that.$showLoading(); // 显示遮罩
 				that.isLoading = true; // 更改读取状态
 				let btmp = "btmp" + state; // list底部状态
-				that.$request.postToken("/users/smartorder/findPage.do", data).then((res) => {
+				that.$request.postToken("/users/binorder/findPage.do", data).then((res) => {
 					if (res.data.status === 0) {
 						let btm = (res.data.page.currentPage >= res.data.page.allPageAmount) ? 'noMore' : 'loadMore';
 						if (rid == "new") { // 判断当前读取是刷新读取还是加载读取
