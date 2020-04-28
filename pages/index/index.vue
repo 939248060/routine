@@ -72,7 +72,7 @@
 							张
 						</view>
 					</navigator>
-					<navigator class="incomeItem">
+					<!-- <navigator class="incomeItem">
 						<view class="row mb10 aicenter jccenter">
 							<view class="rout icon-evaluate f26 green mr5" />
 							<text class="gray-9 f12">碳积分</text>
@@ -81,7 +81,7 @@
 							<text class="bold f18 mr5 black"> {{ card == ''?'--':'100000' }} </text>
 							分
 						</view>
-					</navigator>
+					</navigator> -->
 				</scroll-view>
 			</block>
 		</view>
