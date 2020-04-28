@@ -3,7 +3,7 @@
 		<!-- 联系电话 -->
 		<view class="colum p10 bg-white card txtcenter mb25">
 			<view class="f18 orange">服务热线</view>
-			<view class="mt5 mb10">+ 4007705180</view>
+			<view class="f18 mt5 mb10">+ 4007705180</view>
 			<view class="telBtn" @click='call'>立即拨打</view>
 		</view>
 		<!-- 客服微信二维码 -->
@@ -11,7 +11,7 @@
 			<view class="f18 orange">客服微信</view>
 			<view class="gray-9">扫一扫“二维码名片”，即可添加客服微信。</view>
 			<view @longpress="saveImg()">
-				<image class="img" src="../../static/images/kefu.png" mode="widthFix" @click="tapPreviewImage" />
+				<image class="img" :src="host+'/images/routine/kefu.png'" mode="widthFix" @click="tapPreviewImage" />
 			</view>
 		</view>
 	</view>
@@ -41,14 +41,14 @@
 			tapPreviewImage: function() {
 				let that = this;
 				let imgUrl = [];
-				imgUrl.push(that.host+"/static/images/kefu.png");
+				imgUrl.push(that.host+"/images/routine/kefu.png");
 				console.log(imgUrl)
 				uni.previewImage({ // 预览图片
 					urls: imgUrl // 所有要预览的图片 
 				})
 			},
 		},
-		onLoad() {
+		onReady() {
 			let that = this;
 			that.host = that.$app.globalData.host;
 			// that.host = "http://127.0.0.1:22053/__pageframe__";//测试
