@@ -3,7 +3,7 @@
 		<!-- 联系电话 -->
 		<view class="colum p10 bg-white card txtcenter mb25">
 			<view class="f18 orange">服务热线</view>
-			<view class="f18 mt5 mb10">+ 4007705180</view>
+			<view class="f18 mt5 mb10 gray-9">+ 4007705180</view>
 			<view class="telBtn" @click='call'>立即拨打</view>
 		</view>
 		<!-- 客服微信二维码 -->
