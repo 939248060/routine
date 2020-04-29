@@ -107,8 +107,7 @@
 				let that = this;
 				var location = {}; // 用户当前位置
 				uni.getLocation({
-					// type: 'gcj02 ',
-					//type: 'wgs84', 
+					type: 'gcj02',
 					success: function(res) {
 						console.log("用户允许获取定位");
 						location.latitude = res.latitude;
