@@ -1,7 +1,7 @@
 <template>
 	<view>
 		<image src="../../static/images/visit_banner.png" mode="widthFix" style="width: 100%;"/>
-		<view class="gray-9 mt15 mb15 txtcenter">————<text class="f16 bold mb10 gray-6 ml5 mr5 "> 选择回收类型 </text>————</view>
+		<view class="gray-9 mt15 mb15 txtcenter">————<text class="f16 bold mb10 gray-6 ml5 mr5 "> 请选择回收来源 </text>————</view>
 		<view class="column m15 txtcenter">
 			<view class="row mb10 f16 bold">
 				<view class="line" />

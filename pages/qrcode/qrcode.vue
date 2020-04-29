@@ -15,7 +15,7 @@
 				<!-- #endif -->
 			</view>
 			<!-- <canvas class='canvas' canvas-id='canvas'></canvas> -->
-			<view class="ts f14 txtcenter blue1">请将二维码对准扫描处</view>
+			<view class="ts f14 txtcenter blue1">请将二维码对准扫描器</view>
 			<image class="canvas" :src="img" />
 		</view>
 	</view>

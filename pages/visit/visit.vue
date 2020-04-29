@@ -2,7 +2,7 @@
 	<view>
 		<image src="../../static/images/visit_banner.png" mode="widthFix" style="width: 100%;"/>
 		<view class="column m15 txtcenter">
-			<view class="gray-9 mb15">————<text class="f16 bold mb10 gray-6 ml5 mr5 "> 选择回收类型 </text>————</view>
+			<view class="gray-9 mb15">————<text class="f16 bold mb10 gray-6 ml5 mr5 "> 请选择回收类型 </text>————</view>
 			<navigator url="../recyclable/recyclable" class="list row">
 				<view class="m10"><image src="../../static/images/tu5.png" mode="widthFix" /></view>
 				<view class="column txtleft" style="width: 80%;">
