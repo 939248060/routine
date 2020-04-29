@@ -97,7 +97,7 @@
 				</navigator>
 			</view>
 			<!-- 回收站列表 -->
-			<view class="binList">
+			<view class="binList" v-if="smartList.length > 0">
 				<block v-for="(item,index) in smartList" :key="index" >
 					<navigator class="column binItem" :url="'../recySmart/recySmart?lng='+item.lng+'&lat='+item.lat+'&code='+item.code">
 						<view class="row jcbetween mb5">
@@ -120,9 +120,14 @@
 					</navigator>
 				</block>
 			</view>
+			<!-- 没开定位没有站点数据 -->
+			<view v-else class="column aicenter">
+				<image src="../../static/images/wudingwei.png" mode="widthFix" style="width: 100px;" />
+				<view>请打开定位以便获取附近站点信息</view>
+			</view>
 		</view>
-		<!--加载动画-->
-		<loading />
+		<!--遮罩-->
+		<loading/>
 		<!--弹出框-->
 		<dialogs id='dialog' ref="dialogs" title=' ' content='您还未登录,是否登录？' cancelText='取消' confirmText='确定' @cancelEvent="_cancelEvent"
 		 @confirmEvent="_confirmEvent" />
@@ -199,7 +204,7 @@
 			//	获取用户信息
 			getCustomerInfo: function() {
 				let that = this;
-				that.$showLoading()
+				that.$showLoading();  //显示遮罩
 				that.$request.postToken("/users/customer/findInfo.do", null).then((res) => {
 					if (res.data.status === 0) {
 						that.customer = JSON.parse(res.data.results);
@@ -300,11 +305,14 @@
 		onShow() {
 			let that = this;
 			uni.getLocation({
-				type: 'gcj02 ',
+				type: 'gcj02',
 				success: function (res) {
 					console.log('当前位置的经度：' + res.longitude);
 					console.log('当前位置的纬度：' + res.latitude);
 					that.getSmartList(res.longitude, res.latitude);//获取附近站点列表
+				},
+				fail: function(err) {
+					console.log("获取用户位置失败");
 				}
 			});
 			that.card = uni.getStorageSync("card");	//获取用户卡号，用于判断用户是否登录
