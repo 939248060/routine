@@ -134,7 +134,14 @@
 				"navigationBarTitleText": "量心币详情",
 				"navigationBarTextStyle": "#FFFFFF"
 			}
-    },{//零钱列表页
+    },{//零钱提现
+			"path" : "pages/drawmoney/drawmoney",
+			"style" : {
+				"navigationBarTitleText": "零钱提现",
+				"navigationBarTextStyle": "#FFFFFF",
+				"enablePullDownRefresh": true
+			}
+		},{//零钱明细
 			"path" : "pages/cashlist/cashlist",
 			"style" : {
 				"navigationBarTitleText": "我的零钱",

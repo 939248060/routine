@@ -22,7 +22,7 @@
 				</view>
 			</view>
 			<view class="row jcaround txtcenter f18 userInfo lh18">
-				<navigator url="../cashlist/cashlist">
+				<navigator url="../drawmoney/drawmoney">
 					<view class="bold mb5"> {{ customer.cash!=null?customer.cash:'0' }} </view>
 					<view class="gray-9 f12"> 零钱 </view>
 				</navigator>

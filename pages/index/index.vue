@@ -42,7 +42,7 @@
 			<!-- 已登录 -->
 			<block v-else>
 				<scroll-view scroll-x="true" style=" width: 100%;white-space: nowrap;">
-					<navigator class="incomeItem" url="../cashlist/cashlist">
+					<navigator class="incomeItem" url="../drawmoney/drawmoney">
 						<view class="row mb10 aicenter jccenter">
 							<view class="rout icon-recharge f26 blue1 mr5" />
 							<text class="gray-9 f12">零钱</text>
