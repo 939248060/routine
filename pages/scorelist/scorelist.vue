@@ -3,18 +3,18 @@
 		<view class="viewRow jcbetween  top black">
 			<view class="top-left txtcenter column">
 				<view class="dis_block f20 white">{{customer.score}}</view>
-				<view class="dis_block f12 white">剩余积分</view>
+				<view class="dis_block f12 white">剩余量心币</view>
 			</view>
 			<view class="top-right txtcenter column">
 				<view class="dis_block f20 white">{{customer.countScore}}</view>
-				<view class="dis_block f12 white">累计积分收入</view>
+				<view class="dis_block f12 white">累计收入</view>
 			</view>
 		</view>
 		<view class="scroll">
-			<scroll-view scroll-y="true" :style="'height:'+ scrollHeight +'px;'" data-state="0" @scrolltoupper="refresh"
+			<scroll-view scroll-y="true" style="box-sizing: border-box; padding: 0 5px;" :style="'height:'+ scrollHeight +'px;'" data-state="0" @scrolltoupper="refresh"
 			 @scrolltolower="loadMore" upper-threshold="3" lower-threshold="8">
 				<block v-for="(items,index) in list" :key="index">
-					<view class="date d1">
+					<view class="date d1 ml5">
 						<text class="f14">{{items.id}}</text>
 					</view>
 					<navigator :url="'../scoredetails/scoredetails?item='+encodeURIComponent(JSON.stringify(item.score))" v-for="(item,index) in items.data" :key="index">
@@ -94,7 +94,7 @@
 					that.getList(that.page.currentPage + 1, "add"); // 加载更多
 				}
 			},
-			//获取用户积分明细
+			//获取用户量心币明细
 			getList: function(curr, rid) {
 				let that = this;
 				uni.showNavigationBarLoading(); // 标题栏显示加载状态

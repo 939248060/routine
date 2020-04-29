@@ -7,14 +7,14 @@
 			</view>
 			<view class="top-right txtcenter column">
 				<view class="dis_block f20 white">{{customer.countCash}}</view>
-				<view class="dis_block f12 white">累计零钱收入</view>
+				<view class="dis_block f12 white">累计收入</view>
 			</view>
 		</view>
 		<view class="scroll">
-			<scroll-view scroll-y="true" :style="'height:' + scrollHeight + 'px;'" data-state="0" @scrolltoupper="refresh"
+			<scroll-view scroll-y="true" style="box-sizing: border-box; padding: 0 5px;" :style="'height:' + scrollHeight + 'px;'" data-state="0" @scrolltoupper="refresh"
 			 @scrolltolower="loadMore" upper-threshold="3" lower-threshold="8">
 				<block v-for="(items,index) in list" :key="index">
-					<view class="date d1">
+					<view class="date d1 ml5">
 						<text class="f14">{{items.id}}</text>
 					</view>
 					<navigator v-for="(item,index) in items.data" :key="index" :url="'../cashdetails/cashdetails?item='+ encodeURIComponent(JSON.stringify(item.cash))">
