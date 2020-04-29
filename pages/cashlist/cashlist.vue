@@ -11,7 +11,7 @@
 			</view>
 		</view>
 		<view class="scroll">
-			<scroll-view scroll-y="true" style="box-sizing: border-box; padding: 0 5px;" :style="'height:' + scrollHeight + 'px;'" data-state="0" @scrolltoupper="refresh"
+			<scroll-view scroll-y="true" :style="'height:' + scrollHeight + 'px;'" data-state="0" @scrolltoupper="refresh"
 			 @scrolltolower="loadMore" upper-threshold="3" lower-threshold="8">
 				<block v-for="(items,index) in list" :key="index">
 					<view class="date d1 ml5">
@@ -256,7 +256,7 @@
 	.cashlist {
 		background: #fff;
 		border-bottom: 1px solid #eee;
-		padding: 5px 0px 5px 0px;
+		padding: 5px;
 	}
 
 	.cashlist>view:nth-child(1) {
