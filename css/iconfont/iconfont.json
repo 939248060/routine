@@ -6,6 +6,13 @@
   "description": "断线风格图标",
   "glyphs": [
     {
+      "icon_id": "2742672",
+      "name": "微信",
+      "font_class": "weixin",
+      "unicode": "e67c",
+      "unicode_decimal": 59004
+    },
+    {
       "icon_id": "4409261",
       "name": "上传",
       "font_class": "upload",
