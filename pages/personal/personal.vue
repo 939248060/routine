@@ -173,6 +173,7 @@
 			// 弹出框选确定退出登录
 			_confirmEvent() {
 				var that = this;
+				this.$refs['dialogs'].hideDialog();
 				uni.removeStorageSync('custToken');
 				uni.removeStorageSync('card');
 				that.$util.showToast("您已退出登录", 'none', 3000);
@@ -188,6 +189,9 @@
 		},
 		onLoad() {
 			let that = this;
+		},
+		onShow() {
+			let that = this;
 			that.host = that.$app.globalData.host;
 			that.card = uni.getStorageSync("card");	//获取用户卡号，用于判断用户是否登录
 			if (that.card == '') {
@@ -197,9 +201,6 @@
 			}else {
 				that.getCustInfo();	//	获取用户基本信息
 			}
-		},
-		onShow() {
-			let that = this;
 		},
 	}
 </script>
