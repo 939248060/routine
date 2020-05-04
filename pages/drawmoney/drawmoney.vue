@@ -133,8 +133,10 @@
 					that.showTxt = "提现金额必须是10元的倍数";
 					return;
 				}
-				console.log("okle");
-				return
+				if (Number(cash) > Number(that.customer.cash)) {      // 提现金额不能超过账户余额
+					that.showTxt = "提现金额不能超过账户余额，请重新输入";
+					return;
+				}
 				that.$showLoading();  //显示遮罩
 				that.$request.postToken("/users/customer/drawMoney.do", { cash, payType } ).then((res) => {
 					if (res.data.status === 0) {
@@ -177,10 +179,10 @@
 		},
 		onReady: function () {
 			let that = this;
-			that.host = that.$app.globalData.host; // 从全局中获取主机地址
 		},
 		onShow: function () {
 			let that = this;
+			that.host = that.$app.globalData.host; // 从全局中获取主机地址
 			that.getDetailed();
 		},
 	}
