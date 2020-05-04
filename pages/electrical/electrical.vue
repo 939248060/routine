@@ -21,13 +21,13 @@
 			<view v-for="(item,index) in recydetail" :key="index" class="row jcbetween aicenter bg-white detail">
 				<view class="row jcleft aicenter">
 					<image :src="item.img" style="width: 60px; height: 60px;" />
-					<view class="ml10">
+					<view class="ml10 mr10">
 						<view class="red f15"><text class="black">预估价格：</text>￥<text class="f18">{{item.totalPrice}}</text>元</view>
-						<view class="gray mt5 elips">{{item.scrapNames}}</view>
+						<view class="gray mt5">{{item.scrapNames}}</view>
 					</view>
 				</view>
 				<!--点击删除回收物-->
-				<view class="rout icon-roundclose1 txtcenter f24 red" :data-idx="index" @click="tapRemoveDetail" />
+				<view class="rout icon-roundclosefill txtcenter f24 red" :data-idx="index" @click="tapRemoveDetail" />
 			</view>
 			<view class="txtcenter pt10 pb10 f15" @click="tapOpenSelectPanel">继续添加</view>
 		</view>
@@ -46,7 +46,7 @@
 				<!--图片集合-->
 				<view class="row jcleft aicenter pt10 pb10 ">
 					<view v-for="(item,index) in tempImages" :key="index" class="overhidden txtcenter" style="width: 25%; position: relative;">
-						<view class="rout icon-roundclose1 f20 red bg-white delimage" :data-idx="index" @click="tapRemoveImage" />
+						<view class="rout icon-roundclosefill f20 red bg-white delimage" :data-idx="index" @click="tapRemoveImage" />
 						<image :src="item" mode="widthFix" :data-idx="index" @click="tapPreviewImage" style="width: 70%;" />
 					</view>
 				</view>
@@ -110,7 +110,7 @@
 
 		<!--订单完成显示面板-->
 		<view v-show="finishHid" class="column jccenter aicenter txtcenter finish">
-			<icon class="rout icon-chenggong blue1" style="font-size: 80px" />
+			<icon class="rout icon-roundcheckfill blue1" style="font-size: 80px" />
 			<view class="mt20 mb20 f24">订单已提交</view>
 			<navigator url="../recyorderlist/recyorderlist" open-type="redirect" class="nav mt15 mb15 p10">查看订单</navigator>
 			<navigator url="../index/index" open-type="switchTab" class="nav mt15 mb15 p10">返回首页</navigator>
