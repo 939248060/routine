@@ -21,17 +21,17 @@
 							    <view v-else-if="item.state==4" class="box boxred f12 radius8">异常单</view>
 							  </view>
 							  <view v-if="item.state==2" class="red f18">
-							    <text class="gray f12">预估：</text>{{item.expTotalScore}} 量心币
+							    <text class="gray f12">预估：</text>{{item.expTotalScore?item.expTotalScore:'--'}} 量心币
 							  </view>
-							  <view v-else-if="item.state==3" class="green f18">{{item.actTotalScore}} 量心币</view>
+							  <view v-else-if="item.state==3" class="green f18">{{item.actTotalScore?item.actTotalScore:'--'}} 量心币</view>
 							</view>
 							<!-- 异常信息 -->
 							<view v-if="item.abnormal.length>0" class="row jcleft aicenter mb5 f12">
-							  <view v-for="(abnormal,i) in item.abnormal" :key="i" class="lab labpurple radius8 mr5">{{abnormal}}</view>
+							  <view class="lab labpurple radius8 mr5">{{item.abnormal}}</view>
 							</view>
-							<view>投放时间：{{item.beginTime}}</view>
-							<view v-if="item.state==2">投放重量：{{item.expAmount}} 公斤</view>
-							<view v-else-if="item.state==3">检验重量：{{item.actAmount}} 公斤</view>
+							<view>投放时间：{{item.beginTime?item.beginTime:'--'}}</view>
+							<view v-if="item.state==2">投放重量：{{item.expAmount?item.expAmount:'--'}} 公斤</view>
+							<view v-else-if="item.state==3">检验重量：{{item.actAmount?item.actAmount:'--'}} 公斤</view>
 						</navigator>
 					</block>
 					<view v-if="btmp0=='noData'" class="noData">
@@ -53,11 +53,11 @@
 							    <view class="box boxorange f12 radius8">待检验</view>
 							  </view>
 							  <view class="red f18">
-							    <text class="gray f12">预估：</text>{{item.expTotalScore}} 量心币
+							    <text class="gray f12">预估：</text>{{item.expTotalScore?item.expTotalScore:'--'}} 量心币
 							  </view>
 							</view>
-							<view>投放时间：{{item.beginTime}}</view>
-							<view>投放重量：{{item.expAmount}} 公斤</view>
+							<view>投放时间：{{item.beginTime?item.beginTime:'--'}}</view>
+							<view>投放重量：{{item.expAmount?item.expAmount:'--'}} 公斤</view>
 						</navigator>
 					</block>
 					<view v-if="btmp2=='noData'" class="noData">
@@ -79,15 +79,15 @@
 							    <view class="box boxred f12 radius8">异常单</view>
 							  </view>
 							  <view class="red f18">
-							    <text class="gray f12">预估：</text>{{item.expTotalScore}} 量心币
+							    <text class="gray f12">预估：</text>{{item.expTotalScore?item.expTotalScore:'--'}} 量心币
 							  </view>
 							</view>
 							<!-- 异常信息 -->
 							<view v-if="item.abnormal.length>0" class="row jcleft aicenter mb5 f12">
-							  <view v-for="(abnormal,i) in item.abnormal" :key="i" class="lab labpurple radius8 mr5">{{abnormal}}</view>
+							  <view class="lab labpurple radius8 mr5">{{item.abnormal}}</view>
 							</view>
-							<view>投放时间：{{item.beginTime}}</view>
-							<view>投放重量：{{item.expAmount}} 公斤</view>
+							<view>投放时间：{{item.beginTime?item.beginTime:'--'}}</view>
+							<view>投放重量：{{item.expAmount?item.expAmount:'--'}} 公斤</view>
 						</navigator>
 					</block>
 					<view v-if="btmp4=='noData'" class="noData">

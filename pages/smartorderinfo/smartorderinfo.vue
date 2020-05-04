@@ -35,12 +35,12 @@
 			</view>
 			<view class="viewRow pt10 pb5" :class="through">
 				<view style="width:80%;">
-					<view>{{single.expType}}</view>
-					<view class="gray f12 pt5">{{single.expAmount}} KG</view>
+					<view>{{single.expType?single.expType:'--'}}</view>
+					<view class="gray f12 pt5">{{single.expAmount?single.expAmount:'--'}} KG</view>
 				</view>
 				<view style="width:20%;" class="txtright">
-					<view><text class="black">{{single.expTotalPrice}}</text> 元</view>
-					<view class="gray f12 pt5">{{single.expPrice}} 元/KG</view>
+					<view><text class="black">{{single.expTotalPrice?single.expTotalPrice:'--'}}</text> 元</view>
+					<view class="gray f12 pt5">{{single.expPrice?single.expPrice:'--'}} 元/KG</view>
 				</view>
 			</view>
 		</view>
@@ -51,12 +51,12 @@
 			</view>
 			<view class="viewRow pt10 pb5">
 				<view style="width:80%;">
-					<view>{{single.actType}}</view>
-					<view class="gray f12 pt5">{{single.actAmount}} 公斤</view>
+					<view>{{single.actType?single.actType:'--'}}</view>
+					<view class="gray f12 pt5">{{single.actAmount?single.actAmount:'--'}} 公斤</view>
 				</view>
 				<view style="width:20%;" class="txtright">
-					<view><text class="orange">{{single.actTotalPrice}}</text> 元</view>
-					<view class="gray f12 pt5">{{single.actPrice}} 元/KG</view>
+					<view><text class="orange">{{single.actTotalPrice?single.actTotalPrice:'--'}}</text> 元</view>
+					<view class="gray f12 pt5">{{single.actPrice?single.actPrice:'--'}} 元/KG</view>
 				</view>
 			</view>
 		</view>

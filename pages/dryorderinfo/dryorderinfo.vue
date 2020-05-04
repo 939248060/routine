@@ -35,12 +35,12 @@
 			</view>
 			<view class="viewRow pt10 pb5" :class="through">
 				<view style="width:70%;">
-					<view>{{info.expType}}</view>
-					<view class="gray f12 pt5">{{info.expAmount}} KG</view>
+					<view>{{info.expType?info.expType:'--'}}</view>
+					<view class="gray f12 pt5">{{info.expAmount?info.expAmount:'--'}} KG</view>
 				</view>
 				<view style="width:30%;" class="txtright">
-					<view><text class="black">{{info.expTotalScore}}</text> 量心币</view>
-					<view class="gray f12 pt5">{{info.expScore}} 量心币/KG</view>
+					<view><text class="black">{{info.expTotalScore?info.expTotalScore:'--'}}</text> 量心币</view>
+					<view class="gray f12 pt5">{{info.expScore?info.expScore:'--'}} 量心币/KG</view>
 				</view>
 			</view>
 		</view>
@@ -51,12 +51,12 @@
 			</view>
 			<view class="viewRow pt10 pb5">
 				<view style="width:70%;">
-					<view>{{info.actType}}</view>
-					<view class="gray f12 pt5">{{info.actAmount}} 公斤</view>
+					<view>{{info.actType?info.actType:'--'}}</view>
+					<view class="gray f12 pt5">{{info.actAmount?info.actAmount:'--'}} 公斤</view>
 				</view>
 				<view style="width:30%;" class="txtright">
-					<view><text class="orange">{{info.actTotalScore}}</text> 量心币</view>
-					<view class="gray f12 pt5">{{info.actScore}} 量心币/KG</view>
+					<view><text class="orange">{{info.actTotalScore?info.actTotalScore:'--'}}</text> 量心币</view>
+					<view class="gray f12 pt5">{{info.actScore?info.actScore:'--'}} 量心币/KG</view>
 				</view>
 			</view>
 		</view>
