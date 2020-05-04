@@ -7,10 +7,10 @@
 		    iv: '',             // 
 		    userInfo: null,
 		    addId: '',          //	用户地址列表选择地址ID
-		    host: 'http://localhost:8080/lvbao',
-		    host1: 'https://www.68518091.com/lvbao', 
-		    host2: 'http://localhost:8080/lvbao',
-		    host2: 'http://192.168.224.66:8080/lvbao',  //	内网穿透测试
+		    host: 'https://www.68518091.com/lvbao',
+		    host1: 'https://www.68518091.com/lvbao', 	//上线
+		    host2: 'http://192.168.224.7:8080/lvbao',	//本地
+		    host2: 'http://192.168.224.16:8080/lvbao',//后端
 		},
 		onLaunch: function() {
 			console.log('App Launch')
