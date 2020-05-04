@@ -65,7 +65,7 @@
 				<view class="rout icon-qrcode f30 blue1" />
 				<text>我的二维码</text>
 			</navigator>
-			<navigator url="../realname/realname">
+			<navigator @click="realname">
 				<view class="rout icon-shenfenzheng f30 orange" />
 				<text>实名认证</text>
 			</navigator>
@@ -117,6 +117,36 @@
 			}
 		},
 		methods: {
+			realname () {
+				let that = this;
+				if( that.customer.isCheck == 1 ) {
+					that.$util.showToast("您已实名认证", 'none', 3000);
+				}else {
+					uni.navigateTo({
+						url: '../realname/realname'
+					});
+				}
+			},
+			// 点击登录弹出提示框
+			logout: function(e) {
+				this.$refs['dialogs'].showDialog();
+			},
+			// 弹出框选确定退出登录
+			_confirmEvent() {
+				var that = this;
+				this.$refs['dialogs'].hideDialog();
+				uni.removeStorageSync('custToken');
+				uni.removeStorageSync('card');
+				that.$util.showToast("您已退出登录", 'none', 3000);
+				uni.switchTab({
+					url: '../index/index'
+				});
+				console.log("what");
+			},
+			// 弹出框选取消隐藏弹出框
+			_cancelEvent() {
+				this.$refs['dialogs'].hideDialog();
+			},
 			// 获取用户量心币及零钱信息
 			getCustInfo: function() {
 				let that = this;
@@ -165,26 +195,6 @@
 				// 		util.showToast(err.errMsg, 'none', 3000);
 				// 	}
 				// });
-			},
-			// 点击登录弹出提示框
-			logout: function(e) {
-				this.$refs['dialogs'].showDialog();
-			},
-			// 弹出框选确定退出登录
-			_confirmEvent() {
-				var that = this;
-				this.$refs['dialogs'].hideDialog();
-				uni.removeStorageSync('custToken');
-				uni.removeStorageSync('card');
-				that.$util.showToast("您已退出登录", 'none', 3000);
-				uni.switchTab({
-					url: '../index/index'
-				});
-				console.log("what");
-			},
-			// 弹出框选取消隐藏弹出框
-			_cancelEvent() {
-				this.$refs['dialogs'].hideDialog();
 			}
 		},
 		onLoad() {
