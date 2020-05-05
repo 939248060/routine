@@ -28,7 +28,7 @@
 			// 联系我们
 			call: function() {
 				var that = this;
-				var phone = "4007705180";
+				var phone = "15308933557";
 				uni.makePhoneCall({
 					phoneNumber: phone,
 					fail: function(err) { 
