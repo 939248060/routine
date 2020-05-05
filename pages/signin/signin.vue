@@ -106,7 +106,7 @@
 					if (res.data.status === 0) {
 						that.signNum = that.signNum+1; //签到天数加一
 						that.signType = false;	//签到按钮样式调整
-						if (that.signNum == 7) {	//签到第七天，奖励弹窗显示
+						if (Number(that.signNum) == 7) {	//签到第七天，奖励弹窗显示
 							that.signReward = true;
 							setTimeout(function() {	//弹窗显示一会就自动关闭
 								that.signReward = false;
@@ -132,7 +132,7 @@
 					if (res.data.status === 0) {
 						res = JSON.parse(res.data.results);
 						that.signNum = res.length;	//签到天数
-						// that.signNum = 7; //测试
+						// that.signNum = 6; //测试
 						console.log(res)
 						//确认今天有没有签到，签到的话要把signtype的值变为false，让按钮变灰
 						let time1 = that.day.slice(0,10); //当前日期，用于判断今天是否签到
