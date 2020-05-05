@@ -28,7 +28,9 @@
 							</view>
 							<!-- 异常信息 -->
 							<view v-if="item.abnormal.length>0" class="row jcleft aicenter mb5 f12">
-							  <view class="lab labpurple radius8 mr5">{{item.abnormal}}</view>
+								<block :key="index" v-for="(item,index) in item.abnormal">
+									<view class="lab labpurple radius8 mr5 mb5">{{item}}</view>
+								</block>
 							</view>
 							<view>投放时间：{{item.beginTime?item.beginTime:'--'}}</view>
 							<view v-if="item.state==2">投放重量：{{item.expAmount?item.expAmount:'--'}} 公斤</view>
@@ -85,7 +87,9 @@
 							</view>
 							<!-- 异常信息 -->
 							<view v-if="item.abnormal.length>0" class="row jcleft aicenter mb5 f12">
-							  <view class="lab labpurple radius8 mr5">{{item.abnormal}}</view>
+								<block :key="index" v-for="(item,index) in item.abnormal">
+									<view class="lab labpurple radius8 mr5 mb5">{{item}}</view>
+								</block>
 							</view>
 							<view>投放时间：{{item.beginTime?item.beginTime:'--'}}</view>
 							<view>投放重量：{{item.expAmount?item.expAmount:'--'}} 公斤</view>
@@ -191,10 +195,22 @@
 				that.$request.postToken("/users/binorder/findPage.do", data).then((res) => {
 					if (res.data.status === 0) {
 						let btm = (res.data.page.currentPage >= res.data.page.allPageAmount) ? 'noMore' : 'loadMore';
+						let data = JSON.parse(res.data.results);
+						// 遍历所有订单的异常
+						data.forEach(item => {
+							if (that.$stringUtil.isNotEmpty(item.abnormal)) {
+								let abnormal = [];
+								let templist = item.abnormal.split(";");
+								templist.forEach(abn => {
+									abnormal = abnormal.concat(abn);
+								})
+								item.abnormal = abnormal;
+							}
+						})
 						if (rid == "new") { // 判断当前读取是刷新读取还是加载读取
-							that.$set(that.list,state,JSON.parse(res.data.results));
+							that.$set(that.list,state,data);
 						} else {
-							that.$set(that.list,state,that.list[state].concat(JSON.parse(res.data.results)));
+							that.$set(that.list,state,that.list[state].concat(data));
 						}
 						that.$set(that.page,state,res.data.page);
 						that[`${btmp}`] = btm;
