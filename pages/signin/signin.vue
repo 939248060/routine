@@ -39,7 +39,7 @@
 					<view class="ascenter" :class="7>signNum? 'gray-d rout icon-presentfill f30':'orange rout icon-presentfill f30'" />
 				</view>
 			</view>
-			<view class="signbtn radius10 ascenter "  :class="signType?'boxorange':'boxgray-d'" @click="sendSignIn()">
+			<view class="signbtn radius10 ascenter"  :class="signType?'boxorange':'boxgray-d'" @click="sendSignIn()">
 				{{ signType?'立即签到':'签到完成' }}
 			</view>
 		</view>
@@ -54,19 +54,30 @@
 				(6). 连续签到天数为一周，每周一到周日，用户每天0:00—23:59:59登录量心回收小程序，进入签到页面，连续签到7天后，会获取礼品一份。
 			</text>
 		</view>
+		<!-- 签到奖励弹窗 -->
+		<view v-show="signReward" class="mask" />
+		<view v-show="signReward" class="dialog bg-white colum p10 txtcenter">
+			<view class="orange rout icon-youhuiquan f40 mb5" />
+			<text class="f14 gray-6">获得一张加价券，请注意查收！</text>
+		</view>
 		<!-- 活动 -->
 		<view class="column">
-			<!-- <block :key="index" v-for="(item,index) in list"> -->
-				<navigator url="../invite/invite">
-					<image class="activityimg radius8" src="../../static/images/swiper1.png" mode="widthFix" />
+			<!-- <block v-for="(item,index) in list" :key="index">
+				<navigator :url="item.url">
+					<image class="activityimg radius8" :src="item.image" mode="widthFix" />
 				</navigator>
-				<navigator url="../invite/invite">
-					<image class="activityimg radius8" src="../../static/images/swiper2.png" mode="widthFix" />
-				</navigator>
-				<navigator url="../activity/activity">
-					<image class="activityimg radius8" src="../../static/images/swiper3.png" mode="widthFix" />
-				</navigator>
-			<!-- </block> -->
+			</block> -->
+			<!-- 测试效果 -->
+			<!-- <navigator url="../invite/invite">
+				<image class="activityimg radius8" src="../../static/images/swiper1.png" mode="widthFix" />
+			</navigator>
+			<navigator url="../invite/invite">
+				<image class="activityimg radius8" src="../../static/images/swiper2.png" mode="widthFix" />
+			</navigator>
+			<navigator url="../activity/activity">
+				<image class="activityimg radius8" src="../../static/images/swiper3.png" mode="widthFix" />
+			</navigator> -->
+			<!-- 测试结束 -->
 		</view>
 		<!-- 遮罩 -->
 		<loading/>
@@ -80,6 +91,7 @@
 				signNum: 0,	//签到天数
 				signType: true,	//签到按钮状态
 				day: '',	//当前时间，用于判断用户当前签到状态从而显示按钮样式
+				signReward: false,	//签到奖励提示弹窗
 			}
 		},
 		methods: {
@@ -94,7 +106,14 @@
 					if (res.data.status === 0) {
 						that.signNum = that.signNum+1; //签到天数加一
 						that.signType = false;	//签到按钮样式调整
-						that.$util.showToast( res.data.results, 'none', 2500);
+						if (that.signNum == 7) {	//签到第七天，奖励弹窗显示
+							that.signReward = true;
+							setTimeout(function() {	//弹窗显示一会就自动关闭
+								that.signReward = false;
+							},3000);
+						}else {
+							that.$util.showToast( res.data.results, 'none', 2500);
+						}
 					} else {
 						that.$util.showToast(res.data.results, 'none', 5000);
 					}
@@ -123,7 +142,6 @@
 								that.signType = false;
 								console.log("signIn!!!")
 							}
-							
 						})
 					} else {
 						that.$util.showToast(res.data.results, 'none', 5000);
@@ -177,5 +195,17 @@
 	.activityimg {
 		width: 100%;
 		margin-bottom: 10px;
+	}
+	/* 签到奖励弹窗样式 */
+	.dialog {
+		position: fixed;
+		z-index: 101;
+		width: 50%;
+		max-width: 300px;
+		top: 45vh;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		-webkit-transform: translate(-50%, -50%);
+		border-radius: 8px;
 	}
 </style>
