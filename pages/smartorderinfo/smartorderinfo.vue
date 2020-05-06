@@ -80,6 +80,8 @@
 		  <!--站点位置-->
 		  <view class="serialsingle"><view>站点位置</view><view>{{single.address}}</view></view>
 		</view>
+		<!-- 遮罩 -->
+		<loading />
 	</view>
 </template>
 
@@ -168,6 +170,7 @@
 		},
 		onLoad(options) {
 			let that = this;
+			that.host = that.$app.globalData.host;
 			if (that.$stringUtil.isNotEmpty(options.id)) {
 				that.getDetail(options.id);
 			}

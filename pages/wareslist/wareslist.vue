@@ -33,6 +33,7 @@
 			</view>
 			<view class="bottom txtcenter mb20" v-else-if="btmp=='loadMore'">加载更多...</view>
 		</scroll-view>
+		<!-- 遮罩 -->
 		<loading />
 	</view>
 </template>
