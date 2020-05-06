@@ -14,7 +14,7 @@
 				<navigator v-else url="../electrical/electrical" open-type="redirect" class="pl10 pr10 item">再次预约</navigator>
 			</view>
 			<view class="row jcbetween aicenter topeee f14" style="background: #fbfbfb">
-				<view class="call" bindtap="tapCallService"><text class="rout icon-dianhua1 mr5" />联系客服</view>
+				<view class="call" @click="tapCallService"><text class="rout icon-phone mr5" />联系客服</view>
 				<view v-if="single.staffMobile!=null" class="call" @click="tapCallMan"><text class="rout icon-dianhua1 mr5" />联系回收员</view>
 			</view>
 		</view>
@@ -126,7 +126,7 @@
 			// 拨打客服电话
 			tapCallService: function(e) {
 				uni.makePhoneCall({
-					phoneNumber: '089866212580',
+					phoneNumber: '15308933557',
 					fail: function(err) {
 						that.$util.showToast(err.errMsg, 'none', 3000);
 					}
@@ -160,6 +160,7 @@
 					if (pages.length > 1) {
 						let prePage = pages[pages.length - 2];
 						setTimeout(function() {
+							that.$hideLoading(); //关闭遮罩
 							prePage.onShow();
 							uni.navigateBack({
 								delta: 1
