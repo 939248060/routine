@@ -126,9 +126,9 @@
 			tapCopy: function (e) {
 				let that = this;
 				uni.setClipboardData({
-					data: that.data.single.serialNum,
-					success: function (res) {
-						that.$util.showToast("复制成功", "none", 1000);
+					data: that.single.serialNum,
+					success: function () {
+						// that.$util.showToast("复制成功", "none", 1000);
 					}
 				})
 			},

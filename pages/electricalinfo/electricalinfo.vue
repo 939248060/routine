@@ -190,12 +190,12 @@
 				})
 			},
 			// 点击复制订单号事件
-			tapCopy: function(e) {
+			tapCopy: function (e) {
 				let that = this;
 				uni.setClipboardData({
 					data: that.single.serialNum,
-					success: function(res) {
-						that.$util.showToast("复制成功", "none", 2000);
+					success: function () {
+						// that.$util.showToast("复制成功", "none", 1000);
 					}
 				})
 			},
