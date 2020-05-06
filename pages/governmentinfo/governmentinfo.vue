@@ -11,7 +11,7 @@
 			<view v-else class="pl15 pt10 black">感谢您对量心回收的信任，期待再次预约。</view>
 			<view class="row jcleft aicenter p10">
 				<view v-if="single.state<3" class="cancelBtn red" :data-id="single.recyorderId" @click="tapCancel">取消订单</view>
-				<navigator v-else url="../index/index" open-type="switchTab" class="pl10 pr10 item">再次预约</navigator>
+				<navigator v-else url="../recyclable/recyclable" open-type="switchTab" class="pl10 pr10 item">再次预约</navigator>
 			</view>
 			<view class="row jcbetween aicenter topeee f14" style="background: #fbfbfb">
 				<view class="call" @click="tapCallService"><text class="rout icon-phone mr5" />联系客服</view>
