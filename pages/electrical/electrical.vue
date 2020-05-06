@@ -112,7 +112,7 @@
 		<view v-show="finishHid" class="column jccenter aicenter txtcenter finish">
 			<icon class="rout icon-roundcheckfill blue1" style="font-size: 80px" />
 			<view class="mt20 mb20 f24">订单已提交</view>
-			<navigator @click="goOrderList" open-type="redirect" class="nav mt15 mb15 p10">查看订单</navigator>
+			<view @click="goOrderList" open-type="redirect" class="nav mt15 mb15 p10">查看订单</view>
 			<navigator url="../index/index" open-type="switchTab" class="nav mt15 mb15 p10">返回首页</navigator>
 		</view>
 		<!--加载动画-->

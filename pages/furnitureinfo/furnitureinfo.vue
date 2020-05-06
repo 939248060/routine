@@ -14,8 +14,8 @@
 				<navigator v-else url="../furniture/furniture" open-type="redirect" class="pl10 pr10 item">再次预约</navigator>
 			</view>
 			<view class="row jcbetween aicenter topeee f14" style="background: #fbfbfb">
-				<view class="call" bindtap="tapCallService"><text class="rout icon-dianhua1 mr5" />联系客服</view>
-				<view v-if="single.staffMobile!=null" class="call" @click="tapCallMan"><text class="rout icon-dianhua1 mr5" />联系回收员</view>
+				<view class="call" @click="tapCallService"><text class="rout icon-phone mr5" />联系客服</view>
+				<view v-if="single.staffMobile!=null" class="call" @click="tapCallMan"><text class="rout icon-phone mr5" />联系回收员</view>
 			</view>
 		</view>
 
@@ -126,7 +126,7 @@
 			// 拨打客服电话
 			tapCallService: function(e) {
 				uni.makePhoneCall({
-					phoneNumber: '089866212580',
+					phoneNumber: '15308933557',
 					fail: function(err) {
 						that.$util.showToast(err.errMsg, 'none', 3000);
 					}
@@ -160,9 +160,10 @@
 					if (pages.length > 1) {
 						let prePage = pages[pages.length - 2];
 						setTimeout(function() {
+							that.$hideLoading(); //关闭遮罩
 							prePage.onShow();
-							uni.navigateBack({
-								delta: 1
+							uni.switchTab({
+								url: '../orderlist/orderlist'
 							});
 						}, 2000)
 					}
@@ -189,12 +190,12 @@
 				})
 			},
 			// 点击复制订单号事件
-			tapCopy: function(e) {
+			tapCopy: function (e) {
 				let that = this;
 				uni.setClipboardData({
 					data: that.single.serialNum,
-					success: function(res) {
-						that.$util.showToast("复制成功", "none", 2000);
+					success: function () {
+						// that.$util.showToast("复制成功", "none", 1000);
 					}
 				})
 			},

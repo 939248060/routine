@@ -15,7 +15,7 @@
 			</view>
 			<view class="row jcbetween aicenter topeee f14" style="background: #fbfbfb">
 				<view class="call" @click="tapCallService"><text class="rout icon-phone mr5" />联系客服</view>
-				<view v-if="single.staffMobile!=null" class="call" @click="tapCallMan"><text class="rout icon-dianhua1 mr5" />联系回收员</view>
+				<view v-if="single.staffMobile!=null" class="call" @click="tapCallMan"><text class="rout icon-phone mr5" />联系回收员</view>
 			</view>
 		</view>
 
@@ -162,8 +162,8 @@
 						setTimeout(function() {
 							that.$hideLoading(); //关闭遮罩
 							prePage.onShow();
-							uni.navigateBack({
-								delta: 1
+							uni.switchTab({
+								url: '../orderlist/orderlist'
 							});
 						}, 2000)
 					}

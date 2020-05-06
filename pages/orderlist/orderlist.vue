@@ -9,15 +9,15 @@
 			</view>
 			<view class="content">
 				<!-- 智能站订单 -->
-				<view v-show="current === 0">
+				<view v-if="current === 0">
 					<smartorderlist />
 				</view>
 				<!-- 智能箱订单 -->
-				<view v-show="current === 1">
+				<view v-if="current === 1">
 					<dryorderlist />
 				</view>
 				<!-- 上门回收订单 -->
-				<view v-show="current === 2">
+				<view v-if="current === 2">
 					<recyorderlist />
 				</view>
 			</view>
@@ -55,7 +55,6 @@
 			}else {
 				that.current = 0;
 			}
-			console.log(that.current)
 		},
 	}
 </script>
