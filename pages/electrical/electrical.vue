@@ -112,7 +112,7 @@
 		<view v-show="finishHid" class="column jccenter aicenter txtcenter finish">
 			<icon class="rout icon-roundcheckfill blue1" style="font-size: 80px" />
 			<view class="mt20 mb20 f24">订单已提交</view>
-			<navigator url="../recyorderlist/recyorderlist" open-type="redirect" class="nav mt15 mb15 p10">查看订单</navigator>
+			<navigator @click="goOrderList" open-type="redirect" class="nav mt15 mb15 p10">查看订单</navigator>
 			<navigator url="../index/index" open-type="switchTab" class="nav mt15 mb15 p10">返回首页</navigator>
 		</view>
 		<!--加载动画-->
@@ -141,6 +141,13 @@
 			}
 		},
 		methods: {
+			//查看订单跳转到订单列表
+			goOrderList(){
+				let that = this;
+				uni.switchTab({
+					url: '../orderlist/orderlist'
+				});
+			},
 			// 错误图片替换
 			errImg: function(e) {
 				let that = this;
