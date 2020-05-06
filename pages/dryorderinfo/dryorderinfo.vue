@@ -100,7 +100,7 @@
 			// 拨打客服电话
 			tapCallService: function (e) {
 				uni.makePhoneCall({
-					phoneNumber: '15308933557',
+					phoneNumber: '4007705180',
 					fail: function (err) {
 						that.$util.showToast(err.errMsg, 'none', 3000);
 					}
