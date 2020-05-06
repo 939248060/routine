@@ -53,8 +53,8 @@
 				</view>
 			</view>
 			<!--开始预约-->
-			<view class="row jcbetween aicenter foot topeee pt10 pb10 f15" style="z-index: 100;">
-				<view class="ml10">
+			<view class="row jcbetween aicenter foot topeee p10 f15" style="z-index: 100;">
+				<view class="">
 					<view class="black">
 						预估清运费
 						<text class="ml5 mr5 f20 red bold">{{(countDetail>=0&&recydetail.length>0)?countDetail:'--'}}</text>
@@ -62,7 +62,7 @@
 					</view>
 					<view class="gray f12">实际清运费以现场评估为准</view>
 				</view>
-				<button class="viewbtn mr10 pl15 pr15 f16" :class="(countDetail>=0&&recydetail.length>0)?'':'off'" formType="submit">开始预约</button>
+				<button class="viewbtn mr15 pl15 pr15 f16" :class="(countDetail>=0&&recydetail.length>0)?'':'off'" formType="submit">开始预约</button>
 			</view>
 		</form>
 
