@@ -414,13 +414,11 @@ function getBin2(data) {
 				}
 			})
 		}else{
-			item.alarm.forEach(i => {
-				if(i=='红外1' && i=='红外2') {
+			if( item.alarm.indexOf('红外1') > -1 && item.alarm.indexOf('红外2') > -1) {
+				boxStatus.box.push(item.device);
+			}else if( item.alarm.indexOf('红外3') > -1 ) {
 					boxStatus.box.push(item.device);
-				}else if (i=='红外3') {
-					boxStatus.box.push(item.device);
-				}
-			})
+			}
 		}
 	})
 	return boxStatus;
