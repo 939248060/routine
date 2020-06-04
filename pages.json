@@ -28,12 +28,14 @@
 		}, { //地址列表
 			"path": "pages/addresslist/addresslist",
 			"style": {
-				"navigationBarTitleText": "地址列表"
+				"navigationBarTitleText": "地址列表",
+				"navigationBarTextStyle": "#FFFFFF"
 			}
 		}, { //添加地址
 			"path": "pages/addressform/addressform",
 			"style": {
-				"navigationBarTitleText": "添加地址"
+				"navigationBarTitleText": "添加地址",
+				"navigationBarTextStyle": "#FFFFFF"
 			}
 		}, { //家电回收
 			"path": "pages/electrical/electrical",
@@ -67,27 +69,32 @@
 		},{//家具清运
 			"path" : "pages/furniture/furniture",
 			"style" : {
-				"navigationBarTitleText": ""
+				"navigationBarTitleText": "",
+				"navigationBarTextStyle": "#FFFFFF"
 			}
 		},{//政府回收订单详情
 			"path" : "pages/governmentinfo/governmentinfo",
 			"style" : {
-				"navigationBarTitleText": ""
+				"navigationBarTitleText": "",
+				"navigationBarTextStyle": "#FFFFFF"
 			}
 		},{//家电回收订单详情
 			"path" : "pages/electricalinfo/electricalinfo",
 			"style" : {
-				"navigationBarTitleText": ""
+				"navigationBarTitleText": "",
+				"navigationBarTextStyle": "#FFFFFF"
 			}
 		},{//家具清运订单详情
 			"path" : "pages/furnitureinfo/furnitureinfo",
 			"style" : {
-				"navigationBarTitleText": ""
+				"navigationBarTitleText": "",
+				"navigationBarTextStyle": "#FFFFFF"
 			}
 		},{//商户回收订单详情
 			"path" : "pages/merchantinfo/merchantinfo",
 			"style" : {
-				"navigationBarTitleText": ""
+				"navigationBarTitleText": "",
+				"navigationBarTextStyle": "#FFFFFF"
 			}
 		},{//积分兑换订单列表
 			"path" : "pages/exchangelist/exchangelist",
@@ -99,12 +106,14 @@
 		}, { //积分兑换商品详情
 			"path": "pages/wares/wares",
 			"style": {
-				"navigationBarTitleText": ""
+				"navigationBarTitleText": "",
+				"navigationBarTextStyle": "#FFFFFF"
 			}
 		}, { //积分兑换订单详情
 			"path": "pages/exchange/exchange",
 			"style": {
-				"navigationBarTitleText": ""
+				"navigationBarTitleText": "",
+				"navigationBarTextStyle": "#FFFFFF"
 			}
 		}, { //我的邀请
 			"path": "pages/invitation/invitation",
@@ -119,7 +128,8 @@
 		}, {
 			"path": "pages/getuserinfo/getuserinfo",
 			"style": {
-				"navigationBarTitleText": ""
+				"navigationBarTitleText": "",
+				"navigationBarTextStyle": "#FFFFFF"
 			}
 		}, {//量心币列表
 			"path": "pages/scorelist/scorelist",
@@ -157,12 +167,14 @@
 		},{//智能箱订单详情
 			"path" : "pages/dryorderinfo/dryorderinfo",
 			"style" : {
-				"navigationBarTitleText": ""
+				"navigationBarTitleText": "",
+				"navigationBarTextStyle": "#FFFFFF"
 			}
 		},{//智能站订单详情
 			"path" : "pages/smartorderinfo/smartorderinfo",
 			"style" : {
-				"navigationBarTitleText": ""
+				"navigationBarTitleText": "订单详情",
+				"navigationBarTextStyle": "#FFFFFF"
 			}
 		},{
 			"path" : "pages/showhtml/showhtml",
@@ -172,7 +184,8 @@
 		},{//邀请有礼页面
 			"path" : "pages/invite/invite",
 			"style" : {
-				"navigationBarTitleText": ""
+				"navigationBarTitleText": "",
+				"navigationBarTextStyle": "#FFFFFF"
 			}
 		},{
 			"path" : "pages/register/register",
@@ -202,7 +215,8 @@
 		},{// 积分兑换订单详情
 			"path" : "pages/exchangeinfo/exchangeinfo",
 			"style" : {
-				"navigationBarTitleText": "订单详情"
+				"navigationBarTitleText": "订单详情",
+				"navigationBarTextStyle": "#FFFFFF"
 			}
     },{//上门回收
 			"path" : "pages/visit/visit",

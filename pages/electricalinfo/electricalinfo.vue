@@ -1,15 +1,15 @@
 <template>
 	<view>
-		<view v-if="single.state==1" class="bg-blue1 white p10 f18">等待回收员接单 > </view>
-		<view v-else-if="single.state==2" class="bg-blue1 white p10 f18">等待回收员上门 > </view>
-		<view v-else-if="single.state==3" class="bg-blue1 white p10  f18">订单已完成 > </view>
-		<view v-else-if="single.state==4" class="bg-blue1 white p10 f18">订单已失效 > </view>
+		<view v-if="single.state==1" class="bg-blue1 white p10 f18 txtcenter">等待回收员接单 </view>
+		<view v-else-if="single.state==2" class="bg-blue1 white p10 f18 txtcenter">等待回收员上门 </view>
+		<view v-else-if="single.state==3" class="bg-blue1 white p10 f18 txtcenter">订单已完成 </view>
+		<view v-else-if="single.state==4" class="bg-blue1 white p10 f18 txtcenter">订单已失效 </view>
 
-		<view class="mt10 ml10 mr10 bg-white radius8">
+		<view class="mt10 ml10 mr10 bg-white radius8 txtcenter">
 			<view v-if="single.state==1" class="pl15 pt10 black">等待回收员接单，量心回收为绿色地球努力</view>
 			<view v-else-if="single.state==2" class="pl15 pt10 black">回收员已经接单，请耐心等候回收员上门回收</view>
 			<view v-else class="pl15 pt10 black">感谢您对量心回收的信任，期待再次预约。</view>
-			<view class="row jcleft aicenter p10">
+			<view class="row jcaround aicenter p10">
 				<view v-if="single.state<3" class="cancelBtn red" :data-id="single.recyorderId" @click="tapCancel">取消订单</view>
 				<navigator v-else url="../electrical/electrical" open-type="redirect" class="pl10 pr10 item">再次预约</navigator>
 			</view>
