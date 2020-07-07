@@ -2,7 +2,11 @@
 	<view>
 		<image src="../../static/images/visit_banner.png" mode="widthFix" style="width: 100%;"/>
 		<view class="column m15 txtcenter">
-			<view class="gray-9 mb15">————<text class="f16 bold mb10 gray-6 ml5 mr5 "> 请选择回收类型 </text>————</view>
+			<view class="gray-9">————<text class="f16 bold mb10 gray-6 ml5 mr5 "> 请选择回收类型 </text>————</view>
+			<view class="row jcend txtright m5 mb15 gray-9"  @tap="showRule=true">
+				使用规则
+				<view class="rout icon-question" />
+			</view>
 			<navigator url="../recyclable/recyclable" class="list row">
 				<view class="m10"><image src="../../static/images/tu5.png" mode="widthFix" /></view>
 				<view class="column txtleft" style="width: 80%;">
@@ -34,6 +38,15 @@
 				</view>
 			</view>
 		</view>
+		<!-- 使用规则 -->
+		<view v-show="showRule" class="">
+			<view class="mask" />
+			<view class="ruledialog">
+				<view class="bg-blue1 txtcenter white lh36 f16" style="border-radius: 8px 8px 0 0;"> 上门回收规则 </view>
+				<view class="rout icon-close white f24 m5" style="position: absolute; top: 0px; right: 0;" @click='closeRule' />
+				<rule />
+			</view>
+		</view>
 		<!--弹出框-->
 		<dialogs id='dialog' ref="dialogs" title=' ' content='您还未登录,是否登录？' cancelText='取消' confirmText='确定' @cancelEvent="_cancelEvent"
 		 @confirmEvent="_confirmEvent" />
@@ -42,17 +55,24 @@
 
 <script>
 	import dialogs from "@../../components/dialog/dialog.vue";
+	import rule from "./rule.vue";
 	
 	export default {
 		components:{
-			dialogs
+			dialogs,
+			rule
 		},
 		data() {
 			return {
 				card: '',			//用户卡号，用于判断用户是否登录
+				showRule: false, //使用规则
 			}
 		},
 		methods: {
+			//隐藏使用规则弹窗
+			closeRule() {
+				this.showRule = false;
+			},
 			//页面跳转前判断是否登录 
 			toPage(num) {
 				let that = this;
@@ -96,54 +116,17 @@
 	page {
 		position: fixed;	 /* 固定页面内容不移动 */
 	}
-	.list {
-		background: #FFFFFF;
-		margin-bottom: 15px;
-		border-radius: 10px;
-	}
-	.list > view:nth-of-type(1) {
-		height: 50px;
-		width: 50px;
-	}
-	.list > view > image {
-		width: 100%;
-	}
-	.appoint {
-		color: #FFFFFF;
-		background: #00A2ED;
-		padding: 3px 8px;
-		border-radius: 12px 0 12px 0;
-		min-width: 52px;
-	}
+	.list { background: #FFFFFF; margin-bottom: 15px; border-radius: 10px; }
+	.list > view:nth-of-type(1) { height: 50px; width: 50px; }
+	.list > view > image { width: 100%; }
+	.appoint { color: #FFFFFF; background: #00A2ED; padding: 3px 8px; border-radius: 12px 0 12px 0; min-width: 52px; }
 	/* 政府回收和合伙人回收弹出框样式 */
-	.dialog {
-		position: fixed;
-		z-index: 101;
-		width: 85%;
-		max-width: 300px;
-		top: 50%;
-		left: 50%;
-		transform: translate(-50%, -50%);
-		-webkit-transform: translate(-50%, -50%);
-	}
+	.dialog { position: fixed; z-index: 101; width: 85%; max-width: 300px; top: 50%; left: 50%; transform: translate(-50%, -50%); -webkit-transform: translate(-50%, -50%);}
 	
 	/* 收货地址样式 */
-	.address {
-		height: 55px;
-		vertical-align: middle;
-		border: 2px dashed #ccc;
-		text-align: left;
-	}
-	
-	.address>view:nth-child(1) {
-		width: 14%;
-	}
-	
-	.address>view:nth-child(2) {
-		width: 76%;
-	}
-	
-	.address>view:nth-child(3) {
-		width: 10%;
-	}
-</style>
+	.address { height: 55px; vertical-align: middle; border: 2px dashed #ccc; text-align: left; }
+	.address>view:nth-child(1) { width: 14%; }
+	.address>view:nth-child(2) { width: 76%; }
+	.address>view:nth-child(3) { width: 10%; }
+	.ruledialog { position: fixed; z-index: 101; width: 85%; max-width: 300px; top: 50%; left: 50%; transform: translate(-50%, -50%); -webkit-transform: translate(-50%, -50%); }
+	</style>

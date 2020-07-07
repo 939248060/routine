@@ -29,9 +29,14 @@
 		</view>
 		<!-- 收益数据统计 -->
 		<view class="myIncome column mb10">
-			<view class="row mb10">
-				<view class="ring ascenter" />
-				<text class="f14 bold">{{ card == ''?"您好，请先登录":"我的收益" }}</text>
+			<view class="row jcbetween mb10">
+				<view class="row">
+					<view class="ring ascenter" />
+					<text class="f14 bold">{{ card == ''?"您好，请先登录":"我的收益" }}</text>
+				</view>
+				<view class="indexrule" @tap="showRule=true">
+					使用规则
+				</view>
 			</view>
 			<!-- 未登录 -->
 			<view v-if="card==''" class="myIncomeCon column jccenter">
@@ -126,6 +131,15 @@
 				<view>请打开定位以便获取附近站点信息</view>
 			</view>
 		</view>
+		<!-- 我的收益使用规则 -->
+		<view v-show="showRule" class="">
+			<view class="mask" />
+			<view class="ruledialog">
+				<view class="bg-blue1 txtcenter white lh36 f16" style="border-radius: 8px 8px 0 0;"> 我的收益使用规则 </view>
+				<view class="rout icon-close white f24 m5" style="position: absolute; top: 0px; right: 0;" @click='closeRule' />
+				<rule />
+			</view>
+		</view>
 		<!--遮罩-->
 		<loading/>
 		<!--弹出框-->
@@ -136,10 +150,12 @@
 
 <script>
 	import dialogs from "@../../components/dialog/dialog.vue";
+	import rule from "./rule.vue";
 	
 	export default {
 		components:{
-			dialogs
+			dialogs,
+			rule
 		},
 		data() {
 			return {
@@ -154,6 +170,7 @@
 				address: {},	//收货地址信息
 				card: '',			//用户卡号，用于判断用户是否登录
 				smartList: [],	//站点列表
+				showRule: false, //我的收益使用规则
 			}
 		},
 		//过滤器
@@ -173,6 +190,10 @@
 			}
 		},
 		methods: {
+			//隐藏我的收益使用规则弹窗
+			closeRule() {
+				this.showRule = false;
+			},
 			//页面跳转前判断是否登录 
 			toPage(num) {
 				let that = this;
@@ -392,5 +413,7 @@
 		border-radius: 4px;
 		margin-bottom: 15px;
 		border: #00a2ed 1px solid;
-	}
+	} 
+	.indexrule { border: 1px solid #a9c8fc; border-radius: 6px; color: #00A2ED; padding: 0 10px; margin-right: 10px; background: rgba(255, 255, 255, .8); }
+	.ruledialog { position: fixed; z-index: 101; width: 85%; max-width: 300px; top: 50%; left: 50%; transform: translate(-50%, -50%); -webkit-transform: translate(-50%, -50%); }
 </style>
