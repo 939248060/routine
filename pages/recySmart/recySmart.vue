@@ -346,6 +346,8 @@
 									boxStatus = that.$util.getBin1(binStatus);
 								}else if (single.binEdition==2 && binStatus.length > 0) {//2代智能站
 									boxStatus = that.$util.getBin2(binStatus);
+								}else if (single.binEdition==2.5 && binStatus.length > 0) {//2.5代智能站
+									boxStatus = that.$util.getBin2(binStatus);
 								}
 								console.log(boxStatus)
 								if (boxStatus!=undefined) {
